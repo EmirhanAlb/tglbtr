@@ -53,3 +53,9 @@
   .md\:py-32{padding-top:8rem;padding-bottom:8rem}
   .md\:text-8xl{font-size:6rem;line-height:1}
 }
+
+/* Mobil uygulama tanıtım barı kaldırıldı; header/ticker/hero için ayrılan üst boşluk sıfırlanır. */
+:root{--app-promo-offset:0px;--app-promo-offset-hbanner:0px}
+@media (max-width: 767px){
+  :root{--app-promo-offset:0px;--app-promo-offset-hbanner:0px}
+}

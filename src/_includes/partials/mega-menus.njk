@@ -4,17 +4,6 @@
 </svg>
 {%- endset -%}
 
-{%- macro appPromo() -%}
-<div class="menu-section-app-promo">
-<div class="flex min-w-0 items-center gap-2"><img class="h-auto" src="/images/blocks/tc-logo-menusection.png" alt="Trust Capital" style="width: 46px;">
-<div class="">
-<h6 class="">Uygulamamızı İndirin</h6>
-<p class="">Yatırın, İşlem Yapın, Emir Verin</p>
-</div>
-</div>
-<div class="app-store-btns"><a class="block" href="{{ site.links.appStore }}" target="_blank" rel="noopener noreferrer"> <img class="h-[27px] w-auto" src="/images/blocks/appstore-menusection.png" alt="App Store'dan indirin"> </a> <a class="block" href="{{ site.links.googlePlay }}" target="_blank" rel="noopener noreferrer"> <img class="h-[27px] w-auto" src="/images/blocks/gplay-menusection.png" alt="Google Play'den alın"> </a></div>
-</div>
-{%- endmacro -%}
 
 {%- for section in nav.mega %}
 <section id="{{ section.id }}" class="dropdown-menu selected-div double-tap absolute w-full z-40 hidden bg-white shadow-lg transition-opacity duration-300"{% if section.hiddenByDefault %} style="display: none;"{% endif %}>
@@ -49,12 +38,10 @@
 <div class="live-btn-large"><a href="{{ site.links.liveAccount }}" target="_blank"> Gerçek Hesap Aç </a></div>
 <div class="demo-btn-large"><a href="/forex-demo-account" target="_blank"> Demo Dene </a></div>
 </div>
-{{ appPromo() }}
 </div>
 <div class="live-demo-small">
 <div class="live-btn-small"><a href="{{ site.links.liveAccount }}" target="_blank"> Gerçek Hesap Aç </a></div>
 <div class="demo-btn-small"><a href="/forex-demo-account" target="_blank"> Demo Dene </a></div>
-{{ appPromo() }}
 </div>
 </div>
 </section>
