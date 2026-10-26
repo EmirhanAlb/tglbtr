@@ -1,0 +1,61 @@
+{%- set chevron -%}
+<svg class="drop-menu-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="25" viewBox="0 0 13 25" fill="none">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10.4069 13.4128L4.74994 19.0698L3.33594 17.6558L8.28594 12.7058L3.33594 7.7558L4.74994 6.3418L10.4069 11.9988C10.5944 12.1863 10.6997 12.4406 10.6997 12.7058C10.6997 12.971 10.5944 13.2253 10.4069 13.4128Z" fill="#313131"></path>
+</svg>
+{%- endset -%}
+
+{%- macro appPromo() -%}
+<div class="menu-section-app-promo">
+<div class="flex min-w-0 items-center gap-2"><img class="h-auto" src="/images/blocks/tc-logo-menusection.png" alt="Trust Capital" style="width: 46px;">
+<div class="">
+<h6 class="">Uygulamamızı İndirin</h6>
+<p class="">Yatırın, İşlem Yapın, Emir Verin</p>
+</div>
+</div>
+<div class="app-store-btns"><a class="block" href="{{ site.links.appStore }}" target="_blank" rel="noopener noreferrer"> <img class="h-[27px] w-auto" src="/images/blocks/appstore-menusection.png" alt="App Store'dan indirin"> </a> <a class="block" href="{{ site.links.googlePlay }}" target="_blank" rel="noopener noreferrer"> <img class="h-[27px] w-auto" src="/images/blocks/gplay-menusection.png" alt="Google Play'den alın"> </a></div>
+</div>
+{%- endmacro -%}
+
+{%- for section in nav.mega %}
+<section id="{{ section.id }}" class="dropdown-menu selected-div double-tap absolute w-full z-40 hidden bg-white shadow-lg transition-opacity duration-300"{% if section.hiddenByDefault %} style="display: none;"{% endif %}>
+<div class="w-full flex flex-row items-center justify-between">
+<div class="min-w-[65px] mr-auto"><img class="w-full" src="{{ section.icon }}" alt="forex-icon"></div>
+{%- for column in section.columns %}
+<div class="w-[233px] h-full flex flex-col gap-4 flex-wrap mx-auto justify-between self-start">
+{%- for link in column -%}
+{%- if link.plain -%}
+<a href="{{ link.href }}">
+<div class="drop-menu" id="drop-link">
+<div class="drop-menu-head">{{ link.label }}</div>
+{{ chevron | safe }}</div>
+</a>
+{%- else -%}
+<a class="group" href="{{ link.href }}" id="drop-link">
+<div class="drop-menu">
+<div class="drop-menu-head">{{ link.label }}</div>
+{{ chevron | safe }}</div>
+</a>
+{%- endif -%}
+{%- endfor -%}
+</div>
+{%- endfor %}
+<div class="cline"></div>
+<div class="flex flex-col justify-center items-start gap-[20px] ml-auto w-[368px] hidden lg:flex">
+<div class="trad-head">
+<div class="text-[32px] leading-[32px] font-normal text-[#6B7280]">Akıllıca İşlem Yapın.</div>
+<div class="text-[32px] leading-[32px] font-bold text-[#111928]">Güvenle İşlem Yapın.</div>
+</div>
+<div class="live-demo-large">
+<div class="live-btn-large"><a href="{{ site.links.liveAccount }}" target="_blank"> Gerçek Hesap Aç </a></div>
+<div class="demo-btn-large"><a href="/forex-demo-account" target="_blank"> Demo Dene </a></div>
+</div>
+{{ appPromo() }}
+</div>
+<div class="live-demo-small">
+<div class="live-btn-small"><a href="{{ site.links.liveAccount }}" target="_blank"> Gerçek Hesap Aç </a></div>
+<div class="demo-btn-small"><a href="/forex-demo-account" target="_blank"> Demo Dene </a></div>
+{{ appPromo() }}
+</div>
+</div>
+</section>
+{%- endfor %}

@@ -1,0 +1,1780 @@
+[
+ {
+  "symbol": "EURUSD",
+  "bid": "1.12031",
+  "ask": "1.1204",
+  "pct": "-0.26",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "GBPUSD",
+  "bid": "1.33734",
+  "ask": "1.33744",
+  "pct": "-0.15",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "USDCHF",
+  "bid": "0.82346",
+  "ask": "0.82353",
+  "pct": "-0.11",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "USDJPY",
+  "bid": "157.096",
+  "ask": "157.111",
+  "pct": "-0.65",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "USDCAD",
+  "bid": "1.40317",
+  "ask": "1.40328",
+  "pct": "-0.11",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "AUDUSD",
+  "bid": "0.70095",
+  "ask": "0.70108",
+  "pct": "-0.26",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "NZDUSD",
+  "bid": "0.56754",
+  "ask": "0.56766",
+  "pct": "-0.44",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "AUDCAD",
+  "bid": "0.98346",
+  "ask": "0.9836",
+  "pct": "-0.38",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "AUDCHF",
+  "bid": "0.57723",
+  "ask": "0.57733",
+  "pct": "-0.37",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "AUDJPY",
+  "bid": "110.124",
+  "ask": "110.14",
+  "pct": "-0.92",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "AUDNZD",
+  "bid": "1.23494",
+  "ask": "1.23511",
+  "pct": "0.19",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "CADCHF",
+  "bid": "0.5869",
+  "ask": "0.587",
+  "pct": "0.02",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "CADJPY",
+  "bid": "111.967",
+  "ask": "111.984",
+  "pct": "-0.53",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "CHFJPY",
+  "bid": "190.767",
+  "ask": "190.785",
+  "pct": "-0.53",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "EURAUD",
+  "bid": "1.59812",
+  "ask": "1.59827",
+  "pct": "0.01",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "EURCAD",
+  "bid": "1.57179",
+  "ask": "1.57195",
+  "pct": "-0.38",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "EURCHF",
+  "bid": "0.92255",
+  "ask": "0.92266",
+  "pct": "-0.37",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "EURGBP",
+  "bid": "0.83769",
+  "ask": "0.83776",
+  "pct": "-0.1",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "EURJPY",
+  "bid": "176.004",
+  "ask": "176.021",
+  "pct": "-0.91",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "EURNZD",
+  "bid": "1.97379",
+  "ask": "1.97403",
+  "pct": "0.18",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "GBPAUD",
+  "bid": "1.90769",
+  "ask": "1.90791",
+  "pct": "0.12",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "GBPCAD",
+  "bid": "1.8763",
+  "ask": "1.87648",
+  "pct": "-0.27",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "GBPCHF",
+  "bid": "1.10127",
+  "ask": "1.1014",
+  "pct": "-0.26",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "GBPJPY",
+  "bid": "210.097",
+  "ask": "210.122",
+  "pct": "-0.8",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "GOLD",
+  "bid": "4080.29",
+  "ask": "4080.55",
+  "pct": "-1.45",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "SILVER",
+  "bid": "55.691",
+  "ask": "55.726",
+  "pct": "-3.9",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "GBPNZD",
+  "bid": "2.3561",
+  "ask": "2.35635",
+  "pct": "0.3",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "NZDCAD",
+  "bid": "0.79624",
+  "ask": "0.79638",
+  "pct": "-0.55",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "NZDCHF",
+  "bid": "0.46731",
+  "ask": "0.46742",
+  "pct": "-0.52",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "NZDJPY",
+  "bid": "89.157",
+  "ask": "89.175",
+  "pct": "-1.07",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "USOIL",
+  "bid": "99.445",
+  "ask": "99.475",
+  "pct": "2.04",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "UKOIL",
+  "bid": "108.325",
+  "ask": "108.355",
+  "pct": "2.17",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "US30",
+  "bid": "52564.25",
+  "ask": "52566.75",
+  "pct": "-0.59",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "US100",
+  "bid": "29304.83",
+  "ask": "29306.63",
+  "pct": "-1.76",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "US500",
+  "bid": "7683.25",
+  "ask": "7684.05",
+  "pct": "-0.97",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "US2000",
+  "bid": "2764.2",
+  "ask": "2765.5",
+  "pct": "-0.52",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "BTCUSD",
+  "bid": "81641.3",
+  "ask": "81641.3",
+  "pct": "-3.56",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "ETHUSD",
+  "bid": "2398.1",
+  "ask": "2398.1",
+  "pct": "-3.76",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "BCHUSD",
+  "bid": "274.54",
+  "ask": "275.138",
+  "pct": "-4.51",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "LTCUSD",
+  "bid": "58.94",
+  "ask": "59.09",
+  "pct": "-4.77",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "LNKUSD",
+  "bid": "12.031",
+  "ask": "12.035",
+  "pct": "-5.09",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "DOTUSD",
+  "bid": "1.128",
+  "ask": "1.131",
+  "pct": "-3.51",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "XRPUSD",
+  "bid": "1.31985",
+  "ask": "1.32405",
+  "pct": "-4.52",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "ADAUSD",
+  "bid": "0.2105",
+  "ask": "0.2217",
+  "pct": "-5.52",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "XLMUSD",
+  "bid": "0.17728",
+  "ask": "0.17731",
+  "pct": "-4.35",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "DOGUSD",
+  "bid": "0.07934",
+  "ask": "0.0794",
+  "pct": "-4.33",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "GER40",
+  "bid": "25521.15",
+  "ask": "25523.25",
+  "pct": "-0.32",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "FRA40",
+  "bid": "7839.4",
+  "ask": "7842.4",
+  "pct": "-0.71",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "SPA35",
+  "bid": "19016",
+  "ask": "19023",
+  "pct": "-1.46",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "EU50",
+  "bid": "6123.3",
+  "ask": "6126.4",
+  "pct": "-1.1",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "UK100",
+  "bid": "10742.7",
+  "ask": "10744.4",
+  "pct": "0.18",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "JAP225",
+  "bid": "63121",
+  "ask": "63134",
+  "pct": "-2.67",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "AUS200",
+  "bid": "8802.25",
+  "ask": "8804.75",
+  "pct": "-0.32",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "ADSGn",
+  "bid": "158.55",
+  "ask": "158.6",
+  "pct": "-1.34",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "ALVG",
+  "bid": "432.6",
+  "ask": "432.8",
+  "pct": "-0.76",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "BAYGn",
+  "bid": "43.99",
+  "ask": "44",
+  "pct": "-1.46",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "BMWG",
+  "bid": "57.22",
+  "ask": "57.24",
+  "pct": "0.35",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "CBKG",
+  "bid": "36.57",
+  "ask": "36.58",
+  "pct": "-1.75",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "DBKGn",
+  "bid": "28.23",
+  "ask": "28.24",
+  "pct": "-1.6",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "LHAG",
+  "bid": "7.08",
+  "ask": "7.09",
+  "pct": "-2.48",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "SAN",
+  "bid": "11.61",
+  "ask": "11.62",
+  "pct": "-2.76",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "SIEGn",
+  "bid": "262.45",
+  "ask": "262.5",
+  "pct": "-1.45",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "TEF",
+  "bid": "3.45",
+  "ask": "3.46",
+  "pct": "1.17",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "VOWG",
+  "bid": "68.4",
+  "ask": "68.42",
+  "pct": "-1.38",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "AAL",
+  "bid": "12.23",
+  "ask": "12.24",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "AAPL",
+  "bid": "343.95",
+  "ask": "344",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "ABNB",
+  "bid": "173.63",
+  "ask": "173.66",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "ADBE",
+  "bid": "255.32",
+  "ask": "255.36",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "AIG",
+  "bid": "81.76",
+  "ask": "81.77",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "AMZN",
+  "bid": "262.56",
+  "ask": "262.58",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "AXP",
+  "bid": "323.57",
+  "ask": "323.62",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "BA",
+  "bid": "192.16",
+  "ask": "192.21",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "BABA",
+  "bid": "104.34",
+  "ask": "104.35",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "BAC",
+  "bid": "50.81",
+  "ask": "50.82",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "BK",
+  "bid": "146.05",
+  "ask": "146.07",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "BKNG",
+  "bid": "158.45",
+  "ask": "158.46",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "BMRN",
+  "bid": "55.17",
+  "ask": "55.18",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "BMY",
+  "bid": "61.12",
+  "ask": "61.13",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "CAT",
+  "bid": "739.91",
+  "ask": "740.26",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "CME",
+  "bid": "295.83",
+  "ask": "295.89",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "COST",
+  "bid": "998.5",
+  "ask": "998.85",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "CSCO",
+  "bid": "107.32",
+  "ask": "107.33",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "DAL",
+  "bid": "77.71",
+  "ask": "77.73",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "DELL",
+  "bid": "486.1",
+  "ask": "486.51",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "DIS",
+  "bid": "111.74",
+  "ask": "111.75",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "EBAY",
+  "bid": "122.94",
+  "ask": "122.96",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "FDX",
+  "bid": "298.32",
+  "ask": "298.33",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "GE",
+  "bid": "295.32",
+  "ask": "295.33",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "GM",
+  "bid": "76.05",
+  "ask": "76.06",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "GOOG",
+  "bid": "331.17",
+  "ask": "331.18",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "GPRO",
+  "bid": "1.05",
+  "ask": "1.08",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "GS",
+  "bid": "903.1",
+  "ask": "903.17",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "GT",
+  "bid": "4.29",
+  "ask": "4.3",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "HD",
+  "bid": "313.79",
+  "ask": "313.85",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "HLT",
+  "bid": "362.16",
+  "ask": "362.19",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "HOG",
+  "bid": "27.28",
+  "ask": "27.29",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "HPQ",
+  "bid": "31.33",
+  "ask": "31.34",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "IBM",
+  "bid": "251.08",
+  "ask": "251.25",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "INTC",
+  "bid": "92.96",
+  "ask": "92.98",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "JNJ",
+  "bid": "257.55",
+  "ask": "257.58",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "JPM",
+  "bid": "334.74",
+  "ask": "334.77",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "KMI",
+  "bid": "33.95",
+  "ask": "33.96",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "KO",
+  "bid": "92.65",
+  "ask": "92.66",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "MA",
+  "bid": "622.02",
+  "ask": "622.15",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "MCD",
+  "bid": "246.03",
+  "ask": "246.06",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "MCO",
+  "bid": "480.47",
+  "ask": "480.6",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "MMM",
+  "bid": "174.27",
+  "ask": "174.31",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "MO",
+  "bid": "73.82",
+  "ask": "73.83",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "MRK",
+  "bid": "149.85",
+  "ask": "149.87",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "MRVL",
+  "bid": "244.71",
+  "ask": "244.72",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "MS",
+  "bid": "186.76",
+  "ask": "186.79",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "MSFT",
+  "bid": "533.1",
+  "ask": "533.12",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "NFLX",
+  "bid": "65.05",
+  "ask": "65.06",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "NKE",
+  "bid": "37.49",
+  "ask": "37.5",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "NVDA",
+  "bid": "221.95",
+  "ask": "221.98",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "ORCL",
+  "bid": "129",
+  "ask": "129.02",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "PEP",
+  "bid": "134.8",
+  "ask": "134.81",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "PFE",
+  "bid": "29.87",
+  "ask": "29.88",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "PM",
+  "bid": "197.47",
+  "ask": "197.51",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "PYPL",
+  "bid": "57.2",
+  "ask": "57.21",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "QCOM",
+  "bid": "177.91",
+  "ask": "177.93",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "RACE",
+  "bid": "396.58",
+  "ask": "396.96",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "ROKU",
+  "bid": "157.74",
+  "ask": "157.75",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "SBUX",
+  "bid": "99.06",
+  "ask": "99.07",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "SHOP",
+  "bid": "174.35",
+  "ask": "174.37",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "SPOT",
+  "bid": "523.5",
+  "ask": "523.54",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "TMUS",
+  "bid": "153.89",
+  "ask": "153.9",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "TSLA",
+  "bid": "386.57",
+  "ask": "386.61",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "UA",
+  "bid": "4.56",
+  "ask": "4.57",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "UAL",
+  "bid": "101.6",
+  "ask": "101.62",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "UBER",
+  "bid": "67.65",
+  "ask": "67.66",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "UPS",
+  "bid": "99.48",
+  "ask": "99.49",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "VALE",
+  "bid": "12.68",
+  "ask": "12.69",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "VZ",
+  "bid": "43.6",
+  "ask": "43.61",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "WFC",
+  "bid": "82.37",
+  "ask": "82.39",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "WMT",
+  "bid": "117.73",
+  "ask": "117.74",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "XOM",
+  "bid": "178.12",
+  "ask": "178.14",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "YUM",
+  "bid": "151.25",
+  "ask": "151.29",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "ZM",
+  "bid": "99.46",
+  "ask": "99.47",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "AUDNOK",
+  "bid": "6.5558",
+  "ask": "6.5596",
+  "pct": "-0.35",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "AUDSGD",
+  "bid": "0.8958",
+  "ask": "0.89604",
+  "pct": "-0.21",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "CADSGD",
+  "bid": "0.9108",
+  "ask": "0.91104",
+  "pct": "0.18",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "CHFSGD",
+  "bid": "1.55183",
+  "ask": "1.55211",
+  "pct": "0.18",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "EURCZK",
+  "bid": "24.253",
+  "ask": "24.2696",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "EURHUF",
+  "bid": "366.11",
+  "ask": "366.27",
+  "pct": "0.26",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "EURNOK",
+  "bid": "10.4779",
+  "ask": "10.4831",
+  "pct": "-0.35",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "EURPLN",
+  "bid": "4.3685",
+  "ask": "4.3706",
+  "pct": "0.31",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "EURSEK",
+  "bid": "11.1171",
+  "ask": "11.1237",
+  "pct": "0.15",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "EURSGD",
+  "bid": "1.43172",
+  "ask": "1.43199",
+  "pct": "-0.2",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "EURZAR",
+  "bid": "18.50212",
+  "ask": "18.51275",
+  "pct": "0.67",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "GBPMXN",
+  "bid": "25.0756",
+  "ask": "25.0814",
+  "pct": "0.24",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "GBPNOK",
+  "bid": "12.5077",
+  "ask": "12.5138",
+  "pct": "-0.24",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "GBPSEK",
+  "bid": "13.2707",
+  "ask": "13.27841",
+  "pct": "0.26",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "GBPSGD",
+  "bid": "1.70909",
+  "ask": "1.70939",
+  "pct": "-0.1",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "NOKJPY",
+  "bid": "16.78",
+  "ask": "16.808",
+  "pct": "-0.53",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "NOKSEK",
+  "bid": "1.05987",
+  "ask": "1.06224",
+  "pct": "0.53",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "SGDJPY",
+  "bid": "122.91",
+  "ask": "122.941",
+  "pct": "-0.69",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "USDCNH",
+  "bid": "6.67317",
+  "ask": "6.67429",
+  "pct": "0.01",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "USDCZK",
+  "bid": "21.6475",
+  "ask": "21.6626",
+  "pct": "0.27",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "USDHKD",
+  "bid": "7.83894",
+  "ask": "7.84023",
+  "pct": "-0.09",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "USDHUF",
+  "bid": "326.765",
+  "ask": "326.915",
+  "pct": "0.53",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "USDMXN",
+  "bid": "18.7486",
+  "ask": "18.753",
+  "pct": "0.39",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "USDNOK",
+  "bid": "9.35215",
+  "ask": "9.35705",
+  "pct": "-0.09",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "USDPLN",
+  "bid": "3.8991",
+  "ask": "3.9012",
+  "pct": "0.57",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "USDSEK",
+  "bid": "9.92273",
+  "ask": "9.92876",
+  "pct": "0.41",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "USDSGD",
+  "bid": "1.2779",
+  "ask": "1.27814",
+  "pct": "0.05",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "USDTHB",
+  "bid": "33.7175",
+  "ask": "33.7305",
+  "pct": "0.44",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "USDZAR",
+  "bid": "16.514",
+  "ask": "16.52377",
+  "pct": "0.93",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "ZARJPY",
+  "bid": "9.498",
+  "ask": "9.522",
+  "pct": "-1.54",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "COPPER",
+  "bid": "14126.8",
+  "ask": "14133.9",
+  "pct": "-1.69",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "HKIND",
+  "bid": "23002",
+  "ask": "23015",
+  "pct": "-2.51",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "XAUEUR",
+  "bid": "3641.74",
+  "ask": "3642.36",
+  "pct": "-1.18",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "USDSAR",
+  "bid": "3.7704",
+  "ask": "3.8267",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "USDEGP",
+  "bid": "55.26",
+  "ask": "55.36",
+  "pct": "1.75",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "USDAED",
+  "bid": "3.67245",
+  "ask": "3.67295",
+  "pct": "-0.01",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "USDQAR",
+  "bid": "3.64455",
+  "ask": "3.64545",
+  "pct": "0.1",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "USDKWD",
+  "bid": "0.3078",
+  "ask": "0.3082",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "Tecom.Group",
+  "bid": "3.11",
+  "ask": "3.14",
+  "pct": "-1.27",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "Alpha.Dhabi",
+  "bid": "6.859",
+  "ask": "6.904",
+  "pct": "-1.37",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "ADNOC.Gas",
+  "bid": "3.15",
+  "ask": "3.19",
+  "pct": "-0.63",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "Pure.Health",
+  "bid": "2.57",
+  "ask": "2.61",
+  "pct": "-1.15",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "AD.Aviation",
+  "bid": "5.75",
+  "ask": "5.8",
+  "pct": "0.35",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "AD.Insuranc",
+  "bid": "6.87",
+  "ask": "6.92",
+  "pct": "-0.28",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "AD.Natl.Tak",
+  "bid": "5.68",
+  "ask": "5.91",
+  "pct": "-0.18",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "AD.Ship",
+  "bid": "7.81",
+  "ask": "8",
+  "pct": "0.13",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "ADCB",
+  "bid": "16.47",
+  "ask": "16.81",
+  "pct": "-0.78",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "ADIB",
+  "bid": "22.27",
+  "ask": "22.37",
+  "pct": "-1.29",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "ADNOC.Drill",
+  "bid": "5.65",
+  "ask": "5.7",
+  "pct": "-0.88",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "ADNOC.Logis",
+  "bid": "7.17",
+  "ask": "7.22",
+  "pct": "-2.05",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "Agthia.Grp",
+  "bid": "3.11",
+  "ask": "3.16",
+  "pct": "-0.96",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "Apex",
+  "bid": "3.12",
+  "ask": "3.17",
+  "pct": "-1.58",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "Chimera",
+  "bid": "3.59",
+  "ask": "3.64",
+  "pct": "-0.55",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "FAB.Bank",
+  "bid": "18.61",
+  "ask": "18.68",
+  "pct": "-2.46",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "Ghitha.Hold",
+  "bid": "11.03",
+  "ask": "11.25",
+  "pct": "-1.16",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "IHC",
+  "bid": "350.28",
+  "ask": "351.12",
+  "pct": "-0.51",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "Modon",
+  "bid": "2.78",
+  "ask": "2.83",
+  "pct": "-1.42",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "NMDC",
+  "bid": "25.66",
+  "ask": "25.8",
+  "pct": "1.22",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "Palms.Sport",
+  "bid": "7.26",
+  "ask": "7.63",
+  "pct": "0.28",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "CBD",
+  "bid": "9.67",
+  "ask": "10",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "DEWA",
+  "bid": "2.61",
+  "ask": "2.66",
+  "pct": "0.38",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "DIB",
+  "bid": "7.06",
+  "ask": "7.1",
+  "pct": "-0.84",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "DU",
+  "bid": "12.15",
+  "ask": "12.23",
+  "pct": "1",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "Emaar.Devel",
+  "bid": "12.41",
+  "ask": "12.49",
+  "pct": "-1.97",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "Emaar.Propt",
+  "bid": "11.36",
+  "ask": "11.42",
+  "pct": "-0.7",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "GULFNAV",
+  "bid": "3.05",
+  "ask": "3.09",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "NBD.Bank",
+  "bid": "31.07",
+  "ask": "31.19",
+  "pct": "-2.05",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "Parkin",
+  "bid": "5.86",
+  "ask": "5.89",
+  "pct": "2.99",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "Salik",
+  "bid": "5.11",
+  "ask": "5.14",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "Taaleem",
+  "bid": "3.13",
+  "ask": "3.19",
+  "pct": "-3.1",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "RAK.Bank",
+  "bid": "9.98",
+  "ask": "10.09",
+  "pct": "0",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "RPH",
+  "bid": "2.12",
+  "ask": "2.18",
+  "pct": "-0.47",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "PLATINUM",
+  "bid": "1582",
+  "ask": "1585",
+  "pct": "-2.92",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "PALLADIUM",
+  "bid": "1065.62",
+  "ask": "1068.62",
+  "pct": "-2.38",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "SWI20",
+  "bid": "14535.5",
+  "ask": "14541.5",
+  "pct": "0.12",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "UKOIL_Z26",
+  "bid": "112.183",
+  "ask": "112.218",
+  "pct": "2.29",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "USOIL_Z26",
+  "bid": "99.758",
+  "ask": "99.793",
+  "pct": "2.13",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "JAP225_Z26",
+  "bid": "63320",
+  "ask": "63335",
+  "pct": "-2.66",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "US100_Z26",
+  "bid": "29491.1",
+  "ask": "29493.37",
+  "pct": "-1.76",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "US30_Z26",
+  "bid": "52764",
+  "ask": "52767",
+  "pct": "-0.62",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "US500_Z26",
+  "bid": "7724.71",
+  "ask": "7725.52",
+  "pct": "-0.97",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "USDIDX_Z26",
+  "bid": "101.59",
+  "ask": "101.62",
+  "pct": "0.08",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "FRA40_Z26",
+  "bid": "7855.5",
+  "ask": "7875",
+  "pct": "-0.73",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "GER40_Z26",
+  "bid": "25635.8",
+  "ask": "25638.3",
+  "pct": "-0.35",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "UK100_Z26",
+  "bid": "10774",
+  "ask": "10781",
+  "pct": "0.16",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "US100.Z26",
+  "bid": "29491.08",
+  "ask": "29493.37",
+  "pct": "-1.76",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "US30.Z26",
+  "bid": "52765.04",
+  "ask": "52766.13",
+  "pct": "-0.62",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "US500.Z26",
+  "bid": "7724.71",
+  "ask": "7725.52",
+  "pct": "-0.97",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "GER40.Z26",
+  "bid": "25636.29",
+  "ask": "25637.83",
+  "pct": "-0.36",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "SPCX",
+  "bid": "154.36",
+  "ask": "155.03",
+  "pct": "-2.86",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "LEAD",
+  "bid": "1901.9",
+  "ask": "1909.15",
+  "pct": "0.17",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "ZINC",
+  "bid": "3693.33",
+  "ask": "3700.87",
+  "pct": "-1.42",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "WHEAT_Z26",
+  "bid": "625.5",
+  "ask": "627.75",
+  "pct": "-0.32",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "COCOA_Z26",
+  "bid": "5614",
+  "ask": "5624",
+  "pct": "-3.77",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "COFFEE_Z26",
+  "bid": "304.35",
+  "ask": "305.45",
+  "pct": "-3.69",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "CORN_Z26",
+  "bid": "464.5",
+  "ask": "465.25",
+  "pct": "0.05",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "SOYBEAN_X26",
+  "bid": "1246.25",
+  "ask": "1248",
+  "pct": "0.08",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "ALUMINIUM",
+  "bid": "3016.04",
+  "ask": "3022.05",
+  "pct": "-0.07",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "NGAS",
+  "bid": "2.78",
+  "ask": "2.784",
+  "pct": "0.98",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "DSHUSD",
+  "bid": "49.54",
+  "ask": "49.58",
+  "pct": "-5.26",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "AAVUSD",
+  "bid": "146.99",
+  "ask": "147",
+  "pct": "-6.51",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "BATUSD",
+  "bid": "0.16934",
+  "ask": "0.16948",
+  "pct": "-6.07",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "ETCUSD",
+  "bid": "7.802",
+  "ask": "7.808",
+  "pct": "-4.38",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "FILUSD",
+  "bid": "0.9941",
+  "ask": "1.0142",
+  "pct": "-6.48",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "IOTUSD",
+  "bid": "0.0448",
+  "ask": "0.04503",
+  "pct": "-7.02",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "NEOUSD",
+  "bid": "2.201",
+  "ask": "2.224",
+  "pct": "-3.93",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "SUSUSD",
+  "bid": "0.2151",
+  "ask": "0.2176",
+  "pct": "-5.7",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "XTZUSD",
+  "bid": "0.3039",
+  "ask": "0.3067",
+  "pct": "-4.49",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "TETUSD",
+  "bid": "0.1969",
+  "ask": "0.1975",
+  "pct": "-3.72",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "TRXUSD",
+  "bid": "0.33021",
+  "ask": "0.33094",
+  "pct": "-0.13",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "UNIUSD",
+  "bid": "7.086",
+  "ask": "7.089",
+  "pct": "-6.65",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "ZECUSD",
+  "bid": "1244.83",
+  "ask": "1245.53",
+  "pct": "-7.51",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "COTTON_Z26",
+  "bid": "81.36",
+  "ask": "81.64",
+  "pct": "-0.5",
+  "arrow": "arrow-red"
+ },
+ {
+  "symbol": "NATGAS_X26",
+  "bid": "2.803",
+  "ask": "2.824",
+  "pct": "1.41",
+  "arrow": "arrow-green"
+ },
+ {
+  "symbol": "SUGAR_H27",
+  "bid": "20.44",
+  "ask": "20.51",
+  "pct": "0.05",
+  "arrow": "arrow-green"
+ }
+]

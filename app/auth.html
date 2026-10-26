@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Giriş · __BRAND__</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="login.css" />
+  <script src="config.js"></script>
+  <!-- Uygulama indirme QR kodunu .qr-code canvas'ına çizer (sitenin kendi modülü). -->
+  <script type="module" src="/build/assets/qrcode-ee012d8f.js"></script>
+</head>
+<body>
+  <div class="login-page">
+
+    <!-- Sol görsel panel (yalnızca masaüstü) -->
+    <aside class="login-visual">
+      <div class="login-visual-bg">
+        <div class="glow glow-center"></div>
+        <div class="glow glow-tr"></div>
+        <div class="glow glow-bl"></div>
+        <div class="login-grid"></div>
+        <div class="login-fade"></div>
+      </div>
+      <div class="login-visual-content">
+        <a href="/" class="login-visual-logo">
+          <img src="/images/blocks/tc-logo-white.png" alt="Trust Capital" />
+        </a>
+        <div class="login-visual-copy">
+          <h2>Akıllı Yatırımın<br><span class="grad">Kapısı</span></h2>
+          <p>Gerçek zamanlı piyasalara, gelişmiş analizlere ve profesyonel işlem araçlarına erişin.</p>
+        </div>
+        <div class="login-visual-badges">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Banka Düzeyinde Güvenlik
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            256-bit Şifreleme
+          </span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Sağ form paneli -->
+    <div class="login-main">
+      <header class="login-mobile-head">
+        <a href="/"><img src="/images/blocks/tc-logo-dark.png" alt="Trust Capital" /></a>
+      </header>
+
+      <main class="login-body">
+        <div class="login-card">
+
+          <!-- Giriş -->
+          <div id="loginView">
+            <h1 class="login-title"><span data-brand-name>Trust Capital</span>'e giriş yapın</h1>
+
+            <div class="field">
+              <label for="l_email">E-posta <span class="req">*</span></label>
+              <input id="l_email" type="email" placeholder="ornek@eposta.com" autocomplete="email" />
+            </div>
+
+            <div class="field">
+              <label for="l_pass">Şifre <span class="req">*</span></label>
+              <div class="pass-wrap">
+                <input id="l_pass" type="password" placeholder="••••••••" autocomplete="current-password" />
+                <button type="button" class="pass-toggle" data-toggle="l_pass" aria-label="Şifreyi göster">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="forgot-row">
+              <a id="toForgot" class="link">Şifremi unuttum</a>
+            </div>
+
+            <button class="login-btn" id="loginBtn">Giriş Yap</button>
+            <div class="msg" id="loginMsg"></div>
+
+            <div class="login-divider"><span>veya</span></div>
+
+            <p class="login-alt">
+              <span data-brand-name>Trust Capital</span> müşterisi değil misiniz?
+              <a href="/live-account">Hesap açın</a>
+            </p>
+            <p class="login-alt-sm">
+              <a id="toReg">Yeni hesabı burada oluşturun</a>
+            </p>
+
+            <!-- Uygulama indirme kartı -->
+            <div class="app-card">
+              <div class="app-card-qr">
+                <canvas class="qr-code" width="83" height="83" aria-label="Uygulamayı indirmek için tarayın"></canvas>
+                <p>TARA</p>
+              </div>
+              <div class="app-card-text">
+                <p class="app-card-kicker">Uygulamayı indirin</p>
+                <h3>Hesabınız<br>Cebinizde</h3>
+                <p class="app-card-sub">Yatırın, çekin ve emir bildirimleri alın</p>
+                <div class="app-card-stores">
+                  <a href="https://apps.apple.com/us/app/trust-capital-app/id6761525651" target="_blank" rel="noopener noreferrer">
+                    <img src="/images/blocks/appstore-menusection.png" alt="App Store'dan indirin" />
+                  </a>
+                  <a href="https://play.google.com/store/apps/details?id=com.trustcapitalapp.seychells" target="_blank" rel="noopener noreferrer">
+                    <img src="/images/blocks/gplay-menusection.png" alt="Google Play'den alın" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kayıt -->
+          <div id="regView" class="hidden">
+            <h1 class="login-title">Yeni hesap açın</h1>
+            <p class="login-sub">Birkaç saniyede başlayın.</p>
+
+            <div class="field">
+              <label for="r_name">Ad Soyad <span class="req">*</span></label>
+              <input id="r_name" type="text" placeholder="Adınız Soyadınız" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="r_email">E-posta <span class="req">*</span></label>
+              <input id="r_email" type="email" placeholder="ornek@eposta.com" autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="r_phone">Telefon <span class="req">*</span></label>
+              <input id="r_phone" type="tel" placeholder="+90 ..." autocomplete="tel" />
+            </div>
+            <div class="field">
+              <label for="r_type">Hesap Tipi</label>
+              <select id="r_type">
+                <option value="real">Gerçek — Canlı piyasada gerçek sermayeyle</option>
+                <option value="demo">Demo — Sanal bakiye, sıfır risk</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="r_pass">Şifre <span class="req">*</span></label>
+              <div class="pass-wrap">
+                <input id="r_pass" type="password" placeholder="En az 6 karakter" autocomplete="new-password" />
+                <button type="button" class="pass-toggle" data-toggle="r_pass" aria-label="Şifreyi göster">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+              <div class="password-strength" id="passStrength"></div>
+            </div>
+
+            <label class="checkbox">
+              <input id="r_terms" type="checkbox" />
+              <span><a href="/terms-conditions" target="_blank">Şartlar ve Koşullar</a>'ı okudum ve kabul ediyorum.</span>
+            </label>
+
+            <button class="login-btn" id="regBtn">Hesap Aç</button>
+            <div class="msg" id="regMsg"></div>
+            <p class="login-alt-sm">Zaten hesabınız var mı? <a id="toLogin">Giriş yapın</a></p>
+          </div>
+
+          <!-- Şifre sıfırlama -->
+          <div id="forgotView" class="hidden">
+            <h1 class="login-title">Şifrenizi sıfırlayın</h1>
+            <p class="login-sub">E-posta adresinize sıfırlama bağlantısı gönderelim.</p>
+
+            <div class="field">
+              <label for="f_email">E-posta <span class="req">*</span></label>
+              <input id="f_email" type="email" placeholder="ornek@eposta.com" autocomplete="email" />
+            </div>
+
+            <button class="login-btn" id="forgotBtn">Bağlantı Gönder</button>
+            <div class="msg" id="forgotMsg"></div>
+            <p class="login-alt-sm"><a id="toLoginFromForgot">Giriş ekranına dön</a></p>
+          </div>
+
+        </div>
+      </main>
+
+      <footer class="login-foot">
+        Bu site şifreleme ile korunmaktadır; <span data-brand-name>Trust Capital</span>
+        <a href="/docs/pdf/privacy_policy.pdf" target="_blank" rel="noopener noreferrer">Gizlilik Politikası</a>
+        ve
+        <a href="/docs/pdf/client_service_agreement.pdf" target="_blank" rel="noopener noreferrer">Hizmet Şartları</a>
+        geçerlidir.
+      </footer>
+    </div>
+  </div>
+
+  <script type="module">
+    import { supabase, applyBrand, brand, currentUser } from "./app.js";
+    applyBrand();
+
+    // Giriş yapan kullanıcıyı rolüne göre yönlendir: admin -> admin.html, müşteri -> panel.html
+    async function routeByRole() {
+      const { data } = await supabase.auth.getUser();
+      const role = data?.user?.app_metadata?.role === "admin" ? "admin" : "customer";
+      location.replace(role === "admin" ? "admin.html" : "panel.html");
+    }
+
+    // Zaten girişliyse panele gönder
+    (async () => { if (await currentUser()) routeByRole(); })();
+
+    const $ = (id) => document.getElementById(id);
+
+    const views = { login: $("loginView"), reg: $("regView"), forgot: $("forgotView") };
+    const show = (name) => Object.entries(views).forEach(([k, el]) => el.classList.toggle("hidden", k !== name));
+
+    $("toReg").onclick = () => show("reg");
+    $("toLogin").onclick = () => show("login");
+    $("toForgot").onclick = () => show("forgot");
+    $("toLoginFromForgot").onclick = () => show("login");
+
+    // Şifre göster/gizle
+    document.querySelectorAll(".pass-toggle").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const input = $(btn.dataset.toggle);
+        if (!input) return;
+        input.type = input.type === "password" ? "text" : "password";
+        btn.classList.toggle("on", input.type === "text");
+      });
+    });
+
+    function setMsg(el, type, text) {
+      el.className = "msg " + (type || "");
+      el.textContent = text || "";
+    }
+
+    function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    // Şifre gücü göstergesi
+    $("r_pass").addEventListener("input", (e) => {
+      const v = e.target.value;
+      const bar = $("passStrength");
+      if (!v) { bar.className = "password-strength"; bar.textContent = ""; return; }
+      let score = 0;
+      if (v.length >= 6) score++;
+      if (v.length >= 10) score++;
+      if (/[A-Z]/.test(v)) score++;
+      if (/[0-9]/.test(v)) score++;
+      if (/[^A-Za-z0-9]/.test(v)) score++;
+      const labels = ["Zayıf", "Zayıf", "Orta", "İyi", "Güçlü", "Çok güçlü"];
+      const classes = ["weak", "weak", "medium", "good", "strong", "strong"];
+      bar.className = "password-strength " + classes[score];
+      bar.textContent = labels[score];
+    });
+
+    $("loginBtn").onclick = async () => {
+      const msg = $("loginMsg"); setMsg(msg, "", "");
+      const email = $("l_email").value.trim();
+      const pass = $("l_pass").value;
+      if (!validEmail(email)) { setMsg(msg, "err", "Geçerli bir e-posta adresi girin."); return; }
+      if (!pass) { setMsg(msg, "err", "Şifrenizi girin."); return; }
+      $("loginBtn").disabled = true;
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password: pass });
+      $("loginBtn").disabled = false;
+      if (error) { setMsg(msg, "err", "Giriş başarısız: " + error.message); return; }
+      routeByRole();
+    };
+
+    $("regBtn").onclick = async () => {
+      const msg = $("regMsg"); setMsg(msg, "", "");
+      const name = $("r_name").value.trim();
+      const email = $("r_email").value.trim();
+      const phone = $("r_phone").value.trim();
+      const pass = $("r_pass").value;
+      if (!name) { setMsg(msg, "err", "Ad soyad girin."); return; }
+      if (!validEmail(email)) { setMsg(msg, "err", "Geçerli bir e-posta adresi girin."); return; }
+      if (!phone) { setMsg(msg, "err", "Telefon numarası girin."); return; }
+      if (pass.length < 6) { setMsg(msg, "err", "Şifre en az 6 karakter olmalıdır."); return; }
+      if (!$("r_terms").checked) { setMsg(msg, "err", "Devam etmek için şartları kabul edin."); return; }
+      $("regBtn").disabled = true;
+      // Metadata anahtarları supabase/schema.sql'deki handle_new_user() ile birebir:
+      // name, phone, account_type, login_password -> profiles satırına kopyalanır.
+      const { data, error } = await supabase.auth.signUp({
+        email, password: pass,
+        options: { data: { name, phone, account_type: $("r_type").value, login_password: pass } }
+      });
+      $("regBtn").disabled = false;
+      if (error) { setMsg(msg, "err", "Kayıt başarısız: " + error.message); return; }
+      if (data.session) { routeByRole(); return; }
+      setMsg(msg, "ok", "Hesabınız oluşturuldu. E-posta onayı açıksa, kutunuzu kontrol edip onayladıktan sonra giriş yapın.");
+    };
+
+    $("forgotBtn").onclick = async () => {
+      const msg = $("forgotMsg"); setMsg(msg, "", "");
+      const email = $("f_email").value.trim();
+      if (!validEmail(email)) { setMsg(msg, "err", "Geçerli bir e-posta adresi girin."); return; }
+      $("forgotBtn").disabled = true;
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: location.origin + "/app/auth.html?reset=1"
+      });
+      $("forgotBtn").disabled = false;
+      if (error) { setMsg(msg, "err", "İşlem başarısız: " + error.message); return; }
+      setMsg(msg, "ok", "Sıfırlama bağlantısı gönderildi. Lütfen e-posta kutunuzu kontrol edin.");
+    };
+  </script>
+</body>
+</html>

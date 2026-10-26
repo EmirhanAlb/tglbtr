@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+permalink: /refer-a-friend/
+title: "Arkadaşını Davet Et | Trust Capital"
+description: "Arkadaşlarınızı Trust Capital'e davet edin, birlikte kazanın. Davet programı avantajlarından yararlanın."
+---
+<section class="py-16 md:py-24 bg-[#003E3C]">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-[#FAF7F2] mb-6">Arkadaşını Davet Et</h1>
+        <p class="text-[#A9C2BE] text-lg max-w-2xl mx-auto">Arkadaşlarınızı davet edin, birlikte kazanmaya başlayın.</p>
+    </div>
+</section>
+<section class="py-12 md:py-20">
+    <div class="container mx-auto px-6 max-w-xl">
+        <form id="referForm" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Adınız</label>
+                <input type="text" id="ref_name" required class="w-full px-4 py-2 border rounded-lg">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Arkadaşınızın E-postası</label>
+                <input type="email" id="ref_friend" required class="w-full px-4 py-2 border rounded-lg">
+            </div>
+            <button type="submit" class="w-full px-6 py-3 rounded-full bg-[#003E3C] text-white font-semibold">Davet Gönder</button>
+            <div id="ref_msg" class="text-sm min-h-[1.25rem]"></div>
+        </form>
+    </div>
+</section>
+<script>
+document.getElementById('referForm').onsubmit = function(e) {
+  e.preventDefault();
+  document.getElementById('ref_msg').textContent = 'Davetiyeniz gönderildi.';
+  document.getElementById('ref_msg').className = 'text-sm min-h-[1.25rem] text-green-600';
+};
+</script>

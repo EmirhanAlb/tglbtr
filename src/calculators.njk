@@ -1,0 +1,46 @@
+---
+layout: layouts/base.njk
+permalink: /calculators/
+title: "Forex Hesaplayıcıları | Pip, Marj, Kaldıraç | Trust Capital"
+description: "Ücretsiz pip, marj ve kaldıraç hesaplayıcıları ile işlem planlamanızı yapın. Risk yönetiminizi güçlendirin."
+---
+<section class="py-16 md:py-24 bg-[#003E3C]">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-[#FAF7F2] mb-6">İşlem Hesaplayıcıları</h1>
+        <p class="text-[#A9C2BE] text-lg max-w-2xl mx-auto">Pip, marj ve kaldıraç hesaplayıcıları ile işlemlerinizi planlayın.</p>
+    </div>
+</section>
+<section class="py-12 md:py-20">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12">
+        <div class="border rounded-2xl p-8">
+            <h2 class="text-xl font-bold text-[#003E3C] mb-4">Pip Değeri Hesaplayıcı</h2>
+            <label class="block text-sm text-gray-600 mb-1">Lot Büyüklüğü</label>
+            <input type="number" id="pipLot" value="1" step="0.01" class="w-full px-4 py-2 border rounded-lg mb-4">
+            <label class="block text-sm text-gray-600 mb-1">Pip Miktarı</label>
+            <input type="number" id="pipCount" value="10" class="w-full px-4 py-2 border rounded-lg mb-4">
+            <button id="calcPip" class="px-6 py-2 rounded-full bg-[#003E3C] text-white">Hesapla</button>
+            <div id="pipResult" class="mt-4 font-semibold text-[#003E3C]"></div>
+        </div>
+        <div class="border rounded-2xl p-8">
+            <h2 class="text-xl font-bold text-[#003E3C] mb-4">Marj Hesaplayıcı</h2>
+            <label class="block text-sm text-gray-600 mb-1">Hesap Bakiyesi (USD)</label>
+            <input type="number" id="marginBalance" value="1000" class="w-full px-4 py-2 border rounded-lg mb-4">
+            <label class="block text-sm text-gray-600 mb-1">Kaldıraç</label>
+            <input type="number" id="marginLeverage" value="100" class="w-full px-4 py-2 border rounded-lg mb-4">
+            <button id="calcMargin" class="px-6 py-2 rounded-full bg-[#003E3C] text-white">Hesapla</button>
+            <div id="marginResult" class="mt-4 font-semibold text-[#003E3C]"></div>
+        </div>
+    </div>
+</section>
+<script>
+document.getElementById('calcPip').onclick = () => {
+  const lot = parseFloat(document.getElementById('pipLot').value) || 0;
+  const pips = parseFloat(document.getElementById('pipCount').value) || 0;
+  document.getElementById('pipResult').textContent = 'Pip değeri: ~$' + (lot * 10 * pips).toFixed(2);
+};
+document.getElementById('calcMargin').onclick = () => {
+  const balance = parseFloat(document.getElementById('marginBalance').value) || 0;
+  const leverage = parseFloat(document.getElementById('marginLeverage').value) || 1;
+  document.getElementById('marginResult').textContent = 'Maksimum pozisyon: $' + (balance * leverage).toFixed(2);
+};
+</script>

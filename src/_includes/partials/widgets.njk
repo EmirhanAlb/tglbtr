@@ -1,0 +1,55 @@
+<a href="{{ site.links.whatsapp }}" class="whatsapp-icon block w-[64px]" target="_blank" id="whatsapp_icon"><img
+        src="/build/assets/whatsapp_icon_optimized-05821d5d.webp" alt="whatsapp"
+        class="w-full object-contain aspect-auto" width="6.4" height="6.4"></a>
+
+<script type="module" src="/build/assets/qrcode-ee012d8f.js"></script>
+<div class="app-promo-widget">
+    <div class="app-promo-widget-top">
+        <!-- Logo -->
+        <div class="app-promo-logo">
+            <span class="app-promo-scan-text">
+                İNDİRMEK İÇİN TARAYIN
+            </span>
+            <img src="/build/assets/tc-logo-xs-yellow-512b82b6.png" alt="Trust Capital">
+        </div>
+    </div>
+    <div class="app-promo-widget-bottom">
+        <!-- QR Bölümü -->
+        <div class="app-promo-qr-wrapper">
+            <!-- Sarı köşe çerçeveleri -->
+            <span class="qr-corner qr-corner-tl"></span>
+            <span class="qr-corner qr-corner-tr"></span>
+            <span class="qr-corner qr-corner-bl"></span>
+            <span class="qr-corner qr-corner-br"></span>
+
+            <div class="app-promo-qr-box">
+                <canvas class="qr-code"></canvas>
+            </div>
+        </div>
+
+        <div class="app-promo-content">
+            <h3 class="app-promo-title">
+                Her Yerde İşlem Yapın
+            </h3>
+            <p class="app-promo-description">
+                Hareket Halindeyken Para Yatırın, Çekin ve İşlem Yapın
+            </p>
+        </div>
+
+        <div class="app-promo-stores">
+            <a href="{{ site.links.appStore }}" target="_blank" rel="noopener noreferrer" class="app-store-link">
+                <img src="/images/blocks/appstore-menusection.png" alt="App Store'dan indirin">
+            </a>
+            <a href="{{ site.links.googlePlay }}" target="_blank" rel="noopener noreferrer" class="app-store-link">
+                <img src="/images/blocks/gplay-menusection.png" alt="Google Play'den alın">
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Fiyat bandı ve tablo bu adresten 8 saniyede bir güncellenir.
+    // Statik sürümde derleme anında üretilen anlık görüntü (snapshot) kullanılıyor.
+    window.__WS_TOKEN__ = "";
+    window.__LIVE_MARKETDATA_URL__ = "/api/market-prices.json";
+</script>

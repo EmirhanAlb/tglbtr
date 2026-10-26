@@ -1,0 +1,34 @@
+---
+layout: layouts/base.njk
+permalink: /all-instruments/
+title: "Tüm Enstrümanlar | 300+ Forex, Hisse ve Emtia | Trust Capital"
+description: "Trust Capital'in 300'den fazla işlem enstrümanını keşfedin. Forex, hisse, endeks, metal, enerji ve MENA hisseleri tek tabloda."
+---
+<section class="py-16 md:py-24 bg-[#003E3C]">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-[#FAF7F2] mb-6">Tüm Enstrümanlar</h1>
+        <p class="text-[#A9C2BE] text-lg max-w-2xl mx-auto">300'den fazla Forex paritesi, hisse, endeks, metal ve enerji enstrümanını tek platformda keşfedin.</p>
+    </div>
+</section>
+<section class="py-12 md:py-20">
+    <div class="container mx-auto px-6">
+        <div class="mb-6">
+            <input type="text" id="instrumentSearch" placeholder="Enstrüman ara..." class="w-full max-w-md px-4 py-2 border rounded-lg">
+        </div>
+        {% from "macros/instrument-table.njk" import instrumentTable %}
+        {{ instrumentTable(homeInstruments, "forex", true) }}
+        {{ instrumentTable(homeInstruments, "metals", true) }}
+        {{ instrumentTable(homeInstruments, "energy", true) }}
+        {{ instrumentTable(homeInstruments, "indices", true) }}
+        {{ instrumentTable(homeInstruments, "shares", true) }}
+        {{ instrumentTable(homeInstruments, "menashare", true) }}
+    </div>
+</section>
+<script>
+document.getElementById('instrumentSearch').addEventListener('input', function(e) {
+  const term = e.target.value.toLowerCase();
+  document.querySelectorAll('.datatable tbody tr').forEach(tr => {
+    tr.style.display = tr.textContent.toLowerCase().includes(term) ? '' : 'none';
+  });
+});
+</script>

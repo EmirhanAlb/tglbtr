@@ -1,0 +1,390 @@
+{
+  "menus": [
+    {
+      "id": "_sub_menu1",
+      "label": "Piyasalar",
+      "section": "marketSection",
+      "items": [
+        {
+          "id": "_sub_menu2",
+          "label": "Forex",
+          "href": "/instruments/spot-forex"
+        },
+        {
+          "id": "_sub_menu3",
+          "label": "Metaller",
+          "href": "/instruments/spot-metals"
+        },
+        {
+          "id": "_sub_menu4",
+          "label": "Emtialar",
+          "href": "/instruments/cfd-commodity"
+        },
+        {
+          "id": "_sub_menu5",
+          "label": "Endeksler",
+          "href": "/instruments/cfd-indices"
+        },
+        {
+          "id": "_sub_menu6",
+          "label": "Enerji",
+          "href": "/instruments/cfd-energy"
+        },
+        {
+          "id": "_sub_menu7",
+          "label": "Hisse Senetleri",
+          "href": "/instruments/cfd-shares"
+        },
+        {
+          "id": "_sub_menu8",
+          "label": "MENA Hisseleri",
+          "href": "/instruments/cfd-mena-shares"
+        },
+        {
+          "id": "_sub_menu361",
+          "label": "Tüm Enstrümanlar",
+          "href": "/all-instruments"
+        }
+      ]
+    },
+    {
+      "id": "_sub_menu9",
+      "label": "Hesaplar",
+      "section": "accountsSection",
+      "items": [
+        {
+          "id": "_sub_menu10",
+          "label": "Hesap Türleri",
+          "href": "/account-types"
+        },
+        {
+          "id": "_sub_menu11",
+          "label": "Gerçek Hesap Aç",
+          "href": "/live-account"
+        },
+        {
+          "id": "_sub_menu12",
+          "label": "Para Yatırma & Çekme",
+          "href": "/deposit-withdrawal"
+        },
+        {
+          "id": "_sub_menu13",
+          "label": "Demo Hesap",
+          "href": "/forex-demo-account"
+        }
+      ]
+    },
+    {
+      "id": "_sub_menu14",
+      "label": "Araçlar",
+      "section": "toolsSection",
+      "items": [
+        {
+          "id": "_sub_menu15",
+          "label": "Hesaplayıcılar",
+          "href": "/calculators"
+        },
+        {
+          "id": "_sub_menu16",
+          "label": "Dinamik Kaldıraç",
+          "href": "/dynamic-leverage"
+        },
+        {
+          "id": "_sub_menu17",
+          "label": "MetaTrader Platformları",
+          "href": "/web-mobile-platform"
+        },
+        {
+          "id": "_sub_menu18",
+          "label": "Ekonomik Takvim",
+          "href": "/economic-calendar"
+        },
+        {
+          "id": "_sub_menu19",
+          "label": "Vade Sonu Takvimi",
+          "href": "/expiration-schedule"
+        },
+        {
+          "id": "_sub_menu20",
+          "label": "Tatil Takvimi",
+          "href": "/holiday-schedule"
+        },
+        {
+          "id": "_sub_menu362",
+          "label": "Blog",
+          "href": "/blog"
+        }
+      ]
+    },
+    {
+      "id": "_sub_menu22",
+      "label": "Eğitim",
+      "section": "learnToTradeSection",
+      "items": [
+        {
+          "id": "_sub_menu24",
+          "label": "Forex Mentor",
+          "href": "/forexmentors"
+        },
+        {
+          "id": "_sub_menu25",
+          "label": "Finans Sözlüğü",
+          "href": "/financial-glossary"
+        },
+        {
+          "id": "_sub_menu365",
+          "label": "İleri Seviye Kurslar",
+          "href": "/learn#advanced"
+        },
+        {
+          "id": "_sub_menu366",
+          "label": "Başlangıç Kursları",
+          "href": "/learn#beginners"
+        },
+        {
+          "id": "_sub_menu367",
+          "label": "Trading Akademisi",
+          "href": "/learn"
+        }
+      ]
+    },
+    {
+      "id": "_sub_menu26",
+      "label": "Hakkımızda",
+      "section": "aboutSection",
+      "items": [
+        {
+          "id": "_sub_menu27",
+          "label": "Trust Capital Hakkında",
+          "href": "/about-us"
+        },
+        {
+          "id": "_sub_menu28",
+          "label": "Yasal Belgeler",
+          "href": "/legal-documentation"
+        },
+        {
+          "id": "_sub_menu29",
+          "label": "İletişim",
+          "href": "/contact-us"
+        },
+        {
+          "id": "_sub_menu30",
+          "label": "SSS",
+          "href": "/faq"
+        }
+      ]
+    },
+    {
+      "id": "_sub_menu31",
+      "label": "Ortaklık",
+      "section": "partnerSection",
+      "items": [
+        {
+          "id": "_sub_menu32",
+          "label": "Ortağımız Olun",
+          "href": "/ib"
+        },
+        {
+          "id": "_sub_menu360",
+          "label": "Üye Alanı",
+          "href": "https://my.trustcapital.com/ib/login"
+        },
+        {
+          "id": "_sub_menu364",
+          "label": "Arkadaşını Davet Et",
+          "href": "/refer-a-friend"
+        }
+      ]
+    }
+  ],
+  "mega": [
+    {
+      "id": "marketSection",
+      "icon": "/images/blocks/forex_icon.png",
+      "columns": [
+        [
+          {
+            "label": "Forex",
+            "href": "/instruments/spot-forex"
+          },
+          {
+            "label": "Metaller",
+            "href": "/instruments/spot-metals"
+          },
+          {
+            "label": "Emtialar",
+            "href": "/instruments/cfd-commodity"
+          },
+          {
+            "label": "Enerji",
+            "href": "/instruments/cfd-energy"
+          }
+        ],
+        [
+          {
+            "label": "Hisse Senetleri",
+            "href": "/instruments/cfd-shares"
+          },
+          {
+            "label": "MENA Hisseleri",
+            "href": "/instruments/cfd-mena-shares"
+          },
+          {
+            "label": "Endeksler",
+            "href": "/instruments/cfd-indices"
+          },
+          {
+            "label": "Tüm Enstrümanlar",
+            "href": "/all-instruments"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "accountsSection",
+      "icon": "/images/blocks/accounts-logo.svg",
+      "columns": [
+        [
+          {
+            "label": "Hesap Türleri",
+            "href": "/account-types"
+          },
+          {
+            "label": "Gerçek Hesap Aç",
+            "href": "https://my.trustcapital.com/live-account"
+          }
+        ],
+        [
+          {
+            "label": "Para Yatırma & Çekme",
+            "href": "/deposit-withdrawal"
+          },
+          {
+            "label": "Demo Hesap",
+            "href": "/forex-demo-account"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "toolsSection",
+      "icon": "/images/blocks/tools-logo.svg",
+      "columns": [
+        [
+          {
+            "label": "Hesaplayıcılar",
+            "href": "/calculators"
+          },
+          {
+            "label": "Dinamik Kaldıraç",
+            "href": "/dynamic-leverage"
+          },
+          {
+            "label": "MetaTrader Platformları",
+            "href": "/web-mobile-platform"
+          },
+          {
+            "label": "Ekonomik Takvim",
+            "href": "/economic-calendar"
+          }
+        ],
+        [
+          {
+            "label": "Vade Sonu Takvimi",
+            "href": "/expiration-schedule"
+          },
+          {
+            "label": "Tatil Takvimi",
+            "href": "/holiday-schedule"
+          },
+          {
+            "label": "Blog",
+            "href": "/blog"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "learnToTradeSection",
+      "icon": "/images/blocks/ltd-logo.svg",
+      "hiddenByDefault": true,
+      "columns": [
+        [
+          {
+            "label": "Forex Mentor",
+            "href": "/forexmentors",
+            "plain": true
+          },
+          {
+            "label": "Trading Akademisi",
+            "href": "/learn",
+            "plain": true
+          }
+        ],
+        [
+          {
+            "label": "Finans Sözlüğü",
+            "href": "/financial-glossary"
+          },
+          {
+            "label": "Başlangıç Kursları",
+            "href": "/learn#beginners"
+          },
+          {
+            "label": "İleri Seviye Kurslar",
+            "href": "/learn#advanced"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "aboutSection",
+      "icon": "/images/blocks/about-logo.svg",
+      "columns": [
+        [
+          {
+            "label": "Trust Capital Hakkında",
+            "href": "/about-us"
+          },
+          {
+            "label": "Yasal Belgeler",
+            "href": "/legal-documentation"
+          }
+        ],
+        [
+          {
+            "label": "İletişim",
+            "href": "/contact-us"
+          },
+          {
+            "label": "SSS",
+            "href": "/faq"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "partnerSection",
+      "icon": "/images/blocks/partnership-logo.svg",
+      "columns": [
+        [
+          {
+            "label": "Ortağımız Olun",
+            "href": "/ib"
+          },
+          {
+            "label": "Arkadaşını Davet Et",
+            "href": "/refer-a-friend"
+          }
+        ],
+        [
+          {
+            "label": "Üye Alanı",
+            "href": "https://my.trustcapital.com/ib/login"
+          }
+        ]
+      ]
+    }
+  ]
+}

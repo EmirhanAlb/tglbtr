@@ -1,0 +1,14 @@
+{
+  "name": "trustglobal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "trustcapital.com sitesinin Türkçe statik kopyası (Eleventy + Nunjucks)",
+  "type": "module",
+  "scripts": {
+    "dev": "eleventy --serve --port=8080",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.7"
+  }
+}

@@ -1,0 +1,58 @@
+{%- macro instrumentTable(items, type, showType=false) -%}
+{%- set filtered = items | selectattr("type", "equalto", type) -%}
+{%- if filtered | length -%}
+<div class="table-trade">
+    <table class="datatable">
+        <thead>
+            <tr>
+                <th>Enstrüman</th>
+                <th>Fiyat</th>
+                <th>Günlük Değişim</th>
+                <th>Günlük Değişim %</th>
+                <th>Trend</th>
+                {%- if showType %}<th>Tür</th>{%- endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {%- for row in filtered %}
+            <tr>
+                <td>
+                    <div class="quote">
+                        {%- if row.pair %}
+                        <span class="images">
+                            {%- for icon in row.icons %}
+                            <span class="{{ icon }}"></span>
+                            {%- endfor %}
+                        </span>
+                        {%- else %}
+                        <span class="{{ row.icons[0] }}"></span>
+                        {%- endif %}
+                        <span>
+                            {%- if row.slug %}
+                            <a href="/instrumentdetails/{{ row.slug }}" class="underline">{{ row.symbol }}</a>
+                            {%- else %}
+                            {{ row.symbol }}
+                            {%- endif %}
+                        </span>
+                    </div>
+                </td>
+                <td><span class="{{ row.symbol }}_bid">{{ row.bid }}</span></td>
+                <td><span class="{{ row.color }} {{ row.symbol }}_change">{{ row.change }}</span></td>
+                <td><span class="{{ row.color }} {{ row.symbol }}_change_percentage">{{ row.pct }}</span></td>
+                <td>
+                    <div class="max-w-5">
+                        <img class="w-full h-auto aspect-auto {{ row.symbol }}_rate_img" src="{{ row.trendImg }}" alt="" width="2.0" height="1.1">
+                    </div>
+                </td>
+                {%- if showType %}
+                <td><span class="{{ row.typeColor }}">{{ row.type }}</span></td>
+                {%- endif %}
+            </tr>
+            {%- endfor %}
+        </tbody>
+    </table>
+</div>
+{%- else -%}
+<p class="text-center py-8 text-gray-500">Bu kategoride gösterilecek enstrüman bulunmuyor.</p>
+{%- endif -%}
+{%- endmacro -%}

@@ -1,0 +1,29 @@
+<div class=" w-full">
+    <div class="quotes-section relative md:top-20 top-[calc(var(--app-promo-offset)+78px)] z-10">
+        <div class="quoteContainer   mx-auto custom-bg">
+            <div class="quotes-edge bg-[#000] py-3">
+                <div class="quotes scroller">
+                    {%- for q in ticker %}
+                    <div class="flex justify-center">
+                        <div class="flex items-center gap-3">
+                            <div>
+                                <h6 class="text-white text-[16px] font-[400] whitespace-nowrap">
+                                    {{ q.symbol }}
+                                    <span class="qinfo {{ q.symbol }}_bid">{{ q.bid }}</span>
+                                    / <span class="qinfo {{ q.symbol }}_ask">{{ q.ask }}</span>
+                                    <div class="scroller_value inline-flex items-center gap-1 ">(
+                                        <span class="{{ q.symbol }}_scroller_change_percentage_new">
+                                            {{ q.pct }}
+                                        </span>
+                                        <span class="{{ q.symbol }}_position {{ q.arrow }}"></span>)
+                                    </div>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    {%- endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+/* Eksik enstruman ikonlari.
+   symbol-d300c5e6.css'in refere ettigi 109 SVG bu kopyaya alinmamis; o
+   satirlardaki hisse/endeks/emtia ikonlari bos geliyor, bir kismi da 404
+   veriyordu.
+   Eksik gorseller orijinal sitedeki ayni dosyalardan PNG olarak indirilip
+   build/assets/icons/ altina kondu. Asagidaki kurallar, orijinal dosyadaki
+   SECICILERIN AYNISINI kullanir (grup secicileri ve [class*=fi-nga] gibi
+   oznitelik secicileri dahil) ve yalnizca background-image'i yeni dosyaya
+   yonlendirir. Boylece hangi sinifin hangi ikonu aldigi degismez.
+   symbol-d300c5e6.css'e dokunulmadi; bu dosya ondan sonra yuklenir.
+   Orijinal SVG'ler elde edilebilirse bu dosya tamamen silinebilir.
+
+   Not: .fi-lead, .fi-zinc, .fi-aluminium, .fi-goldp, .fi-cocoa_myy gibi
+   siniflarin symbol-d300c5e6.css'te hic kurali yok; bunlar orijinal sitede de
+   ikonsuz gorunuyor, bu yuzden bilerek eklenmedi. */
+.fi-dax-if{background-image:url(/build/assets/icons/dax-if.png)}
+.fi-dbkgn{background-image:url(/build/assets/icons/dbkgn.png)}
+.fi-dpwgn{background-image:url(/build/assets/icons/dpwgn.png)}
+.fi-e-mini-sp{background-image:url(/build/assets/icons/e-mini-sp.png)}
+.fi-e-mini{background-image:url(/build/assets/icons/e-mini.png)}
+.fi-emaardevel{background-image:url(/build/assets/icons/emaardevel.png)}
+.fi-emaarpropt{background-image:url(/build/assets/icons/emaarpropt.png)}
+.fi-eongn{background-image:url(/build/assets/icons/eongn.png)}
+.fi-fabbank{background-image:url(/build/assets/icons/fabbank.png)}
+.fi-fdx{background-image:url(/build/assets/icons/fdx.png)}
+.fi-ftse-i{background-image:url(/build/assets/icons/ftse-i.png)}
+.fi-gc{background-image:url(/build/assets/icons/gc.png)}
+.fi-ge{background-image:url(/build/assets/icons/ge.png)}
+.fi-ghithahold{background-image:url(/build/assets/icons/ghithahold.png)}
+.fi-gm{background-image:url(/build/assets/icons/gm.png)}
+.fi-gold{background-image:url(/build/assets/icons/gc.png)}
+.fi-goog{background-image:url(/build/assets/icons/goog.png)}
+.fi-googl{background-image:url(/build/assets/icons/goog.png)}
+.fi-gpro{background-image:url(/build/assets/icons/gpro.png)}
+.fi-gs{background-image:url(/build/assets/icons/gs.png)}
+.fi-gt{background-image:url(/build/assets/icons/gt.png)}
+.fi-gulfnav{background-image:url(/build/assets/icons/gulfnav.png)}
+.fi-hd{background-image:url(/build/assets/icons/hd.png)}
+.fi-hkind{background-image:url(/build/assets/icons/hkind.png)}
+.fi-hlt{background-image:url(/build/assets/icons/hlt.png)}
+.fi-hog{background-image:url(/build/assets/icons/hog.png)}
+.fi-hpq{background-image:url(/build/assets/icons/hpq.png)}
+.fi-ibe{background-image:url(/build/assets/icons/ibe.png)}
+.fi-ibm{background-image:url(/build/assets/icons/ibm.png)}
+.fi-ihc{background-image:url(/build/assets/icons/ihc.png)}
+.fi-intc{background-image:url(/build/assets/icons/intc.png)}
+.fi-jap-225{background-image:url(/build/assets/icons/jap-225.png)}
+[class*=fi-jap225]{background-image:url(/build/assets/icons/jap225.png)}
+.fi-jm{background-image:url(/build/assets/icons/jm.png)}
+.fi-jnj{background-image:url(/build/assets/icons/jnj.png)}
+.fi-jpm{background-image:url(/build/assets/icons/jm.png)}
+.fi-kmi{background-image:url(/build/assets/icons/kmi.png)}
+.fi-ko{background-image:url(/build/assets/icons/ko.png)}
+.fi-lhag{background-image:url(/build/assets/icons/lhag.png)}
+.fi-lmvh{background-image:url(/build/assets/icons/lmvh.png)}
+.fi-lvmh{background-image:url(/build/assets/icons/lvmh.png)}
+.fi-ma{background-image:url(/build/assets/icons/ma.png)}
+.fi-map{background-image:url(/build/assets/icons/map.png)}
+.fi-mcd{background-image:url(/build/assets/icons/mcd.png)}
+.fi-mco{background-image:url(/build/assets/icons/mco.png)}
+.fi-mmm{background-image:url(/build/assets/icons/mmm.png)}
+.fi-mo{background-image:url(/build/assets/icons/mo.png)}
+.fi-modon{background-image:url(/build/assets/icons/modon.png)}
+.fi-mrk{background-image:url(/build/assets/icons/mrk.png)}
+.fi-mrvl{background-image:url(/build/assets/icons/mrvl.png)}
+.fi-ms{background-image:url(/build/assets/icons/ms.png)}
+.fi-msft{background-image:url(/build/assets/icons/msft.png)}
+.fi-natgas,[class*=fi-nga],[class*=fi-natgas]{background-image:url(/build/assets/icons/natgas.png)}
+.fi-nbdbank{background-image:url(/build/assets/icons/nbdbank.png)}
+.fi-neth25{background-image:url(/build/assets/icons/neth25.png)}
+.fi-nflx{background-image:url(/build/assets/icons/nflx.png)}
+.fi-ngf{background-image:url(/build/assets/icons/ngf.png)}
+.fi-niit{background-image:url(/build/assets/icons/niit.png)}
+.fi-nke{background-image:url(/build/assets/icons/nke.png)}
+.fi-nmdc{background-image:url(/build/assets/icons/nmdc.png)}
+.fi-nvda{background-image:url(/build/assets/icons/nvda.png)}
+.fi-orcl{background-image:url(/build/assets/icons/orcl.png)}
+.fi-palladium{background-image:url(/build/assets/icons/palladium.png)}
+.fi-palmssport{background-image:url(/build/assets/icons/palmssport.png)}
+.fi-parkin{background-image:url(/build/assets/icons/parkin.png)}
+.fi-pep{background-image:url(/build/assets/icons/pep.png)}
+.fi-pfe{background-image:url(/build/assets/icons/pfe.png)}
+.fi-platinum{background-image:url(/build/assets/icons/platinum.png)}
+.fi-pm{background-image:url(/build/assets/icons/pm.png)}
+.fi-purehealth{background-image:url(/build/assets/icons/purehealth.png)}
+.fi-pypl{background-image:url(/build/assets/icons/pypl.png)}
+.fi-qcom{background-image:url(/build/assets/icons/qcom.png)}
+.fi-race{background-image:url(/build/assets/icons/race.png)}
+.fi-rakbank{background-image:url(/build/assets/icons/rakbank.png)}
+.fi-roku{background-image:url(/build/assets/icons/roku.png)}
+.fi-rph{background-image:url(/build/assets/icons/rph.png)}
+.fi-salik{background-image:url(/build/assets/icons/salik.png)}
+.fi-san{background-image:url(/build/assets/icons/san.png)}
+.fi-sbux{background-image:url(/build/assets/icons/sbux.png)}
+.fi-sdjif{background-image:url(/build/assets/icons/sdjif.png)}
+.fi-shop{background-image:url(/build/assets/icons/shop.png)}
+.fi-si{background-image:url(/build/assets/icons/si.png)}
+.fi-siegn{background-image:url(/build/assets/icons/siegn.png)}
+.fi-silver{background-image:url(/build/assets/icons/si.png)}
+.fi-sogn{background-image:url(/build/assets/icons/sogn.png)}
+.fi-sony{background-image:url(/build/assets/icons/sony.png)}
+.fi-soybean{background-image:url(/build/assets/icons/soybean.png)}
+.fi-spa35{background-image:url(/build/assets/icons/spa35.png)}
+.fi-spot{background-image:url(/build/assets/icons/spot.png)}
+.fi-sq{background-image:url(/build/assets/icons/sq.png)}
+.fi-sugar{background-image:url(/build/assets/icons/sugar.png)}
+.fi-swi20{background-image:url(/build/assets/icons/swi20.png)}
+.fi-taaleem{background-image:url(/build/assets/icons/taaleem.png)}
+.fi-tecomgroup{background-image:url(/build/assets/icons/tecomgroup.png)}
+.fi-tef{background-image:url(/build/assets/icons/tef.png)}
+.fi-tesla{background-image:url(/build/assets/icons/tesla.png)}
+.fi-tmus{background-image:url(/build/assets/icons/tmus.png)}
+.fi-totf{background-image:url(/build/assets/icons/totf.png)}
+.fi-tsla{background-image:url(/build/assets/icons/tsla.png)}
+.fi-ua{background-image:url(/build/assets/icons/ua.png)}
+.fi-ual{background-image:url(/build/assets/icons/ual.png)}
+.fi-uber{background-image:url(/build/assets/icons/uber.png)}
+.fi-ups{background-image:url(/build/assets/icons/ups.png)}
+[class*=fi-usdif]{background-image:url(/build/assets/icons/usdif.png)}
+.fi-vale{background-image:url(/build/assets/icons/vale.png)}
+.fi-vowg{background-image:url(/build/assets/icons/vowg.png)}
+.fi-vz{background-image:url(/build/assets/icons/vz.png)}
+.fi-wfc{background-image:url(/build/assets/icons/wfc.png)}
+.fi-wheat{background-image:url(/build/assets/icons/wheat.png)}
+.fi-wmt{background-image:url(/build/assets/icons/wmt.png)}
+.fi-xaueur{background-image:url(/build/assets/icons/gc.png)}
+.fi-xom{background-image:url(/build/assets/icons/xom.png)}
+.fi-yum{background-image:url(/build/assets/icons/yum.png)}
+.fi-zm{background-image:url(/build/assets/icons/zm.png)}
+.fi-_XAUEUR{background-image:url(/build/assets/icons/gc.png)}

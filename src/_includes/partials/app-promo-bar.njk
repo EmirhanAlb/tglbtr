@@ -1,0 +1,61 @@
+<div id="appPromoMob"
+    class="fixed left-0 top-0 z-[9999] md:hidden flex w-full items-center border-b-2 border-[var(--primary-color)] bg-[#061413] px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-7">
+    <!-- Logo -->
+    <div class="flex h-[55px] w-[85px] shrink-0 items-center justify-center overflow-hidden  ">
+        <a href="/">
+            <img src="/images/blocks/tc-app-logo.png" alt="Trust Capital"
+                class="h-[auto] w-[auto]" />
+        </a>
+    </div>
+
+    <!-- Metin -->
+    <div class="ml-3 min-w-0 sm:ml-5 lg:ml-8">
+        <h3 class="m-0 truncate text-[12px] font-normal leading-tight text-[#FAF7F2] ">
+            Trust Capital Uygulaması
+        </h3>
+
+        <p class="m-0 mt-1 truncate text-[10px] font-normal leading-tight text-[#747474]">
+            Yönetin. Yatırın. Çekin.
+        </p>
+    </div>
+
+    <!-- İndir -->
+    <a href="{{ site.links.appPromo }}"
+        class="ml-auto flex h-[48px] shrink-0 items-center justify-center rounded-full bg-[var(--primary-color)] px-5 text-[10px] font-semibold text-[var(--btn-text)] sm:h-[58px] sm:min-w-[145px] sm:px-6 lg:h-[72px] lg:min-w-[182px] lg:px-7 ">
+        İndir
+    </a>
+
+    <!-- Kapat -->
+    <button id="closeAppPromo" type="button" aria-label="Kapat"
+        class="ml-3 flex h-[35px] w-[35px] shrink-0 items-center justify-center text-[#747674] sm:ml-5 lg:ml-8">
+        <span class="relative block h-[25px] w-[25px]">
+            <span
+                class="absolute left-1/2 top-1/2 h-[3px] w-[28px] -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-full bg-current"></span>
+            <span
+                class="absolute left-1/2 top-1/2 h-[3px] w-[28px] -translate-x-1/2 -translate-y-1/2 -rotate-45 rounded-full bg-current"></span>
+        </span>
+    </button>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const promo = document.getElementById('appPromoMob');
+        const closeBtn = document.getElementById('closeAppPromo');
+
+        if (!promo || !closeBtn) return;
+
+        closeBtn.addEventListener('click', function() {
+            promo.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+            promo.style.transform = 'translateY(-100%)';
+            promo.style.opacity = '0';
+
+            // Boşluk kalmaması için iki ofset değişkenini de sıfırla
+            document.documentElement.style.setProperty('--app-promo-offset', '0px');
+            document.documentElement.style.setProperty('--app-promo-offset-hbanner', '0px');
+
+            // Geçiş bittikten sonra gizle
+            setTimeout(function() {
+                promo.classList.add('hidden');
+            }, 300);
+        });
+    });
+</script>

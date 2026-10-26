@@ -1,0 +1,326 @@
+/* Giriş ekranı — my.trustcapital.com/login tasarımının birebir uyarlaması.
+   İki sütun: solda koyu lacivert görsel panel (masaüstü), sağda beyaz form.
+   Yalnızca auth.html kullanır; dashboard/admin'in paylaştığı style.css'e
+   dokunmamak için ayrı dosyadır. */
+
+.login-page {
+  --ink: #111827;
+  --ink-soft: #6b7280;
+  --line: #e5e7eb;
+  --teal: #0d9488;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: var(--ink);
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ---------- Sol görsel panel ---------- */
+.login-visual { display: none; }
+
+@media (min-width: 1024px) {
+  .login-page { flex-direction: row; }
+  .login-visual {
+    position: relative;
+    display: flex;
+    width: 50%;
+    overflow: hidden;
+  }
+}
+@media (min-width: 1280px) {
+  .login-visual { width: 55%; }
+}
+
+.login-visual-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: hsl(220, 70%, 8%);
+  background-image: linear-gradient(135deg, hsl(220, 70%, 6%), hsl(220, 65%, 12%) 50%, hsl(220, 60%, 8%));
+}
+.glow { position: absolute; border-radius: 9999px; filter: blur(90px); }
+.glow-center {
+  top: 50%; left: 50%; width: 500px; height: 500px; transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 70% 30%, rgba(45, 212, 191, .3), transparent 60%);
+}
+.glow-tr { top: 20%; right: 10%; width: 288px; height: 288px; background: rgba(45, 212, 191, .25); }
+.glow-bl { bottom: 25%; left: 15%; width: 256px; height: 256px; background: hsla(180, 60%, 35%, .2); filter: blur(80px); }
+.login-grid {
+  position: absolute; inset: 0; opacity: .018;
+  background-image:
+    linear-gradient(hsl(152 75% 50%) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(152 75% 50%) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.login-fade {
+  position: absolute; inset-inline: 0; bottom: 0; height: 33%;
+  background: linear-gradient(to top, hsl(220, 70%, 6%), transparent);
+}
+
+.login-visual-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 48px;
+}
+.login-visual-logo img { height: 48px; width: auto; }
+.login-visual-copy { max-width: 32rem; }
+.login-visual-copy h2 {
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 24px;
+}
+@media (min-width: 1280px) { .login-visual-copy h2 { font-size: 48px; } }
+.login-visual-copy .grad {
+  background: linear-gradient(90deg, #2dd4bf, #5eead4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.login-visual-copy p { color: rgba(255, 255, 255, .6); font-size: 18px; margin: 0; }
+.login-visual-badges { display: flex; gap: 32px; color: rgba(255, 255, 255, .4); font-size: 14px; }
+.login-visual-badges span { display: inline-flex; align-items: center; gap: 8px; }
+.login-visual-badges svg { width: 16px; height: 16px; }
+
+/* ---------- Sağ form paneli ---------- */
+.login-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #fff;
+}
+@media (min-width: 1024px) { .login-main { min-height: 0; } }
+
+.login-mobile-head {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.login-mobile-head img { height: 32px; width: auto; }
+@media (min-width: 1024px) { .login-mobile-head { display: none; } }
+
+.login-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 24px 20px;
+}
+@media (min-width: 1024px) {
+  .login-body { justify-content: center; padding: 48px; }
+}
+@media (min-width: 1280px) { .login-body { padding: 48px 80px; } }
+
+.login-card { width: 100%; max-width: 28rem; }
+@media (min-width: 1024px) { .login-card { margin: 0 auto; } }
+
+.login-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #1f2937;
+  margin: 0 0 32px;
+}
+@media (min-width: 1024px) { .login-title { font-size: 32px; } }
+.login-sub { margin: -24px 0 24px; color: var(--ink-soft); font-size: 14px; }
+
+.field { margin-bottom: 20px; }
+.field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+.field .req { color: var(--ink-soft); }
+.login-page input[type="email"],
+.login-page input[type="password"],
+.login-page input[type="text"],
+.login-page input[type="tel"] {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  font-size: 16px;
+  color: #111827;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.login-page input::placeholder { color: #9ca3af; }
+.login-page input:focus {
+  border-color: #cbd5e1;
+  box-shadow: 0 0 0 3px rgba(148, 163, 184, .25);
+}
+.login-page input:-webkit-autofill,
+.login-page input:-webkit-autofill:hover,
+.login-page input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #111827 !important;
+  caret-color: #111827;
+}
+
+.pass-wrap { position: relative; }
+.pass-wrap input { padding-right: 46px; }
+.pass-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color .15s;
+}
+.pass-toggle:hover { color: #111827; }
+.pass-toggle svg { width: 20px; height: 20px; }
+.pass-toggle.on { color: var(--teal); }
+
+.forgot-row { display: flex; justify-content: flex-end; margin: -8px 0 8px; }
+.login-page .link { color: var(--ink-soft); font-size: 14px; cursor: pointer; text-decoration: none; }
+.login-page .link:hover { color: #111827; }
+
+.login-btn {
+  width: 100%;
+  height: 48px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: #111827;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: opacity .2s, transform .05s;
+}
+.login-btn:hover { opacity: .9; }
+.login-btn:active { transform: translateY(1px); }
+.login-btn:disabled { opacity: .7; cursor: not-allowed; }
+
+.login-divider {
+  position: relative;
+  text-align: center;
+  margin: 24px 0;
+}
+.login-divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--line);
+}
+.login-divider span {
+  position: relative;
+  background: #fff;
+  padding: 0 16px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.login-alt { text-align: center; font-size: 14px; color: var(--ink-soft); margin: 0 0 12px; }
+.login-alt a, .login-alt-sm a {
+  font-weight: 600;
+  color: #111827;
+  text-decoration: none;
+  cursor: pointer;
+}
+.login-alt a:hover, .login-alt-sm a:hover { color: var(--teal); }
+.login-alt-sm { text-align: center; font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+/* Durum mesajı (giriş/kayıt/sıfırlama) */
+.login-page .msg { margin-top: 12px; font-size: 13px; min-height: 1.1em; }
+.login-page .msg.err { color: #dc2626; }
+.login-page .msg.ok { color: #047857; }
+
+/* Onay kutusu */
+.login-page .checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+.login-page .checkbox input { margin-top: 2px; }
+.login-page .checkbox a { color: #111827; text-decoration: underline; }
+
+/* Şifre gücü */
+.login-page .password-strength { font-size: 12px; margin-top: 6px; min-height: 1em; }
+.login-page .password-strength.weak { color: #dc2626; }
+.login-page .password-strength.medium { color: #d97706; }
+.login-page .password-strength.good { color: #0d9488; }
+.login-page .password-strength.strong { color: #047857; }
+
+/* Uygulama indirme kartı */
+.app-card {
+  display: flex;
+  max-width: 325px;
+  margin: 32px auto 0;
+  border: 1px solid #b5b5b5;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+.app-card-qr {
+  flex: 0 0 38%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #061413;
+  padding: 16px;
+}
+.app-card-qr canvas {
+  display: block;
+  width: 83px;
+  height: 83px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 6px;
+  box-sizing: border-box;
+}
+.app-card-qr p {
+  margin: 12px 0 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: #d9eb48;
+}
+.app-card-text { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 16px; }
+.app-card-kicker { margin: 0; font-size: 10px; font-weight: 700; text-transform: uppercase; color: #043938; }
+.app-card-text h3 { margin: 8px 0 0; font-size: 18px; font-weight: 700; line-height: 1.08; letter-spacing: -0.01em; color: #191a1a; }
+.app-card-sub { margin: 12px 0 0; font-size: 9px; font-weight: 500; color: #999; }
+.app-card-stores { margin-top: 10px; display: flex; align-items: center; gap: 10px; }
+.app-card-stores img { height: 22px; width: auto; }
+
+/* Alt bilgi */
+.login-foot {
+  width: 100%;
+  padding: 16px 20px;
+  margin-top: auto;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+@media (min-width: 1024px) { .login-foot { padding: 24px 48px; font-size: 12px; } }
+.login-foot a { color: var(--ink-soft); text-decoration: underline; }
+.login-foot a:hover { color: #111827; }
+
+.hidden { display: none !important; }

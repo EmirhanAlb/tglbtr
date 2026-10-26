@@ -1,0 +1,119 @@
+{#
+  Orijinal sitedeki /instruments/* sayfalarının gövdesi.
+  Markup birebir orijinalden alınmıştır; class ve id'leri değiştirmeyin:
+    - .tab-click + data-class="acc-types"  → utils-939e6257.js içindeki commonTab()
+      hesap türü sekmelerini .acc-typesselected-div panelleri arasında değiştirir.
+    - .scroller                            → aynı dosya --animation-duration'ı
+      3 x çocuk sayısı saniye olarak hesaplayıp kendisi atar, bu yüzden style yazılmaz.
+    - .{SEMBOL}_bid / _ask                 → get_live_share_value() bu class'ları günceller.
+  Veri: src/_data/instrumentPages.json (orijinal sayfalardan çıkarılıp Türkçeleştirildi).
+#}
+
+{% macro instrumentLanding(page) %}
+<section class="main-section relative top-[var(--app-promo-offset)]">
+    <div class="lg:w-1/2 sm:w-2/3 w-full sm:py-7 py-4 m-auto">
+        <h1 class="xl:text-7xl lg:text-5xl text-4xl text-center">{{ page.h1 }}</h1>
+        <h2 class="pj400 text-center md:text-2xl text-md sm:py-7 py-4">{{ page.sub }}</h2>
+    </div>
+    <div class="containes m-auto">
+        <div class="acc-type flex flex-wrap m-auto justify-start sm:py-7 py-4 gap-6" data-class="acc-types">
+            {%- for tab in page.tabs %}
+            <a href="javascript:void(0)" class="tab-click meta-tabs {{ " active " if tab.active }}" id="{{ tab.id }}">{{ tab.label }}</a>
+            {%- endfor %}
+        </div>
+        {%- for panel in page.panels %}
+        <div class="flex flex-col gap-10 acc-typesselected-div {{ " hidden " if panel.hidden }}" data-value="{{ panel.value }}">
+            {%- if panel.marquee | length %}
+            <section class="marquee-container gap-8 w-full mt-6 mb-6">
+                {#- Orijinalde şerit iki kez basılır; kesintisiz kayma bunu gerektirir. #}
+                {%- for pass in [1, 2] %}
+                <div class="floatings scroller gap-12 pj400">
+                    {%- for q in panel.marquee %}
+                    <div class="data gap-1">
+                        <div class="flex gap-2 justify-start">
+                            <span class="font-semibold">{{ q.symbol }}</span>
+                            <span><img class="{{ q.symbol }}_dirimg" src="/images/live_{{ q.dir }}.svg" alt="image"></span>
+                        </div>
+                        <div class="flex flex-row justify-between  gap-6 text-sm">
+                            <div class="text-gray-400">Alış <span class="text-xs font-semibold text-green-600 {{ q.symbol }}_bid">{{ q.bid }}</span>
+                            </div>
+                            <div class="text-gray-400">Satış <span class="text-xs font-semibold text-green-600 {{ q.symbol }}_ask">{{ q.ask }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {%- endfor %}
+                </div>
+                {%- endfor %}
+            </section>
+            {%- endif %}
+            {%- for table in panel.tables %}
+            <div class="flex flex-col gap-10  ">
+                {%- if table.title %}
+                <h2 class="text-3xl pb-2 text-center">{{ table.title }}</h2>
+                {%- endif %}
+                <div class="centered-table py-0 max-h-[400px] overflow-y-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                {%- for head in table.heads %}
+                                <th class="{{ head.cls }}">{{ head.v }}</th>
+                                {%- endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%- for row in table.rows %}
+                            <tr>
+                                <td>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="quote">
+                                            <span class="images">
+                                                {%- for icon in row.icons %}
+                                                <span class="{{ icon.cls }}"></span>
+                                                {%- endfor %}
+                                            </span>
+                                            <span class="text-indigo-800 font-semibold text-sm">
+                                                {%- if row.slug %}
+                                                <a href="/instrumentdetails/{{ row.slug }}" class="underline">{{ row.symbol }}</a>
+                                                {%- else %}
+                                                {{ row.symbol }}
+                                                {%- endif %}
+                                            </span>
+                                        </div>
+                                        <span>{{ row.name }}</span>
+                                    </div>
+                                </td>
+                                {%- for cell in row.cells %}
+                                {%- if cell.badge %}
+                                <td class="{{ cell.cls }}"><span class="bg-[var(--secondary-color)] rounded-lg p-1 text-white w-full">{{ cell.v }}</span>
+                                </td>
+                                {%- else %}
+                                <td{% if cell.cls %} class="{{ cell.cls }}"{% endif %}>{{ cell.v }}</td>
+                                {%- endif %}
+                                {%- endfor %}
+                            </tr>
+                            {%- endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {%- endfor %}
+            {%- if panel.notes | length %}
+            <div class="landing-feature-item">
+                <ul class="tick-box">
+                    {%- for note in panel.notes %}
+                    <li class="ion-ios-checkmark-circle border-b pb-5"><span class="text-md">{{ note }}</span></li>
+                    {%- endfor %}
+                </ul>
+            </div>
+            {%- endif %}
+        </div>
+        {%- endfor %}
+    </div>
+</section>
+<script type="module">
+    $(document).ready(function () {
+        let utils = new Utils();
+        utils.update_live_share_value(window.__LIVE_MARKETDATA_URL__);
+    });
+</script>
+{% endmacro %}

@@ -1,0 +1,138 @@
+:root {
+  --primary: #0E7A5F;
+  --accent: #D9EB72;
+  --bg: #0b1412;
+  --panel: #111d1a;
+  --panel-2: #16211e;
+  --line: #243430;
+  --text: #eaf1ef;
+  --muted: #8ba39d;
+  --danger: #e05b5b;
+  --ok: #43b581;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); }
+a { color: var(--accent); }
+
+/* ---- Giriş / kayıt ekranı ---- */
+.auth-wrap { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.auth-card {
+  width: 100%; max-width: 420px; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 18px; padding: 32px;
+}
+.logo { font-weight: 800; letter-spacing: 1px; font-size: 22px; color: var(--text); }
+.logo span { color: var(--primary); }
+.muted { color: var(--muted); }
+.h1 { font-size: 22px; font-weight: 700; margin: 18px 0 4px; }
+
+label { display: block; font-size: 13px; color: var(--muted); margin: 14px 0 6px; }
+input, select {
+  width: 100%; padding: 12px 14px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--panel-2); color: var(--text); font-size: 15px;
+}
+input:focus, select:focus { outline: none; border-color: var(--primary); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; margin-top: 18px; padding: 12px 16px; border: 0; cursor: pointer;
+  border-radius: 999px; font-weight: 700; font-size: 15px;
+  background: var(--primary); color: #fff;
+}
+.btn.accent { background: var(--accent); color: #082019; }
+.btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--text); }
+.btn.sm { width: auto; margin: 0; padding: 7px 14px; font-size: 13px; }
+.btn.danger { background: var(--danger); }
+.btn:disabled { opacity: .55; cursor: default; }
+
+.switch { text-align: center; margin-top: 16px; font-size: 14px; }
+.switch a { cursor: pointer; }
+.msg { margin-top: 14px; font-size: 14px; min-height: 18px; }
+.msg.err { color: var(--danger); }
+.msg.ok { color: var(--ok); }
+
+.forgot-row { text-align: right; margin-top: 6px; font-size: 13px; }
+.link { cursor: pointer; text-decoration: underline; color: var(--accent); }
+
+.checkbox {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: var(--muted); margin-top: 14px; cursor: pointer;
+}
+.checkbox input { width: auto; margin-top: 2px; }
+.checkbox a { color: var(--accent); }
+
+.password-strength {
+  height: 6px; border-radius: 4px; margin-top: 8px; font-size: 12px;
+  background: var(--line); color: transparent; overflow: hidden; position: relative;
+}
+.password-strength::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  width: var(--strength, 0%); background: var(--strength-color, var(--muted));
+  transition: width .2s ease;
+}
+.password-strength.weak   { --strength: 20%; --strength-color: var(--danger); color: var(--danger); }
+.password-strength.medium { --strength: 45%; --strength-color: #e7a600; color: #e7a600; }
+.password-strength.good   { --strength: 70%; --strength-color: #5b9bd5; color: #5b9bd5; }
+.password-strength.strong { --strength: 100%; --strength-color: var(--ok); color: var(--ok); }
+
+/* ---- Uygulama kabuğu ---- */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 24px; background: var(--panel); border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 10;
+}
+.topbar .right { display: flex; align-items: center; gap: 14px; }
+.chip {
+  font-size: 12px; padding: 4px 10px; border-radius: 999px;
+  background: var(--panel-2); border: 1px solid var(--line); color: var(--muted);
+}
+.layout { display: flex; min-height: calc(100vh - 57px); }
+.side {
+  width: 220px; background: var(--panel); border-right: 1px solid var(--line);
+  padding: 16px 12px; flex-shrink: 0;
+}
+.side a {
+  display: block; padding: 11px 14px; border-radius: 10px; color: var(--text);
+  text-decoration: none; font-size: 14px; cursor: pointer;
+}
+.side a.active, .side a:hover { background: var(--panel-2); }
+.main { flex: 1; padding: 28px; max-width: 1100px; }
+.page-title { font-size: 22px; font-weight: 700; margin: 0 0 18px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px;
+}
+.card .k { color: var(--muted); font-size: 13px; }
+.card .v { font-size: 26px; font-weight: 700; margin-top: 6px; }
+
+.panel {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+  padding: 20px; margin-top: 20px;
+}
+.panel h3 { margin: 0 0 14px; font-size: 16px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 11px 10px; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-weight: 600; }
+.badge { font-size: 12px; padding: 3px 9px; border-radius: 999px; font-weight: 600; }
+.badge.pending  { background: #3a3417; color: #e7cf6a; }
+.badge.approved { background: #16331f; color: var(--ok); }
+.badge.rejected { background: #3a1b1b; color: var(--danger); }
+.hidden { display: none !important; }
+.empty { color: var(--muted); padding: 20px 0; text-align: center; }
+
+.panel table { display: block; overflow-x: auto; white-space: nowrap; }
+td .btn.sm { margin: 2px; }
+
+@media (max-width: 760px) {
+  .side { position: fixed; left: 0; top: 57px; bottom: 0; z-index: 9; transform: translateX(-100%); transition: transform .2s ease; }
+  .side.open { transform: translateX(0); }
+  .row2 { grid-template-columns: 1fr; }
+  .main { padding: 18px; }
+  .topbar { flex-wrap: wrap; gap: 10px; }
+  .cards { grid-template-columns: 1fr; }
+  .auth-card { padding: 22px; }
+}

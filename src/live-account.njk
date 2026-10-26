@@ -1,0 +1,74 @@
+---
+layout: layouts/base.njk
+permalink: /live-account/
+title: "Gerçek Hesap Açın | Trust Capital"
+description: "Birkaç dakika içinde gerçek işlem hesabı açın. Forex, hisse ve emtia piyasalarına hemen başlayın."
+---
+<section class="py-16 md:py-24 bg-[#003E3C]">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-[#FAF7F2] mb-6">Gerçek Hesap Açın</h1>
+        <p class="text-[#A9C2BE] text-lg max-w-2xl mx-auto">Formu doldurun, kimliğinizi doğrulayın ve dünya piyasalarında işlem yapmaya başlayın.</p>
+    </div>
+</section>
+<section class="py-12 md:py-20">
+    <div class="container mx-auto px-6 max-w-2xl">
+        <form id="liveForm" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Ad Soyad</label>
+                <input type="text" id="la_name" required class="w-full px-4 py-2 border rounded-lg">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">E-posta</label>
+                <input type="email" id="la_email" required class="w-full px-4 py-2 border rounded-lg">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Telefon</label>
+                <input type="tel" id="la_phone" required class="w-full px-4 py-2 border rounded-lg">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Hesap Türü</label>
+                <select id="la_type" class="w-full px-4 py-2 border rounded-lg">
+                    <option>Cent</option>
+                    <option selected>Standard</option>
+                    <option>Professional</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Şifre</label>
+                <input type="password" id="la_pass" required minlength="6" class="w-full px-4 py-2 border rounded-lg">
+            </div>
+            <label class="flex items-start gap-2 text-sm text-gray-600">
+                <input type="checkbox" id="la_terms" required class="mt-1">
+                <span><a href="/terms-conditions" class="underline">Şartlar ve Koşullar</a>'ı okudum ve kabul ediyorum.</span>
+            </label>
+            <button type="submit" class="w-full px-6 py-3 rounded-full bg-[#003E3C] text-white font-semibold">Hesap Aç</button>
+            <div id="la_msg" class="text-sm min-h-[1.25rem]"></div>
+        </form>
+    </div>
+</section>
+<script src="/app/config.js"></script>
+<script type="module">
+import { supabase } from '/app/app.js';
+const form = document.getElementById('liveForm');
+const msg = document.getElementById('la_msg');
+form.onsubmit = async (e) => {
+  e.preventDefault();
+  msg.textContent = ''; msg.className = 'text-sm min-h-[1.25rem]';
+  const email = document.getElementById('la_email').value.trim();
+  const pass = document.getElementById('la_pass').value;
+  const btn = form.querySelector('button'); btn.disabled = true;
+  const { data, error } = await supabase.auth.signUp({
+    email, password: pass,
+    options: { data: {
+      full_name: document.getElementById('la_name').value.trim(),
+      phone: document.getElementById('la_phone').value.trim(),
+      account_type: document.getElementById('la_type').value,
+      brand: window.APP_CONFIG.brand.tag
+    }}
+  });
+  btn.disabled = false;
+  if (error) { msg.classList.add('text-red-600'); msg.textContent = 'Hata: ' + error.message; return; }
+  if (data.session) { location.href = '/app/dashboard.html'; return; }
+  msg.classList.add('text-green-600'); msg.textContent = 'Kaydınız alındı. E-posta onayı gerekiyorsa kutunuzu kontrol edin.';
+};
+</script>

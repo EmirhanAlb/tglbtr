@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · __BRAND__</title>
+  <link rel="stylesheet" href="panel.css" />
+  <script src="config.js"></script>
+</head>
+<body class="panel-body">
+  <div class="panel-shell">
+    <aside class="panel-side">
+      <a class="panel-side-brand" href="/">
+        <img src="/images/blocks/tc-logo-white.png" alt="Trust Capital" />
+        <span class="panel-side-brand-tag" style="color:var(--warn);border-color:var(--warn)">Admin</span>
+      </a>
+      <nav class="panel-side-nav" id="sideNav"></nav>
+      <div class="panel-side-foot">
+        <div class="panel-side-user">
+          <div class="panel-side-avatar" id="userAvatar" style="background:linear-gradient(135deg,var(--warn),oklch(0.62 0.13 78))">—</div>
+          <div class="panel-side-user-meta">
+            <div class="panel-side-user-name" id="userName">—</div>
+            <div class="panel-side-user-email" id="userEmail">—</div>
+          </div>
+        </div>
+        <button type="button" class="panel-side-link" id="logoutBtn"><span>Çıkış</span></button>
+      </div>
+    </aside>
+    <main class="panel-main">
+      <div class="panel-topbar">
+        <button type="button" class="panel-mobile-toggle" id="mobileToggle" aria-label="Menü">☰</button>
+        <div class="panel-topbar-sp"></div>
+        <a class="panel-row-action" href="panel.html">Müşteri Paneli</a>
+      </div>
+      <div id="view"></div>
+    </main>
+  </div>
+  <div class="panel-side-scrim hidden" id="sideScrim"></div>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

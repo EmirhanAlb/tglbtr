@@ -1,0 +1,55 @@
+/* Sablonlarda kullanilan ama orijinal Tailwind derlemesinde (app-7ecb6376.css)
+   bulunmayan yardimci siniflar.
+   Orijinal site bu siniflari hic kullanmadigi icin derlemeye girmemisler; bu
+   kopyadaki sayfalar kullaninca kural bulunamiyor ve ozellikle bg-[#003E3C]
+   olmadigi icin koyu yesil hero alanlari arka plansiz kaliyor, acik renk yazi
+   beyaz zeminde gorunmez oluyordu.
+   Kurallar Tailwind'in ayni siniflar icin uretecegi ciktiyla birebir ayni
+   yazilmistir. Yeni bir sinif kullanildiginda buraya eklenmesi gerekir. */
+
+/* renkler */
+.bg-\[\#003E3C\]{--tw-bg-opacity: 1;background-color:rgb(0 62 60 / var(--tw-bg-opacity, 1))}
+.text-\[\#111928\]{--tw-text-opacity: 1;color:rgb(17 25 40 / var(--tw-text-opacity, 1))}
+.text-\[\#6B7280\]{--tw-text-opacity: 1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}
+.text-yellow-600{--tw-text-opacity: 1;color:rgb(202 138 4 / var(--tw-text-opacity, 1))}
+
+/* ring */
+.ring-2{--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000)}
+.ring-\[\#D9EB72\]{--tw-ring-color: #D9EB72}
+
+/* yukseklik / genislik */
+.h-40{height:10rem}
+.h-\[27px\]{height:27px}
+.h-\[45px\]{height:45px}
+.h-\[49px\]{height:49px}
+.h-\[52px\]{height:52px}
+.h-\[57px\]{height:57px}
+.h-\[59px\]{height:59px}
+.min-h-\[1\.25rem\]{min-height:1.25rem}
+.min-w-\[65px\]{min-width:65px}
+.w-\[67px\]{width:67px}
+.w-\[70px\]{width:70px}
+.w-\[112px\]{width:112px}
+.w-\[119px\]{width:119px}
+.w-\[123px\]{width:123px}
+.w-\[130px\]{width:130px}
+.w-\[139px\]{width:139px}
+.w-\[140px\]{width:140px}
+.w-\[141px\]{width:141px}
+.w-\[368px\]{width:368px}
+
+/* tipografi */
+.text-6xl{font-size:3.75rem;line-height:1}
+
+/* golge */
+.hover\:shadow-xl:hover{--tw-shadow: 0 20px 25px -5px rgb(0 0 0 / .1), 0 8px 10px -6px rgb(0 0 0 / .1);--tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}
+
+@media (min-width: 640px){
+  .sm\:h-\[378px\]{height:378px}
+  .sm\:w-\[622px\]{width:622px}
+}
+
+@media (min-width: 768px){
+  .md\:py-32{padding-top:8rem;padding-bottom:8rem}
+  .md\:text-8xl{font-size:6rem;line-height:1}
+}

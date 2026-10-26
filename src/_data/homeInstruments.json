@@ -1,0 +1,3047 @@
+[
+ {
+  "symbol": "USDHUF",
+  "slug": "USDHUF",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdhuf fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-hu fi-usdhuf fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "326.765",
+  "change": "+1.73",
+  "pct": "0.53%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURHUF",
+  "slug": "EURHUF",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eurhuf fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-hu fi-eurhuf fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "366.11",
+  "change": "+0.94",
+  "pct": "0.26%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDZAR",
+  "slug": "USDZAR",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdzar fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-za fi-usdzar fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "16.514",
+  "change": "+0.1522",
+  "pct": "0.93%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDTHB",
+  "slug": "USDTHB",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdthb fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-th fi-usdthb fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "33.7175",
+  "change": "+0.148",
+  "pct": "0.44%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURZAR",
+  "slug": "EURZAR",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eurzar fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-za fi-eurzar fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "18.50212",
+  "change": "+0.1231",
+  "pct": "0.67%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDMXN",
+  "slug": "USDMXN",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdmxn fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-mx fi-usdmxn fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "18.7486",
+  "change": "+0.072",
+  "pct": "0.39%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GBPMXN",
+  "slug": "GBPMXN",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-gb fi-gbpmxn fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-mx fi-gbpmxn fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "25.0756",
+  "change": "+0.0594",
+  "pct": "0.24%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDCZK",
+  "slug": "USDCZK",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdczk fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-cz fi-usdczk fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "21.6475",
+  "change": "+0.0579",
+  "pct": "0.27%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDSEK",
+  "slug": "USDSEK",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdsek fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-se fi-usdsek fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "9.92273",
+  "change": "+0.0406",
+  "pct": "0.41%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GBPSEK",
+  "slug": "GBPSEK",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-gb fi-gbpsek fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-se fi-gbpsek fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "13.2707",
+  "change": "+0.0341",
+  "pct": "0.26%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDPLN",
+  "slug": "USDPLN",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdpln fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-pl fi-usdpln fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "3.8991",
+  "change": "+0.0221",
+  "pct": "0.57%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURSEK",
+  "slug": "EURSEK",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eursek fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-se fi-eursek fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "11.1171",
+  "change": "+0.0161",
+  "pct": "0.15%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURPLN",
+  "slug": "EURPLN",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eurpln fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-pl fi-eurpln fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "4.3685",
+  "change": "+0.0133",
+  "pct": "0.31%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "NOKSEK",
+  "slug": "NOKSEK",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-no fi-noksek fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-se fi-noksek fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.05987",
+  "change": "+0.0056",
+  "pct": "0.53%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURNZD",
+  "slug": "EURNZD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eurnzd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-nz fi-eurnzd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.97379",
+  "change": "+0.0036",
+  "pct": "0.18%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "CHFSGD",
+  "slug": "CHFSGD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ch fi-chfsgd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-sg fi-chfsgd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.55183",
+  "change": "+0.0028",
+  "pct": "0.18%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AUDNZD",
+  "slug": "AUDNZD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-au fi-audnzd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-nz fi-audnzd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.23494",
+  "change": "+0.0024",
+  "pct": "0.19%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GBPAUD",
+  "slug": "GBPAUD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-gb fi-gbpaud fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-au fi-gbpaud fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.90769",
+  "change": "+0.0022",
+  "pct": "0.12%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "CADSGD",
+  "slug": "CADSGD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ca fi-cadsgd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-sg fi-cadsgd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "0.9108",
+  "change": "+0.0017",
+  "pct": "0.18%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDSGD",
+  "slug": "USDSGD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdsgd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-sg fi-usdsgd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.2779",
+  "change": "+0.0007",
+  "pct": "0.05%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURCZK",
+  "slug": "EURCZK",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eurczk fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-cz fi-eurczk fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "24.253",
+  "change": "+0.0005",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDCNH",
+  "slug": "USDCNH",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdcnh fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-cn fi-usdcnh fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "6.67317",
+  "change": "+0.0005",
+  "pct": "0.01%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURAUD",
+  "slug": "EURAUD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-euraud fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-au fi-euraud fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.59812",
+  "change": "+0.0002",
+  "pct": "0.01%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "CADCHF",
+  "slug": "CADCHF",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ca fi-cadchf fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ch fi-cadchf fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "0.5869",
+  "change": "+0.0001",
+  "pct": "0.02%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDAED",
+  "slug": null,
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdaed fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ae fi-usdaed fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "3.67245",
+  "change": "-0.0003",
+  "pct": "-0.01%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURGBP",
+  "slug": "EURGBP",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eurgbp fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-gb fi-eurgbp fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "0.83769",
+  "change": "-0.0008",
+  "pct": "-0.1%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDCHF",
+  "slug": "USDCHF",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdchf fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ch fi-usdchf fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "0.82346",
+  "change": "-0.0009",
+  "pct": "-0.11%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDCAD",
+  "slug": "USDCAD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdcad fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ca fi-usdcad fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.40317",
+  "change": "-0.0016",
+  "pct": "-0.11%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GBPSGD",
+  "slug": "GBPSGD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-gb fi-gbpsgd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-sg fi-gbpsgd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.70909",
+  "change": "-0.0016",
+  "pct": "-0.1%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AUDUSD",
+  "slug": "AUDUSD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-au fi-audusd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-us fi-audusd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "0.70095",
+  "change": "-0.0019",
+  "pct": "-0.26%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AUDSGD",
+  "slug": "AUDSGD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-au fi-audsgd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-sg fi-audsgd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "0.8958",
+  "change": "-0.0019",
+  "pct": "-0.21%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GBPUSD",
+  "slug": "GBPUSD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-gb fi-gbpusd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-us fi-gbpusd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.33734",
+  "change": "-0.0021",
+  "pct": "-0.15%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AUDCHF",
+  "slug": "AUDCHF",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-au fi-audchf fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ch fi-audchf fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "0.57723",
+  "change": "-0.0022",
+  "pct": "-0.37%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "NZDCHF",
+  "slug": "NZDCHF",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-nz fi-nzdchf fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ch fi-nzdchf fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "0.46731",
+  "change": "-0.0024",
+  "pct": "-0.52%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "NZDUSD",
+  "slug": "NZDUSD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-nz fi-nzdusd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-us fi-nzdusd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "0.56754",
+  "change": "-0.0025",
+  "pct": "-0.44%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURUSD",
+  "slug": "EURUSD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eurusd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-us fi-eurusd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.12031",
+  "change": "-0.0029",
+  "pct": "-0.26%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GBPCHF",
+  "slug": "GBPCHF",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-gb fi-gbpchf fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ch fi-gbpchf fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.10127",
+  "change": "-0.0029",
+  "pct": "-0.26%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURSGD",
+  "slug": "EURSGD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eursgd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-sg fi-eursgd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.43172",
+  "change": "-0.0029",
+  "pct": "-0.2%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURCHF",
+  "slug": "EURCHF",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eurchf fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ch fi-eurchf fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "0.92255",
+  "change": "-0.0034",
+  "pct": "-0.37%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AUDCAD",
+  "slug": "AUDCAD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-au fi-audcad fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ca fi-audcad fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "0.98346",
+  "change": "-0.0038",
+  "pct": "-0.38%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "NZDCAD",
+  "slug": "NZDCAD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-nz fi-nzdcad fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ca fi-nzdcad fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "0.79624",
+  "change": "-0.0044",
+  "pct": "-0.55%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GBPCAD",
+  "slug": "GBPCAD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-gb fi-gbpcad fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ca fi-gbpcad fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.8763",
+  "change": "-0.0051",
+  "pct": "-0.27%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURCAD",
+  "slug": "EURCAD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eurcad fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ca fi-eurcad fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "1.57179",
+  "change": "-0.006",
+  "pct": "-0.38%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDHKD",
+  "slug": "USDHKD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdhkd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-hk fi-usdhkd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "7.83894",
+  "change": "-0.0072",
+  "pct": "-0.09%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDNOK",
+  "slug": "USDNOK",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdnok fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-no fi-usdnok fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "9.35215",
+  "change": "-0.0084",
+  "pct": "-0.09%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AUDNOK",
+  "slug": "AUDNOK",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-au fi-audnok fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-no fi-audnok fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "6.5558",
+  "change": "-0.0233",
+  "pct": "-0.35%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GBPNOK",
+  "slug": "GBPNOK",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-gb fi-gbpnok fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-no fi-gbpnok fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "12.5077",
+  "change": "-0.0304",
+  "pct": "-0.24%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURNOK",
+  "slug": "EURNOK",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eurnok fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-no fi-eurnok fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "10.4779",
+  "change": "-0.0372",
+  "pct": "-0.35%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "NOKJPY",
+  "slug": "NOKJPY",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-no fi-nokjpy fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-jp fi-nokjpy fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "16.78",
+  "change": "-0.089",
+  "pct": "-0.53%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ZARJPY",
+  "slug": "ZARJPY",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-za fi-zarjpy fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-jp fi-zarjpy fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "9.498",
+  "change": "-0.149",
+  "pct": "-1.54%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "CADJPY",
+  "slug": "CADJPY",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ca fi-cadjpy fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-jp fi-cadjpy fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "111.967",
+  "change": "-0.597",
+  "pct": "-0.53%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "SGDJPY",
+  "slug": "SGDJPY",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-sg fi-sgdjpy fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-jp fi-sgdjpy fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "122.91",
+  "change": "-0.858",
+  "pct": "-0.69%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "CHFJPY",
+  "slug": "CHFJPY",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ch fi-chfjpy fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-jp fi-chfjpy fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "190.767",
+  "change": "-1.018",
+  "pct": "-0.53%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USDJPY",
+  "slug": "USDJPY",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-us fi-usdjpy fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-jp fi-usdjpy fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "157.096",
+  "change": "-1.03",
+  "pct": "-0.65%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EURJPY",
+  "slug": "EURJPY",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-eu fi-eurjpy fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-jp fi-eurjpy fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "176.004",
+  "change": "-1.611",
+  "pct": "-0.91%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GBPJPY",
+  "slug": "GBPJPY",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-gb fi-gbpjpy fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-jp fi-gbpjpy fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "210.097",
+  "change": "-1.703",
+  "pct": "-0.8%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "forex",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "SILVER",
+  "slug": "SILVER",
+  "pair": false,
+  "icons": [
+   "fi fi-silver fis rounded-full block w-[16px] fi-silver r-img"
+  ],
+  "bid": "55.691",
+  "change": "-2.261",
+  "pct": "-3.9%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "metals",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "PALLADIUM",
+  "slug": "PALLADIUM",
+  "pair": false,
+  "icons": [
+   "fi fi-palladium fis rounded-full block w-[16px] fi-palladium r-img"
+  ],
+  "bid": "1065.62",
+  "change": "-26.03",
+  "pct": "-2.38%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "metals",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "XAUEUR",
+  "slug": "XAUEUR",
+  "pair": false,
+  "icons": [
+   "fi fi-xaueur fis rounded-full block w-[16px] fi-xaueur r-img"
+  ],
+  "bid": "3641.74",
+  "change": "-43.48",
+  "pct": "-1.18%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "metals",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "PLATINUM",
+  "slug": "PLATINUM",
+  "pair": false,
+  "icons": [
+   "fi fi-platinum fis rounded-full block w-[16px] fi-platinum r-img"
+  ],
+  "bid": "1582",
+  "change": "-47.6",
+  "pct": "-2.92%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "metals",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GOLD",
+  "slug": "GOLD",
+  "pair": false,
+  "icons": [
+   "fi fi-gold fis rounded-full block w-[16px] fi-gold r-img"
+  ],
+  "bid": "4080.29",
+  "change": "-59.87",
+  "pct": "-1.45%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "metals",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "COPPER",
+  "slug": "COPPER",
+  "pair": false,
+  "icons": [
+   "fi fi-copper fis rounded-full block w-[16px] fi-copper r-img"
+  ],
+  "bid": "14126.8",
+  "change": "-242.17",
+  "pct": "-1.69%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "metals",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "UKOIL",
+  "slug": "UKOIL",
+  "pair": false,
+  "icons": [
+   "fi fi-ukoil fis rounded-full block w-[16px] fi-ukoil r-img"
+  ],
+  "bid": "108.325",
+  "change": "+2.3",
+  "pct": "2.17%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "energy",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "USOIL",
+  "slug": "USOIL",
+  "pair": false,
+  "icons": [
+   "fi fi-usoil fis rounded-full block w-[16px] fi-usoil r-img"
+  ],
+  "bid": "99.445",
+  "change": "+1.99",
+  "pct": "2.04%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "energy",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "UK100",
+  "slug": "UK100",
+  "pair": false,
+  "icons": [
+   "fi fi-uk100 fis rounded-full block w-[16px] fi-uk100 r-img"
+  ],
+  "bid": "10742.7",
+  "change": "+19.5",
+  "pct": "0.18%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "SWI20",
+  "slug": "SWI20",
+  "pair": false,
+  "icons": [
+   "fi fi-swi20 fis rounded-full block w-[16px] fi-swi20 r-img"
+  ],
+  "bid": "14535.5",
+  "change": "+18",
+  "pct": "0.12%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "US2000",
+  "slug": "US2000",
+  "pair": false,
+  "icons": [
+   "fi fi-us2000 fis rounded-full block w-[16px] fi-us2000 r-img"
+  ],
+  "bid": "2764.2",
+  "change": "-14.4",
+  "pct": "-0.52%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AUS200",
+  "slug": "AUS200",
+  "pair": false,
+  "icons": [
+   "fi fi-aus200 fis rounded-full block w-[16px] fi-aus200 r-img"
+  ],
+  "bid": "8802.25",
+  "change": "-28",
+  "pct": "-0.32%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "FRA40",
+  "slug": "FRA40",
+  "pair": false,
+  "icons": [
+   "fi fi-fra40 fis rounded-full block w-[16px] fi-fra40 r-img"
+  ],
+  "bid": "7839.4",
+  "change": "-56.1",
+  "pct": "-0.71%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EU50",
+  "slug": "EU50",
+  "pair": false,
+  "icons": [
+   "fi fi-eu50 fis rounded-full block w-[16px] fi-eu50 r-img"
+  ],
+  "bid": "6123.3",
+  "change": "-68.3",
+  "pct": "-1.1%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "US500",
+  "slug": "US500",
+  "pair": false,
+  "icons": [
+   "fi fi-us500 fis rounded-full block w-[16px] fi-us500 r-img"
+  ],
+  "bid": "7683.25",
+  "change": "-75.1",
+  "pct": "-0.97%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GER40",
+  "slug": "GER40",
+  "pair": false,
+  "icons": [
+   "fi fi-ger40 fis rounded-full block w-[16px] fi-ger40 r-img"
+  ],
+  "bid": "25521.15",
+  "change": "-81.1",
+  "pct": "-0.32%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "SPA35",
+  "slug": "SPA35",
+  "pair": false,
+  "icons": [
+   "fi fi-spa35 fis rounded-full block w-[16px] fi-spa35 r-img"
+  ],
+  "bid": "19016",
+  "change": "-282",
+  "pct": "-1.46%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "US30",
+  "slug": "US30",
+  "pair": false,
+  "icons": [
+   "fi fi-us30 fis rounded-full block w-[16px] fi-us30 r-img"
+  ],
+  "bid": "52564.25",
+  "change": "-314",
+  "pct": "-0.59%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "US100",
+  "slug": "US100",
+  "pair": false,
+  "icons": [
+   "fi fi-us100 fis rounded-full block w-[16px] fi-us100 r-img"
+  ],
+  "bid": "29304.83",
+  "change": "-526.1",
+  "pct": "-1.76%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "HKIND",
+  "slug": "HKIND",
+  "pair": false,
+  "icons": [
+   "fi fi-hkind fis rounded-full block w-[16px] fi-hkind r-img"
+  ],
+  "bid": "23002",
+  "change": "-592",
+  "pct": "-2.51%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "JAP225",
+  "slug": "JAP225",
+  "pair": false,
+  "icons": [
+   "fi fi-jap225 fis rounded-full block w-[16px] fi-jap225 r-img"
+  ],
+  "bid": "63121",
+  "change": "-1731",
+  "pct": "-2.67%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "indices",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "BMWG",
+  "slug": "BMWG",
+  "pair": false,
+  "icons": [
+   "fi fi-bmwg fis rounded-full block w-[16px] fi-bmwg r-img"
+  ],
+  "bid": "57.22",
+  "change": "+0.2",
+  "pct": "0.35%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "TEF",
+  "slug": "TEF",
+  "pair": false,
+  "icons": [
+   "fi fi-tef fis rounded-full block w-[16px] fi-tef r-img"
+  ],
+  "bid": "3.45",
+  "change": "+0.04",
+  "pct": "1.17%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AAL",
+  "slug": "AAL",
+  "pair": false,
+  "icons": [
+   "fi fi-aal fis rounded-full block w-[16px] fi-aal r-img"
+  ],
+  "bid": "12.23",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AAPL",
+  "slug": "AAPL",
+  "pair": false,
+  "icons": [
+   "fi fi-aapl fis rounded-full block w-[16px] fi-aapl r-img"
+  ],
+  "bid": "343.95",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ABNB",
+  "slug": "ABNB",
+  "pair": false,
+  "icons": [
+   "fi fi-abnb fis rounded-full block w-[16px] fi-abnb r-img"
+  ],
+  "bid": "173.63",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ADBE",
+  "slug": "ADBE",
+  "pair": false,
+  "icons": [
+   "fi fi-adbe fis rounded-full block w-[16px] fi-adbe r-img"
+  ],
+  "bid": "255.32",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AIG",
+  "slug": "AIG",
+  "pair": false,
+  "icons": [
+   "fi fi-aig fis rounded-full block w-[16px] fi-aig r-img"
+  ],
+  "bid": "81.76",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AMZN",
+  "slug": "AMZN",
+  "pair": false,
+  "icons": [
+   "fi fi-amzn fis rounded-full block w-[16px] fi-amzn r-img"
+  ],
+  "bid": "262.56",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AXP",
+  "slug": "AXP",
+  "pair": false,
+  "icons": [
+   "fi fi-axp fis rounded-full block w-[16px] fi-axp r-img"
+  ],
+  "bid": "323.57",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "BA",
+  "slug": "BA",
+  "pair": false,
+  "icons": [
+   "fi fi-ba fis rounded-full block w-[16px] fi-ba r-img"
+  ],
+  "bid": "192.16",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "BABA",
+  "slug": "BABA",
+  "pair": false,
+  "icons": [
+   "fi fi-baba fis rounded-full block w-[16px] fi-baba r-img"
+  ],
+  "bid": "104.34",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "BAC",
+  "slug": "BAC",
+  "pair": false,
+  "icons": [
+   "fi fi-bac fis rounded-full block w-[16px] fi-bac r-img"
+  ],
+  "bid": "50.81",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "BK",
+  "slug": "BK",
+  "pair": false,
+  "icons": [
+   "fi fi-bk fis rounded-full block w-[16px] fi-bk r-img"
+  ],
+  "bid": "146.05",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "BKNG",
+  "slug": "BKNG",
+  "pair": false,
+  "icons": [
+   "fi fi-bkng fis rounded-full block w-[16px] fi-bkng r-img"
+  ],
+  "bid": "158.45",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "BMRN",
+  "slug": "BMRN",
+  "pair": false,
+  "icons": [
+   "fi fi-bmrn fis rounded-full block w-[16px] fi-bmrn r-img"
+  ],
+  "bid": "55.17",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "BMY",
+  "slug": "BMY",
+  "pair": false,
+  "icons": [
+   "fi fi-bmy fis rounded-full block w-[16px] fi-bmy r-img"
+  ],
+  "bid": "61.12",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "CAT",
+  "slug": "CAT",
+  "pair": false,
+  "icons": [
+   "fi fi-cat fis rounded-full block w-[16px] fi-cat r-img"
+  ],
+  "bid": "739.91",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "CME",
+  "slug": "CME",
+  "pair": false,
+  "icons": [
+   "fi fi-cme fis rounded-full block w-[16px] fi-cme r-img"
+  ],
+  "bid": "295.83",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "COST",
+  "slug": "COST",
+  "pair": false,
+  "icons": [
+   "fi fi-cost fis rounded-full block w-[16px] fi-cost r-img"
+  ],
+  "bid": "998.5",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "CSCO",
+  "slug": "CSCO",
+  "pair": false,
+  "icons": [
+   "fi fi-csco fis rounded-full block w-[16px] fi-csco r-img"
+  ],
+  "bid": "107.32",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "DAL",
+  "slug": "DAL",
+  "pair": false,
+  "icons": [
+   "fi fi-dal fis rounded-full block w-[16px] fi-dal r-img"
+  ],
+  "bid": "77.71",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "DELL",
+  "slug": "DELL",
+  "pair": false,
+  "icons": [
+   "fi fi-dell fis rounded-full block w-[16px] fi-dell r-img"
+  ],
+  "bid": "486.1",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "DIS",
+  "slug": "DIS",
+  "pair": false,
+  "icons": [
+   "fi fi-dis fis rounded-full block w-[16px] fi-dis r-img"
+  ],
+  "bid": "111.74",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "EBAY",
+  "slug": "EBAY",
+  "pair": false,
+  "icons": [
+   "fi fi-ebay fis rounded-full block w-[16px] fi-ebay r-img"
+  ],
+  "bid": "122.94",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "FDX",
+  "slug": "FDX",
+  "pair": false,
+  "icons": [
+   "fi fi-fdx fis rounded-full block w-[16px] fi-fdx r-img"
+  ],
+  "bid": "298.32",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GE",
+  "slug": "GE",
+  "pair": false,
+  "icons": [
+   "fi fi-ge fis rounded-full block w-[16px] fi-ge r-img"
+  ],
+  "bid": "295.32",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GM",
+  "slug": "GM",
+  "pair": false,
+  "icons": [
+   "fi fi-gm fis rounded-full block w-[16px] fi-gm r-img"
+  ],
+  "bid": "76.05",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GOOG",
+  "slug": "GOOG",
+  "pair": false,
+  "icons": [
+   "fi fi-goog fis rounded-full block w-[16px] fi-goog r-img"
+  ],
+  "bid": "331.17",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GPRO",
+  "slug": "GPRO",
+  "pair": false,
+  "icons": [
+   "fi fi-gpro fis rounded-full block w-[16px] fi-gpro r-img"
+  ],
+  "bid": "1.05",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GS",
+  "slug": "GS",
+  "pair": false,
+  "icons": [
+   "fi fi-gs fis rounded-full block w-[16px] fi-gs r-img"
+  ],
+  "bid": "903.1",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GT",
+  "slug": "GT",
+  "pair": false,
+  "icons": [
+   "fi fi-gt fis rounded-full block w-[16px] fi-gt r-img"
+  ],
+  "bid": "4.29",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "HD",
+  "slug": "HD",
+  "pair": false,
+  "icons": [
+   "fi fi-hd fis rounded-full block w-[16px] fi-hd r-img"
+  ],
+  "bid": "313.79",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "HLT",
+  "slug": "HLT",
+  "pair": false,
+  "icons": [
+   "fi fi-hlt fis rounded-full block w-[16px] fi-hlt r-img"
+  ],
+  "bid": "362.16",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "HOG",
+  "slug": "HOG",
+  "pair": false,
+  "icons": [
+   "fi fi-hog fis rounded-full block w-[16px] fi-hog r-img"
+  ],
+  "bid": "27.28",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "HPQ",
+  "slug": "HPQ",
+  "pair": false,
+  "icons": [
+   "fi fi-hpq fis rounded-full block w-[16px] fi-hpq r-img"
+  ],
+  "bid": "31.33",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "IBM",
+  "slug": "IBM",
+  "pair": false,
+  "icons": [
+   "fi fi-ibm fis rounded-full block w-[16px] fi-ibm r-img"
+  ],
+  "bid": "251.08",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "INTC",
+  "slug": "INTC",
+  "pair": false,
+  "icons": [
+   "fi fi-intc fis rounded-full block w-[16px] fi-intc r-img"
+  ],
+  "bid": "92.96",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "JNJ",
+  "slug": "JNJ",
+  "pair": false,
+  "icons": [
+   "fi fi-jnj fis rounded-full block w-[16px] fi-jnj r-img"
+  ],
+  "bid": "257.55",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "JPM",
+  "slug": "JPM",
+  "pair": false,
+  "icons": [
+   "fi fi-jpm fis rounded-full block w-[16px] fi-jpm r-img"
+  ],
+  "bid": "334.74",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "KMI",
+  "slug": "KMI",
+  "pair": false,
+  "icons": [
+   "fi fi-kmi fis rounded-full block w-[16px] fi-kmi r-img"
+  ],
+  "bid": "33.95",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "KO",
+  "slug": "KO",
+  "pair": false,
+  "icons": [
+   "fi fi-ko fis rounded-full block w-[16px] fi-ko r-img"
+  ],
+  "bid": "92.65",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "MA",
+  "slug": "MA",
+  "pair": false,
+  "icons": [
+   "fi fi-ma fis rounded-full block w-[16px] fi-ma r-img"
+  ],
+  "bid": "622.02",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "MCD",
+  "slug": "MCD",
+  "pair": false,
+  "icons": [
+   "fi fi-mcd fis rounded-full block w-[16px] fi-mcd r-img"
+  ],
+  "bid": "246.03",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "MCO",
+  "slug": "MCO",
+  "pair": false,
+  "icons": [
+   "fi fi-mco fis rounded-full block w-[16px] fi-mco r-img"
+  ],
+  "bid": "480.47",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "MMM",
+  "slug": "MMM",
+  "pair": false,
+  "icons": [
+   "fi fi-mmm fis rounded-full block w-[16px] fi-mmm r-img"
+  ],
+  "bid": "174.27",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "MO",
+  "slug": "MO",
+  "pair": false,
+  "icons": [
+   "fi fi-mo fis rounded-full block w-[16px] fi-mo r-img"
+  ],
+  "bid": "73.82",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "MRK",
+  "slug": "MRK",
+  "pair": false,
+  "icons": [
+   "fi fi-mrk fis rounded-full block w-[16px] fi-mrk r-img"
+  ],
+  "bid": "149.85",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "MRVL",
+  "slug": "MRVL",
+  "pair": false,
+  "icons": [
+   "fi fi-mrvl fis rounded-full block w-[16px] fi-mrvl r-img"
+  ],
+  "bid": "244.71",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "MS",
+  "slug": "MS",
+  "pair": false,
+  "icons": [
+   "fi fi-ms fis rounded-full block w-[16px] fi-ms r-img"
+  ],
+  "bid": "186.76",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "MSFT",
+  "slug": "MSFT",
+  "pair": false,
+  "icons": [
+   "fi fi-msft fis rounded-full block w-[16px] fi-msft r-img"
+  ],
+  "bid": "533.1",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "NFLX",
+  "slug": "NFLX",
+  "pair": false,
+  "icons": [
+   "fi fi-nflx fis rounded-full block w-[16px] fi-nflx r-img"
+  ],
+  "bid": "65.05",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "NKE",
+  "slug": "NKE",
+  "pair": false,
+  "icons": [
+   "fi fi-nke fis rounded-full block w-[16px] fi-nke r-img"
+  ],
+  "bid": "37.49",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "NVDA",
+  "slug": "NVDA",
+  "pair": false,
+  "icons": [
+   "fi fi-nvda fis rounded-full block w-[16px] fi-nvda r-img"
+  ],
+  "bid": "221.95",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ORCL",
+  "slug": "ORCL",
+  "pair": false,
+  "icons": [
+   "fi fi-orcl fis rounded-full block w-[16px] fi-orcl r-img"
+  ],
+  "bid": "129",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "PEP",
+  "slug": "PEP",
+  "pair": false,
+  "icons": [
+   "fi fi-pep fis rounded-full block w-[16px] fi-pep r-img"
+  ],
+  "bid": "134.8",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "PFE",
+  "slug": "PFE",
+  "pair": false,
+  "icons": [
+   "fi fi-pfe fis rounded-full block w-[16px] fi-pfe r-img"
+  ],
+  "bid": "29.87",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "PM",
+  "slug": "PM",
+  "pair": false,
+  "icons": [
+   "fi fi-pm fis rounded-full block w-[16px] fi-pm r-img"
+  ],
+  "bid": "197.47",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "PYPL",
+  "slug": "PYPL",
+  "pair": false,
+  "icons": [
+   "fi fi-pypl fis rounded-full block w-[16px] fi-pypl r-img"
+  ],
+  "bid": "57.2",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "QCOM",
+  "slug": "QCOM",
+  "pair": false,
+  "icons": [
+   "fi fi-qcom fis rounded-full block w-[16px] fi-qcom r-img"
+  ],
+  "bid": "177.91",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "RACE",
+  "slug": "RACE",
+  "pair": false,
+  "icons": [
+   "fi fi-race fis rounded-full block w-[16px] fi-race r-img"
+  ],
+  "bid": "396.58",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ROKU",
+  "slug": "ROKU",
+  "pair": false,
+  "icons": [
+   "fi fi-roku fis rounded-full block w-[16px] fi-roku r-img"
+  ],
+  "bid": "157.74",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "SBUX",
+  "slug": "SBUX",
+  "pair": false,
+  "icons": [
+   "fi fi-sbux fis rounded-full block w-[16px] fi-sbux r-img"
+  ],
+  "bid": "99.06",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "SHOP",
+  "slug": "SHOP",
+  "pair": false,
+  "icons": [
+   "fi fi-shop fis rounded-full block w-[16px] fi-shop r-img"
+  ],
+  "bid": "174.35",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "SPOT",
+  "slug": "SPOT",
+  "pair": false,
+  "icons": [
+   "fi fi-spot fis rounded-full block w-[16px] fi-spot r-img"
+  ],
+  "bid": "523.5",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "TMUS",
+  "slug": "TMUS",
+  "pair": false,
+  "icons": [
+   "fi fi-tmus fis rounded-full block w-[16px] fi-tmus r-img"
+  ],
+  "bid": "153.89",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "TSLA",
+  "slug": "TSLA",
+  "pair": false,
+  "icons": [
+   "fi fi-tsla fis rounded-full block w-[16px] fi-tsla r-img"
+  ],
+  "bid": "386.57",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "UA",
+  "slug": "UA",
+  "pair": false,
+  "icons": [
+   "fi fi-ua fis rounded-full block w-[16px] fi-ua r-img"
+  ],
+  "bid": "4.56",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "UAL",
+  "slug": "UAL",
+  "pair": false,
+  "icons": [
+   "fi fi-ual fis rounded-full block w-[16px] fi-ual r-img"
+  ],
+  "bid": "101.6",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "UBER",
+  "slug": "UBER",
+  "pair": false,
+  "icons": [
+   "fi fi-uber fis rounded-full block w-[16px] fi-uber r-img"
+  ],
+  "bid": "67.65",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "UPS",
+  "slug": "UPS",
+  "pair": false,
+  "icons": [
+   "fi fi-ups fis rounded-full block w-[16px] fi-ups r-img"
+  ],
+  "bid": "99.48",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "VALE",
+  "slug": "VALE",
+  "pair": false,
+  "icons": [
+   "fi fi-vale fis rounded-full block w-[16px] fi-vale r-img"
+  ],
+  "bid": "12.68",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "VZ",
+  "slug": "VZ",
+  "pair": false,
+  "icons": [
+   "fi fi-vz fis rounded-full block w-[16px] fi-vz r-img"
+  ],
+  "bid": "43.6",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "WFC",
+  "slug": "WFC",
+  "pair": false,
+  "icons": [
+   "fi fi-wfc fis rounded-full block w-[16px] fi-wfc r-img"
+  ],
+  "bid": "82.37",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "WMT",
+  "slug": "WMT",
+  "pair": false,
+  "icons": [
+   "fi fi-wmt fis rounded-full block w-[16px] fi-wmt r-img"
+  ],
+  "bid": "117.73",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "XOM",
+  "slug": "XOM",
+  "pair": false,
+  "icons": [
+   "fi fi-xom fis rounded-full block w-[16px] fi-xom r-img"
+  ],
+  "bid": "178.12",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "YUM",
+  "slug": "YUM",
+  "pair": false,
+  "icons": [
+   "fi fi-yum fis rounded-full block w-[16px] fi-yum r-img"
+  ],
+  "bid": "151.25",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ZM",
+  "slug": "ZM",
+  "pair": false,
+  "icons": [
+   "fi fi-zm fis rounded-full block w-[16px] fi-zm r-img"
+  ],
+  "bid": "99.46",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "LHAG",
+  "slug": "LHAG",
+  "pair": false,
+  "icons": [
+   "fi fi-lhag fis rounded-full block w-[16px] fi-lhag r-img"
+  ],
+  "bid": "7.08",
+  "change": "-0.18",
+  "pct": "-2.48%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "SAN",
+  "slug": "SAN",
+  "pair": false,
+  "icons": [
+   "fi fi-san fis rounded-full block w-[16px] fi-san r-img"
+  ],
+  "bid": "11.61",
+  "change": "-0.33",
+  "pct": "-2.76%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "DBKGn",
+  "slug": "DBKGn",
+  "pair": false,
+  "icons": [
+   "fi fi-dbkgn fis rounded-full block w-[16px] fi-dbkgn r-img"
+  ],
+  "bid": "28.23",
+  "change": "-0.46",
+  "pct": "-1.6%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "BAYGn",
+  "slug": "BAYGn",
+  "pair": false,
+  "icons": [
+   "fi fi-baygn fis rounded-full block w-[16px] fi-baygn r-img"
+  ],
+  "bid": "43.99",
+  "change": "-0.65",
+  "pct": "-1.46%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "CBKG",
+  "slug": "CBKG",
+  "pair": false,
+  "icons": [
+   "fi fi-cbkg fis rounded-full block w-[16px] fi-cbkg r-img"
+  ],
+  "bid": "36.57",
+  "change": "-0.65",
+  "pct": "-1.75%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "VOWG",
+  "slug": "VOWG",
+  "pair": false,
+  "icons": [
+   "fi fi-vowg fis rounded-full block w-[16px] fi-vowg r-img"
+  ],
+  "bid": "68.4",
+  "change": "-0.96",
+  "pct": "-1.38%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ADSGn",
+  "slug": "ADSGn",
+  "pair": false,
+  "icons": [
+   "fi fi-adsgn fis rounded-full block w-[16px] fi-adsgn r-img"
+  ],
+  "bid": "158.55",
+  "change": "-2.15",
+  "pct": "-1.34%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ALVG",
+  "slug": "ALVG",
+  "pair": false,
+  "icons": [
+   "fi fi-alvg fis rounded-full block w-[16px] fi-alvg r-img"
+  ],
+  "bid": "432.6",
+  "change": "-3.3",
+  "pct": "-0.76%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "SIEGn",
+  "slug": "SIEGn",
+  "pair": false,
+  "icons": [
+   "fi fi-siegn fis rounded-full block w-[16px] fi-siegn r-img"
+  ],
+  "bid": "262.45",
+  "change": "-3.85",
+  "pct": "-1.45%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "shares",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "NMDC",
+  "slug": "NMDC",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-nm fi-nmdc fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-c fi-nmdc fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "25.66",
+  "change": "+0.31",
+  "pct": "1.22%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Parkin",
+  "slug": "Parkin",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-pa fi-parkin fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ki fi-parkin fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "5.86",
+  "change": "+0.17",
+  "pct": "2.99%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "DU",
+  "slug": "DU",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-du fi-du fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi- fi-du fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "12.15",
+  "change": "+0.12",
+  "pct": "1%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AD.Aviation",
+  "slug": "AD.Aviation",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ad fi-ad.aviation fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-av fi-ad.aviation fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "5.75",
+  "change": "+0.02",
+  "pct": "0.35%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Palms.Sport",
+  "slug": "Palms.Sport",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-pa fi-palms.sport fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ms fi-palms.sport fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "7.26",
+  "change": "+0.02",
+  "pct": "0.28%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AD.Ship",
+  "slug": "AD.Ship",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ad fi-ad.ship fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-sh fi-ad.ship fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "7.81",
+  "change": "+0.01",
+  "pct": "0.13%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "DEWA",
+  "slug": "DEWA",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-de fi-dewa fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-a fi-dewa fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "2.61",
+  "change": "+0.01",
+  "pct": "0.38%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "CBD",
+  "slug": "CBD",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-cb fi-cbd fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi- fi-cbd fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "9.67",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "GULFNAV",
+  "slug": "GULFNAV",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-gu fi-gulfnav fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-fn fi-gulfnav fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "3.05",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Salik",
+  "slug": "Salik",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-sa fi-salik fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ik fi-salik fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "5.11",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "RAK.Bank",
+  "slug": "RAK.Bank",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ra fi-rak.bank fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-.b fi-rak.bank fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "9.98",
+  "change": "+0",
+  "pct": "0%",
+  "color": "text-green-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AD.Natl.Tak",
+  "slug": "AD.Natl.Tak",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ad fi-ad.natl.tak fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-na fi-ad.natl.tak fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "5.68",
+  "change": "-0.01",
+  "pct": "-0.18%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "RPH",
+  "slug": "RPH",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-rp fi-rph fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi- fi-rph fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "2.12",
+  "change": "-0.01",
+  "pct": "-0.47%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "AD.Insuranc",
+  "slug": "AD.Insuranc",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ad fi-ad.insuranc fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-in fi-ad.insuranc fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "6.87",
+  "change": "-0.019",
+  "pct": "-0.28%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ADNOC.Gas",
+  "slug": "ADNOC.Gas",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ad fi-adnoc.gas fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-oc fi-adnoc.gas fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "3.15",
+  "change": "-0.02",
+  "pct": "-0.63%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Chimera",
+  "slug": "Chimera",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ch fi-chimera fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-me fi-chimera fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "3.59",
+  "change": "-0.02",
+  "pct": "-0.55%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Pure.Health",
+  "slug": "Pure.Health",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-pu fi-pure.health fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-e. fi-pure.health fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "2.57",
+  "change": "-0.03",
+  "pct": "-1.15%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Agthia.Grp",
+  "slug": "Agthia.Grp",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ag fi-agthia.grp fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-hi fi-agthia.grp fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "3.11",
+  "change": "-0.03",
+  "pct": "-0.96%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Tecom.Group",
+  "slug": "Tecom.Group",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-te fi-tecom.group fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-om fi-tecom.group fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "3.11",
+  "change": "-0.04",
+  "pct": "-1.27%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Modon",
+  "slug": "Modon",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-mo fi-modon fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-on fi-modon fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "2.78",
+  "change": "-0.04",
+  "pct": "-1.42%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ADNOC.Drill",
+  "slug": "ADNOC.Drill",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ad fi-adnoc.drill fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-oc fi-adnoc.drill fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "5.65",
+  "change": "-0.05",
+  "pct": "-0.88%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Apex",
+  "slug": "Apex",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ap fi-apex fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-x fi-apex fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "3.12",
+  "change": "-0.05",
+  "pct": "-1.58%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "DIB",
+  "slug": "DIB",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-di fi-dib fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi- fi-dib fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "7.06",
+  "change": "-0.06",
+  "pct": "-0.84%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Emaar.Propt",
+  "slug": "Emaar.Propt",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-em fi-emaar.propt fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ar fi-emaar.propt fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "11.36",
+  "change": "-0.08",
+  "pct": "-0.7%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Alpha.Dhabi",
+  "slug": "Alpha.Dhabi",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-al fi-alpha.dhabi fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ha fi-alpha.dhabi fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "6.859",
+  "change": "-0.095",
+  "pct": "-1.37%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Taaleem",
+  "slug": "Taaleem",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ta fi-taaleem fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-le fi-taaleem fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "3.13",
+  "change": "-0.1",
+  "pct": "-3.1%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ADCB",
+  "slug": "ADCB",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ad fi-adcb fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-b fi-adcb fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "16.47",
+  "change": "-0.13",
+  "pct": "-0.78%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Ghitha.Hold",
+  "slug": "Ghitha.Hold",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-gh fi-ghitha.hold fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-th fi-ghitha.hold fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "11.03",
+  "change": "-0.13",
+  "pct": "-1.16%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ADNOC.Logis",
+  "slug": "ADNOC.Logis",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ad fi-adnoc.logis fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-oc fi-adnoc.logis fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "7.17",
+  "change": "-0.15",
+  "pct": "-2.05%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "Emaar.Devel",
+  "slug": "Emaar.Devel",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-em fi-emaar.devel fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-ar fi-emaar.devel fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "12.41",
+  "change": "-0.25",
+  "pct": "-1.97%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "ADIB",
+  "slug": "ADIB",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ad fi-adib fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-b fi-adib fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "22.27",
+  "change": "-0.29",
+  "pct": "-1.29%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "FAB.Bank",
+  "slug": "FAB.Bank",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-fa fi-fab.bank fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-.b fi-fab.bank fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "18.61",
+  "change": "-0.47",
+  "pct": "-2.46%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "NBD.Bank",
+  "slug": "NBD.Bank",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-nb fi-nbd.bank fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi-.b fi-nbd.bank fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "31.07",
+  "change": "-0.65",
+  "pct": "-2.05%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ },
+ {
+  "symbol": "IHC",
+  "slug": "IHC",
+  "pair": true,
+  "icons": [
+   "fi bgplaceholder fi-ih fi-ihc fis rounded-full block w-[16px] l-img",
+   "fi bgplaceholder fi- fi-ihc fis rounded-full block w-[16px] r-img"
+  ],
+  "bid": "350.28",
+  "change": "-1.79",
+  "pct": "-0.51%",
+  "color": "text-red-600",
+  "trendImg": "/build/assets/up_optimized-2bfb2b12.webp",
+  "type": "menashare",
+  "typeColor": "text-green-600"
+ }
+]

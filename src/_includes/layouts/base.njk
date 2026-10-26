@@ -1,0 +1,74 @@
+{%- set A = "/build/assets/" -%}
+{%- set defaultStyles = [
+  "intlTelInput-a2abb0f9.css",
+  "flag-icons-0a93ade9.css",
+  "select2-92b09fb4.css",
+  "app-d45640c1.css",
+  "style-9adf4d36.css",
+  "app-7ecb6376.css"
+] -%}
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+    {%- if keywords %}
+    <meta name="keywords" content="{{ keywords }}">
+    {%- endif %}
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="{{ ogTitle or title }}">
+    <meta property="og:description" content="{{ ogDescription or description }}">
+    <meta property="og:type" content="Website">
+    <meta property="og:locale" content="tr_TR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+
+    {%- for css in (styles or defaultStyles) %}
+    <link rel="stylesheet" href="{{ A }}{{ css }}" />
+    {%- endfor %}
+    {#- Footer kuralları orijinalde yalnızca ana sayfanın yüklediği home-dc5eafe7.css
+        içinde geldiği için alt sayfalarda footer stilsiz kalıyordu; her sayfada yüklenir. #}
+    <link rel="stylesheet" href="{{ A }}footer-shared.css" />
+    {#- Şablonların kullandığı ama orijinal Tailwind derlemesinde bulunmayan sınıflar. #}
+    <link rel="stylesheet" href="{{ A }}utilities-missing.css" />
+    {#- symbol-d300c5e6.css'teki ikonlardan bu kopyaya alınmamış olanlar.
+        Yalnızca o sınıfların background-image'ini yeniden tanımlar. #}
+    <link rel="stylesheet" href="{{ A }}symbol-icons-missing.css" />
+    {%- set pageScripts = scripts or ["app-31051ced.js"] %}
+    {%- for js in pageScripts %}
+    <script type="module" src="{{ A }}{{ js }}"></script>
+    {%- endfor %}
+    {#- Mega menüleri açan kod orijinalde ana sayfa için home-48a5a3ec.js,
+        alt sayfalar için innerpages-886314ef.js içinde. İkincisi bu kopyaya
+        alınmamış; aşağıdaki dosya onun yerini tutar. Ana sayfada home paketi
+        zaten aynı işi yaptığı için eklenmez, yoksa iki dinleyici çakışır. #}
+    {%- if "home-48a5a3ec.js" not in pageScripts %}
+    <script type="module" src="{{ A }}header-menu.js"></script>
+    {%- endif %}
+    {%- if schema %}
+    <script type="application/ld+json">{{ schema | dump | safe }}</script>
+    {%- endif %}
+    {%- if headExtra %}{{ headExtra | safe }}{% endif %}
+</head>
+
+<body class="ltr">
+    {% include "partials/app-promo-bar.njk" %}
+    <section class="{{ wrapperClass or 'homepage' }}">
+        {% include "partials/header.njk" %}
+        {% include "partials/mega-menus.njk" %}
+        {% if showTicker !== false %}{% include "partials/ticker.njk" %}{% endif %}
+
+        {{ content | safe }}
+
+    </section>
+    {% include "partials/footer.njk" %}
+    {% include "partials/widgets.njk" %}
+</body>
+
+</html>

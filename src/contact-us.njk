@@ -1,0 +1,67 @@
+---
+layout: layouts/base.njk
+permalink: /contact-us/
+title: "İletişim | Trust Capital"
+description: "Trust Capital müşteri hizmetleri ile iletişime geçin. Soru, öneri ve destek talepleriniz için bize ulaşın."
+---
+<section class="py-16 md:py-24 bg-[#003E3C]">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-[#FAF7F2] mb-6">İletişim</h1>
+        <p class="text-[#A9C2BE] text-lg max-w-2xl mx-auto">Soru, öneri ve destek talepleriniz için bize ulaşın.</p>
+    </div>
+</section>
+<section class="py-12 md:py-20">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12">
+        <div>
+            <h2 class="text-2xl font-bold text-[#003E3C] mb-6">İletişim Bilgileri</h2>
+            <ul class="space-y-4 text-gray-700">
+                <li><strong>E-posta:</strong> support@example.com</li>
+                <li><strong>Telefon:</strong> +90 212 000 00 00</li>
+                <li><strong>Adres:</strong> Örnek İş Merkezi, İstanbul</li>
+                <li><strong>Çalışma Saatleri:</strong> Hafta içi 09:00 - 18:00</li>
+            </ul>
+        </div>
+        <div>
+            <form id="contactForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Ad Soyad</label>
+                    <input type="text" id="c_name" required class="w-full px-4 py-2 border rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">E-posta</label>
+                    <input type="email" id="c_email" required class="w-full px-4 py-2 border rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Konu</label>
+                    <input type="text" id="c_subject" required class="w-full px-4 py-2 border rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Mesaj</label>
+                    <textarea id="c_message" rows="4" required class="w-full px-4 py-2 border rounded-lg"></textarea>
+                </div>
+                <button type="submit" class="px-6 py-3 rounded-full bg-[#003E3C] text-white font-semibold">Gönder</button>
+                <div id="c_msg" class="text-sm min-h-[1.25rem]"></div>
+            </form>
+        </div>
+    </div>
+</section>
+<script src="/app/config.js"></script>
+<script type="module">
+import { supabase } from '/app/app.js';
+document.getElementById('contactForm').onsubmit = async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById('c_msg'); msg.textContent = '';
+  if (!supabase) { msg.className = 'text-red-600 text-sm'; msg.textContent = 'Bağlantı hatası.'; return; }
+  const btn = e.target.querySelector('button'); btn.disabled = true;
+  const { error } = await supabase.from('contacts').insert({
+    name: document.getElementById('c_name').value.trim(),
+    email: document.getElementById('c_email').value.trim(),
+    subject: document.getElementById('c_subject').value.trim(),
+    message: document.getElementById('c_message').value.trim()
+  });
+  btn.disabled = false;
+  if (error) { msg.className = 'text-red-600 text-sm'; msg.textContent = 'Hata: ' + error.message; return; }
+  msg.className = 'text-green-600 text-sm'; msg.textContent = 'Mesajınız gönderildi. En kısa sürede dönüş yapacağız.';
+  e.target.reset();
+};
+</script>
