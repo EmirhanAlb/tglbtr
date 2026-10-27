@@ -69,3 +69,10 @@
 .lp-table-page .table-trade .quote .images { display: inline-flex; }
 .lp-table-page .table-trade .max-w-5 { max-width: 1.25rem; }
 .lp-table-page .table-trade a { color: #0e7365; }
+
+/* Mobil fiyat bandı: style-9adf4d36.css dar ekranda her kalemi beyaz kapsül yapar,
+   yazı da beyaz olduğundan görünmez. Ana sayfa CSS'indeki düzeltme her sayfaya uygulanır. */
+@media (max-width: 1079px) {
+  .quotes.scroller div { background-color: transparent !important; border-radius: 0; }
+  .quotes.scroller h6 { color: #fff; }
+}
