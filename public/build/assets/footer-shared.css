@@ -32,3 +32,25 @@
 @media (max-width:1365px){.footer-grid{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}}
 @media (max-width:500px){.footer-grid{grid-template-columns:repeat(1,minmax(0,1fr))}}
 @media (max-width:768px){.footer-social,.footer-apps,.footer-icons,.footer-copy-lang{justify-content:flex-start}.footer-apps{padding-top:16px}.footer-grid{gap:1.5rem}}
+
+/* --- Mobil / dar ekran düzeni (orijinalde yalnızca masaüstü boşlukları vardı) --- */
+.footer-contact{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:.5rem 1.5rem;margin-bottom:1rem;font-size:15px}
+.footer-contact a{display:inline-flex;align-items:center;gap:.5rem;color:#fff;white-space:nowrap}
+.footer-contact a:hover{text-decoration-line:underline}
+.footer-contact img{width:18px;height:18px;object-fit:contain}
+.footer-bottom p{overflow-wrap:anywhere}
+@media (max-width:1365px){.footer{padding:4rem 3rem}}
+@media (max-width:768px){
+  .footer{padding:3rem 1.25rem}
+  .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem 1rem}
+  .footer-heading{font-size:18px;line-height:22px}
+  .footer-list{font-size:15px;line-height:22px}
+  .footer-social{margin-top:1.5rem}
+  .footer-contact{justify-content:flex-start}
+  .footer-apps img{height:34px;width:100px}
+  .footer-copy-lang{gap:1.25rem}
+  .footer-divider{margin:2rem 0}
+  .footer-bottom{padding-top:1.5rem;text-align:left;font-size:13px;line-height:1.35rem}
+}
+@media (max-width:360px){.footer-grid{grid-template-columns:repeat(1,minmax(0,1fr))}}
+

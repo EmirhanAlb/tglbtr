@@ -12,14 +12,31 @@
     "mt5Android": "https://play.google.com/store/apps/details?id=net.metaquotes.metatrader5&hl=en&referrer=ref_id%3d4939972702964344206%26server%3dTrustCapitalLtd-Server",
     "mt5Ios": "https://apps.apple.com/us/app/metatrader-5/id413251709",
     "mt5Windows": "https://download.mql5.com/cdn/web/22623/mt5/trustcapitalltd5setup.exe",
-    "whatsapp": "https://wa.me/2482559792",
+    "whatsapp": "https://wa.me/905355560834",
     "transferFund": "https://trustcapital.com/tcaccount/transfer-fund"
   },
   "social": [
-    { "href": "https://twitter.com/trustcapitalltd", "img": "/images/blocks/x.png" },
-    { "href": "https://www.facebook.com/trustcapitalseychellesltd", "img": "/images/blocks/fb_new.png" },
-    { "href": "https://www.linkedin.com/company/trust-capital-seychelles", "img": "/images/blocks/linkedin_new.png" },
-    { "href": "https://www.instagram.com/trustcapital.global", "img": "/images/blocks/instagram_new.png" },
-    { "href": "https://www.youtube.com/@TrustCapitalLtd", "img": "/images/blocks/youtube_new.png" }
-  ]
+    {
+      "href": "https://twitter.com/trustcapitalltd",
+      "img": "/images/blocks/x.png"
+    },
+    {
+      "href": "https://www.facebook.com/trustcapitalseychellesltd",
+      "img": "/images/blocks/fb_new.png"
+    },
+    {
+      "href": "https://www.linkedin.com/company/trust-capital-seychelles",
+      "img": "/images/blocks/linkedin_new.png"
+    },
+    {
+      "href": "https://www.instagram.com/trustcapital.global",
+      "img": "/images/blocks/instagram_new.png"
+    },
+    {
+      "href": "https://www.youtube.com/@TrustCapitalLtd",
+      "img": "/images/blocks/youtube_new.png"
+    }
+  ],
+  "phone": "+90 535 556 0834",
+  "phoneHref": "tel:+905355560834"
 }
