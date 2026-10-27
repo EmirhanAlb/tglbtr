@@ -1,0 +1,3014 @@
+{
+ "generatedAt": "2026-10-27T09:53:05.825Z",
+ "base": {
+  "AAL": {
+   "tv": "NASDAQ:AAL",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "12.59",
+    "ask": "12.6",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "AAPL": {
+   "tv": "NASDAQ:AAPL",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "348.19",
+    "ask": "348.21",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "AAVUSD": {
+   "tv": "BINANCE:AAVEUSDT",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "146.99",
+    "ask": "147",
+    "pct": "-6.51"
+   }
+  },
+  "ABNB": {
+   "tv": "NASDAQ:ABNB",
+   "digits": 2,
+   "spread": 0.03,
+   "snapshot": {
+    "bid": "175.84",
+    "ask": "175.87",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "AD.Aviation": {
+   "tv": "ADX:ADAVIATION",
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "5.75",
+    "ask": "5.8",
+    "pct": "0.35",
+    "change": "+0.02"
+   }
+  },
+  "AD.Insuran": {
+   "tv": "ADX:ADNIC",
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "6.87",
+    "ask": "6.92",
+    "pct": "-0.28",
+    "change": "-0.019"
+   }
+  },
+  "AD.Natl.Tak": {
+   "tv": "ADX:TKFL",
+   "digits": 2,
+   "spread": 0.23,
+   "snapshot": {
+    "bid": "5.68",
+    "ask": "5.91",
+    "pct": "-0.18",
+    "change": "-0.01"
+   }
+  },
+  "AD.Shi": {
+   "tv": "ADX:ADSB",
+   "digits": 2,
+   "spread": 0.19,
+   "snapshot": {
+    "bid": "7.81",
+    "ask": "8",
+    "pct": "0.13",
+    "change": "+0.01"
+   }
+  },
+  "ADAUSD": {
+   "tv": "BINANCE:ADAUSDT",
+   "digits": 4,
+   "spread": 0.0112,
+   "snapshot": {
+    "bid": "0.2105",
+    "ask": "0.2217",
+    "pct": "-5.52"
+   }
+  },
+  "ADBE": {
+   "tv": "NASDAQ:ADBE",
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "270.53",
+    "ask": "270.57",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "ADCB": {
+   "tv": "ADX:ADCB",
+   "digits": 3,
+   "spread": 0.07,
+   "snapshot": {
+    "bid": "16.216",
+    "ask": "16.286",
+    "pct": "-0.78",
+    "change": "-0.13"
+   }
+  },
+  "ADIB": {
+   "tv": "ADX:ADIB",
+   "digits": 2,
+   "spread": 0.08,
+   "snapshot": {
+    "bid": "21.88",
+    "ask": "21.96",
+    "pct": "-1.29",
+    "change": "-0.29"
+   }
+  },
+  "ADNOC.Drill": {
+   "tv": "ADX:ADNOCDRILL",
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "5.65",
+    "ask": "5.7",
+    "pct": "-0.88",
+    "change": "-0.05"
+   }
+  },
+  "ADNOC.Gas": {
+   "tv": "ADX:ADNOCGAS",
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "3.15",
+    "ask": "3.19",
+    "pct": "-0.63",
+    "change": "-0.02"
+   }
+  },
+  "ADNOC.Logis": {
+   "tv": "ADX:ADNOCLS",
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "7.17",
+    "ask": "7.22",
+    "pct": "-2.05",
+    "change": "-0.15"
+   }
+  },
+  "ADSGn": {
+   "tv": "XETR:ADS",
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "158.55",
+    "ask": "158.6",
+    "pct": "-1.34",
+    "change": "-2.15"
+   }
+  },
+  "AIG": {
+   "tv": "NYSE:AIG",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "82.89",
+    "ask": "82.91",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "ALUMINIUM": {
+   "tv": "LME:AH1!",
+   "digits": 2,
+   "spread": 6.01,
+   "snapshot": {
+    "bid": "3015.34",
+    "ask": "3021.35",
+    "pct": "-0.07"
+   }
+  },
+  "ALVG": {
+   "tv": "XETR:ALV",
+   "digits": 1,
+   "spread": 0.1,
+   "snapshot": {
+    "bid": "428.8",
+    "ask": "428.9",
+    "pct": "-0.76",
+    "change": "-3.3"
+   }
+  },
+  "AMZN": {
+   "tv": "NASDAQ:AMZN",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "250.24",
+    "ask": "250.25",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "AUDCAD": {
+   "tv": "FX_IDC:AUDCAD",
+   "digits": 5,
+   "spread": 0.00016,
+   "snapshot": {
+    "bid": "0.98393",
+    "ask": "0.98409",
+    "pct": "-0.38",
+    "change": "-0.0038"
+   }
+  },
+  "AUDCHF": {
+   "tv": "FX_IDC:AUDCHF",
+   "digits": 5,
+   "spread": 0.00011,
+   "snapshot": {
+    "bid": "0.57801",
+    "ask": "0.57812",
+    "pct": "-0.37",
+    "change": "-0.0022"
+   }
+  },
+  "AUDJPY": {
+   "tv": "FX_IDC:AUDJPY",
+   "digits": 3,
+   "spread": 0.015,
+   "snapshot": {
+    "bid": "110.097",
+    "ask": "110.112",
+    "pct": "-0.92"
+   }
+  },
+  "AUDNOK": {
+   "tv": "FX_IDC:AUDNOK",
+   "digits": 4,
+   "spread": 0.0049,
+   "snapshot": {
+    "bid": "6.5625",
+    "ask": "6.5674",
+    "pct": "-0.35",
+    "change": "-0.0233"
+   }
+  },
+  "AUDNZD": {
+   "tv": "FX_IDC:AUDNZD",
+   "digits": 5,
+   "spread": 0.00015,
+   "snapshot": {
+    "bid": "1.23411",
+    "ask": "1.23426",
+    "pct": "0.19",
+    "change": "+0.0024"
+   }
+  },
+  "AUDSGD": {
+   "tv": "FX_IDC:AUDSGD",
+   "digits": 5,
+   "spread": 0.00024,
+   "snapshot": {
+    "bid": "0.89743",
+    "ask": "0.89767",
+    "pct": "-0.21",
+    "change": "-0.0019"
+   }
+  },
+  "AUDUSD": {
+   "tv": "FX_IDC:AUDUSD",
+   "digits": 5,
+   "spread": 0.00013,
+   "snapshot": {
+    "bid": "0.7022",
+    "ask": "0.70233",
+    "pct": "-0.26",
+    "change": "-0.0019"
+   }
+  },
+  "AUS200": {
+   "tv": "OANDA:AU200AUD",
+   "digits": 2,
+   "spread": 2.5,
+   "snapshot": {
+    "bid": "8770.25",
+    "ask": "8772.75",
+    "pct": "-0.32",
+    "change": "-28"
+   }
+  },
+  "AXP": {
+   "tv": "NYSE:AXP",
+   "digits": 2,
+   "spread": 0.06,
+   "snapshot": {
+    "bid": "324.47",
+    "ask": "324.53",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "Agthia.Gr": {
+   "tv": "ADX:AGTHIA",
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "3.11",
+    "ask": "3.16",
+    "pct": "-0.96",
+    "change": "-0.03"
+   }
+  },
+  "Alpha.Dhabi": {
+   "tv": "ADX:ALPHADHABI",
+   "digits": 3,
+   "spread": 0.045,
+   "snapshot": {
+    "bid": "6.859",
+    "ask": "6.904",
+    "pct": "-1.37",
+    "change": "-0.095"
+   }
+  },
+  "Apex": {
+   "tv": "ADX:APEX",
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "3.12",
+    "ask": "3.17",
+    "pct": "-1.58",
+    "change": "-0.05"
+   }
+  },
+  "BA": {
+   "tv": "NYSE:BA",
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "187.43",
+    "ask": "187.47",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "BABA": {
+   "tv": "NYSE:BABA",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "101.71",
+    "ask": "101.72",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "BAC": {
+   "tv": "NYSE:BAC",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "51.02",
+    "ask": "51.03",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "BATUSD": {
+   "tv": "BINANCE:BATUSDT",
+   "digits": 5,
+   "spread": 0.00014,
+   "snapshot": {
+    "bid": "0.16934",
+    "ask": "0.16948",
+    "pct": "-6.07"
+   }
+  },
+  "BAYGn": {
+   "tv": "XETR:BAYN",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "43.99",
+    "ask": "44",
+    "pct": "-1.46",
+    "change": "-0.65"
+   }
+  },
+  "BCHUSD": {
+   "tv": "BINANCE:BCHUSDT",
+   "digits": 3,
+   "spread": 0.598,
+   "snapshot": {
+    "bid": "274.54",
+    "ask": "275.138",
+    "pct": "-4.51"
+   }
+  },
+  "BK": {
+   "tv": "NYSE:BNY",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "145.12",
+    "ask": "145.14",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "BKNG": {
+   "tv": "NASDAQ:BKNG",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "161.05",
+    "ask": "161.06",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "BMRN": {
+   "tv": "NASDAQ:BMRN",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "56.67",
+    "ask": "56.69",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "BMWG": {
+   "tv": "XETR:BMW",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "58.14",
+    "ask": "58.16",
+    "pct": "0.35",
+    "change": "+0.2"
+   }
+  },
+  "BMY": {
+   "tv": "NYSE:BMY",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "63.08",
+    "ask": "63.09",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "BTCUSD": {
+   "tv": "BINANCE:BTCUSDT",
+   "digits": 1,
+   "spread": 0,
+   "snapshot": {
+    "bid": "81641.3",
+    "ask": "81641.3",
+    "pct": "-3.56"
+   }
+  },
+  "CADCHF": {
+   "tv": "FX_IDC:CADCHF",
+   "digits": 5,
+   "spread": 0.0001,
+   "snapshot": {
+    "bid": "0.58742",
+    "ask": "0.58752",
+    "pct": "0.02",
+    "change": "+0.0001"
+   }
+  },
+  "CADJPY": {
+   "tv": "FX_IDC:CADJPY",
+   "digits": 3,
+   "spread": 0.016,
+   "snapshot": {
+    "bid": "111.888",
+    "ask": "111.904",
+    "pct": "-0.53",
+    "change": "-0.597"
+   }
+  },
+  "CADSGD": {
+   "tv": "FX_IDC:CADSGD",
+   "digits": 5,
+   "spread": 0.00024,
+   "snapshot": {
+    "bid": "0.91201",
+    "ask": "0.91225",
+    "pct": "0.18",
+    "change": "+0.0017"
+   }
+  },
+  "CAT": {
+   "tv": "NYSE:CAT",
+   "digits": 2,
+   "spread": 0.29,
+   "snapshot": {
+    "bid": "703.17",
+    "ask": "703.46",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "CBD": {
+   "tv": "DFM:CBD",
+   "digits": 2,
+   "spread": 0.28,
+   "snapshot": {
+    "bid": "9.42",
+    "ask": "9.7",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "CBKG": {
+   "tv": "XETR:CBK",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "35.89",
+    "ask": "35.91",
+    "pct": "-1.75",
+    "change": "-0.65"
+   }
+  },
+  "CHFJPY": {
+   "tv": "FX_IDC:CHFJPY",
+   "digits": 3,
+   "spread": 0.016,
+   "snapshot": {
+    "bid": "190.465",
+    "ask": "190.481",
+    "pct": "-0.53",
+    "change": "-1.018"
+   }
+  },
+  "CHFSGD": {
+   "tv": "FX_IDC:CHFSGD",
+   "digits": 5,
+   "spread": 0.00027,
+   "snapshot": {
+    "bid": "1.55252",
+    "ask": "1.55279",
+    "pct": "0.18",
+    "change": "+0.0028"
+   }
+  },
+  "CME": {
+   "tv": "NASDAQ:CME",
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "305.97",
+    "ask": "306.02",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "COCOA": {
+   "tv": "ICEUS:CC1!",
+   "digits": 0,
+   "spread": 10,
+   "snapshot": {
+    "bid": "5599",
+    "ask": "5609",
+    "pct": "-3.77"
+   }
+  },
+  "COFFEE": {
+   "tv": "ICEUS:KC1!",
+   "digits": 1,
+   "spread": 1.1,
+   "snapshot": {
+    "bid": "311.1",
+    "ask": "312.2",
+    "pct": "-3.69"
+   }
+  },
+  "COPPER": {
+   "tv": "OANDA:XCUUSD",
+   "digits": 2,
+   "spread": 7.15,
+   "snapshot": {
+    "bid": "14218.65",
+    "ask": "14225.8",
+    "pct": "-1.69",
+    "change": "-242.17"
+   }
+  },
+  "CORN": {
+   "tv": "OANDA:CORNUSD",
+   "digits": 2,
+   "spread": 0.75,
+   "snapshot": {
+    "bid": "458.75",
+    "ask": "459.5",
+    "pct": "0.05"
+   }
+  },
+  "COST": {
+   "tv": "NASDAQ:COST",
+   "digits": 2,
+   "spread": 0.15,
+   "snapshot": {
+    "bid": "1018.24",
+    "ask": "1018.39",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "COTTON": {
+   "tv": "ICEUS:CT1!",
+   "digits": 2,
+   "spread": 0.28,
+   "snapshot": {
+    "bid": "80.6",
+    "ask": "80.88",
+    "pct": "-0.5"
+   }
+  },
+  "CSCO": {
+   "tv": "NASDAQ:CSCO",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "104.85",
+    "ask": "104.86",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "Chimera": {
+   "tv": null,
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "3.59",
+    "ask": "3.64",
+    "pct": "-0.55",
+    "change": "-0.02"
+   }
+  },
+  "DAL": {
+   "tv": "NYSE:DAL",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "79.11",
+    "ask": "79.12",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "DBKGn": {
+   "tv": "XETR:DBK",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "28.23",
+    "ask": "28.24",
+    "pct": "-1.6",
+    "change": "-0.46"
+   }
+  },
+  "DELL": {
+   "tv": "NYSE:DELL",
+   "digits": 2,
+   "spread": 0.18,
+   "snapshot": {
+    "bid": "452.07",
+    "ask": "452.25",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "DEWA": {
+   "tv": "DFM:DEWA",
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "2.63",
+    "ask": "2.68",
+    "pct": "0.38",
+    "change": "+0.01"
+   }
+  },
+  "DIB": {
+   "tv": "DFM:DIB",
+   "digits": 2,
+   "spread": 0.06,
+   "snapshot": {
+    "bid": "7.01",
+    "ask": "7.07",
+    "pct": "-0.84",
+    "change": "-0.06"
+   }
+  },
+  "DIS": {
+   "tv": "NYSE:DIS",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "113.02",
+    "ask": "113.04",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "DOGUSD": {
+   "tv": "BINANCE:DOGEUSDT",
+   "digits": 5,
+   "spread": 0.00006,
+   "snapshot": {
+    "bid": "0.07934",
+    "ask": "0.0794",
+    "pct": "-4.33"
+   }
+  },
+  "DOTUSD": {
+   "tv": "BINANCE:DOTUSDT",
+   "digits": 3,
+   "spread": 0.003,
+   "snapshot": {
+    "bid": "1.128",
+    "ask": "1.131",
+    "pct": "-3.51"
+   }
+  },
+  "DSHUSD": {
+   "tv": "BINANCE:DASHUSDT",
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "49.54",
+    "ask": "49.58",
+    "pct": "-5.26"
+   }
+  },
+  "DU": {
+   "tv": "DFM:DU",
+   "digits": 2,
+   "spread": 0.06,
+   "snapshot": {
+    "bid": "12.14",
+    "ask": "12.2",
+    "pct": "1",
+    "change": "+0.12"
+   }
+  },
+  "EBAY": {
+   "tv": "NASDAQ:EBAY",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "122.04",
+    "ask": "122.05",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "ETCUSD": {
+   "tv": "BINANCE:ETCUSDT",
+   "digits": 3,
+   "spread": 0.006,
+   "snapshot": {
+    "bid": "7.802",
+    "ask": "7.808",
+    "pct": "-4.38"
+   }
+  },
+  "ETHUSD": {
+   "tv": "BINANCE:ETHUSDT",
+   "digits": 1,
+   "spread": 0,
+   "snapshot": {
+    "bid": "2398.1",
+    "ask": "2398.1",
+    "pct": "-3.76"
+   }
+  },
+  "EU50": {
+   "tv": "TVC:SX5E",
+   "digits": 1,
+   "spread": 3.1,
+   "snapshot": {
+    "bid": "6074",
+    "ask": "6077.1",
+    "pct": "-1.1",
+    "change": "-68.3"
+   }
+  },
+  "EURAUD": {
+   "tv": "FX_IDC:EURAUD",
+   "digits": 5,
+   "spread": 0.00019,
+   "snapshot": {
+    "bid": "1.59452",
+    "ask": "1.59471",
+    "pct": "0.01",
+    "change": "+0.0002"
+   }
+  },
+  "EURCAD": {
+   "tv": "FX_IDC:EURCAD",
+   "digits": 5,
+   "spread": 0.00017,
+   "snapshot": {
+    "bid": "1.56903",
+    "ask": "1.5692",
+    "pct": "-0.38",
+    "change": "-0.006"
+   }
+  },
+  "EURCHF": {
+   "tv": "FX_IDC:EURCHF",
+   "digits": 5,
+   "spread": 0.00009,
+   "snapshot": {
+    "bid": "0.92176",
+    "ask": "0.92185",
+    "pct": "-0.37",
+    "change": "-0.0034"
+   }
+  },
+  "EURCZK": {
+   "tv": "FX_IDC:EURCZK",
+   "digits": 4,
+   "spread": 0.0134,
+   "snapshot": {
+    "bid": "24.2853",
+    "ask": "24.2987",
+    "pct": "0",
+    "change": "+0.0005"
+   }
+  },
+  "EURGBP": {
+   "tv": "FX_IDC:EURGBP",
+   "digits": 5,
+   "spread": 0.00008,
+   "snapshot": {
+    "bid": "0.83652",
+    "ask": "0.8366",
+    "pct": "-0.1",
+    "change": "-0.0008"
+   }
+  },
+  "EURHUF": {
+   "tv": "FX_IDC:EURHUF",
+   "digits": 2,
+   "spread": 0.13,
+   "snapshot": {
+    "bid": "366.64",
+    "ask": "366.77",
+    "pct": "0.26",
+    "change": "+0.94"
+   }
+  },
+  "EURJPY": {
+   "tv": "FX_IDC:EURJPY",
+   "digits": 3,
+   "spread": 0.015,
+   "snapshot": {
+    "bid": "175.572",
+    "ask": "175.587",
+    "pct": "-0.91",
+    "change": "-1.611"
+   }
+  },
+  "EURNOK": {
+   "tv": "FX_IDC:EURNOK",
+   "digits": 3,
+   "spread": 0.007,
+   "snapshot": {
+    "bid": "10.465",
+    "ask": "10.472",
+    "pct": "-0.35",
+    "change": "-0.0372"
+   }
+  },
+  "EURNZD": {
+   "tv": "FX_IDC:EURNZD",
+   "digits": 5,
+   "spread": 0.0002,
+   "snapshot": {
+    "bid": "1.96807",
+    "ask": "1.96827",
+    "pct": "0.18",
+    "change": "+0.0036"
+   }
+  },
+  "EURPLN": {
+   "tv": "FX_IDC:EURPLN",
+   "digits": 4,
+   "spread": 0.0027,
+   "snapshot": {
+    "bid": "4.3851",
+    "ask": "4.3878",
+    "pct": "0.31",
+    "change": "+0.0133"
+   }
+  },
+  "EURSEK": {
+   "tv": "FX_IDC:EURSEK",
+   "digits": 5,
+   "spread": 0.00706,
+   "snapshot": {
+    "bid": "11.11344",
+    "ask": "11.1205",
+    "pct": "0.15",
+    "change": "+0.0161"
+   }
+  },
+  "EURSGD": {
+   "tv": "FX_IDC:EURSGD",
+   "digits": 5,
+   "spread": 0.00025,
+   "snapshot": {
+    "bid": "1.43112",
+    "ask": "1.43137",
+    "pct": "-0.2",
+    "change": "-0.0029"
+   }
+  },
+  "EURUSD": {
+   "tv": "FX_IDC:EURUSD",
+   "digits": 5,
+   "spread": 0.00009,
+   "snapshot": {
+    "bid": "1.1198",
+    "ask": "1.11989",
+    "pct": "-0.26",
+    "change": "-0.0029"
+   }
+  },
+  "EURZAR": {
+   "tv": "FX_IDC:EURZAR",
+   "digits": 5,
+   "spread": 0.00928,
+   "snapshot": {
+    "bid": "18.54195",
+    "ask": "18.55123",
+    "pct": "0.67",
+    "change": "+0.1231"
+   }
+  },
+  "Emaar.Devel": {
+   "tv": "DFM:EMAARDEV",
+   "digits": 2,
+   "spread": 0.08,
+   "snapshot": {
+    "bid": "12.41",
+    "ask": "12.49",
+    "pct": "-1.97",
+    "change": "-0.25"
+   }
+  },
+  "Emaar.Propt": {
+   "tv": "DFM:EMAAR",
+   "digits": 2,
+   "spread": 0.06,
+   "snapshot": {
+    "bid": "11.36",
+    "ask": "11.42",
+    "pct": "-0.7",
+    "change": "-0.08"
+   }
+  },
+  "FAB.Bank": {
+   "tv": "ADX:FAB",
+   "digits": 2,
+   "spread": 0.07,
+   "snapshot": {
+    "bid": "18.61",
+    "ask": "18.68",
+    "pct": "-2.46",
+    "change": "-0.47"
+   }
+  },
+  "FDX": {
+   "tv": "NYSE:FDX",
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "303.74",
+    "ask": "303.78",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "FILUSD": {
+   "tv": "BINANCE:FILUSDT",
+   "digits": 4,
+   "spread": 0.0201,
+   "snapshot": {
+    "bid": "0.9941",
+    "ask": "1.0142",
+    "pct": "-6.48"
+   }
+  },
+  "FRA40": {
+   "tv": "TVC:CAC40",
+   "digits": 1,
+   "spread": 3,
+   "snapshot": {
+    "bid": "7777.6",
+    "ask": "7780.6",
+    "pct": "-0.71",
+    "change": "-56.1"
+   }
+  },
+  "GBPAUD": {
+   "tv": "FX_IDC:GBPAUD",
+   "digits": 5,
+   "spread": 0.00025,
+   "snapshot": {
+    "bid": "1.90607",
+    "ask": "1.90632",
+    "pct": "0.12",
+    "change": "+0.0022"
+   }
+  },
+  "GBPCAD": {
+   "tv": "FX_IDC:GBPCAD",
+   "digits": 5,
+   "spread": 0.0002,
+   "snapshot": {
+    "bid": "1.87558",
+    "ask": "1.87578",
+    "pct": "-0.27",
+    "change": "-0.0051"
+   }
+  },
+  "GBPCHF": {
+   "tv": "FX_IDC:GBPCHF",
+   "digits": 5,
+   "spread": 0.00014,
+   "snapshot": {
+    "bid": "1.10183",
+    "ask": "1.10197",
+    "pct": "-0.26",
+    "change": "-0.0029"
+   }
+  },
+  "GBPJPY": {
+   "tv": "FX_IDC:GBPJPY",
+   "digits": 3,
+   "spread": 0.022,
+   "snapshot": {
+    "bid": "209.873",
+    "ask": "209.895",
+    "pct": "-0.8",
+    "change": "-1.703"
+   }
+  },
+  "GBPMXN": {
+   "tv": "FX_IDC:GBPMXN",
+   "digits": 4,
+   "spread": 0.0076,
+   "snapshot": {
+    "bid": "25.1038",
+    "ask": "25.1114",
+    "pct": "0.24",
+    "change": "+0.0594"
+   }
+  },
+  "GBPNOK": {
+   "tv": "FX_IDC:GBPNOK",
+   "digits": 4,
+   "spread": 0.0085,
+   "snapshot": {
+    "bid": "12.5096",
+    "ask": "12.5181",
+    "pct": "-0.24",
+    "change": "-0.0304"
+   }
+  },
+  "GBPNZD": {
+   "tv": "FX_IDC:GBPNZD",
+   "digits": 5,
+   "spread": 0.00022,
+   "snapshot": {
+    "bid": "2.3525",
+    "ask": "2.35272",
+    "pct": "0.3"
+   }
+  },
+  "GBPSEK": {
+   "tv": "FX_IDC:GBPSEK",
+   "digits": 5,
+   "spread": 0.0085,
+   "snapshot": {
+    "bid": "13.28466",
+    "ask": "13.29316",
+    "pct": "0.26",
+    "change": "+0.0341"
+   }
+  },
+  "GBPSGD": {
+   "tv": "FX_IDC:GBPSGD",
+   "digits": 5,
+   "spread": 0.00029,
+   "snapshot": {
+    "bid": "1.71073",
+    "ask": "1.71102",
+    "pct": "-0.1",
+    "change": "-0.0016"
+   }
+  },
+  "GBPUSD": {
+   "tv": "FX_IDC:GBPUSD",
+   "digits": 5,
+   "spread": 0.0001,
+   "snapshot": {
+    "bid": "1.33859",
+    "ask": "1.33869",
+    "pct": "-0.15",
+    "change": "-0.0021"
+   }
+  },
+  "GE": {
+   "tv": "NYSE:GE",
+   "digits": 2,
+   "spread": 0.07,
+   "snapshot": {
+    "bid": "293.37",
+    "ask": "293.44",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "GER40": {
+   "tv": "OANDA:DE30EUR",
+   "digits": 2,
+   "spread": 2.1,
+   "snapshot": {
+    "bid": "25309.55",
+    "ask": "25311.65",
+    "pct": "-0.32",
+    "change": "-81.1"
+   }
+  },
+  "GM": {
+   "tv": "NYSE:GM",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "77.15",
+    "ask": "77.17",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "GOLD": {
+   "tv": "OANDA:XAUUSD",
+   "digits": 2,
+   "spread": 0.26,
+   "snapshot": {
+    "bid": "4017.03",
+    "ask": "4017.29",
+    "pct": "-1.45",
+    "change": "-59.87"
+   }
+  },
+  "GOOG": {
+   "tv": "NASDAQ:GOOG",
+   "digits": 2,
+   "spread": 0.03,
+   "snapshot": {
+    "bid": "320.68",
+    "ask": "320.71",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "GPRO": {
+   "tv": "NASDAQ:GPRO",
+   "digits": 2,
+   "spread": 0.03,
+   "snapshot": {
+    "bid": "1",
+    "ask": "1.03",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "GS": {
+   "tv": "NYSE:GS",
+   "digits": 2,
+   "spread": 0.17,
+   "snapshot": {
+    "bid": "890.2",
+    "ask": "890.37",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "GT": {
+   "tv": "NASDAQ:GT",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "4.44",
+    "ask": "4.45",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "GULFNAV": {
+   "tv": null,
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "3.05",
+    "ask": "3.09",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "Ghitha.Hold": {
+   "tv": "ADX:GHITHA",
+   "digits": 2,
+   "spread": 0.22,
+   "snapshot": {
+    "bid": "11.03",
+    "ask": "11.25",
+    "pct": "-1.16",
+    "change": "-0.13"
+   }
+  },
+  "HD": {
+   "tv": "NYSE:HD",
+   "digits": 2,
+   "spread": 0.03,
+   "snapshot": {
+    "bid": "327.55",
+    "ask": "327.58",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "HKIND": {
+   "tv": "OANDA:HK33HKD",
+   "digits": 0,
+   "spread": 15,
+   "snapshot": {
+    "bid": "23104",
+    "ask": "23119",
+    "pct": "-2.51",
+    "change": "-592"
+   }
+  },
+  "HLT": {
+   "tv": "NYSE:HLT",
+   "digits": 2,
+   "spread": 0.19,
+   "snapshot": {
+    "bid": "357.55",
+    "ask": "357.74",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "HOG": {
+   "tv": "NYSE:HOG",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "29.06",
+    "ask": "29.07",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "HPQ": {
+   "tv": "NYSE:HPQ",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "33.81",
+    "ask": "33.82",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "IBM": {
+   "tv": "NYSE:IBM",
+   "digits": 2,
+   "spread": 0.15,
+   "snapshot": {
+    "bid": "252.35",
+    "ask": "252.5",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "IHC": {
+   "tv": "ADX:IHC",
+   "digits": 2,
+   "spread": 1.24,
+   "snapshot": {
+    "bid": "349.88",
+    "ask": "351.12",
+    "pct": "-0.51",
+    "change": "-1.79"
+   }
+  },
+  "INTC": {
+   "tv": "NASDAQ:INTC",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "85.53",
+    "ask": "85.54",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "IOTUSD": {
+   "tv": "BINANCE:IOTAUSDT",
+   "digits": 5,
+   "spread": 0.00023,
+   "snapshot": {
+    "bid": "0.0448",
+    "ask": "0.04503",
+    "pct": "-7.02"
+   }
+  },
+  "JAP225": {
+   "tv": "TVC:NI225",
+   "digits": 0,
+   "spread": 14,
+   "snapshot": {
+    "bid": "62637",
+    "ask": "62651",
+    "pct": "-2.67",
+    "change": "-1731"
+   }
+  },
+  "JNJ": {
+   "tv": "NYSE:JNJ",
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "267.65",
+    "ask": "267.69",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "JPM": {
+   "tv": "NYSE:JPM",
+   "digits": 2,
+   "spread": 0.07,
+   "snapshot": {
+    "bid": "336.32",
+    "ask": "336.39",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "KMI": {
+   "tv": "NYSE:KMI",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "33.67",
+    "ask": "33.68",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "KO": {
+   "tv": "NYSE:KO",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "95.3",
+    "ask": "95.31",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "LEAD": {
+   "tv": "LME:PB1!",
+   "digits": 2,
+   "spread": 7.25,
+   "snapshot": {
+    "bid": "1906.1",
+    "ask": "1913.35",
+    "pct": "0.17"
+   }
+  },
+  "LHAG": {
+   "tv": "XETR:LHA",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "7.06",
+    "ask": "7.07",
+    "pct": "-2.48",
+    "change": "-0.18"
+   }
+  },
+  "LNKUSD": {
+   "tv": "BINANCE:LINKUSDT",
+   "digits": 3,
+   "spread": 0.004,
+   "snapshot": {
+    "bid": "12.031",
+    "ask": "12.035",
+    "pct": "-5.09"
+   }
+  },
+  "LTCUSD": {
+   "tv": "BINANCE:LTCUSDT",
+   "digits": 2,
+   "spread": 0.15,
+   "snapshot": {
+    "bid": "58.94",
+    "ask": "59.09",
+    "pct": "-4.77"
+   }
+  },
+  "MA": {
+   "tv": "NYSE:MA",
+   "digits": 2,
+   "spread": 0.48,
+   "snapshot": {
+    "bid": "632.2",
+    "ask": "632.68",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "MCD": {
+   "tv": "NYSE:MCD",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "252.47",
+    "ask": "252.49",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "MCO": {
+   "tv": "NYSE:MCO",
+   "digits": 2,
+   "spread": 0.24,
+   "snapshot": {
+    "bid": "489.55",
+    "ask": "489.79",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "MMM": {
+   "tv": "NYSE:MMM",
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "175.68",
+    "ask": "175.72",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "MO": {
+   "tv": "NYSE:MO",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "76",
+    "ask": "76.01",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "MRK": {
+   "tv": "NYSE:MRK",
+   "digits": 2,
+   "spread": 0.03,
+   "snapshot": {
+    "bid": "147.35",
+    "ask": "147.38",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "MRVL": {
+   "tv": "NASDAQ:MRVL",
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "223.65",
+    "ask": "223.69",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "MS": {
+   "tv": "NYSE:MS",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "183.77",
+    "ask": "183.79",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "MSFT": {
+   "tv": "NASDAQ:MSFT",
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "520.86",
+    "ask": "520.9",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "Modon": {
+   "tv": "ADX:MODON",
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "2.78",
+    "ask": "2.83",
+    "pct": "-1.42",
+    "change": "-0.04"
+   }
+  },
+  "NATGAS": {
+   "tv": "OANDA:NATGASUSD",
+   "digits": 3,
+   "spread": 0.021,
+   "snapshot": {
+    "bid": "2.711",
+    "ask": "2.732",
+    "pct": "1.41"
+   }
+  },
+  "NBD.Bank": {
+   "tv": "DFM:EMIRATESNBD",
+   "digits": 2,
+   "spread": 0.12,
+   "snapshot": {
+    "bid": "31.07",
+    "ask": "31.19",
+    "pct": "-2.05",
+    "change": "-0.65"
+   }
+  },
+  "NEOUSD": {
+   "tv": "BINANCE:NEOUSDT",
+   "digits": 3,
+   "spread": 0.023,
+   "snapshot": {
+    "bid": "2.201",
+    "ask": "2.224",
+    "pct": "-3.93"
+   }
+  },
+  "NFLX": {
+   "tv": "NASDAQ:NFLX",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "67.06",
+    "ask": "67.07",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "NGAS": {
+   "tv": "OANDA:NATGASUSD",
+   "digits": 3,
+   "spread": 0.009,
+   "snapshot": {
+    "bid": "2.734",
+    "ask": "2.743",
+    "pct": "0.98"
+   }
+  },
+  "NKE": {
+   "tv": "NYSE:NKE",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "38.27",
+    "ask": "38.28",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "NMDC": {
+   "tv": "ADX:NMDC",
+   "digits": 2,
+   "spread": 0.11,
+   "snapshot": {
+    "bid": "24.98",
+    "ask": "25.09",
+    "pct": "1.22",
+    "change": "+0.31"
+   }
+  },
+  "NOKJPY": {
+   "tv": "FX_IDC:NOKJPY",
+   "digits": 3,
+   "spread": 0.031,
+   "snapshot": {
+    "bid": "16.757",
+    "ask": "16.788",
+    "pct": "-0.53",
+    "change": "-0.089"
+   }
+  },
+  "NOKSEK": {
+   "tv": "FX_IDC:NOKSEK",
+   "digits": 5,
+   "spread": 0.00259,
+   "snapshot": {
+    "bid": "1.06064",
+    "ask": "1.06323",
+    "pct": "0.53",
+    "change": "+0.0056"
+   }
+  },
+  "NVDA": {
+   "tv": "NASDAQ:NVDA",
+   "digits": 2,
+   "spread": 0.03,
+   "snapshot": {
+    "bid": "212.07",
+    "ask": "212.1",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "NZDCAD": {
+   "tv": "FX_IDC:NZDCAD",
+   "digits": 5,
+   "spread": 0.00014,
+   "snapshot": {
+    "bid": "0.79717",
+    "ask": "0.79731",
+    "pct": "-0.55",
+    "change": "-0.0044"
+   }
+  },
+  "NZDCHF": {
+   "tv": "FX_IDC:NZDCHF",
+   "digits": 5,
+   "spread": 0.0001,
+   "snapshot": {
+    "bid": "0.46827",
+    "ask": "0.46837",
+    "pct": "-0.52",
+    "change": "-0.0024"
+   }
+  },
+  "NZDJPY": {
+   "tv": "FX_IDC:NZDJPY",
+   "digits": 3,
+   "spread": 0.015,
+   "snapshot": {
+    "bid": "89.198",
+    "ask": "89.213",
+    "pct": "-1.07"
+   }
+  },
+  "NZDUSD": {
+   "tv": "FX_IDC:NZDUSD",
+   "digits": 5,
+   "spread": 0.00013,
+   "snapshot": {
+    "bid": "0.56894",
+    "ask": "0.56907",
+    "pct": "-0.44",
+    "change": "-0.0025"
+   }
+  },
+  "ORCL": {
+   "tv": "NYSE:ORCL",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "125.32",
+    "ask": "125.34",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "PALLADIUM": {
+   "tv": "TVC:PALLADIUM",
+   "digits": 2,
+   "spread": 3,
+   "snapshot": {
+    "bid": "1056.18",
+    "ask": "1059.18",
+    "pct": "-2.38",
+    "change": "-26.03"
+   }
+  },
+  "PEP": {
+   "tv": "NASDAQ:PEP",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "138.83",
+    "ask": "138.84",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "PFE": {
+   "tv": "NYSE:PFE",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "30.39",
+    "ask": "30.4",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "PLATINUM": {
+   "tv": "TVC:PLATINUM",
+   "digits": 1,
+   "spread": 3,
+   "snapshot": {
+    "bid": "1562.4",
+    "ask": "1565.4",
+    "pct": "-2.92",
+    "change": "-47.6"
+   }
+  },
+  "PM": {
+   "tv": "NYSE:PM",
+   "digits": 2,
+   "spread": 0.09,
+   "snapshot": {
+    "bid": "201.57",
+    "ask": "201.66",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "PYPL": {
+   "tv": "NASDAQ:PYPL",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "57.53",
+    "ask": "57.54",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "Palms.Sport": {
+   "tv": "ADX:PALMS",
+   "digits": 2,
+   "spread": 0.37,
+   "snapshot": {
+    "bid": "7.26",
+    "ask": "7.63",
+    "pct": "0.28",
+    "change": "+0.02"
+   }
+  },
+  "Parkin": {
+   "tv": "DFM:PARKIN",
+   "digits": 2,
+   "spread": 0.03,
+   "snapshot": {
+    "bid": "5.86",
+    "ask": "5.89",
+    "pct": "2.99",
+    "change": "+0.17"
+   }
+  },
+  "Pure.Health": {
+   "tv": "ADX:PUREHEALTH",
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "2.57",
+    "ask": "2.61",
+    "pct": "-1.15",
+    "change": "-0.03"
+   }
+  },
+  "QCOM": {
+   "tv": "NASDAQ:QCOM",
+   "digits": 2,
+   "spread": 0.07,
+   "snapshot": {
+    "bid": "172.94",
+    "ask": "173.01",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "RACE": {
+   "tv": "MIL:RACE",
+   "digits": 2,
+   "spread": 0.11,
+   "snapshot": {
+    "bid": "397.64",
+    "ask": "397.75",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "RAK.Bank": {
+   "tv": "ADX:RAKBANK",
+   "digits": 2,
+   "spread": 0.11,
+   "snapshot": {
+    "bid": "9.98",
+    "ask": "10.09",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "ROKU": {
+   "tv": "NASDAQ:ROKU",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "160.04",
+    "ask": "160.06",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "RPH": {
+   "tv": "ADX:RPM",
+   "digits": 2,
+   "spread": 0.11,
+   "snapshot": {
+    "bid": "2.05",
+    "ask": "2.16",
+    "pct": "-0.47",
+    "change": "-0.01"
+   }
+  },
+  "SAN": {
+   "tv": "BME:SAN",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "11.5",
+    "ask": "11.51",
+    "pct": "-2.76",
+    "change": "-0.33"
+   }
+  },
+  "SBUX": {
+   "tv": "NASDAQ:SBUX",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "101.89",
+    "ask": "101.9",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "SGDJPY": {
+   "tv": "FX_IDC:SGDJPY",
+   "digits": 3,
+   "spread": 0.028,
+   "snapshot": {
+    "bid": "122.663",
+    "ask": "122.691",
+    "pct": "-0.69",
+    "change": "-0.858"
+   }
+  },
+  "SHOP": {
+   "tv": "NASDAQ:SHOP",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "168.87",
+    "ask": "168.88",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "SIEGn": {
+   "tv": "XETR:SIE",
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "262.45",
+    "ask": "262.5",
+    "pct": "-1.45",
+    "change": "-3.85"
+   }
+  },
+  "SILVER": {
+   "tv": "TVC:SILVER",
+   "digits": 3,
+   "spread": 0.035,
+   "snapshot": {
+    "bid": "53.902",
+    "ask": "53.937",
+    "pct": "-3.9",
+    "change": "-2.261"
+   }
+  },
+  "SOYBEAN": {
+   "tv": "OANDA:SOYBNUSD",
+   "digits": 2,
+   "spread": 1.75,
+   "snapshot": {
+    "bid": "1253",
+    "ask": "1254.75",
+    "pct": "0.08"
+   }
+  },
+  "SPA35": {
+   "tv": "TVC:IBEX35",
+   "digits": 0,
+   "spread": 7,
+   "snapshot": {
+    "bid": "18898",
+    "ask": "18905",
+    "pct": "-1.46",
+    "change": "-282"
+   }
+  },
+  "SPCX": {
+   "tv": "NYSE:SPCE",
+   "digits": 2,
+   "spread": 0.67,
+   "snapshot": {
+    "bid": "154.36",
+    "ask": "155.03",
+    "pct": "-2.86"
+   }
+  },
+  "SPOT": {
+   "tv": "NYSE:SPOT",
+   "digits": 2,
+   "spread": 0.08,
+   "snapshot": {
+    "bid": "581.54",
+    "ask": "581.62",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "SUGAR": {
+   "tv": "OANDA:SUGARUSD",
+   "digits": 2,
+   "spread": 0.07,
+   "snapshot": {
+    "bid": "20.08",
+    "ask": "20.15",
+    "pct": "0.05"
+   }
+  },
+  "SUSUSD": {
+   "tv": "BINANCE:SUSHIUSDT",
+   "digits": 4,
+   "spread": 0.0025,
+   "snapshot": {
+    "bid": "0.2151",
+    "ask": "0.2176",
+    "pct": "-5.7"
+   }
+  },
+  "SWI20": {
+   "tv": "SIX:SMI",
+   "digits": 1,
+   "spread": 6,
+   "snapshot": {
+    "bid": "14468.5",
+    "ask": "14474.5",
+    "pct": "0.12",
+    "change": "+18"
+   }
+  },
+  "Salik": {
+   "tv": "DFM:SALIK",
+   "digits": 2,
+   "spread": 0.03,
+   "snapshot": {
+    "bid": "5.11",
+    "ask": "5.14",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "TEF": {
+   "tv": "BME:TEF",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "3.4",
+    "ask": "3.41",
+    "pct": "1.17",
+    "change": "+0.04"
+   }
+  },
+  "TETUSD": {
+   "tv": "KRAKEN:USDTUSD",
+   "digits": 4,
+   "spread": 0.0006,
+   "snapshot": {
+    "bid": "0.1969",
+    "ask": "0.1975",
+    "pct": "-3.72"
+   }
+  },
+  "TMUS": {
+   "tv": "NASDAQ:TMUS",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "158.79",
+    "ask": "158.81",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "TRXUSD": {
+   "tv": "BINANCE:TRXUSDT",
+   "digits": 5,
+   "spread": 0.00073,
+   "snapshot": {
+    "bid": "0.33021",
+    "ask": "0.33094",
+    "pct": "-0.13"
+   }
+  },
+  "TSLA": {
+   "tv": "NASDAQ:TSLA",
+   "digits": 2,
+   "spread": 0.05,
+   "snapshot": {
+    "bid": "375.42",
+    "ask": "375.47",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "Taaleem": {
+   "tv": "DFM:TAALEEM",
+   "digits": 2,
+   "spread": 0.06,
+   "snapshot": {
+    "bid": "3.13",
+    "ask": "3.19",
+    "pct": "-3.1",
+    "change": "-0.1"
+   }
+  },
+  "Tecom.Grou": {
+   "tv": "DFM:TECOM",
+   "digits": 2,
+   "spread": 0.03,
+   "snapshot": {
+    "bid": "3.11",
+    "ask": "3.14",
+    "pct": "-1.27",
+    "change": "-0.04"
+   }
+  },
+  "UA": {
+   "tv": "NYSE:UA",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "4.73",
+    "ask": "4.74",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "UAL": {
+   "tv": "NASDAQ:UAL",
+   "digits": 2,
+   "spread": 0.03,
+   "snapshot": {
+    "bid": "101.89",
+    "ask": "101.92",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "UBER": {
+   "tv": "NYSE:UBER",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "69.04",
+    "ask": "69.05",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "UK100": {
+   "tv": "TVC:UKX",
+   "digits": 1,
+   "spread": 1.7,
+   "snapshot": {
+    "bid": "10692.4",
+    "ask": "10694.1",
+    "pct": "0.18",
+    "change": "+19.5"
+   }
+  },
+  "UKOIL": {
+   "tv": "ICEEUR:BRN1!",
+   "digits": 3,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "109.105",
+    "ask": "109.145",
+    "pct": "2.17",
+    "change": "+2.3"
+   }
+  },
+  "UNIUSD": {
+   "tv": "BINANCE:UNIUSDT",
+   "digits": 3,
+   "spread": 0.003,
+   "snapshot": {
+    "bid": "7.086",
+    "ask": "7.089",
+    "pct": "-6.65"
+   }
+  },
+  "UPS": {
+   "tv": "NYSE:UPS",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "101.37",
+    "ask": "101.39",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "US100": {
+   "tv": "NASDAQ:NDX",
+   "digits": 2,
+   "spread": 1.8,
+   "snapshot": {
+    "bid": "29088.66",
+    "ask": "29090.46",
+    "pct": "-1.76",
+    "change": "-526.1"
+   }
+  },
+  "US2000": {
+   "tv": "TVC:RUT",
+   "digits": 1,
+   "spread": 1.3,
+   "snapshot": {
+    "bid": "2778.5",
+    "ask": "2779.8",
+    "pct": "-0.52",
+    "change": "-14.4"
+   }
+  },
+  "US30": {
+   "tv": "OANDA:US30USD",
+   "digits": 2,
+   "spread": 2.5,
+   "snapshot": {
+    "bid": "52721.25",
+    "ask": "52723.75",
+    "pct": "-0.59",
+    "change": "-314"
+   }
+  },
+  "US500": {
+   "tv": "SP:SPX",
+   "digits": 2,
+   "spread": 0.8,
+   "snapshot": {
+    "bid": "7670.05",
+    "ask": "7670.85",
+    "pct": "-0.97",
+    "change": "-75.1"
+   }
+  },
+  "USDAED": {
+   "tv": "FX_IDC:USDAED",
+   "digits": 5,
+   "spread": 0.0005,
+   "snapshot": {
+    "bid": "3.67245",
+    "ask": "3.67295",
+    "pct": "-0.01",
+    "change": "-0.0003"
+   }
+  },
+  "USDCAD": {
+   "tv": "FX_IDC:USDCAD",
+   "digits": 5,
+   "spread": 0.00011,
+   "snapshot": {
+    "bid": "1.40121",
+    "ask": "1.40132",
+    "pct": "-0.11",
+    "change": "-0.0016"
+   }
+  },
+  "USDCHF": {
+   "tv": "FX_IDC:USDCHF",
+   "digits": 5,
+   "spread": 0.00007,
+   "snapshot": {
+    "bid": "0.82312",
+    "ask": "0.82319",
+    "pct": "-0.11",
+    "change": "-0.0009"
+   }
+  },
+  "USDCNH": {
+   "tv": "FX_IDC:USDCNH",
+   "digits": 5,
+   "spread": 0.00105,
+   "snapshot": {
+    "bid": "6.67045",
+    "ask": "6.6715",
+    "pct": "0.01",
+    "change": "+0.0005"
+   }
+  },
+  "USDCZK": {
+   "tv": "FX_IDC:USDCZK",
+   "digits": 4,
+   "spread": 0.0122,
+   "snapshot": {
+    "bid": "21.6862",
+    "ask": "21.6984",
+    "pct": "0.27",
+    "change": "+0.0579"
+   }
+  },
+  "USDEGP": {
+   "tv": "FX_IDC:USDEGP",
+   "digits": 2,
+   "spread": 0.1,
+   "snapshot": {
+    "bid": "55.26",
+    "ask": "55.36",
+    "pct": "1.75"
+   }
+  },
+  "USDHKD": {
+   "tv": "FX_IDC:USDHKD",
+   "digits": 5,
+   "spread": 0.00123,
+   "snapshot": {
+    "bid": "7.84026",
+    "ask": "7.84149",
+    "pct": "-0.09",
+    "change": "-0.0072"
+   }
+  },
+  "USDHUF": {
+   "tv": "FX_IDC:USDHUF",
+   "digits": 3,
+   "spread": 0.12,
+   "snapshot": {
+    "bid": "327.385",
+    "ask": "327.505",
+    "pct": "0.53",
+    "change": "+1.73"
+   }
+  },
+  "USDIDX": {
+   "tv": "TVC:DXY",
+   "digits": 3,
+   "spread": 0.03,
+   "snapshot": {
+    "bid": "101.645",
+    "ask": "101.675",
+    "pct": "0.08"
+   }
+  },
+  "USDJPY": {
+   "tv": "FX_IDC:USDJPY",
+   "digits": 3,
+   "spread": 0.012,
+   "snapshot": {
+    "bid": "156.784",
+    "ask": "156.796",
+    "pct": "-0.65",
+    "change": "-1.03"
+   }
+  },
+  "USDKWD": {
+   "tv": "FX_IDC:USDKWD",
+   "digits": 4,
+   "spread": 0.0004,
+   "snapshot": {
+    "bid": "0.3078",
+    "ask": "0.3082",
+    "pct": "0"
+   }
+  },
+  "USDMXN": {
+   "tv": "FX_IDC:USDMXN",
+   "digits": 4,
+   "spread": 0.0058,
+   "snapshot": {
+    "bid": "18.7532",
+    "ask": "18.759",
+    "pct": "0.39",
+    "change": "+0.072"
+   }
+  },
+  "USDNOK": {
+   "tv": "FX_IDC:USDNOK",
+   "digits": 5,
+   "spread": 0.0064,
+   "snapshot": {
+    "bid": "9.34505",
+    "ask": "9.35145",
+    "pct": "-0.09",
+    "change": "-0.0084"
+   }
+  },
+  "USDPLN": {
+   "tv": "FX_IDC:USDPLN",
+   "digits": 4,
+   "spread": 0.0025,
+   "snapshot": {
+    "bid": "3.9158",
+    "ask": "3.9183",
+    "pct": "0.57",
+    "change": "+0.0221"
+   }
+  },
+  "USDQAR": {
+   "tv": "FX_IDC:USDQAR",
+   "digits": 5,
+   "spread": 0.0009,
+   "snapshot": {
+    "bid": "3.64455",
+    "ask": "3.64545",
+    "pct": "0.1"
+   }
+  },
+  "USDSAR": {
+   "tv": "FX_IDC:USDSAR",
+   "digits": 4,
+   "spread": 0.0563,
+   "snapshot": {
+    "bid": "3.7704",
+    "ask": "3.8267",
+    "pct": "0"
+   }
+  },
+  "USDSEK": {
+   "tv": "FX_IDC:USDSEK",
+   "digits": 4,
+   "spread": 0.0063,
+   "snapshot": {
+    "bid": "9.9241",
+    "ask": "9.9304",
+    "pct": "0.41",
+    "change": "+0.0406"
+   }
+  },
+  "USDSGD": {
+   "tv": "FX_IDC:USDSGD",
+   "digits": 5,
+   "spread": 0.00023,
+   "snapshot": {
+    "bid": "1.27796",
+    "ask": "1.27819",
+    "pct": "0.05",
+    "change": "+0.0007"
+   }
+  },
+  "USDTHB": {
+   "tv": "FX_IDC:USDTHB",
+   "digits": 4,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "33.7385",
+    "ask": "33.7485",
+    "pct": "0.44",
+    "change": "+0.148"
+   }
+  },
+  "USDZAR": {
+   "tv": "FX_IDC:USDZAR",
+   "digits": 5,
+   "spread": 0.00799,
+   "snapshot": {
+    "bid": "16.5578",
+    "ask": "16.56579",
+    "pct": "0.93",
+    "change": "+0.1522"
+   }
+  },
+  "USOIL": {
+   "tv": "NYMEX:CL1!",
+   "digits": 3,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "99.875",
+    "ask": "99.895",
+    "pct": "2.04",
+    "change": "+1.99"
+   }
+  },
+  "VALE": {
+   "tv": "NYSE:VALE",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "12.17",
+    "ask": "12.18",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "VOWG": {
+   "tv": "XETR:VOW3",
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "69.86",
+    "ask": "69.9",
+    "pct": "-1.38",
+    "change": "-0.96"
+   }
+  },
+  "VZ": {
+   "tv": "NYSE:VZ",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "45.14",
+    "ask": "45.15",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "WFC": {
+   "tv": "NYSE:WFC",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "83.04",
+    "ask": "83.05",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "WHEAT": {
+   "tv": "OANDA:WHEATUSD",
+   "digits": 2,
+   "spread": 2.25,
+   "snapshot": {
+    "bid": "625.5",
+    "ask": "627.75",
+    "pct": "-0.32"
+   }
+  },
+  "WMT": {
+   "tv": "NASDAQ:WMT",
+   "digits": 2,
+   "spread": 0.01,
+   "snapshot": {
+    "bid": "121.08",
+    "ask": "121.09",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "XAUEUR": {
+   "tv": null,
+   "digits": 2,
+   "spread": 0.62,
+   "snapshot": {
+    "bid": "3589.44",
+    "ask": "3590.06",
+    "pct": "-1.18",
+    "change": "-43.48"
+   },
+   "derive": [
+    "GOLD",
+    "EURUSD"
+   ]
+  },
+  "XLMUSD": {
+   "tv": "BINANCE:XLMUSDT",
+   "digits": 5,
+   "spread": 0.00003,
+   "snapshot": {
+    "bid": "0.17728",
+    "ask": "0.17731",
+    "pct": "-4.35"
+   }
+  },
+  "XOM": {
+   "tv": "NYSE:XOM",
+   "digits": 2,
+   "spread": 0.04,
+   "snapshot": {
+    "bid": "177.9",
+    "ask": "177.94",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "XRPUSD": {
+   "tv": "BINANCE:XRPUSDT",
+   "digits": 5,
+   "spread": 0.0042,
+   "snapshot": {
+    "bid": "1.31985",
+    "ask": "1.32405",
+    "pct": "-4.52"
+   }
+  },
+  "XTZUSD": {
+   "tv": "BINANCE:XTZUSDT",
+   "digits": 4,
+   "spread": 0.0028,
+   "snapshot": {
+    "bid": "0.3039",
+    "ask": "0.3067",
+    "pct": "-4.49"
+   }
+  },
+  "YUM": {
+   "tv": "NYSE:YUM",
+   "digits": 2,
+   "spread": 0.03,
+   "snapshot": {
+    "bid": "154.39",
+    "ask": "154.42",
+    "pct": "0",
+    "change": "+0"
+   }
+  },
+  "ZARJPY": {
+   "tv": "FX_IDC:ZARJPY",
+   "digits": 3,
+   "spread": 0.024,
+   "snapshot": {
+    "bid": "9.455",
+    "ask": "9.479",
+    "pct": "-1.54",
+    "change": "-0.149"
+   }
+  },
+  "ZECUSD": {
+   "tv": "BINANCE:ZECUSDT",
+   "digits": 2,
+   "spread": 0.7,
+   "snapshot": {
+    "bid": "1244.83",
+    "ask": "1245.53",
+    "pct": "-7.51"
+   }
+  },
+  "ZINC": {
+   "tv": "LME:ZS1!",
+   "digits": 2,
+   "spread": 7.54,
+   "snapshot": {
+    "bid": "3705.68",
+    "ask": "3713.22",
+    "pct": "-1.42"
+   }
+  },
+  "ZM": {
+   "tv": "NASDAQ:ZM",
+   "digits": 2,
+   "spread": 0.02,
+   "snapshot": {
+    "bid": "96.16",
+    "ask": "96.18",
+    "pct": "0",
+    "change": "+0"
+   }
+  }
+ },
+ "aliases": {
+  "EURUSD": "EURUSD",
+  "GBPUSD": "GBPUSD",
+  "USDCHF": "USDCHF",
+  "USDJPY": "USDJPY",
+  "USDCAD": "USDCAD",
+  "AUDUSD": "AUDUSD",
+  "NZDUSD": "NZDUSD",
+  "AUDCAD": "AUDCAD",
+  "AUDCHF": "AUDCHF",
+  "AUDJPY": "AUDJPY",
+  "AUDNZD": "AUDNZD",
+  "CADCHF": "CADCHF",
+  "CADJPY": "CADJPY",
+  "CHFJPY": "CHFJPY",
+  "EURAUD": "EURAUD",
+  "EURCAD": "EURCAD",
+  "EURCHF": "EURCHF",
+  "EURGBP": "EURGBP",
+  "EURJPY": "EURJPY",
+  "EURNZD": "EURNZD",
+  "GBPAUD": "GBPAUD",
+  "GBPCAD": "GBPCAD",
+  "GBPCHF": "GBPCHF",
+  "GBPJPY": "GBPJPY",
+  "GOLD": "GOLD",
+  "SILVER": "SILVER",
+  "GBPNZD": "GBPNZD",
+  "NZDCAD": "NZDCAD",
+  "NZDCHF": "NZDCHF",
+  "NZDJPY": "NZDJPY",
+  "USOIL": "USOIL",
+  "UKOIL": "UKOIL",
+  "US30": "US30",
+  "US100": "US100",
+  "US500": "US500",
+  "US2000": "US2000",
+  "BTCUSD": "BTCUSD",
+  "ETHUSD": "ETHUSD",
+  "BCHUSD": "BCHUSD",
+  "LTCUSD": "LTCUSD",
+  "LNKUSD": "LNKUSD",
+  "DOTUSD": "DOTUSD",
+  "XRPUSD": "XRPUSD",
+  "ADAUSD": "ADAUSD",
+  "XLMUSD": "XLMUSD",
+  "DOGUSD": "DOGUSD",
+  "GER40": "GER40",
+  "FRA40": "FRA40",
+  "SPA35": "SPA35",
+  "EU50": "EU50",
+  "UK100": "UK100",
+  "JAP225": "JAP225",
+  "AUS200": "AUS200",
+  "ADSGn": "ADSGn",
+  "ALVG": "ALVG",
+  "BAYGn": "BAYGn",
+  "BMWG": "BMWG",
+  "CBKG": "CBKG",
+  "DBKGn": "DBKGn",
+  "LHAG": "LHAG",
+  "SAN": "SAN",
+  "SIEGn": "SIEGn",
+  "TEF": "TEF",
+  "VOWG": "VOWG",
+  "AAL": "AAL",
+  "AAPL": "AAPL",
+  "ABNB": "ABNB",
+  "ADBE": "ADBE",
+  "AIG": "AIG",
+  "AMZN": "AMZN",
+  "AXP": "AXP",
+  "BA": "BA",
+  "BABA": "BABA",
+  "BAC": "BAC",
+  "BK": "BK",
+  "BKNG": "BKNG",
+  "BMRN": "BMRN",
+  "BMY": "BMY",
+  "CAT": "CAT",
+  "CME": "CME",
+  "COST": "COST",
+  "CSCO": "CSCO",
+  "DAL": "DAL",
+  "DELL": "DELL",
+  "DIS": "DIS",
+  "EBAY": "EBAY",
+  "FDX": "FDX",
+  "GE": "GE",
+  "GM": "GM",
+  "GOOG": "GOOG",
+  "GPRO": "GPRO",
+  "GS": "GS",
+  "GT": "GT",
+  "HD": "HD",
+  "HLT": "HLT",
+  "HOG": "HOG",
+  "HPQ": "HPQ",
+  "IBM": "IBM",
+  "INTC": "INTC",
+  "JNJ": "JNJ",
+  "JPM": "JPM",
+  "KMI": "KMI",
+  "KO": "KO",
+  "MA": "MA",
+  "MCD": "MCD",
+  "MCO": "MCO",
+  "MMM": "MMM",
+  "MO": "MO",
+  "MRK": "MRK",
+  "MRVL": "MRVL",
+  "MS": "MS",
+  "MSFT": "MSFT",
+  "NFLX": "NFLX",
+  "NKE": "NKE",
+  "NVDA": "NVDA",
+  "ORCL": "ORCL",
+  "PEP": "PEP",
+  "PFE": "PFE",
+  "PM": "PM",
+  "PYPL": "PYPL",
+  "QCOM": "QCOM",
+  "RACE": "RACE",
+  "ROKU": "ROKU",
+  "SBUX": "SBUX",
+  "SHOP": "SHOP",
+  "SPOT": "SPOT",
+  "TMUS": "TMUS",
+  "TSLA": "TSLA",
+  "UA": "UA",
+  "UAL": "UAL",
+  "UBER": "UBER",
+  "UPS": "UPS",
+  "VALE": "VALE",
+  "VZ": "VZ",
+  "WFC": "WFC",
+  "WMT": "WMT",
+  "XOM": "XOM",
+  "YUM": "YUM",
+  "ZM": "ZM",
+  "AUDNOK": "AUDNOK",
+  "AUDSGD": "AUDSGD",
+  "CADSGD": "CADSGD",
+  "CHFSGD": "CHFSGD",
+  "EURCZK": "EURCZK",
+  "EURHUF": "EURHUF",
+  "EURNOK": "EURNOK",
+  "EURPLN": "EURPLN",
+  "EURSEK": "EURSEK",
+  "EURSGD": "EURSGD",
+  "EURZAR": "EURZAR",
+  "GBPMXN": "GBPMXN",
+  "GBPNOK": "GBPNOK",
+  "GBPSEK": "GBPSEK",
+  "GBPSGD": "GBPSGD",
+  "NOKJPY": "NOKJPY",
+  "NOKSEK": "NOKSEK",
+  "SGDJPY": "SGDJPY",
+  "USDCNH": "USDCNH",
+  "USDCZK": "USDCZK",
+  "USDHKD": "USDHKD",
+  "USDHUF": "USDHUF",
+  "USDMXN": "USDMXN",
+  "USDNOK": "USDNOK",
+  "USDPLN": "USDPLN",
+  "USDSEK": "USDSEK",
+  "USDSGD": "USDSGD",
+  "USDTHB": "USDTHB",
+  "USDZAR": "USDZAR",
+  "ZARJPY": "ZARJPY",
+  "COPPER": "COPPER",
+  "HKIND": "HKIND",
+  "XAUEUR": "XAUEUR",
+  "USDSAR": "USDSAR",
+  "USDEGP": "USDEGP",
+  "USDAED": "USDAED",
+  "USDQAR": "USDQAR",
+  "USDKWD": "USDKWD",
+  "Tecom.Group": "Tecom.Grou",
+  "Alpha.Dhabi": "Alpha.Dhabi",
+  "ADNOC.Gas": "ADNOC.Gas",
+  "Pure.Health": "Pure.Health",
+  "AD.Aviation": "AD.Aviation",
+  "AD.Insuranc": "AD.Insuran",
+  "AD.Natl.Tak": "AD.Natl.Tak",
+  "AD.Ship": "AD.Shi",
+  "ADCB": "ADCB",
+  "ADIB": "ADIB",
+  "ADNOC.Drill": "ADNOC.Drill",
+  "ADNOC.Logis": "ADNOC.Logis",
+  "Agthia.Grp": "Agthia.Gr",
+  "Apex": "Apex",
+  "Chimera": "Chimera",
+  "FAB.Bank": "FAB.Bank",
+  "Ghitha.Hold": "Ghitha.Hold",
+  "IHC": "IHC",
+  "Modon": "Modon",
+  "NMDC": "NMDC",
+  "Palms.Sport": "Palms.Sport",
+  "CBD": "CBD",
+  "DEWA": "DEWA",
+  "DIB": "DIB",
+  "DU": "DU",
+  "Emaar.Devel": "Emaar.Devel",
+  "Emaar.Propt": "Emaar.Propt",
+  "GULFNAV": "GULFNAV",
+  "NBD.Bank": "NBD.Bank",
+  "Parkin": "Parkin",
+  "Salik": "Salik",
+  "Taaleem": "Taaleem",
+  "RAK.Bank": "RAK.Bank",
+  "RPH": "RPH",
+  "PLATINUM": "PLATINUM",
+  "PALLADIUM": "PALLADIUM",
+  "SWI20": "SWI20",
+  "UKOIL_Z26": "UKOIL",
+  "USOIL_Z26": "USOIL",
+  "JAP225_Z26": "JAP225",
+  "US100_Z26": "US100",
+  "US30_Z26": "US30",
+  "US500_Z26": "US500",
+  "USDIDX_Z26": "USDIDX",
+  "FRA40_Z26": "FRA40",
+  "GER40_Z26": "GER40",
+  "UK100_Z26": "UK100",
+  "US100.Z26": "US100",
+  "US30.Z26": "US30",
+  "US500.Z26": "US500",
+  "GER40.Z26": "GER40",
+  "SPCX": "SPCX",
+  "LEAD": "LEAD",
+  "ZINC": "ZINC",
+  "WHEAT_Z26": "WHEAT",
+  "COCOA_Z26": "COCOA",
+  "COFFEE_Z26": "COFFEE",
+  "CORN_Z26": "CORN",
+  "SOYBEAN_X26": "SOYBEAN",
+  "ALUMINIUM": "ALUMINIUM",
+  "NGAS": "NGAS",
+  "DSHUSD": "DSHUSD",
+  "AAVUSD": "AAVUSD",
+  "BATUSD": "BATUSD",
+  "ETCUSD": "ETCUSD",
+  "FILUSD": "FILUSD",
+  "IOTUSD": "IOTUSD",
+  "NEOUSD": "NEOUSD",
+  "SUSUSD": "SUSUSD",
+  "XTZUSD": "XTZUSD",
+  "TETUSD": "TETUSD",
+  "TRXUSD": "TRXUSD",
+  "UNIUSD": "UNIUSD",
+  "ZECUSD": "ZECUSD",
+  "COTTON_Z26": "COTTON",
+  "NATGAS_X26": "NATGAS",
+  "SUGAR_H27": "SUGAR",
+  "EURUSDp": "EURUSD",
+  "GBPUSDp": "GBPUSD",
+  "USDJPYp": "USDJPY",
+  "USDCHFp": "USDCHF",
+  "USDCADp": "USDCAD",
+  "AUDUSDp": "AUDUSD",
+  "NZDUSDp": "NZDUSD",
+  "AUDCADp": "AUDCAD",
+  "AUDCHFp": "AUDCHF",
+  "AUDJPYp": "AUDJPY",
+  "AUDNZDp": "AUDNZD",
+  "CADCHFp": "CADCHF",
+  "CADJPYp": "CADJPY",
+  "CHFJPYp": "CHFJPY",
+  "EURAUDp": "EURAUD",
+  "EURCADp": "EURCAD",
+  "EURCHFp": "EURCHF",
+  "EURGBPp": "EURGBP",
+  "EURJPYp": "EURJPY",
+  "EURNZDp": "EURNZD",
+  "GBPAUDp": "GBPAUD",
+  "GBPCADp": "GBPCAD",
+  "GBPCHFp": "GBPCHF",
+  "GBPJPYp": "GBPJPY",
+  "GBPNZDp": "GBPNZD",
+  "NZDCADp": "NZDCAD",
+  "NZDCHFp": "NZDCHF",
+  "NZDJPYp": "NZDJPY",
+  "AUDNOKp": "AUDNOK",
+  "AUDSGDp": "AUDSGD",
+  "CADSGDp": "CADSGD",
+  "CHFSGDp": "CHFSGD",
+  "EURCZKp": "EURCZK",
+  "EURHUFp": "EURHUF",
+  "EURNOKp": "EURNOK",
+  "EURPLNp": "EURPLN",
+  "EURSEKp": "EURSEK",
+  "EURSGDp": "EURSGD",
+  "EURZARp": "EURZAR",
+  "GBPMXNp": "GBPMXN",
+  "GBPNOKp": "GBPNOK",
+  "GBPSEKp": "GBPSEK",
+  "GBPSGDp": "GBPSGD",
+  "NOKJPYp": "NOKJPY",
+  "NOKSEKp": "NOKSEK",
+  "SGDJPYp": "SGDJPY",
+  "USDCNHp": "USDCNH",
+  "USDCZKp": "USDCZK",
+  "USDHKDp": "USDHKD",
+  "USDHUFp": "USDHUF",
+  "USDMXNp": "USDMXN",
+  "USDNOKp": "USDNOK",
+  "USDPLNp": "USDPLN",
+  "USDSEKp": "USDSEK",
+  "USDSGDp": "USDSGD",
+  "USDTHBp": "USDTHB",
+  "USDZARp": "USDZAR",
+  "ZARJPYp": "ZARJPY",
+  "EURUSDc": "EURUSD",
+  "GBPUSDc": "GBPUSD",
+  "USDJPYc": "USDJPY",
+  "USDCHFc": "USDCHF",
+  "USDCADc": "USDCAD",
+  "AUDUSDc": "AUDUSD",
+  "NZDUSDc": "NZDUSD",
+  "AUDCADc": "AUDCAD",
+  "AUDCHFc": "AUDCHF",
+  "AUDJPYc": "AUDJPY",
+  "AUDNZDc": "AUDNZD",
+  "CADCHFc": "CADCHF",
+  "CADJPYc": "CADJPY",
+  "CHFJPYc": "CHFJPY",
+  "EURAUDc": "EURAUD",
+  "EURCADc": "EURCAD",
+  "EURCHFc": "EURCHF",
+  "EURGBPc": "EURGBP",
+  "EURJPYc": "EURJPY",
+  "EURNZDc": "EURNZD",
+  "GBPAUDc": "GBPAUD",
+  "GBPCADc": "GBPCAD",
+  "GBPCHFc": "GBPCHF",
+  "GBPJPYc": "GBPJPY",
+  "GBPNZDc": "GBPNZD",
+  "NZDCADc": "NZDCAD",
+  "NZDCHFc": "NZDCHF",
+  "NZDJPYc": "NZDJPY",
+  "AUDNOKc": "AUDNOK",
+  "AUDSGDc": "AUDSGD",
+  "CADSGDc": "CADSGD",
+  "CHFSGDc": "CHFSGD",
+  "EURCZKc": "EURCZK",
+  "EURHUFc": "EURHUF",
+  "EURNOKc": "EURNOK",
+  "EURPLNc": "EURPLN",
+  "EURSEKc": "EURSEK",
+  "EURSGDc": "EURSGD",
+  "EURZARc": "EURZAR",
+  "GBPMXNc": "GBPMXN",
+  "GBPNOKc": "GBPNOK",
+  "GBPSEKc": "GBPSEK",
+  "GBPSGDc": "GBPSGD",
+  "NOKJPYc": "NOKJPY",
+  "NOKSEKc": "NOKSEK",
+  "SGDJPYc": "SGDJPY",
+  "USDCNHc": "USDCNH",
+  "USDCZKc": "USDCZK",
+  "USDHKDc": "USDHKD",
+  "USDHUFc": "USDHUF",
+  "USDMXNc": "USDMXN",
+  "USDNOKc": "USDNOK",
+  "USDPLNc": "USDPLN",
+  "USDSEKc": "USDSEK",
+  "USDSGDc": "USDSGD",
+  "USDTHBc": "USDTHB",
+  "USDZARc": "USDZAR",
+  "ZARJPYc": "ZARJPY",
+  "GOLDp": "GOLD",
+  "SILVERp": "SILVER",
+  "XAUEURp": "XAUEUR",
+  "PALLADIUMp": "PALLADIUM",
+  "PLATINUMp": "PLATINUM",
+  "GOLDc": "GOLD",
+  "SILVERc": "SILVER",
+  "XAUEURc": "XAUEUR",
+  "USDIDX_MYY": "USDIDX",
+  "US30_MYY": "US30",
+  "US100_MYY": "US100",
+  "US500_MYY": "US500",
+  "JAP225_MYY": "JAP225",
+  "GER40_MYY": "GER40",
+  "FRA40_MYY": "FRA40",
+  "UK100_MYY": "UK100",
+  "USOIL_MYY": "USOIL",
+  "UKOIL_MYY": "UKOIL",
+  "NATGAS_MYY": "NATGAS",
+  "COCOA_MYY": "COCOA",
+  "COFFEE_MYY": "COFFEE",
+  "SOYBEAN_MYY": "SOYBEAN",
+  "CORN_MYY": "CORN",
+  "COTTON_MYY": "COTTON",
+  "SUGAR_MYY": "SUGAR",
+  "WHEAT_MYY": "WHEAT"
+ }
+}

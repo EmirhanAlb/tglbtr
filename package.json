@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "eleventy --serve --port=8080",
-    "build": "eleventy"
+    "build": "eleventy",
+    "preview": "node tools/serve.mjs",
+    "symbols": "node tools/build-symbol-map.mjs --probe"
   },
   "devDependencies": {
     "@11ty/eleventy": "3.1.7"

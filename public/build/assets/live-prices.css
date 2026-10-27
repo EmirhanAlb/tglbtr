@@ -1,0 +1,71 @@
+/* Canlı fiyat renkleri ve kayan kartlar (live-prices.js ile birlikte, tüm sayfalarda yüklenir) */
+
+/* Yön renkleri: tablolar, detay sayfası, kartlar */
+.lp-up   { color: #15803d !important; }
+.lp-down { color: #b91c1c !important; }
+.lp-flat { color: #4b5563 !important; }
+
+/* Ana sayfa fiyat bandı (siyah zemin): açık tonlar */
+.quotes .scroller_value { color: #d2d2d2 !important; }
+.quotes .lp-up   { color: #4ade80 !important; }
+.quotes .lp-down { color: #f87171 !important; }
+.quotes .lp-flat { color: #d2d2d2 !important; }
+.quotes .qinfo { font-variant-numeric: tabular-nums; }
+
+/* /instruments/* kayan kartları: beyaz kart, koyu yazı, yöne göre fiyat rengi */
+.floatings .data {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+  min-width: 200px;
+  color: #111827;
+}
+.floatings .data .font-semibold { color: #111827; font-size: 15px; }
+.floatings .data .text-gray-400 { color: #6b7280 !important; }
+.floatings .data .lp-bid,
+.floatings .data .lp-ask { color: #111827; font-weight: 600; font-variant-numeric: tabular-nums; }
+.floatings .data.lp-up .lp-bid,
+.floatings .data.lp-up .lp-ask { color: #15803d; }
+.floatings .data.lp-down .lp-bid,
+.floatings .data.lp-down .lp-ask { color: #b91c1c; }
+.floatings .data img { width: 14px; height: 14px; }
+
+/* Tablolardaki sayılar hizalı kalsın */
+.table-trade td, .centered-table td, .lp-card { font-variant-numeric: tabular-nums; }
+
+/* Fiyat tik vurgusu */
+@keyframes lp-flash-up   { from { background-color: rgba(22, 163, 74, 0.22); } to { background-color: transparent; } }
+@keyframes lp-flash-down { from { background-color: rgba(220, 38, 38, 0.22); } to { background-color: transparent; } }
+.lp-flash-up   { animation: lp-flash-up 0.9s ease-out; border-radius: 3px; }
+.lp-flash-down { animation: lp-flash-down 0.9s ease-out; border-radius: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .lp-flash-up, .lp-flash-down { animation: none; }
+}
+
+/* /instrumentdetails/* fiyat kartları */
+.lp-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+@media (min-width: 768px) { .lp-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.lp-card { border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.25rem 1rem; text-align: center; background: #fff; }
+.lp-card .lp-label { font-size: 0.8rem; color: #6b7280; margin-bottom: 0.35rem; }
+.lp-card .lp-value { font-size: 1.5rem; font-weight: 700; color: #003e3c; }
+
+/* Fiyat bandı okları: ana sayfa CSS'indeki üçgen oklar her sayfada aynı görünsün
+   (style-9adf4d36.css bunları 36px'lik görsel olarak tanımlar). */
+.quotes .arrow-red, .quotes .arrow-green {
+  background-image: none !important; width: 0 !important; height: 0 !important;
+  display: inline-block; border-left: 5px solid transparent; border-right: 5px solid transparent;
+}
+.quotes .arrow-red   { border-top: 5px solid #ef4444; border-bottom: 0; }
+.quotes .arrow-green { border-bottom: 5px solid #22c55e; border-top: 0; }
+.quotes .scroller_value { margin-left: 4px; }
+
+/* /all-instruments tablosu: ana sayfa tablo stilinin sayfa geneline uyarlanmış hâli */
+.lp-table-page .table-trade { margin-bottom: 2.5rem; overflow-x: auto; border: 1px solid #eaecf0; border-radius: 1rem; }
+.lp-table-page .table-trade table { width: 100%; }
+.lp-table-page .table-trade tr { border-bottom: 1px solid #eaecf0; }
+.lp-table-page .table-trade thead tr th { padding: 1rem 1.5rem; text-align: left; font-size: 14px; font-weight: 500; color: #667085; background: #f9fafb; white-space: nowrap; }
+.lp-table-page .table-trade tbody td { padding: 0.9rem 1.5rem; white-space: nowrap; }
+.lp-table-page .table-trade .quote { display: flex; align-items: center; gap: 0.5rem; }
+.lp-table-page .table-trade .quote .images { display: inline-flex; }
+.lp-table-page .table-trade .max-w-5 { max-width: 1.25rem; }
+.lp-table-page .table-trade a { color: #0e7365; }

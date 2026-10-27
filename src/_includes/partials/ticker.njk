@@ -12,8 +12,8 @@
                                     <span class="qinfo {{ q.symbol }}_bid">{{ q.bid }}</span>
                                     / <span class="qinfo {{ q.symbol }}_ask">{{ q.ask }}</span>
                                     <div class="scroller_value inline-flex items-center gap-1 ">(
-                                        <span class="{{ q.symbol }}_scroller_change_percentage_new">
-                                            {{ q.pct }}
+                                        <span class="{{ q.symbol }}_scroller_change_percentage_new {{ 'lp-down' if q.arrow == 'arrow-red' else 'lp-up' }}">
+                                            {{ q.pct }}%
                                         </span>
                                         <span class="{{ q.symbol }}_position {{ q.arrow }}"></span>)
                                     </div>

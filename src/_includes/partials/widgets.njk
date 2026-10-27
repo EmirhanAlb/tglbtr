@@ -3,8 +3,8 @@
         class="w-full object-contain aspect-auto" width="6.4" height="6.4"></a>
 
 <script>
-    // Fiyat bandı ve tablo bu adresten 8 saniyede bir güncellenir.
-    // Statik sürümde derleme anında üretilen anlık görüntü (snapshot) kullanılıyor.
+    // Canlı fiyat uç noktası (Vercel fonksiyonu: api/market-prices.js). live-prices.js
+    // bu adresi 10 saniyede bir sorgular; ulaşılamazsa /api/market-prices.json (statik) kullanılır.
     window.__WS_TOKEN__ = "";
-    window.__LIVE_MARKETDATA_URL__ = "/api/market-prices.json";
+    window.__LIVE_MARKETDATA_URL__ = "/api/market-prices";
 </script>

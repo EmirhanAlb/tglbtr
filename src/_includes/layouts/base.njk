@@ -40,6 +40,9 @@
     {#- symbol-d300c5e6.css'teki ikonlardan bu kopyaya alınmamış olanlar.
         Yalnızca o sınıfların background-image'ini yeniden tanımlar. #}
     <link rel="stylesheet" href="{{ A }}symbol-icons-missing.css" />
+    {#- Canlı fiyat akışı: tüm sayfalarda. Kaynak: /api/market-prices (api/market-prices.js) #}
+    <link rel="stylesheet" href="{{ A }}live-prices.css" />
+    <script defer src="{{ A }}live-prices.js"></script>
     {%- set pageScripts = scripts or ["app-31051ced.js"] %}
     {%- for js in pageScripts %}
     <script type="module" src="{{ A }}{{ js }}"></script>

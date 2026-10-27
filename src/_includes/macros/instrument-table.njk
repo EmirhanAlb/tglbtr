@@ -41,7 +41,7 @@
                 <td><span class="{{ row.color }} {{ row.symbol }}_change_percentage">{{ row.pct }}</span></td>
                 <td>
                     <div class="max-w-5">
-                        <img class="w-full h-auto aspect-auto {{ row.symbol }}_rate_img" src="{{ row.trendImg }}" alt="" width="2.0" height="1.1">
+                        <img class="w-full h-auto aspect-auto {{ row.symbol }}_rate_img" src="{{ '/images/down.png' if row.color == 'text-red-600' else '/images/up.png' }}" alt="" width="2.0" height="1.1">
                     </div>
                 </td>
                 {%- if showType %}

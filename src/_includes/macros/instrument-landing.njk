@@ -29,15 +29,15 @@
                 {%- for pass in [1, 2] %}
                 <div class="floatings scroller gap-12 pj400">
                     {%- for q in panel.marquee %}
-                    <div class="data gap-1">
+                    <div class="data gap-1 {{ 'lp-up' if q.dir == 'green' else 'lp-down' }}">
                         <div class="flex gap-2 justify-start">
                             <span class="font-semibold">{{ q.symbol }}</span>
                             <span><img class="{{ q.symbol }}_dirimg" src="/images/live_{{ q.dir }}.svg" alt="image"></span>
                         </div>
                         <div class="flex flex-row justify-between  gap-6 text-sm">
-                            <div class="text-gray-400">Alış <span class="text-xs font-semibold text-green-600 {{ q.symbol }}_bid">{{ q.bid }}</span>
+                            <div class="text-gray-400">Alış <span class="text-xs lp-bid {{ q.symbol }}_bid">{{ q.bid }}</span>
                             </div>
-                            <div class="text-gray-400">Satış <span class="text-xs font-semibold text-green-600 {{ q.symbol }}_ask">{{ q.ask }}</span>
+                            <div class="text-gray-400">Satış <span class="text-xs lp-ask {{ q.symbol }}_ask">{{ q.ask }}</span>
                             </div>
                         </div>
                     </div>

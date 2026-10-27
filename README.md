@@ -134,3 +134,22 @@ ikonsuz görünür, o yüzden bilerek eklenmedi.
   "i" ile başlayan kelimeleri baştan "İ" ile yazın.
 - Dış linkler (müşteri girişi `my.trustcapital.com`, uygulama mağazaları, MT5 indirme) orijinal
   adreslere gider; hepsi `src/_data/site.json` içinden değiştirilebilir.
+
+## Canlı fiyatlar
+
+Sitedeki tüm fiyatlar (ana sayfa bandı ve tablosu, `/instruments/*` kayan kartları,
+`/all-instruments`, `/instrumentdetails/*`) **10 saniyede bir** canlı güncellenir.
+
+| Parça | Görevi |
+| --- | --- |
+| `api/market-prices.js` | Vercel sunucu fonksiyonu: `GET /api/market-prices`. Kaynak olarak TradingView'in herkese açık tarayıcı uç noktasını kullanır (ücretsiz, API anahtarı gerekmez; forex/metal/kripto/CFD anlık, hisseler 15 dk gecikmeli). Yanıt Vercel CDN'de 10 sn önbelleklenir; kaynak yanıt vermezse derleme anındaki değerler döner. |
+| `api/_symbols.json` | Site sembolü → kaynak kodu eşlemesi, ondalık ve spread bilgisi. `npm run symbols` ile yeniden üretilir (`tools/build-symbol-map.mjs`). Yeni hisse/endeks eklerken bu dosyadaki `OVERRIDES` tablosuna satır ekleyin; forex ve kripto otomatik eşlenir. |
+| `public/build/assets/live-prices.js` | Tarayıcı tarafı: `.SEMBOL_bid`, `_ask`, `_change`, `_change_percentage`, `_position`, `_rate_img`, `_dirimg` sınıflı öğeleri günceller, yön renklerini (`lp-up` / `lp-down`) ve tik vurgusunu uygular. Her sayfada `base.njk` ile yüklenir. |
+| `public/build/assets/live-prices.css` | Fiyat renkleri, kayan kart ve tablo stilleri. |
+| `src/api/market-prices.11ty.js` | Aynı biçimde statik kopya (`/api/market-prices.json`); fonksiyona ulaşılamazsa yedek olarak kullanılır. |
+
+Yerelde canlı fiyatlarla önizleme (Eleventy'nin `dev` sunucusu fonksiyonu çalıştıramaz):
+
+```bash
+npm run build && npm run preview   # http://localhost:8080
+```

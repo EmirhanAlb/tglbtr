@@ -28,20 +28,26 @@ scripts:
 </section>
 <section class="py-12 md:py-20">
     <div class="container mx-auto px-6 max-w-3xl">
-        <div class="grid md:grid-cols-3 gap-6 text-center">
-            <div class="border rounded-2xl p-6">
-                <div class="text-sm text-gray-500">Fiyat</div>
-                <div class="text-2xl font-bold text-[#003E3C]">{{ inst.bid }}</div>
+        {#- Değerler live-prices.js tarafından canlı güncellenir (.SEMBOL_bid vb. sınıflar). #}
+        <div class="lp-stats">
+            <div class="lp-card">
+                <div class="lp-label">Alış</div>
+                <div class="lp-value {{ inst.symbol }}_bid">{{ inst.bid }}</div>
             </div>
-            <div class="border rounded-2xl p-6">
-                <div class="text-sm text-gray-500">Günlük Değişim</div>
-                <div class="text-2xl font-bold {{ inst.color }}">{{ inst.change }}</div>
+            <div class="lp-card">
+                <div class="lp-label">Satış</div>
+                <div class="lp-value {{ inst.symbol }}_ask">{{ inst.ask or inst.bid }}</div>
             </div>
-            <div class="border rounded-2xl p-6">
-                <div class="text-sm text-gray-500">Günlük Değişim %</div>
-                <div class="text-2xl font-bold {{ inst.color }}">{{ inst.pct }}</div>
+            <div class="lp-card">
+                <div class="lp-label">Günlük Değişim</div>
+                <div class="lp-value {{ 'lp-down' if inst.color == 'text-red-600' else 'lp-up' }} {{ inst.symbol }}_change">{{ inst.change }}</div>
+            </div>
+            <div class="lp-card">
+                <div class="lp-label">Günlük Değişim %</div>
+                <div class="lp-value {{ 'lp-down' if inst.color == 'text-red-600' else 'lp-up' }} {{ inst.symbol }}_change_percentage">{{ inst.pct }}</div>
             </div>
         </div>
+        <p class="mt-4 text-center text-sm text-gray-500">Fiyatlar 10 saniyede bir güncellenir.</p>
         <div class="mt-10 text-center">
             <a href="/live-account" class="inline-block px-8 py-3 rounded-full bg-[#003E3C] text-white font-semibold">Bu Enstrümanda İşlem Yap</a>
         </div>
