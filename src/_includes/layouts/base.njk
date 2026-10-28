@@ -43,6 +43,10 @@
     {#- Canlı fiyat akışı: tüm sayfalarda. Kaynak: /api/market-prices (api/market-prices.js) #}
     <link rel="stylesheet" href="{{ A }}live-prices.css" />
     <script defer src="{{ A }}live-prices.js"></script>
+    {#- Mobil düzen ve alt navigasyon (partials/mobile-nav.njk) #}
+    <link rel="stylesheet" href="{{ A }}mobile.css" />
+    <link rel="stylesheet" href="{{ A }}mobile-nav.css" />
+    <script defer src="{{ A }}mobile-nav.js"></script>
     {%- set pageScripts = scripts or ["app-31051ced.js"] %}
     {%- for js in pageScripts %}
     <script type="module" src="{{ A }}{{ js }}"></script>
@@ -71,6 +75,7 @@
     </section>
     {% include "partials/footer.njk" %}
     {% include "partials/widgets.njk" %}
+    {% include "partials/mobile-nav.njk" %}
 </body>
 
 </html>

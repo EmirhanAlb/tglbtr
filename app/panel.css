@@ -3916,3 +3916,48 @@ body.panel-body img { max-width: 100%; }
 .kyc-upload-l { font-size: 14px; font-weight: 600; color: var(--text-primary); }
 .kyc-upload-hint { font-size: 12px; color: var(--text-muted); }
 @media (max-width: 560px) { .kyc-upload-grid { grid-template-columns: 1fr; } .transfer-route { flex-direction: column; } }
+
+/* ---- Mobil alt navigasyon (panel-mobile.js) ---- */
+.pbn { display: none; }
+@media (max-width: 900px) {
+  body.has-pbn .panel-main { padding-bottom: calc(64px + 12px + 28px + env(safe-area-inset-bottom, 0px)); }
+  .pbn { position: fixed; z-index: 45; left: max(14px, env(safe-area-inset-left)); right: max(14px, env(safe-area-inset-right)); bottom: calc(env(safe-area-inset-bottom, 0px) + 12px); margin-inline: auto; max-width: 440px; height: 64px; display: flex; align-items: stretch; padding: 0 6px; border-radius: 32px; background: rgba(11, 15, 23, 0.94); -webkit-backdrop-filter: blur(20px) saturate(140%); backdrop-filter: blur(20px) saturate(140%); border: 1px solid var(--border-strong); box-shadow: 0 10px 34px rgba(0, 0, 0, 0.5); }
+  .pbn__item { position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; padding: 0; border: none; background: transparent; color: var(--text-muted); font-family: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .pbn__ic { display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; transition: color .2s, transform .2s; }
+  .pbn__ic svg { width: 20px; height: 20px; display: block; }
+  .pbn__label { font-size: 10.5px; font-weight: 600; letter-spacing: .01em; line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .pbn__item.is-active, .pbn__item--more.is-tint { color: var(--brand-silver-bright); }
+  .pbn__item.is-active::before { content: ""; position: absolute; top: -1.5px; left: 50%; width: 24px; height: 3px; border-radius: 2px; background: var(--brand-silver); box-shadow: 0 0 8px rgba(187, 198, 204, 0.8); transform: translateX(-50%); }
+  .pbn__item.is-active .pbn__ic { transform: translateY(-1px) scale(1.06); filter: drop-shadow(0 0 6px rgba(187, 198, 204, 0.5)); }
+  .pbn__item:active .pbn__ic { transform: scale(0.94); }
+  .panel-side-scrim { z-index: 48; }
+  .panel-side { z-index: 50; }
+
+  /* Tablolar: sütunlar sıkışmasın, yatay kaydırılsın */
+  .panel-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .panel-table th, .panel-table td { white-space: nowrap; }
+  .panel-head { margin-bottom: 22px; }
+  .panel-head-actions, .panel-filters { width: 100%; flex-wrap: wrap; }
+  .panel-search { width: 100%; }
+  .panel-tabs { display: flex; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .panel-tab { white-space: nowrap; flex: 1 0 auto; text-align: center; }
+  .panel-form-actions { flex-wrap: wrap; }
+  .panel-form-actions .btn { flex: 1 1 auto; }
+  .panel-row-actions { flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+  .panel-notif-pop { left: 12px; right: 12px; width: auto; }
+}
+
+/* ---- Kredi kartı ile yatırım (WhatsApp'a yönlendirme) ---- */
+.deposit-card-cta { display: flex; flex-direction: column; gap: 14px; }
+.deposit-card-cta .deposit-card-row { display: flex; align-items: center; gap: 14px; }
+.deposit-card-cta .deposit-card-ico { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: rgba(187, 198, 204, 0.08); border: 1px solid var(--border-subtle); color: var(--brand-silver-bright); flex-shrink: 0; }
+.deposit-card-cta .deposit-card-ico svg { width: 24px; height: 24px; }
+.deposit-card-cta h3 { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--text-primary); margin: 0 0 4px; }
+.deposit-card-cta p { color: var(--text-secondary); font-size: 14px; line-height: 1.55; margin: 0; }
+.deposit-card-cta .deposit-card-steps { display: grid; gap: 8px; margin: 4px 0; padding: 0; list-style: none; }
+.deposit-card-cta .deposit-card-steps li { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; color: var(--text-secondary); }
+.deposit-card-cta .deposit-card-steps li b { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(187, 198, 204, 0.12); color: var(--text-primary); font-size: 11px; font-weight: 600; flex-shrink: 0; }
+.btn.btn-whatsapp { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #062b16; border: none; font-weight: 600; }
+.btn.btn-whatsapp:hover { background: #1fbf5b; }
+.btn.btn-whatsapp img { width: 20px; height: 20px; }
+.deposit-card-cta .deposit-card-note { font-size: 12.5px; color: var(--text-muted); }

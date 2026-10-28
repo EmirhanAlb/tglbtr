@@ -17,6 +17,9 @@ window.APP_CONFIG = {
   //   - Project API keys / anon public -> supabaseAnonKey
   // DİKKAT: "service_role" anahtarını ASLA buraya yazmayın. O gizlidir ve
   //         yalnızca sunucu tarafında kullanılır. Buraya sadece "anon public" gelir.
+  // Destek WhatsApp hattı (ülke koduyla, boşluksuz). Kredi kartı yatırım talepleri buraya yönlenir.
+  whatsapp: "905355560834",
+
   supabaseUrl:     "https://znysfafwhcfuteucgmnu.supabase.co",
   supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpueXNmYWZ3aGNmdXRldWNnbW51Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2NzY5ODAsImV4cCI6MjEwODI1Mjk4MH0.UWamWIq-bqF9Lxfod3lXnRXlgC2iArHeukZCGsYDwkY"
 };

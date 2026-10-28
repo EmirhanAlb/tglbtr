@@ -24,6 +24,8 @@ const badge = (s) => `<span class="panel-badge ${s}">${esc(STATUS_TR[s] || s)}</
 const CRM_PER_PAGE = 12, TICKETS_PER_PAGE = 15;
 
 let me = null, session = null, view = "dashboard", editUserId = null;
+// admin.html#investors gibi bağlantılarla doğrudan bölüm açılabilir.
+{ const h = location.hash.replace("#", ""); if (["dashboard","prospects","investors","tickets","transactions","transfers","mt5","payments"].includes(h)) view = h; }
 
 async function boot() {
   session = await S.getCurrentSession();
@@ -51,6 +53,7 @@ function renderShell() {
   NAV.forEach((it) => {
     const b = el("button", `panel-side-link ${view === it.id ? "active" : ""}`, `${ADMIN_ICON[it.id] || ""}<span>${it.label}</span>`);
     b.type = "button";
+    b.dataset.nav = it.id;
     b.onclick = () => { editUserId = null; view = it.id; closeMobile(); render(); };
     nav.appendChild(b);
   });
@@ -137,13 +140,27 @@ async function renderProspects(root) {
           <td>${fmtDate(u.createdAt)}</td>
           <td style="text-align:right"><div class="panel-row-actions">
             <button class="panel-row-action success" data-prov="${u.id}">${st === "pending" ? "MT5 Bilgisi Gönder" : "Düzenle"}</button>
-            <button class="panel-row-action" data-edit="${u.id}">Aç</button></div></td></tr>`;
+            <button class="panel-row-action" data-edit="${u.id}">Aç</button>
+            <button class="panel-row-action danger" data-del="${u.id}" title="Müşteriyi sil">Sil</button></div></td></tr>`;
       }).join("")
     }</tbody></table>${pagerHtml(crmState, pageCount, filtered.length)}` : emptyBox("Bekleyen kayıt yok.")}</div>`;
   wireSearch(root, crmState, renderProspects);
   wirePager(root, crmState, renderProspects);
   root.querySelectorAll("[data-edit]").forEach((b) => b.onclick = () => { editUserId = b.dataset.edit; render(); });
   root.querySelectorAll("[data-prov]").forEach((b) => b.onclick = () => openProvisionModal(b.dataset.prov));
+  wireDelete(root, users);
+}
+
+// Listelerdeki "Sil" düğmeleri: onay ister, müşteriyi ve tüm kayıtlarını siler.
+function wireDelete(root, users) {
+  root.querySelectorAll("[data-del]").forEach((b) => b.onclick = async () => {
+    const u = users.find((x) => x.id === b.dataset.del);
+    const who = u ? `${u.name} (${u.email})` : "Bu müşteri";
+    if (!confirm(`${who} ve tüm ilgili kayıtları (işlemler, talepler, MT5, belgeler) kalıcı olarak silinecek. Devam edilsin mi?`)) return;
+    b.disabled = true;
+    try { if (await S.deleteUser(b.dataset.del)) render(); else alert("Bu hesap silinemez."); }
+    catch (e) { alert("Silinemedi: " + e.message); b.disabled = false; }
+  });
 }
 
 // ====================== YATIRIMCILAR (MT5'li) ======================
@@ -165,11 +182,13 @@ async function renderInvestors(root) {
       paged.map((u) => `<tr><td class="mono">${esc(u.name)}</td><td>${esc(u.email)}</td><td class="mono">${esc(u.mt5Account)}</td>
         <td class="mono gain">$${money(u._tot.deposited)}</td><td class="mono loss">$${money(u._tot.withdrawn)}</td>
         <td class="mono">$${money(u._tot.balance)}</td><td>${fmtDate(u.createdAt)}</td>
-        <td style="text-align:right"><button class="panel-row-action" data-edit="${u.id}">Aç</button></td></tr>`).join("")
+        <td style="text-align:right"><div class="panel-row-actions"><button class="panel-row-action" data-edit="${u.id}">Aç</button>
+          <button class="panel-row-action danger" data-del="${u.id}" title="Yatırımcıyı sil">Sil</button></div></td></tr>`).join("")
     }</tbody></table>${pagerHtml(invState, pageCount, filtered.length)}` : emptyBox("Aktif yatırımcı yok.")}</div>`;
   wireSearch(root, invState, renderInvestors);
   wirePager(root, invState, renderInvestors);
   root.querySelectorAll("[data-edit]").forEach((b) => b.onclick = () => { editUserId = b.dataset.edit; render(); });
+  wireDelete(root, users);
 }
 
 function pagerHtml(state, pageCount, total) {
@@ -428,9 +447,10 @@ async function renderUserEdit(root, userId) {
     const m = $("#editMsg"); m.className = "msg ok"; m.textContent = "Değişiklikler kaydedildi."; setTimeout(() => (m.textContent = ""), 1500);
   };
   root.querySelectorAll("[data-kyc]").forEach((b) => b.onclick = async () => { await S.updateUser(u.id, { kycStatus: b.dataset.kyc }); render(); });
-  $("#delUser", root).onclick = () => {
-    if (confirm("Bu müşteri ve tüm ilgili kayıtları (işlemler, talepler, MT5) kalıcı olarak silinecek. Devam edilsin mi?"))
-      S.deleteUser(u.id).then((ok) => { if (ok) { editUserId = null; view = "prospects"; render(); } });
+  $("#delUser", root).onclick = async () => {
+    if (!confirm(`${u.name} (${u.email}) ve tüm ilgili kayıtları (işlemler, talepler, MT5, belgeler) kalıcı olarak silinecek. Devam edilsin mi?`)) return;
+    try { if (await S.deleteUser(u.id)) { editUserId = null; view = u.mt5Account ? "investors" : "prospects"; render(); } else alert("Bu hesap silinemez."); }
+    catch (e) { alert("Silinemedi: " + e.message); }
   };
 }
 

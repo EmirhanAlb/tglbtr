@@ -1,0 +1,64 @@
+{#- Mobil alt navigasyon barı + "Menü" alt sayfası (yalnızca ≤767px, CSS: mobile-nav.css, JS: mobile-nav.js).
+    Vestaprime sitesindeki alt bar tasarımının bu siteye uyarlanmış hâli: koyu kapsül bar, aktif bölmede
+    fıstık yeşili "spot ışığı"; Menü'ye basınca tüm siteyi gruplar hâlinde listeleyen alt sayfa açılır.
+    Bağlantılar src/_data/nav.json'dan gelir. -#}
+<nav class="tcbn" aria-label="Mobil gezinme">
+    <a class="tcbn__item" data-slot="home" href="/">
+        <span class="tcbn__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.4 12 4l8 7.4"/><path d="M6 10.2V19.2a.8.8 0 0 0 .8.8H17.2a.8.8 0 0 0 .8-.8V10.2"/><path d="M10 20v-4.4a.8.8 0 0 1 .8-.8h2.4a.8.8 0 0 1 .8.8V20"/></svg></span>
+        <span class="tcbn__label">Ana Sayfa</span>
+    </a>
+    <a class="tcbn__item" data-slot="markets" href="/all-instruments">
+        <span class="tcbn__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="4.2" x2="8" y2="7"/><rect x="6.3" y="7" width="3.4" height="6.4" rx="1"/><line x1="8" y1="13.4" x2="8" y2="16.2"/><line x1="16" y1="7.8" x2="16" y2="10.4"/><rect x="14.3" y="10.4" width="3.4" height="6" rx="1"/><line x1="16" y1="16.4" x2="16" y2="19.2"/></svg></span>
+        <span class="tcbn__label">Piyasalar</span>
+    </a>
+    <a class="tcbn__item tcbn__item--cta" data-slot="open" href="/live-account">
+        <span class="tcbn__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8"/></svg></span>
+        <span class="tcbn__label">Hesap Aç</span>
+    </a>
+    <a class="tcbn__item" data-slot="login" href="{{ site.links.clientLogin }}">
+        <span class="tcbn__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c.6-3.6 3.7-5.6 7.5-5.6s6.9 2 7.5 5.6"/></svg></span>
+        <span class="tcbn__label">Giriş</span>
+    </a>
+    <button type="button" class="tcbn__item tcbn__item--more" id="tcbnMore" aria-haspopup="dialog" aria-expanded="false" aria-controls="tcSheet">
+        <span class="tcbn__ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="8" cy="8" r="1.75"/><circle cx="16" cy="8" r="1.75"/><circle cx="8" cy="16" r="1.75"/><circle cx="16" cy="16" r="1.75"/></svg></span>
+        <span class="tcbn__label">Menü</span>
+    </button>
+</nav>
+
+<div class="tcsheet__scrim" id="tcSheetScrim" aria-hidden="true"></div>
+<div class="tcsheet" id="tcSheet" role="dialog" aria-modal="true" aria-label="Menü" aria-hidden="true">
+    <div class="tcsheet__panel" tabindex="-1">
+        <button type="button" class="tcsheet__handle" data-sheet-close aria-label="Kapat"><span class="tcsheet__handle-bar"></span></button>
+
+        <div class="tcsheet__quick">
+            <a class="tcsheet__cta tcsheet__cta--primary" href="/live-account">Gerçek Hesap Aç</a>
+            <a class="tcsheet__cta tcsheet__cta--outline" href="/forex-demo-account">Demo Hesap</a>
+            <a class="tcsheet__cta tcsheet__cta--ghost" href="{{ site.links.clientLogin }}">Giriş Yap</a>
+        </div>
+
+        <div class="tcsheet__utils">
+            <a class="tcsheet__util" href="{{ site.links.whatsapp }}" target="_blank" rel="noopener">
+                <img src="/build/assets/whatsapp_icon_optimized-05821d5d.webp" alt="" width="20" height="20"> WhatsApp
+            </a>
+            <a class="tcsheet__util" href="{{ site.phoneHref }}">
+                <img src="/images/blocks/phone-new.svg" alt="" width="18" height="18" class="tcsheet__util-phone"> {{ site.phone }}
+            </a>
+        </div>
+
+        <div class="tcsheet__scroll">
+            {%- for menu in nav.menus %}
+            <div class="tcsheet__group">
+                <p class="tcsheet__group-title">{{ menu.label }}</p>
+                <div class="tcsheet__links">
+                    {%- for item in menu.items %}
+                    <a class="tcsheet__link" href="{{ item.href }}">
+                        <span class="tcsheet__link-label">{{ item.label }}</span>
+                        <svg class="tcsheet__chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+                    </a>
+                    {%- endfor %}
+                </div>
+            </div>
+            {%- endfor %}
+        </div>
+    </div>
+</div>

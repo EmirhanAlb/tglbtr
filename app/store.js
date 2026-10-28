@@ -145,8 +145,15 @@ export async function updateUser(id, patch) {
 export async function deleteUser(id) {
   const u = await getUser(id);
   if (!u || u.role === "admin") return false;
-  const { error } = await supabase.from("profiles").delete().eq("id", id);
-  throwIf(error);
+  // Tercih edilen yol: auth kullanıcısını, profili, bağlı kayıtları ve belgeleri birlikte silen
+  // admin_delete_customer RPC'si (supabase/schema.sql). Kurulu değilse yalnızca profil silinir;
+  // bağlı kayıtlar cascade ile gider, auth kaydı kalır.
+  const { error } = await supabase.rpc("admin_delete_customer", { p_id: id });
+  if (!error) return true;
+  const missing = error.code === "PGRST202" || /could not find the function|admin_delete_customer/i.test(error.message || "");
+  if (!missing) throwIf(error);
+  const res = await supabase.from("profiles").delete().eq("id", id);
+  throwIf(res.error);
   return true;
 }
 

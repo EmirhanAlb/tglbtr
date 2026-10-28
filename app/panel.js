@@ -21,6 +21,10 @@ const STATUS_TR = {
 };
 const KYC_TR = { pending: "Bekliyor", reviewing: "İnceleniyor", verified: "Doğrulandı", rejected: "Reddedildi" };
 
+// ---------- WhatsApp destek hattı (app/config.js) ----------
+const WA_NUMBER = String((window.APP_CONFIG && window.APP_CONFIG.whatsapp) || "905355560834").replace(/\D/g, "");
+const WA_DISPLAY = "+" + WA_NUMBER.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})$/, "$1 $2 $3 $4");
+
 // ---------- oturum ----------
 let session = null;
 let me = null;
@@ -50,6 +54,8 @@ const NAV = [
   { id: "account", label: "Hesabım" },
 ];
 let view = "overview";
+// panel.html#deposit gibi bağlantılarla doğrudan bölüm açılabilir.
+{ const h = location.hash.replace("#", ""); if (NAV.some((n) => n.id === h)) view = h; }
 
 function renderShell() {
   $("#userName").textContent = me.name || "—";
@@ -60,6 +66,7 @@ function renderShell() {
   NAV.forEach((it) => {
     const b = el("button", `panel-side-link ${view === it.id ? "active" : ""}`, `${PANEL_ICON[it.id] || ""}<span>${it.label}</span>`);
     b.type = "button";
+    b.dataset.nav = it.id;
     b.onclick = () => { view = it.id; closeMobile(); setActive(); render(); };
     nav.appendChild(b);
   });
@@ -218,9 +225,23 @@ async function renderDeposit(root) {
   let html = headHtml("Para Yatırma", "Aşağıdaki yöntemlerle hesabınıza yatırım yapın.");
   html += `<div class="panel-tabs">
     <button type="button" class="panel-tab ${depositTab === "bank" ? "active" : ""}" data-tab="bank">Banka Havalesi</button>
-    <button type="button" class="panel-tab ${depositTab === "crypto" ? "active" : ""}" data-tab="crypto">Kripto</button></div>`;
-  const list = depositTab === "bank" ? banks : cryptos;
-  if (!list.length) {
+    <button type="button" class="panel-tab ${depositTab === "crypto" ? "active" : ""}" data-tab="crypto">Kripto</button>
+    <button type="button" class="panel-tab ${depositTab === "card" ? "active" : ""}" data-tab="card">Kredi Kartı</button></div>`;
+  const list = depositTab === "bank" ? banks : depositTab === "crypto" ? cryptos : [];
+  if (depositTab === "card") {
+    // Kredi kartı yatırımı WhatsApp destek hattı üzerinden yürütülür: talep kaydı açılır, sohbet otomatik açılır.
+    html += `<div class="panel-form-card deposit-card-cta">
+      <div class="deposit-card-row"><div class="deposit-card-ico">${FIELD_ICO.coin || ""}</div>
+        <div><h3>Kredi Kartı ile Yatırım</h3><p>Kredi kartı yatırımları WhatsApp destek hattımız üzerinden, temsilcimiz eşliğinde tamamlanır.</p></div></div>
+      <ul class="deposit-card-steps">
+        <li><b>1</b><span>Aşağıdaki butona dokunun; WhatsApp sohbeti otomatik açılır ve "Kredi kartından para yatırmak istiyorum" mesajı hazır gelir.</span></li>
+        <li><b>2</b><span>Temsilcimiz güvenli ödeme bağlantısını ve adımları sohbet üzerinden iletir.</span></li>
+        <li><b>3</b><span>Ödeme onaylandığında tutar panel bakiyenize yansır; süreci Destek bölümünden de takip edebilirsiniz.</span></li>
+      </ul>
+      <div class="panel-form-actions"><button type="button" class="btn btn-whatsapp" id="d_card_wa"><img src="/build/assets/whatsapp_icon_optimized-05821d5d.webp" alt="">WhatsApp ile Devam Et</button></div>
+      <div class="deposit-card-note">Hat: ${esc(WA_DISPLAY)} · Talebiniz destek kaydı olarak da açılır.</div>
+      ${msgBox("d_msg")}</div>`;
+  } else if (!list.length) {
     html += `<div class="panel-card"><div class="panel-empty" style="padding:24px">Şu anda aktif yatırım yöntemi yok. Lütfen destek ile iletişime geçin.</div></div>`;
   } else {
     html += `<div class="panel-form-card">`;
@@ -243,6 +264,20 @@ async function renderDeposit(root) {
   }
   root.innerHTML = html;
   root.querySelectorAll("[data-tab]").forEach((b) => b.onclick = () => { depositTab = b.dataset.tab; render(); });
+  const wa = $("#d_card_wa");
+  if (wa) wa.onclick = async () => {
+    const text = `Merhaba, kredi kartından para yatırmak istiyorum. Ad: ${me.name || "-"} · E-posta: ${me.email || "-"}`;
+    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+    const win = window.open(url, "_blank", "noopener"); // açılır pencere engeline takılmamak için önce aç
+    wa.disabled = true;
+    try {
+      await S.createTicket({ userId: me.id, subject: "Kredi Kartı ile Yatırım Talebi", category: "deposit_notify",
+        initialMessage: "Kredi kartı ile para yatırmak istiyorum. WhatsApp üzerinden iletişime geçtim.",
+        systemMessage: "Müşteri kredi kartı yatırımı için WhatsApp destek hattına yönlendirildi." });
+      setMsg("d_msg", "ok", "WhatsApp sohbeti açıldı ve talebiniz destek kaydına işlendi.");
+    } catch (e) { setMsg("d_msg", "err", "Talep kaydı açılamadı: " + e.message); }
+    finally { wa.disabled = false; if (!win) location.href = url; }
+  };
   root.querySelectorAll("[data-copy]").forEach((b) => b.onclick = async () => { try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = "Kopyalandı"; setTimeout(() => (b.textContent = "Kopyala"), 1500); } catch {} });
   const sub = $("#d_submit");
   if (sub) sub.onclick = async () => {

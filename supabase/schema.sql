@@ -515,3 +515,41 @@ where not exists (select 1 from public.crypto_accounts);
 
 insert into public.settings (id, deposit_receipt_required, min_deposit)
 values (true, false, 0) on conflict (id) do nothing;
+
+-- =====================================================================
+--  Müşteri silme (admin) — auth kullanıcısı, profil, bağlı kayıtlar ve belgeler birlikte
+--  Admin panelindeki "Sil" düğmesi bu RPC'yi çağırır. profiles.id auth.users'a
+--  ON DELETE CASCADE bağlı olduğundan auth kaydı silinince diğer tablolar da temizlenir.
+-- =====================================================================
+create or replace function public.admin_delete_customer(p_id uuid)
+returns boolean language plpgsql security definer set search_path = public as $$
+declare v_role text;
+begin
+  if not public.is_admin() then raise exception 'not authorized' using errcode = '42501'; end if;
+  select role into v_role from public.profiles where id = p_id;
+  if v_role is null then return false; end if;
+  if v_role = 'admin' then raise exception 'admin hesabı silinemez' using errcode = '42501'; end if;
+  delete from storage.objects where bucket_id in ('kyc', 'receipts') and (storage.foldername(name))[1] = p_id::text;
+  delete from auth.users where id = p_id;
+  return true;
+end; $$;
+revoke all on function public.admin_delete_customer(uuid) from public;
+grant execute on function public.admin_delete_customer(uuid) to authenticated;
+
+-- =====================================================================
+--  Rol koruması: müşteriler kendi profillerindeki role sütununu değiştiremez.
+--  (RLS kendi satırını güncellemeye izin verdiğinden bu trigger olmadan herkes
+--   profiles.role = 'admin' yazabiliyordu; veri erişimi JWT'den okunduğu için
+--   sızmıyordu ama admin arayüzüne yönlendiriliyordu.)
+-- =====================================================================
+create or replace function public.protect_profile_role()
+returns trigger language plpgsql security definer set search_path = public as $$
+begin
+  if new.role is distinct from old.role and not public.is_admin() then
+    raise exception 'role değiştirilemez' using errcode = '42501';
+  end if;
+  return new;
+end; $$;
+drop trigger if exists profiles_protect_role on public.profiles;
+create trigger profiles_protect_role before update on public.profiles
+  for each row execute function public.protect_profile_role();

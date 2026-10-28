@@ -118,6 +118,27 @@ uyarlanmıştır: solda koyu lacivert görsel panel (masaüstü), sağda beyaz f
 sınıfın `symbol-d300c5e6.css`'te hiç kuralı yok; bunlar **orijinal sitede de**
 ikonsuz görünür, o yüzden bilerek eklenmedi.
 
+## Mobil görünüm ve alt navigasyon
+
+- `public/build/assets/mobile.css`: ≤767px için düzen düzeltmeleri (taşan tablolar yatay kaydırılır,
+  ana sayfa bölümleri, başlık boyutları, WhatsApp düğmesinin konumu).
+- `src/_includes/partials/mobile-nav.njk` + `mobile-nav.css/js`: altta sabit duran koyu navigasyon barı
+  (Ana Sayfa · Piyasalar · Hesap Aç · Giriş · Menü) ve "Menü"ye basınca açılan, tüm siteyi gruplar
+  hâlinde listeleyen alt sayfa. Bağlantılar `src/_data/nav.json`'dan gelir; başlıktaki ☰ düğmesi de
+  aynı sayfayı açar. Masaüstünde görünmez.
+- Panel ve admin (`app/panel-mobile.js`): ≤900px'de aynı tarz alt bar; "Menü" yan çekmeceyi açar.
+  `panel.html#deposit`, `admin.html#investors` gibi bağlantılarla bölüm doğrudan açılır.
+
+## Panel: kredi kartı ile yatırım ve müşteri silme
+
+- **Kredi Kartı** sekmesi (Para Yatır): "WhatsApp ile Devam Et" düğmesi `app/config.js` içindeki
+  `whatsapp` numarasına hazır mesajla sohbet açar ve Destek'te otomatik talep kaydı oluşturur.
+- **Sil** düğmeleri (Potansiyel ve Yatırımcılar listeleri + müşteri düzenleme ekranı):
+  `supabase/schema.sql` sonundaki `admin_delete_customer` RPC'si auth kullanıcısını, profili, bağlı
+  kayıtları ve belgeleri birlikte siler. RPC kurulmamışsa yalnızca profil satırı silinir.
+  Kurulum: schema.sql'in sonundaki iki bloğu (RPC + `profiles_protect_role` trigger'ı) Supabase
+  SQL Editor'de çalıştırın.
+
 ## Bilinmesi gerekenler
 
 - **Orijinal JS paketleri yeniden kullanılıyor.** Kullanıcıya görünen İngilizce metin içeren

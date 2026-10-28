@@ -1,0 +1,71 @@
+/* Mobil düzen düzeltmeleri — tüm sayfalarda base.njk ile yüklenir.
+   Orijinal derleme masaüstü odaklı; dar ekranlarda taşan tablolar, sıkışan bölümler ve
+   eksik boşluklar burada düzeltilir. Masaüstü (≥768px) etkilenmez. */
+
+@media (max-width: 767px) {
+  html, body { overflow-x: hidden; }
+  body { -webkit-text-size-adjust: 100%; }
+
+  /* Üst başlık */
+  header .small_screen .trust-logo-new-home img { max-height: 44px; width: auto; }
+  header .small_screen .flex.gap-5 { gap: 10px; }
+  header .small_screen .loginButton { font-size: 13px; padding: 8px 14px; }
+
+  /* WhatsApp düğmesi alt barın üstünde dursun */
+  .whatsapp-icon { top: auto !important; right: 14px !important; bottom: calc(var(--tcbn-h, 64px) + var(--tcbn-gap, 12px) + 16px + env(safe-area-inset-bottom, 0px)) !important; width: 52px !important; }
+  .whatsapp-icon img { width: 52px !important; }
+
+  /* Fiyat bandı */
+  .quotes .quotes-edge { padding-top: 8px; padding-bottom: 8px; }
+  .quotes h6 { font-size: 14px !important; }
+
+  /* ---- Ana sayfa ---- */
+  .trading_essentials { padding-top: 3rem; padding-bottom: 3rem; gap: 2rem; }
+  .trading_essentials_left { padding-left: 1rem; padding-right: 1rem; }
+  .trading_essentials_left h3 { font-size: 28px; line-height: 34px; }
+  .trading_essentials_right { width: 100% !important; padding: 0 1rem; }
+
+  .why_traders_choose { padding: 2.5rem 1.25rem; }
+  .why_traders_choose_right h3 { font-size: 26px; line-height: 32px; }
+  .why_traders_choose_right h4 { font-size: 16px; line-height: 24px; }
+  .why_traders_choose_left { display: grid; grid-template-columns: 1fr; gap: 0; }
+  .why_traders_choose_left > div { display: flex; flex-direction: row; align-items: center; gap: 12px; margin: 0; padding: 14px 0 !important; border: 0 !important; border-bottom: 1px solid #ffffff14 !important; }
+  .why_traders_choose_left > div:last-child { border-bottom: 0 !important; }
+  .why_traders_choose_left h5 { width: auto; padding: 0; font-size: 16px; }
+
+  .trade_table { padding: 3rem 0; }
+  .trade_table .container { padding-left: 1rem; padding-right: 1rem; }
+  .trade_table_header h2, .trade_table_header h1 { font-size: 22px; }
+  .trade_table_header p { font-size: 15px; line-height: 22px; }
+  .btn-share { font-size: 13px; padding: .25rem 1rem; line-height: 30px; }
+  .table-trade { min-height: 0; max-height: none; overflow-x: auto !important; overflow-y: visible; -webkit-overflow-scrolling: touch; }
+  .table-trade table { min-width: 640px; }
+  .table-trade thead tr th, .table-trade tbody td { padding: 12px 14px; white-space: nowrap; }
+  .pagination { margin-left: .5rem; margin-right: .5rem; }
+
+  /* ---- /instruments/* ---- */
+  .main-section { padding-left: 1rem; padding-right: 1rem; }
+  .main-section h1 { font-size: 32px; line-height: 1.15; }
+  .main-section h2.pj400 { font-size: 16px; line-height: 24px; }
+  .acc-type { gap: 1rem; }
+  .centered-table { -webkit-overflow-scrolling: touch; }
+  .centered-table th, .centered-table td { white-space: nowrap; padding: 12px 14px; font-size: 14px; }
+  .centered-table td:first-child { text-align: left; }
+  .centered-table .quote, .centered-table td:first-child > div { align-items: flex-start; }
+  .floatings .data { min-width: 180px; padding: 14px 12px; }
+
+  /* ---- Genel iç sayfalar ---- */
+  .container.mx-auto.px-6 { padding-left: 1rem; padding-right: 1rem; }
+  h1.text-4xl { font-size: 30px; line-height: 1.15; }
+  .lp-stats { gap: .75rem; }
+  .lp-card { padding: 1rem .75rem; }
+  .lp-card .lp-value { font-size: 1.25rem; }
+  .lp-table-page .table-trade table { min-width: 700px; }
+
+  /* Formlar ve kartlar */
+  input, select, textarea { font-size: 16px; } /* iOS'ta odakta otomatik yakınlaştırmayı önler */
+  .grid.md\:grid-cols-3, .grid.md\:grid-cols-2 { gap: 1rem; }
+
+  /* Menü alt sayfası açıkken sayfa kaymasın */
+  body.tcsheet-open { overflow: hidden; }
+}
