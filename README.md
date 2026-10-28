@@ -126,7 +126,8 @@ ikonsuz görünür, o yüzden bilerek eklenmedi.
   (Ana Sayfa · Piyasalar · Hesap Aç · Giriş · Menü) ve "Menü"ye basınca açılan, tüm siteyi gruplar
   hâlinde listeleyen alt sayfa. Bağlantılar `src/_data/nav.json`'dan gelir; başlıktaki ☰ düğmesi de
   aynı sayfayı açar. Masaüstünde görünmez.
-- Panel ve admin (`app/panel-mobile.js`): ≤900px'de aynı tarz alt bar; "Menü" yan çekmeceyi açar.
+- Panel ve admin (`app/panel-mobile.js`): ≤900px'de aynı tarz alt bar; "Menü" tüm bölümleri,
+  kullanıcı kartını ve Çıkış'ı listeleyen alt sayfayı açar (yan çekmece ve ☰ mobilde yok).
   `panel.html#deposit`, `admin.html#investors` gibi bağlantılarla bölüm doğrudan açılır.
 
 ## Panel: kredi kartı ile yatırım ve müşteri silme

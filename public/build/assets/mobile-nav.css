@@ -1,15 +1,12 @@
 /* Mobil alt navigasyon (tcbn) + Menü alt sayfası (tcsheet). Yalnızca ≤767px. */
 :root { --tcbn-h: 64px; --tcbn-gap: 12px; --tcbn-accent: #d7e972; --tcbn-bg: rgba(6, 20, 19, 0.94); }
 .tcbn, .tcsheet, .tcsheet__scrim { display: none; }
-#tcNavToggle { display: none; }
 
 @media (max-width: 767px) {
   body.has-tcbn { padding-bottom: calc(var(--tcbn-h) + var(--tcbn-gap) + 14px + env(safe-area-inset-bottom, 0px)); }
 
-  /* Eski hamburger menüsü yerine yeni menü düğmesi */
+  /* Eski hamburger menüsü kaldırıldı; menü alt bardaki "Menü" ile açılır */
   #mobileMenuButtons, #mainMenu { display: none !important; }
-  #tcNavToggle { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 12px; border: 1px solid #e5e7eb; background: #fff; color: #111; }
-  #tcNavToggle svg { width: 20px; height: 20px; }
 
   .tcbn {
     position: fixed; z-index: 900; left: max(14px, env(safe-area-inset-left)); right: max(14px, env(safe-area-inset-right));

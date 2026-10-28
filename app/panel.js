@@ -72,11 +72,11 @@ function renderShell() {
   });
   $("#logoutBtn").innerHTML = `${PANEL_ICON.logout}<span>Çıkış</span>`;
   $("#logoutBtn").onclick = async () => { await S.signOut(); location.replace("auth.html"); };
-  $("#mobileToggle").onclick = () => { $(".panel-side").classList.toggle("open"); $("#sideScrim").classList.toggle("hidden"); };
-  $("#sideScrim").onclick = closeMobile;
+  const mt = $("#mobileToggle"); if (mt) mt.onclick = () => { $(".panel-side").classList.toggle("open"); $("#sideScrim").classList.toggle("hidden"); };
+  const sc = $("#sideScrim"); if (sc) sc.onclick = closeMobile;
   $("#notifBtn").onclick = toggleNotif;
 }
-function closeMobile() { $(".panel-side").classList.remove("open"); $("#sideScrim").classList.add("hidden"); }
+function closeMobile() { const side = $(".panel-side"); if (side) side.classList.remove("open"); const sc = $("#sideScrim"); if (sc) sc.classList.add("hidden"); }
 function setActive() {
   document.querySelectorAll("#sideNav .panel-side-link").forEach((b, i) => b.classList.toggle("active", NAV[i].id === view));
 }
