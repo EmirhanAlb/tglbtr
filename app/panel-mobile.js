@@ -12,7 +12,8 @@ const SLOTS = kind === "admin"
     ]
   : [
       { id: "overview", label: "Özet" }, { id: "deposit", label: "Yatır" },
-      { id: "withdraw", label: "Çek" }, { id: "support", label: "Destek" },
+      { id: "transfer", label: "Transfer" }, { id: "withdraw", label: "Çek" },
+      { id: "support", label: "Destek" },
     ];
 const MENU_ICON = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="8" cy="8" r="1.75"/><circle cx="16" cy="8" r="1.75"/><circle cx="8" cy="16" r="1.75"/><circle cx="16" cy="16" r="1.75"/></svg>`;
 const $ = (s, r = document) => r.querySelector(s);

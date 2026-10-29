@@ -3926,7 +3926,8 @@ body.panel-body img { max-width: 100%; }
   .pbn__item { position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; padding: 0; border: none; background: transparent; color: var(--text-muted); font-family: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .pbn__ic { display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; transition: color .2s, transform .2s; }
   .pbn__ic svg { width: 20px; height: 20px; display: block; }
-  .pbn__label { font-size: 10.5px; font-weight: 600; letter-spacing: .01em; line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .pbn__label { font-size: 10px; font-weight: 600; letter-spacing: 0; line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .pbn { padding: 0 4px; }
   .pbn__item.is-active, .pbn__item--more.is-tint { color: var(--brand-silver-bright); }
   .pbn__item.is-active::before { content: ""; position: absolute; top: -1.5px; left: 50%; width: 24px; height: 3px; border-radius: 2px; background: var(--brand-silver); box-shadow: 0 0 8px rgba(187, 198, 204, 0.8); transform: translateX(-50%); }
   .pbn__item.is-active .pbn__ic { transform: translateY(-1px) scale(1.06); filter: drop-shadow(0 0 6px rgba(187, 198, 204, 0.5)); }
