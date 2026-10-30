@@ -1,10 +1,39 @@
 // Müşteri paneli — lmax_capital Panel.jsx yapısının vanilla JS portu.
 // 8 bölüm: Özet, MT5 Hesabım, Para Yatır, Para Çek, Transfer, KYC, Destek, Hesabım.
-import { supabase, applyBrand } from "./app.js";
+import { applyBrand, migrateLegacyAdminSession } from "./app.js";
 import * as S from "./store.js";
 import { PANEL_ICON, FIELD_ICO } from "./icons.js";
 
 applyBrand();
+
+// ---------- hata bildirimi + oturum kaybı ----------
+function toast(text, kind = "err") {
+  let host = document.getElementById("toastHost");
+  if (!host) { host = document.createElement("div"); host.id = "toastHost"; host.className = "panel-toast-host"; document.body.appendChild(host); }
+  const t = document.createElement("div"); t.className = `panel-toast ${kind}`; t.textContent = text;
+  host.appendChild(t); setTimeout(() => t.remove(), 7000);
+}
+const isAuthError = (e) => { const m = String(e?.message || e || ""); return e?.code === "PGRST301" || /jwt|refresh token|not authenticated|401/i.test(m); };
+let sessionLostShown = false;
+function showSessionLost() {
+  if (sessionLostShown) return; sessionLostShown = true;
+  const ov = document.createElement("div"); ov.className = "panel-drawer-overlay";
+  ov.innerHTML = `<div class="panel-drawer"><div class="panel-drawer-head"><div class="panel-drawer-title">Oturum sona erdi</div></div>
+    <div class="panel-form"><p class="panel-side-user-email" style="margin:0 0 14px">Oturumunuz kapanmış görünüyor. Devam etmek için yeniden giriş yapın.</p>
+    <div class="panel-form-actions"><a class="btn btn-primary" href="auth.html">Yeniden Giriş Yap</a></div></div></div>`;
+  document.body.appendChild(ov);
+}
+window.addEventListener("unhandledrejection", (ev) => {
+  const e = ev.reason; const msg = e?.message || String(e || "Bilinmeyen hata");
+  if (isAuthError(e)) return showSessionLost();
+  toast("İşlem başarısız: " + msg);
+});
+let refreshPending = false;
+function isBusyEditing() {
+  if (document.querySelector(".panel-drawer-overlay")) return true;
+  const a = document.activeElement;
+  return !!(a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) && a.closest("#view"));
+}
 
 // ---------- küçük yardımcılar ----------
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -30,6 +59,7 @@ let session = null;
 let me = null;
 
 async function boot() {
+  await migrateLegacyAdminSession(); // eski sürümde müşteri anahtarına yazılmış yönetici oturumu varsa taşı
   session = await S.getCurrentSession();
   if (!session) { location.replace("auth.html"); return; }
   if (session.role === "admin") { location.replace("admin.html"); return; }
@@ -37,7 +67,10 @@ async function boot() {
   if (!me) { await S.signOut(); location.replace("auth.html"); return; }
 
   renderShell();
-  S.subscribe(() => reloadMe().then(() => render()));
+  S.onAuthChange((s) => { if (!s) showSessionLost(); });
+  // Canlı yenileme: bir alana yazılırken ya da modal açıkken ekranı silme, sonraya bırak.
+  S.subscribe(() => { if (isBusyEditing()) { refreshPending = true; return; } reloadMe().then(() => render()); });
+  document.addEventListener("focusout", () => { if (refreshPending && !isBusyEditing()) setTimeout(() => { if (refreshPending && !isBusyEditing()) reloadMe().then(() => render()); }, 400); });
   await render();
 }
 
@@ -83,6 +116,7 @@ function setActive() {
 
 async function render() {
   setActive();
+  refreshPending = false;
   const root = $("#view");
   root.innerHTML = `<div class="panel-empty">— … —</div>`;
   try {
@@ -96,7 +130,8 @@ async function render() {
     else if (view === "account") await renderAccount(root);
     await refreshNotifDot();
   } catch (e) {
-    root.innerHTML = `<div class="panel-empty">Hata: ${esc(e.message)}</div>`;
+    if (isAuthError(e)) showSessionLost();
+    root.innerHTML = `<div class="panel-empty">Hata: ${esc(e.message)}<br><button type="button" class="panel-row-action" style="margin-top:10px" onclick="location.reload()">Sayfayı yenile</button></div>`;
   }
 }
 

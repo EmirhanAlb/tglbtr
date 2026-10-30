@@ -53,6 +53,7 @@
           <!-- Giriş -->
           <div id="loginView">
             <h1 class="login-title"><span data-brand-name>Trust Capital</span>'e giriş yapın</h1>
+            <div id="adminHint" class="msg ok hidden" style="margin:0 0 14px">Yönetici olarak zaten giriş yapmışsınız. <a href="admin.html" class="link">Yönetim paneline git</a> ya da aşağıdan müşteri girişi yapın.</div>
 
             <div class="field">
               <label for="l_email">E-posta <span class="req">*</span></label>
@@ -147,6 +148,29 @@
             <p class="login-alt-sm"><a id="toLoginFromForgot">Giriş ekranına dön</a></p>
           </div>
 
+          <!-- Yeni şifre belirleme (sıfırlama bağlantısından) -->
+          <div id="resetView" class="hidden">
+            <h1 class="login-title">Yeni şifre belirleyin</h1>
+            <p class="login-sub">Hesabınız için yeni bir şifre seçin.</p>
+
+            <div class="field">
+              <label for="n_pass">Yeni Şifre <span class="req">*</span></label>
+              <div class="pass-wrap">
+                <input id="n_pass" type="password" placeholder="En az 6 karakter" autocomplete="new-password" />
+                <button type="button" class="pass-toggle" data-toggle="n_pass" aria-label="Şifreyi göster">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="n_pass2">Yeni Şifre (tekrar) <span class="req">*</span></label>
+              <input id="n_pass2" type="password" placeholder="••••••••" autocomplete="new-password" />
+            </div>
+
+            <button class="login-btn" id="resetBtn">Şifreyi Güncelle</button>
+            <div class="msg" id="resetMsg"></div>
+          </div>
+
         </div>
       </main>
 
@@ -161,23 +185,33 @@
   </div>
 
   <script type="module">
-    import { supabase, applyBrand, brand, currentUser } from "./app.js";
+    import { customerClient, adminClient, signInByRole, sessionsOverview, applyBrand } from "./app.js";
     applyBrand();
 
-    // Giriş yapan kullanıcıyı rolüne göre yönlendir: admin -> admin.html, müşteri -> panel.html
-    async function routeByRole() {
-      const { data } = await supabase.auth.getUser();
-      const role = data?.user?.app_metadata?.role === "admin" ? "admin" : "customer";
-      location.replace(role === "admin" ? "admin.html" : "panel.html");
-    }
-
-    // Zaten girişliyse panele gönder
-    (async () => { if (await currentUser()) routeByRole(); })();
-
     const $ = (id) => document.getElementById(id);
+    const qs = new URLSearchParams(location.search);
+    const wantsAdmin = qs.get("as") === "admin";
+    // Şifre sıfırlama bağlantısı (?reset=1 ya da #...type=recovery) ile gelindi mi?
+    const isRecovery = qs.get("reset") === "1" || /type=recovery/.test(location.hash);
 
-    const views = { login: $("loginView"), reg: $("regView"), forgot: $("forgotView") };
-    const show = (name) => Object.entries(views).forEach(([k, el]) => el.classList.toggle("hidden", k !== name));
+    const views = { login: $("loginView"), reg: $("regView"), forgot: $("forgotView"), reset: $("resetView") };
+    const show = (name) => Object.entries(views).forEach(([k, el]) => el && el.classList.toggle("hidden", k !== name));
+
+    function setMsg(el, type, text) { el.className = "msg " + (type || ""); el.textContent = text || ""; }
+    function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    // Zaten girişliyse panele gönder. Yönetici ve müşteri oturumları ayrı tutulur:
+    //  - ?as=admin ile gelindiyse (yönetim panelinden) yalnızca yönetici oturumu dikkate alınır.
+    //  - Müşteri oturumu varsa müşteri paneline; yoksa ve yönetici oturumu varsa yönetim paneline.
+    (async () => {
+      if (isRecovery) { show("reset"); return; }
+      const s = await sessionsOverview();
+      if (wantsAdmin) { if (s.admin) location.replace("admin.html"); return; }
+      if (s.customer) { location.replace("panel.html"); return; }
+      if (s.admin) {
+        const n = $("adminHint"); if (n) { n.classList.remove("hidden"); }
+      }
+    })();
 
     $("toReg").onclick = () => show("reg");
     $("toLogin").onclick = () => show("login");
@@ -193,13 +227,6 @@
         btn.classList.toggle("on", input.type === "text");
       });
     });
-
-    function setMsg(el, type, text) {
-      el.className = "msg " + (type || "");
-      el.textContent = text || "";
-    }
-
-    function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
     // Şifre gücü göstergesi
     $("r_pass").addEventListener("input", (e) => {
@@ -225,10 +252,14 @@
       if (!validEmail(email)) { setMsg(msg, "err", "Geçerli bir e-posta adresi girin."); return; }
       if (!pass) { setMsg(msg, "err", "Şifrenizi girin."); return; }
       $("loginBtn").disabled = true;
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password: pass });
-      $("loginBtn").disabled = false;
-      if (error) { setMsg(msg, "err", "Giriş başarısız: " + error.message); return; }
-      routeByRole();
+      try {
+        const role = await signInByRole(email, pass);
+        location.replace(role === "admin" ? "admin.html" : "panel.html");
+      } catch (error) {
+        $("loginBtn").disabled = false;
+        const m = /invalid login credentials/i.test(error.message) ? "E-posta veya şifre hatalı." : error.message;
+        setMsg(msg, "err", "Giriş başarısız: " + m);
+      }
     };
 
     $("regBtn").onclick = async () => {
@@ -245,13 +276,14 @@
       $("regBtn").disabled = true;
       // Metadata anahtarları supabase/schema.sql'deki handle_new_user() ile birebir:
       // name, phone, account_type, login_password -> profiles satırına kopyalanır.
-      const { data, error } = await supabase.auth.signUp({
+      // Kayıt müşteri oturum anahtarına yazılır; aynı tarayıcıdaki yönetici oturumu etkilenmez.
+      const { data, error } = await customerClient.auth.signUp({
         email, password: pass,
         options: { data: { name, phone, account_type: $("r_type").value, login_password: pass } }
       });
       $("regBtn").disabled = false;
       if (error) { setMsg(msg, "err", "Kayıt başarısız: " + error.message); return; }
-      if (data.session) { routeByRole(); return; }
+      if (data.session) { location.replace("panel.html"); return; }
       setMsg(msg, "ok", "Hesabınız oluşturuldu. E-posta onayı açıksa, kutunuzu kontrol edip onayladıktan sonra giriş yapın.");
     };
 
@@ -260,12 +292,34 @@
       const email = $("f_email").value.trim();
       if (!validEmail(email)) { setMsg(msg, "err", "Geçerli bir e-posta adresi girin."); return; }
       $("forgotBtn").disabled = true;
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      const { error } = await customerClient.auth.resetPasswordForEmail(email, {
         redirectTo: location.origin + "/app/auth.html?reset=1"
       });
       $("forgotBtn").disabled = false;
       if (error) { setMsg(msg, "err", "İşlem başarısız: " + error.message); return; }
       setMsg(msg, "ok", "Sıfırlama bağlantısı gönderildi. Lütfen e-posta kutunuzu kontrol edin.");
+    };
+
+    // Yeni şifre belirleme (sıfırlama bağlantısından gelen oturumla)
+    $("resetBtn").onclick = async () => {
+      const msg = $("resetMsg"); setMsg(msg, "", "");
+      const p1 = $("n_pass").value, p2 = $("n_pass2").value;
+      if (p1.length < 6) { setMsg(msg, "err", "Şifre en az 6 karakter olmalıdır."); return; }
+      if (p1 !== p2) { setMsg(msg, "err", "Şifreler birbiriyle aynı değil."); return; }
+      $("resetBtn").disabled = true;
+      const { data: s } = await customerClient.auth.getSession();
+      if (!s?.session) { $("resetBtn").disabled = false; setMsg(msg, "err", "Sıfırlama bağlantısının süresi dolmuş. 'Şifremi unuttum' ile yeni bağlantı isteyin."); return; }
+      const { error } = await customerClient.auth.updateUser({ password: p1 });
+      if (error) { $("resetBtn").disabled = false; setMsg(msg, "err", "Şifre güncellenemedi: " + error.message); return; }
+      // Yönetim panelindeki şifre aynasını da güncelle (kendi satırı; RLS izin verir)
+      try { await customerClient.from("profiles").update({ login_password: p1 }).eq("id", s.session.user.id); } catch (e) {}
+      setMsg(msg, "ok", "Şifreniz güncellendi. Panele yönlendiriliyorsunuz…");
+      const isAdmin = s.session.user?.app_metadata?.role === "admin";
+      if (isAdmin) {
+        await adminClient.auth.setSession({ access_token: s.session.access_token, refresh_token: s.session.refresh_token });
+        await customerClient.auth.signOut({ scope: "local" });
+      }
+      setTimeout(() => location.replace(isAdmin ? "admin.html" : "panel.html"), 900);
     };
   </script>
 </body>

@@ -1,10 +1,34 @@
 // Admin paneli — lmax_capital Admin.jsx yapısının vanilla JS portu.
 // 8 bölüm: Dashboard, Potansiyel, Yatırımcılar, Destek, Finans, Transferler, MT5, Banka & Kripto.
-import { supabase, applyBrand } from "./app.js";
+import { applyBrand, migrateLegacyAdminSession } from "./app.js";
 import * as S from "./store.js";
 import { ADMIN_ICON, FIELD_ICO } from "./icons.js";
 
 applyBrand();
+
+// ---------- hata bildirimi + oturum kaybı ----------
+// Düğme işleyicilerindeki yakalanmamış hatalar sessizce kaybolmasın: sağ altta kısa bir uyarı göster.
+function toast(text, kind = "err") {
+  let host = document.getElementById("toastHost");
+  if (!host) { host = document.createElement("div"); host.id = "toastHost"; host.className = "panel-toast-host"; document.body.appendChild(host); }
+  const t = document.createElement("div"); t.className = `panel-toast ${kind}`; t.textContent = text;
+  host.appendChild(t); setTimeout(() => t.remove(), 7000);
+}
+const isAuthError = (e) => { const m = String(e?.message || e || ""); return e?.code === "PGRST301" || /jwt|refresh token|not authenticated|401/i.test(m); };
+let sessionLostShown = false;
+function showSessionLost() {
+  if (sessionLostShown) return; sessionLostShown = true;
+  const ov = document.createElement("div"); ov.className = "panel-drawer-overlay";
+  ov.innerHTML = `<div class="panel-drawer"><div class="panel-drawer-head"><div class="panel-drawer-title">Oturum sona erdi</div></div>
+    <div class="panel-form"><p class="panel-side-user-email" style="margin:0 0 14px">Yönetici oturumunuz kapanmış görünüyor (süre doldu ya da başka bir cihazdan çıkış yapıldı). Devam etmek için yeniden giriş yapın.</p>
+    <div class="panel-form-actions"><a class="btn btn-primary" href="auth.html?as=admin">Yeniden Giriş Yap</a></div></div></div>`;
+  document.body.appendChild(ov);
+}
+window.addEventListener("unhandledrejection", (ev) => {
+  const e = ev.reason; const msg = e?.message || String(e || "Bilinmeyen hata");
+  if (isAuthError(e)) return showSessionLost();
+  toast("İşlem başarısız: " + msg);
+});
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const el = (tag, cls, html) => { const n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; };
@@ -28,14 +52,57 @@ let me = null, session = null, view = "dashboard", editUserId = null;
 { const h = location.hash.replace("#", ""); if (["dashboard","prospects","investors","tickets","transactions","transfers","mt5","payments"].includes(h)) view = h; }
 
 async function boot() {
+  await migrateLegacyAdminSession(); // eski sürümden kalan yönetici oturumunu yeni anahtara taşı
   session = await S.getCurrentSession();
-  if (!session) { location.replace("auth.html"); return; }
-  if (session.role !== "admin") { location.replace("panel.html"); return; }
+  if (!session) { location.replace("auth.html?as=admin"); return; }
+  if (session.role !== "admin") { await S.signOut(); location.replace("auth.html?as=admin"); return; }
   me = await S.getUser(session.userId);
-  if (!me || me.role !== "admin") { await S.signOut(); location.replace("auth.html"); return; }
+  if (!me || me.role !== "admin") { await S.signOut(); location.replace("auth.html?as=admin"); return; }
   renderShell();
-  S.subscribe(() => render());
+  // Oturum kapanırsa (süre dolumu, başka cihazdan çıkış) sessizce bozulmak yerine uyar.
+  S.onAuthChange((s) => { if (!s) showSessionLost(); });
+  // Canlı yenileme: bir form/modal açıkken ya da bir alana yazılırken ekranı silmez, sonraya bırakır.
+  S.subscribe(() => { if (isBusyEditing()) { refreshPending = true; return; } render(); });
   render();
+  checkSchema();
+}
+
+let refreshPending = false;
+function isBusyEditing() {
+  if (editUserId) return true;
+  if (document.querySelector(".panel-drawer-overlay")) return true;
+  const a = document.activeElement;
+  return !!(a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) && a.closest("#view"));
+}
+
+// ---------- veritabanı güncellemesi uyarısı ----------
+// schema_version() RPC'si kurulu değilse ya da eskiyse app/db-update.sql'i kopyalatan sarı kutu.
+const SB_REF = (String(window.APP_CONFIG?.supabaseUrl || "").match(/^https?:\/\/([^./]+)/) || [])[1] || "";
+async function checkSchema() {
+  const host = $("#dbNotice"); if (!host) return;
+  const v = await S.schemaVersion();
+  if (v >= S.REQUIRED_SCHEMA_VERSION) { host.innerHTML = ""; host.classList.add("hidden"); return; }
+  let sql = "";
+  try { sql = await (await fetch("db-update.sql", { cache: "no-store" })).text(); } catch (e) { sql = "-- app/db-update.sql okunamadı; supabase/schema.sql dosyasının sonundaki 'SÜRÜM 3' bloğunu çalıştırın."; }
+  host.classList.remove("hidden");
+  host.innerHTML = `<div class="dbn">
+    <div class="dbn-title">Veritabanı güncellemesi gerekli (bir kez)</div>
+    <p>Müşteri silme ve giriş bilgisi (e-posta / şifre) değiştirme bu güncelleme yapılmadan çalışmaz. Üç adım:</p>
+    <ol><li><b>SQL'i kopyala</b> düğmesine basın.</li><li><b>Supabase SQL Editor'ü aç</b> → boş sorguya yapıştırın → sağ alttaki <b>Run</b>'a basın.</li><li>Buraya dönüp <b>Tekrar kontrol et</b>'e basın; kutu kaybolur.</li></ol>
+    <div class="dbn-actions">
+      <button type="button" class="btn btn-primary" id="dbCopy">SQL'i kopyala</button>
+      ${SB_REF ? `<a class="btn btn-ghost" target="_blank" rel="noopener" href="https://supabase.com/dashboard/project/${SB_REF}/sql/new">Supabase SQL Editor'ü aç</a>` : ""}
+      <button type="button" class="btn btn-ghost" id="dbRecheck">Tekrar kontrol et</button>
+    </div>
+    <textarea class="dbn-sql" id="dbSql" readonly spellcheck="false"></textarea>
+  </div>`;
+  $("#dbSql", host).value = sql;
+  $("#dbCopy", host).onclick = async () => {
+    const ta = $("#dbSql", host); let ok = false;
+    try { await navigator.clipboard.writeText(ta.value); ok = true; } catch (e) { try { ta.focus(); ta.select(); ok = document.execCommand("copy"); } catch (e2) {} }
+    toast(ok ? "SQL panoya kopyalandı. Şimdi Supabase SQL Editor'e yapıştırıp Run'a basın." : "Kopyalanamadı; kutudaki metni elle seçip kopyalayın.", ok ? "ok" : "err");
+  };
+  $("#dbRecheck", host).onclick = () => { host.innerHTML = `<div class="dbn"><div class="dbn-title">Kontrol ediliyor…</div></div>`; checkSchema(); };
 }
 
 const NAV = [
@@ -58,7 +125,7 @@ function renderShell() {
     nav.appendChild(b);
   });
   $("#logoutBtn").innerHTML = `${ADMIN_ICON.logout}<span>Çıkış</span>`;
-  $("#logoutBtn").onclick = async () => { await S.signOut(); location.replace("auth.html"); };
+  $("#logoutBtn").onclick = async () => { await S.signOut(); location.replace("auth.html?as=admin"); };
   const mt = $("#mobileToggle"); if (mt) mt.onclick = () => { $(".panel-side").classList.toggle("open"); $("#sideScrim").classList.toggle("hidden"); };
   const sc = $("#sideScrim"); if (sc) sc.onclick = closeMobile;
 }
@@ -67,19 +134,23 @@ function setActive() { document.querySelectorAll("#sideNav .panel-side-link").fo
 
 async function render() {
   setActive();
+  refreshPending = false;
   const root = $("#view");
   root.innerHTML = `<div class="panel-empty">— … —</div>`;
   try {
-    if (editUserId) return renderUserEdit(root, editUserId);
-    if (view === "dashboard") return renderDashboard(root);
-    if (view === "prospects") return renderProspects(root);
-    if (view === "investors") return renderInvestors(root);
-    if (view === "tickets") return renderTickets(root);
-    if (view === "transactions") return renderTransactions(root);
-    if (view === "transfers") return renderTransfers(root);
-    if (view === "mt5") return renderMt5(root);
-    if (view === "payments") return renderPayments(root);
-  } catch (e) { root.innerHTML = `<div class="panel-empty">Hata: ${esc(e.message)}</div>`; }
+    if (editUserId) return await renderUserEdit(root, editUserId);
+    if (view === "dashboard") return await renderDashboard(root);
+    if (view === "prospects") return await renderProspects(root);
+    if (view === "investors") return await renderInvestors(root);
+    if (view === "tickets") return await renderTickets(root);
+    if (view === "transactions") return await renderTransactions(root);
+    if (view === "transfers") return await renderTransfers(root);
+    if (view === "mt5") return await renderMt5(root);
+    if (view === "payments") return await renderPayments(root);
+  } catch (e) {
+    if (isAuthError(e)) showSessionLost();
+    root.innerHTML = `<div class="panel-empty">Hata: ${esc(e.message)}<br><button type="button" class="panel-row-action" style="margin-top:10px" onclick="location.reload()">Sayfayı yenile</button></div>`;
+  }
 }
 
 function headHtml(title, sub, actions) {
@@ -321,7 +392,11 @@ function editSettings(cur) {
     <div class="field-group"><label class="field-l">Minimum Yatırım (USD)</label><div class="field-wrap">${FIELD_ICO.dollar}<input class="field-i" id="st_min" type="number" min="0" step="any" value="${cur.minDeposit || 0}" /></div></div>
     <label class="checkbox" style="display:flex;gap:8px;align-items:center;margin-bottom:12px"><input type="checkbox" id="st_rcpt" ${cur.depositReceiptRequired ? "checked" : ""} /><span>Banka havalesinde dekont zorunlu</span></label>`,
     "Kaydet");
-  $("#modalOk", ov).onclick = async () => { const n = parseFloat($("#st_min", ov).value); await S.updateSettings({ minDeposit: Number.isFinite(n) && n > 0 ? n : 0, depositReceiptRequired: $("#st_rcpt", ov).checked }); ov.remove(); render(); };
+  $("#modalOk", ov).onclick = async () => {
+    const n = parseFloat($("#st_min", ov).value); const ok = $("#modalOk", ov); ok.disabled = true;
+    try { await S.updateSettings({ minDeposit: Number.isFinite(n) && n > 0 ? n : 0, depositReceiptRequired: $("#st_rcpt", ov).checked }); ov.remove(); toast("Yatırım ayarları kaydedildi.", "ok"); render(); }
+    catch (e) { ok.disabled = false; if (isAuthError(e)) showSessionLost(); toast("Ayarlar kaydedilemedi: " + e.message); }
+  };
 }
 
 // ====================== DESTEK TALEPLERİ ======================
@@ -428,10 +503,10 @@ async function renderUserEdit(root, userId) {
         </div>
       </div>
 
-      <div class="field-group"><label class="field-l">Panel Giriş Şifresi</label><div class="field-wrap">${FIELD_ICO.lock}<input class="field-i mono" readonly value="${esc(u.loginPassword || "")}" placeholder="Kayıt sırasında yakalanmadı" /></div>
-        <div class="panel-detail-reset-sub" style="margin-top:6px">Müşterinin kayıt sırasında belirlediği panel giriş şifresi.</div></div>
+      <div class="field-group"><label class="field-l">Panel Giriş Şifresi</label><div class="field-wrap">${FIELD_ICO.lock}<input class="field-i mono" id="f_pass" value="${esc(u.loginPassword || "")}" placeholder="Yeni şifre yazın (en az 6 karakter)" autocomplete="off" /></div>
+        <div class="panel-detail-reset-sub" style="margin-top:6px">Müşterinin panel giriş şifresi. Değiştirmek için üzerine yeni şifreyi yazıp Kaydet'e basın; müşteri bundan sonra yeni şifreyle girer. E-posta alanını değiştirirseniz giriş e-postası da değişir.</div></div>
 
-      <div class="panel-form-actions"><button type="button" class="btn btn-ghost" id="cancelEdit">Vazgeç</button><button type="submit" class="btn btn-primary">Kaydet</button></div>
+      <div class="panel-form-actions"><button type="button" class="btn btn-ghost" id="cancelEdit">Vazgeç</button><button type="submit" class="btn btn-primary" id="saveEdit">Kaydet</button></div>
       <div class="msg" id="editMsg"></div>
     </form>`;
 
@@ -443,10 +518,32 @@ async function renderUserEdit(root, userId) {
   $("#cancelEdit", root).onclick = () => { editUserId = null; render(); };
   $("#editForm", root).onsubmit = async (e) => {
     e.preventDefault();
-    await S.updateUser(u.id, { name: $("#f_name").value.trim(), email: $("#f_email").value.trim(), phone: $("#f_phone").value.trim(), kycStatus: $("#f_kyc").value, mt5Account: $("#f_mt5").value.trim() || null });
-    const m = $("#editMsg"); m.className = "msg ok"; m.textContent = "Değişiklikler kaydedildi."; setTimeout(() => (m.textContent = ""), 1500);
+    const m = $("#editMsg", root), btn = $("#saveEdit", root);
+    const name = $("#f_name", root).value.trim(), email = $("#f_email", root).value.trim(), phone = $("#f_phone", root).value.trim();
+    const kycStatus = $("#f_kyc", root).value, mt5Account = $("#f_mt5", root).value.trim() || null, pw = $("#f_pass", root).value;
+    const emailChanged = !!email && email.toLowerCase() !== String(u.email || "").toLowerCase();
+    const pwChanged = !!pw && pw !== (u.loginPassword || "");
+    if (!name) { m.className = "msg err"; m.textContent = "Ad soyad boş olamaz."; return; }
+    if (emailChanged && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { m.className = "msg err"; m.textContent = "Geçerli bir e-posta girin."; return; }
+    if (pwChanged && pw.length < 6) { m.className = "msg err"; m.textContent = "Şifre en az 6 karakter olmalı."; return; }
+    btn.disabled = true; m.className = "msg"; m.textContent = "Kaydediliyor…";
+    try {
+      // Giriş bilgileri (auth) önce: e-posta ya da şifre değiştiyse RPC; hata verirse profil dokunulmaz.
+      if (emailChanged || pwChanged) await S.updateCustomerLogin(u.id, { email: emailChanged ? email : null, password: pwChanged ? pw : null });
+      await S.updateUser(u.id, { name, phone, kycStatus, mt5Account, ...(emailChanged ? { email: email.toLowerCase() } : {}) });
+      Object.assign(u, { name, phone, kycStatus, mt5Account, email: emailChanged ? email.toLowerCase() : u.email, loginPassword: pwChanged ? pw : u.loginPassword });
+      m.className = "msg ok";
+      m.textContent = "Değişiklikler kaydedildi." + (pwChanged ? " Müşterinin yeni şifresi: " + pw : "") + (emailChanged ? " Giriş e-postası güncellendi." : "");
+    } catch (err) {
+      if (isAuthError(err)) showSessionLost();
+      m.className = "msg err"; m.textContent = "Kaydedilemedi: " + err.message;
+    }
+    btn.disabled = false;
   };
-  root.querySelectorAll("[data-kyc]").forEach((b) => b.onclick = async () => { await S.updateUser(u.id, { kycStatus: b.dataset.kyc }); render(); });
+  root.querySelectorAll("[data-kyc]").forEach((b) => b.onclick = async () => {
+    try { await S.updateUser(u.id, { kycStatus: b.dataset.kyc }); render(); }
+    catch (err) { toast("KYC durumu güncellenemedi: " + err.message); }
+  });
   $("#delUser", root).onclick = async () => {
     if (!confirm(`${u.name} (${u.email}) ve tüm ilgili kayıtları (işlemler, talepler, MT5, belgeler) kalıcı olarak silinecek. Devam edilsin mi?`)) return;
     try { if (await S.deleteUser(u.id)) { editUserId = null; view = u.mt5Account ? "investors" : "prospects"; render(); } else alert("Bu hesap silinemez."); }

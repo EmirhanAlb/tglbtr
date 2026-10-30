@@ -130,15 +130,39 @@ ikonsuz görünür, o yüzden bilerek eklenmedi.
   kullanıcı kartını ve Çıkış'ı listeleyen alt sayfayı açar (yan çekmece ve ☰ mobilde yok).
   `panel.html#deposit`, `admin.html#investors` gibi bağlantılarla bölüm doğrudan açılır.
 
-## Panel: kredi kartı ile yatırım ve müşteri silme
+## Panel: kredi kartı ile yatırım, müşteri silme, giriş bilgisi değiştirme
 
 - **Kredi Kartı** sekmesi (Para Yatır): "WhatsApp ile Devam Et" düğmesi `app/config.js` içindeki
   `whatsapp` numarasına hazır mesajla sohbet açar ve Destek'te otomatik talep kaydı oluşturur.
-- **Sil** düğmeleri (Potansiyel ve Yatırımcılar listeleri + müşteri düzenleme ekranı):
-  `supabase/schema.sql` sonundaki `admin_delete_customer` RPC'si auth kullanıcısını, profili, bağlı
-  kayıtları ve belgeleri birlikte siler. RPC kurulmamışsa yalnızca profil satırı silinir.
-  Kurulum: schema.sql'in sonundaki iki bloğu (RPC + `profiles_protect_role` trigger'ı) Supabase
-  SQL Editor'de çalıştırın.
+- **Sil** düğmeleri (Potansiyel ve Yatırımcılar listeleri + müşteri düzenleme ekranı): panel önce
+  müşterinin `kyc/` ve `receipts/` belgelerini Storage API ile kaldırır, sonra `admin_delete_customer`
+  RPC'si auth kullanıcısını siler (profil ve bağlı kayıtlar cascade ile gider). Supabase,
+  `storage.objects` tablosundan SQL ile silmeyi yasakladığı için eski RPC her silmede 403 veriyordu.
+- **Giriş bilgisi**: müşteri düzenleme ekranındaki E-posta ve Panel Giriş Şifresi alanları artık
+  yazılabilir; Kaydet'e basınca `admin_update_customer_login` RPC'si auth.users'ı (bcrypt) ve
+  `profiles.login_password` aynasını günceller, müşterinin açık oturumlarını kapatır.
+- **Veritabanı güncellemesi**: `schema_version()` RPC'si `store.js`'teki `REQUIRED_SCHEMA_VERSION`'dan
+  küçükse (ya da yoksa) yönetim paneli üstte sarı kutu gösterir; "SQL'i kopyala" `app/db-update.sql`
+  dosyasını panoya alır, "Supabase SQL Editor'ü aç" doğru projeyi açar. Yeni bir SQL değişikliği
+  gerektiğinde: schema.sql'deki bloğu güncelle, `schema_version()` değerini ve
+  `REQUIRED_SCHEMA_VERSION`'ı artır, `app/db-update.sql`'i yeniden üret.
+
+## Oturumlar: yönetici ve müşteri ayrı
+
+`app/app.js` iki Supabase istemcisi kurar: müşteri paneli `sb-<ref>-auth-token`, yönetim paneli
+`sb-<ref>-admin-auth-token` anahtarını kullanır. Aynı tarayıcıda hem yönetici hem müşteri girişi
+yapılabilir; müşteri girişi yöneticinin oturumunu ezmez (eski tek anahtarlı düzen, yönetici
+"müşteri olarak giriş yapınca" admin panelini bozuyor ve giriş sayfasına düşürüyordu).
+
+- `auth.html` girişte rolü belirleyip oturumu doğru anahtara yazar (`signInByRole`). Eski sürümden
+  müşteri anahtarında kalmış bir yönetici oturumu ilk açılışta otomatik taşınır.
+- `auth.html?as=admin` ile gelindiğinde müşteri oturumu olsa bile giriş formu gösterilir
+  (yönetim panelinden çıkış/yeniden giriş bu adrese gider).
+- Çıkış yalnızca o cihazdaki oturumu kapatır (`scope: "local"`); önceden tüm cihazlardaki
+  oturumlar iptal ediliyordu.
+- Şifre sıfırlama bağlantısı (`auth.html?reset=1`) artık "Yeni şifre belirleyin" ekranını açar.
+- Canlı (realtime) yenileme bir forma yazılırken ya da modal açıkken ekranı silmez; yakalanmamış
+  hatalar sağ altta kırmızı bildirim olarak görünür, oturum düşerse "Yeniden Giriş Yap" kutusu çıkar.
 
 ## Bilinmesi gerekenler
 

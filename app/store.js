@@ -96,7 +96,19 @@ export async function signUp({ name, email, phone, password, accountType }) {
   if (error) throw new Error(error.message);
   return sessionFromUser(data.user);
 }
-export async function signOut() { await supabase.auth.signOut(); }
+// Yalnızca bu cihazdaki oturumu kapatır; diğer cihazlardaki oturumlar açık kalır.
+export async function signOut() { await supabase.auth.signOut({ scope: "local" }); }
+
+// ---------- Şema sürümü (admin paneli "veritabanı güncellemesi gerekli" uyarısı için) ----------
+// supabase/schema.sql'deki schema_version() fonksiyonu kuruluysa sürüm numarasını, yoksa 0 döndürür.
+export const REQUIRED_SCHEMA_VERSION = 3;
+export async function schemaVersion() {
+  const { data, error } = await supabase.rpc("schema_version");
+  if (error) return 0;
+  return Number(data) || 0;
+}
+const isMissingFn = (error, name) => !!error && (error.code === "PGRST202" || new RegExp(`could not find the function|${name}`, "i").test(error.message || ""));
+const SCHEMA_HINT = "Veritabanı güncellemesi gerekli: Yönetim panelindeki sarı uyarıdaki SQL'i Supabase'de çalıştırın.";
 
 // ---------- Realtime — tek ortak kanal ----------
 const listeners = new Set();
@@ -142,18 +154,38 @@ export async function updateUser(id, patch) {
   throwIf(error);
   return mapUser(data);
 }
+// Müşterinin kyc/ ve receipts/ klasörlerindeki belgeleri Storage API ile siler.
+// (Supabase, storage.objects tablosundan SQL ile doğrudan silmeyi yasaklıyor; eski RPC bu yüzden
+//  her silmede "Direct deletion from storage tables is not allowed" hatası veriyordu.)
+async function removeUserFiles(id) {
+  for (const bucket of ["kyc", "receipts"]) {
+    const { data: files, error } = await supabase.storage.from(bucket).list(id, { limit: 1000 });
+    if (error || !files?.length) continue;
+    const paths = files.filter((f) => f.name).map((f) => `${id}/${f.name}`);
+    if (paths.length) { const { error: rErr } = await supabase.storage.from(bucket).remove(paths); throwIf(rErr); }
+  }
+}
 export async function deleteUser(id) {
   const u = await getUser(id);
   if (!u || u.role === "admin") return false;
-  // Tercih edilen yol: auth kullanıcısını, profili, bağlı kayıtları ve belgeleri birlikte silen
-  // admin_delete_customer RPC'si (supabase/schema.sql). Kurulu değilse yalnızca profil silinir;
-  // bağlı kayıtlar cascade ile gider, auth kaydı kalır.
+  await removeUserFiles(id);
+  // admin_delete_customer RPC'si (supabase/schema.sql) auth kullanıcısını siler; profil ve bağlı
+  // kayıtlar cascade ile gider. RPC kurulu değilse yalnızca profil silinir, auth kaydı kalır.
   const { error } = await supabase.rpc("admin_delete_customer", { p_id: id });
   if (!error) return true;
-  const missing = error.code === "PGRST202" || /could not find the function|admin_delete_customer/i.test(error.message || "");
-  if (!missing) throwIf(error);
+  if (/storage tables|orphaned objects/i.test(error.message || "")) throw new Error(SCHEMA_HINT + " (silme fonksiyonunun yeni sürümü gerekli)");
+  if (!isMissingFn(error, "admin_delete_customer")) throwIf(error);
   const res = await supabase.from("profiles").delete().eq("id", id);
   throwIf(res.error);
+  return true;
+}
+// Admin: müşterinin giriş e-postasını ve/veya şifresini değiştirir (auth.users + profiles aynası).
+export async function updateCustomerLogin(id, { email, password }) {
+  const { error } = await supabase.rpc("admin_update_customer_login", {
+    p_id: id, p_email: email ? String(email).trim() : null, p_password: password ? String(password) : null,
+  });
+  if (isMissingFn(error, "admin_update_customer_login")) throw new Error(SCHEMA_HINT);
+  throwIf(error);
   return true;
 }
 
