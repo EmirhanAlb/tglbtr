@@ -3918,7 +3918,7 @@ body.panel-body img { max-width: 100%; }
 @media (max-width: 560px) { .kyc-upload-grid { grid-template-columns: 1fr; } .transfer-route { flex-direction: column; } }
 
 /* ---- Mobil alt navigasyon (panel-mobile.js) ---- */
-.pbn { display: none; }
+.pbn, .pbnsheet, .pbnsheet__scrim { display: none; }
 .panel-topbar-brand { display: none; }
 @media (max-width: 900px) {
   body.has-pbn .panel-main { padding-bottom: calc(64px + 12px + 28px + env(safe-area-inset-bottom, 0px)); }
@@ -3938,9 +3938,9 @@ body.panel-body img { max-width: 100%; }
   .panel-topbar-brand img { height: 22px; width: auto; filter: drop-shadow(0 0 12px rgba(187, 198, 204, 0.2)); }
 
   /* Menü alt sayfası */
-  .pbnsheet__scrim { position: fixed; inset: 0; z-index: 60; background: rgba(0, 0, 0, 0.55); opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s ease; }
+  .pbnsheet__scrim { display: block; position: fixed; inset: 0; z-index: 60; background: rgba(0, 0, 0, 0.55); opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s ease; }
   .pbnsheet__scrim.is-open { opacity: 1; visibility: visible; }
-  .pbnsheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 61; pointer-events: none; }
+  .pbnsheet { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 61; pointer-events: none; }
   .pbnsheet__panel { pointer-events: auto; position: absolute; left: 0; right: 0; bottom: 0; max-height: 86vh; display: flex; flex-direction: column; gap: 12px; background: var(--bg-1); color: var(--text-primary); border-radius: 22px 22px 0 0; border-top: 1px solid var(--border-strong); box-shadow: 0 -18px 50px rgba(0, 0, 0, 0.6); padding: 6px 16px calc(16px + env(safe-area-inset-bottom, 0px)); transform: translateY(100%); visibility: hidden; transition: transform .32s cubic-bezier(.32, .72, 0, 1), visibility .32s; outline: none; overflow-y: auto; }
   .pbnsheet.is-open .pbnsheet__panel { transform: translateY(0); visibility: visible; }
   .pbnsheet__handle { align-self: center; display: flex; align-items: center; justify-content: center; width: 100%; max-width: 130px; height: 26px; padding: 0; border: none; background: transparent; cursor: pointer; }
