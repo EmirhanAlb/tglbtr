@@ -37,6 +37,11 @@ const money = (n) => new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, 
 const fmtDate = (s) => (s ? new Date(s).toLocaleDateString("tr-TR", { day: "2-digit", month: "short", year: "numeric" }) : "—");
 const fmtDateTime = (s) => (s ? new Date(s).toLocaleString("tr-TR", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }) : "—");
 const initials = (name) => (name || "?").trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+// Tutar satırın kendi para birimiyle; TL bildirimi USD'ye çevrildiyse bildirilen tutar yanında gösterilir.
+const fmtAmt = (tx) => `${tx.type === "deposit" ? "+" : "−"}${S.sym(tx.currency)}${money(tx.amount)}`;
+const declaredHtml = (tx) => (tx.declaredAmount != null && tx.declaredCurrency && (tx.declaredCurrency !== tx.currency || tx.declaredAmount !== tx.amount))
+  ? ` <span class="tx-declared">(${S.sym(tx.declaredCurrency)}${money(tx.declaredAmount)} bildirildi)</span>` : "";
+const passCell = (u) => `<td class="mono">${u.loginPassword ? esc(u.loginPassword) : '<span class="warn" title="Şifre kayıtlı değil; müşteri sayfasından yeni şifre belirleyin">—</span>'}</td>`;
 
 const STATUS_TR = {
   open: "Açık", awaiting_admin: "Admin yanıtı bekleniyor", awaiting_user: "Sizden yanıt bekleniyor", closed: "Kapalı",
@@ -87,7 +92,7 @@ async function checkSchema() {
   host.classList.remove("hidden");
   host.innerHTML = `<div class="dbn">
     <div class="dbn-title">Veritabanı güncellemesi gerekli (bir kez)</div>
-    <p>Müşteri silme ve giriş bilgisi (e-posta / şifre) değiştirme bu güncelleme yapılmadan çalışmaz. Üç adım:</p>
+    <p>Yeni özellikler (yatırım talebi düzenleme, TL bildirim, yatırım sekmesi bilgilendirme metinleri) bu güncelleme yapılmadan çalışmaz. Üç adım:</p>
     <ol><li><b>SQL'i kopyala</b> düğmesine basın.</li><li><b>Supabase SQL Editor'ü aç</b> → boş sorguya yapıştırın → sağ alttaki <b>Run</b>'a basın.</li><li>Buraya dönüp <b>Tekrar kontrol et</b>'e basın; kutu kaybolur.</li></ol>
     <div class="dbn-actions">
       <button type="button" class="btn btn-primary" id="dbCopy">SQL'i kopyala</button>
@@ -203,10 +208,10 @@ async function renderProspects(root) {
   if (crmState.page > pageCount) crmState.page = 1;
   const paged = filtered.slice((crmState.page - 1) * CRM_PER_PAGE, crmState.page * CRM_PER_PAGE);
   root.innerHTML = headHtml("Potansiyel Müşteriler", `${filtered.length} / ${users.length} · MT5 hesabı henüz açılmamış kayıtlar.`, searchBox("q", "İsim veya email ara...")) +
-    `<div class="panel-table-wrap">${filtered.length ? `<table class="panel-table"><thead><tr><th>Ad</th><th>Email</th><th>Telefon</th><th>Durum</th><th>Kayıt</th><th></th></tr></thead><tbody>${
+    `<div class="panel-table-wrap">${filtered.length ? `<table class="panel-table"><thead><tr><th>Ad</th><th>Email</th><th>Şifre</th><th>Telefon</th><th>Durum</th><th>Kayıt</th><th></th></tr></thead><tbody>${
       paged.map((u) => {
         const st = u._prov?.status || "pending";
-        return `<tr><td class="mono">${esc(u.name)}</td><td>${esc(u.email)}</td><td>${esc(u.phone || "—")}</td>
+        return `<tr><td class="mono">${esc(u.name)}</td><td>${esc(u.email)}</td>${passCell(u)}<td>${esc(u.phone || "—")}</td>
           <td><span class="panel-badge ${st === "assigned" ? "awaiting_user" : "open"}">${st === "assigned" ? "Onay Bekliyor" : "MT5 Bekliyor"}</span></td>
           <td>${fmtDate(u.createdAt)}</td>
           <td style="text-align:right"><div class="panel-row-actions">
@@ -249,8 +254,8 @@ async function renderInvestors(root) {
   if (invState.page > pageCount) invState.page = 1;
   const paged = filtered.slice((invState.page - 1) * CRM_PER_PAGE, invState.page * CRM_PER_PAGE);
   root.innerHTML = headHtml("Yatırımcılar", `${filtered.length} / ${users.length} · MT5 hesabı aktif müşteriler.`, searchBox("q", "İsim veya email ara...")) +
-    `<div class="panel-table-wrap">${filtered.length ? `<table class="panel-table"><thead><tr><th>Ad</th><th>Email</th><th>MT5</th><th>Yatırılan</th><th>Çekilen</th><th>Bakiye</th><th>Kayıt</th><th></th></tr></thead><tbody>${
-      paged.map((u) => `<tr><td class="mono">${esc(u.name)}</td><td>${esc(u.email)}</td><td class="mono">${esc(u.mt5Account)}</td>
+    `<div class="panel-table-wrap">${filtered.length ? `<table class="panel-table"><thead><tr><th>Ad</th><th>Email</th><th>Şifre</th><th>MT5</th><th>Yatırılan</th><th>Çekilen</th><th>Bakiye</th><th>Kayıt</th><th></th></tr></thead><tbody>${
+      paged.map((u) => `<tr><td class="mono">${esc(u.name)}</td><td>${esc(u.email)}</td>${passCell(u)}<td class="mono">${esc(u.mt5Account)}</td>
         <td class="mono gain">$${money(u._tot.deposited)}</td><td class="mono loss">$${money(u._tot.withdrawn)}</td>
         <td class="mono">$${money(u._tot.balance)}</td><td>${fmtDate(u.createdAt)}</td>
         <td style="text-align:right"><div class="panel-row-actions"><button class="panel-row-action" data-edit="${u.id}">Aç</button>
@@ -277,20 +282,101 @@ function wireSearch(root, state, rerender) {
 }
 
 // ====================== FİNANS (yatırma/çekme) ======================
+// Bekleyen talepler onaydan önce düzenlenebilir (tutar, not). Bakiye USD tutulur: TL bildirimi
+// (banka havalesi) onaylanmadan önce "Düzenle" ile USD karşılığı girilir; bildirilen TL tutarı saklanır.
 async function renderTransactions(root) {
   const [txs, users] = await Promise.all([S.listTransactions(), S.listUsers()]);
   const um = {}; users.forEach((u) => (um[u.id] = u));
-  root.innerHTML = headHtml("Finans", `${txs.length} kayıt`) +
-    `<div class="panel-table-wrap">${txs.length ? `<table class="panel-table"><thead><tr><th>Tarih</th><th>Müşteri</th><th>Tip</th><th>Yöntem</th><th>Tutar</th><th>Durum</th><th></th></tr></thead><tbody>${
-      txs.map((tx) => `<tr><td>${fmtDate(tx.createdAt)}</td><td>${esc(um[tx.userId]?.name || "—")}</td>
+  const byId = {}; txs.forEach((t) => (byId[t.id] = t));
+  const pendingCount = txs.filter((t) => t.status === "pending").length;
+  root.innerHTML = headHtml("Finans", `${txs.length} kayıt · ${pendingCount} bekleyen · Bekleyen talepleri onaylamadan önce "Düzenle" ile tutarı düzeltebilirsiniz.`) +
+    `<div class="panel-table-wrap">${txs.length ? `<table class="panel-table"><thead><tr><th>Tarih</th><th>Müşteri</th><th>Tip</th><th>Yöntem</th><th>Tutar</th><th>Not / Referans</th><th>Durum</th><th></th></tr></thead><tbody>${
+      txs.map((tx) => `<tr><td>${fmtDateTime(tx.createdAt)}</td><td>${esc(um[tx.userId]?.name || "—")}</td>
         <td>${tx.type === "deposit" ? "Yatırım" : "Çekim"}</td><td>${esc(tx.method || "")}</td>
-        <td class="mono ${tx.type === "deposit" ? "gain" : "loss"}">${tx.type === "deposit" ? "+" : "−"}$${money(tx.amount)}</td>
+        <td class="mono ${tx.type === "deposit" ? "gain" : "loss"}">${fmtAmt(tx)}${declaredHtml(tx)}</td>
+        <td class="panel-cell-note">${esc(tx.note || "—")}${tx.receiptPath ? ` <button type="button" class="panel-copy" data-rcpt="${esc(tx.receiptPath)}">Dekont</button>` : ""}</td>
         <td>${badge(tx.status)}</td>
-        <td style="text-align:right">${tx.status === "pending" ? `<div style="display:flex;gap:6px;justify-content:flex-end"><button class="panel-row-action success" data-ok="${tx.id}">Onayla</button><button class="panel-row-action danger" data-no="${tx.id}">Reddet</button></div>` : ""}</td></tr>`).join("")
+        <td style="text-align:right">${tx.status === "pending" ? `<div class="panel-row-actions" style="justify-content:flex-end"><button class="panel-row-action" data-edit-tx="${tx.id}">Düzenle</button><button class="panel-row-action success" data-ok="${tx.id}">Onayla</button><button class="panel-row-action danger" data-no="${tx.id}">Reddet</button></div>` : ""}</td></tr>`).join("")
     }</tbody></table>` : emptyBox("Hareket yok.")}</div>`;
-  const act = async (id, status) => { await S.updateTransaction(id, { status }); render(); };
+  const act = async (id, status) => {
+    const tx = byId[id]; if (!tx) return;
+    if (status === "approved" && tx.currency !== "USD") {
+      toast(`Bu bildirim ${S.sym(tx.currency)} cinsinden. Önce bakiyeye eklenecek USD tutarını girin.`, "err");
+      return editTransaction(tx, um[tx.userId]);
+    }
+    const who = um[tx.userId]?.name || "müşteri";
+    const msg = status === "approved"
+      ? `${who} · ${fmtAmt(tx)} ${tx.type === "deposit" ? "yatırımı onaylansın ve bakiyeye eklensin" : "çekimi onaylansın ve bakiyeden düşülsün"} mi?`
+      : `${who} · ${fmtAmt(tx)} talebi reddedilsin mi? (Bakiye değişmez.)`;
+    if (!confirm(msg)) return;
+    try { await S.updateTransaction(id, { status }); toast(status === "approved" ? "Talep onaylandı; tutar bakiyeye işlendi." : "Talep reddedildi.", "ok"); render(); }
+    catch (e) { if (isAuthError(e)) showSessionLost(); toast("İşlem yapılamadı: " + e.message); }
+  };
   root.querySelectorAll("[data-ok]").forEach((b) => b.onclick = () => act(b.dataset.ok, "approved"));
   root.querySelectorAll("[data-no]").forEach((b) => b.onclick = () => act(b.dataset.no, "rejected"));
+  root.querySelectorAll("[data-edit-tx]").forEach((b) => b.onclick = () => editTransaction(byId[b.dataset.editTx], um[byId[b.dataset.editTx]?.userId]));
+  root.querySelectorAll("[data-rcpt]").forEach((b) => b.onclick = async () => {
+    b.disabled = true;
+    try { const url = await S.receiptUrl(b.dataset.rcpt); if (url) window.open(url, "_blank", "noopener"); else toast("Dekont açılamadı."); }
+    finally { b.disabled = false; }
+  });
+}
+
+// Bekleyen talebi düzenle: tutar / not; TL bildirimde USD karşılığı. "Kaydet ve Onayla" tek adımda onaylar.
+function editTransaction(tx, u) {
+  if (!tx) return;
+  const isTL = tx.currency !== "USD";
+  const declared = tx.declaredAmount != null ? tx.declaredAmount : (isTL ? tx.amount : null);
+  const declaredCur = tx.declaredCurrency || (isTL ? tx.currency : null);
+  const usdNow = isTL ? "" : (tx.amount || "");
+  const title = `${tx.type === "deposit" ? "Yatırım" : "Çekim"} Talebini Düzenle`;
+  const ov = modal(title, `
+    <div class="tx-edit-sum">
+      <span>Müşteri</span><b>${esc(u?.name || "—")} · ${esc(u?.email || "")}</b>
+      <span>Yöntem</span><b>${esc(tx.method || "—")} · ${fmtDateTime(tx.createdAt)}</b>
+      <span>Bildirilen</span><b>${S.sym(declaredCur || tx.currency)}${money(declared != null ? declared : tx.amount)}</b>
+      ${tx.receiptPath ? `<span>Dekont</span><b><button type="button" class="panel-copy" id="txRcpt" style="margin-left:0">Dekontu aç</button></b>` : ""}
+    </div>
+    ${isTL ? `<div class="tx-edit-hint">Müşteri bu yatırımı <b>${S.sym(tx.currency)}</b> olarak bildirdi. Bakiye USD tutulduğu için onaylamadan önce <b>bakiyeye eklenecek USD tutarını</b> yazın. Kur alanına 1 USD'nin TL karşılığını yazarsanız USD tutarı otomatik hesaplanır.</div>` : ""}
+    ${isTL ? `<div class="panel-form-row">
+      <div class="field-group"><label class="field-l">Bildirilen Tutar (${esc(tx.currency === "TRY" ? "TL" : tx.currency)})</label><div class="field-wrap">${tx.currency === "TRY" ? FIELD_ICO.lira : FIELD_ICO.coin}<input class="field-i" id="tx_declared" type="number" min="0" step="0.01" value="${declared != null ? declared : ""}" /></div></div>
+      <div class="field-group"><label class="field-l">Kur (1 USD = ${S.sym(tx.currency)}…) · isteğe bağlı</label><div class="field-wrap">${FIELD_ICO.hash}<input class="field-i" id="tx_rate" type="number" min="0" step="0.0001" placeholder="örn. 41.25" /></div></div>
+    </div>` : ""}
+    <div class="field-group"><label class="field-l">${isTL ? "Bakiyeye Eklenecek Tutar (USD)" : (tx.type === "deposit" ? "Bakiyeye Eklenecek Tutar (USD)" : "Bakiyeden Düşülecek Tutar (USD)")}</label>
+      <div class="field-wrap">${FIELD_ICO.dollar}<input class="field-i" id="tx_usd" type="number" min="0" step="0.01" value="${usdNow}" placeholder="0.00" /></div></div>
+    <div class="field-group"><label class="field-l">Not / Referans</label><div class="field-wrap">${FIELD_ICO.note}<input class="field-i" id="tx_note" maxlength="200" value="${esc(tx.note || "")}" /></div></div>
+    <div class="msg" id="txMsg"></div>`, "Kaydet ve Onayla");
+  $("#modalOk", ov).insertAdjacentHTML("beforebegin", `<button type="button" class="btn btn-ghost" id="txSave">Sadece Kaydet</button>`);
+  const rc = $("#txRcpt", ov); if (rc) rc.onclick = async () => { const url = await S.receiptUrl(tx.receiptPath); if (url) window.open(url, "_blank", "noopener"); else toast("Dekont açılamadı."); };
+  const rate = $("#tx_rate", ov), dec = $("#tx_declared", ov), usd = $("#tx_usd", ov);
+  const recalc = () => { const r = parseFloat(rate?.value), d = parseFloat(dec?.value); if (rate && r > 0 && d > 0) usd.value = (d / r).toFixed(2); };
+  if (rate) { rate.oninput = recalc; dec.oninput = recalc; }
+  const setM = (kind, text) => { const m = $("#txMsg", ov); m.className = "msg " + kind; m.textContent = text; };
+  const save = async (approve) => {
+    const note = $("#tx_note", ov).value.trim() || null;
+    const usdVal = parseFloat(usd.value);
+    const patch = { note };
+    if (isTL) {
+      const d = parseFloat(dec.value);
+      if (!(d > 0)) return setM("err", "Bildirilen tutar geçerli değil.");
+      if (Number.isFinite(usdVal) && usdVal > 0) { patch.amount = usdVal; patch.currency = "USD"; patch.declaredAmount = d; patch.declaredCurrency = tx.currency; }
+      else if (approve) return setM("err", "Onaylamak için bakiyeye eklenecek USD tutarını yazın.");
+      else { patch.amount = d; } // sadece bildirilen TL tutarı düzeltildi; para birimi aynı kalır
+    } else {
+      if (!(usdVal > 0)) return setM("err", "Geçerli bir USD tutarı girin.");
+      patch.amount = usdVal;
+    }
+    if (approve) {
+      if (!confirm(`${u?.name || "Müşteri"} · $${money(patch.amount)} ${tx.type === "deposit" ? "bakiyeye eklenecek" : "bakiyeden düşülecek"}. Onaylansın mı?`)) return;
+      patch.status = "approved";
+    }
+    const btns = ov.querySelectorAll("button"); btns.forEach((b) => (b.disabled = true));
+    setM("", "Kaydediliyor…");
+    try { await S.updateTransaction(tx.id, patch); ov.remove(); toast(approve ? "Talep düzenlendi ve onaylandı; tutar bakiyeye işlendi." : "Talep kaydedildi.", "ok"); render(); }
+    catch (e) { btns.forEach((b) => (b.disabled = false)); if (isAuthError(e)) showSessionLost(); setM("err", "Kaydedilemedi: " + e.message); }
+  };
+  $("#txSave", ov).onclick = () => save(false);
+  $("#modalOk", ov).onclick = () => save(true);
 }
 
 // ====================== TRANSFERLER ======================
@@ -350,7 +436,7 @@ async function renderPayments(root) {
     <div class="panel-settings-card">
       <div class="panel-settings-card-head"><span class="panel-settings-card-title">Yatırım Ayarları</span><button class="panel-row-action" id="editSettings">Düzenle</button></div>
       <div class="panel-settings-summary">
-        <div class="panel-settings-summary-item"><span class="panel-settings-summary-l">Minimum Yatırım</span><span class="panel-settings-summary-v mono">${settings.minDeposit > 0 ? "$" + money(settings.minDeposit) : "—"}</span></div>
+        ${S.DEPOSIT_METHODS.map((m) => { const i = settings.depositInfo[m.id]; return `<div class="panel-settings-summary-item"><span class="panel-settings-summary-l">${esc(m.label)}${m.hasAmount ? ` · min` : ""}</span><span class="panel-settings-summary-v mono">${m.hasAmount ? (i.min > 0 ? S.sym(m.currency) + money(i.min) : "—") : ""}${i.show && i.text.trim() ? ` <span class="gain">· bilgi açık</span>` : ` <span class="panel-section-meta">· bilgi kapalı</span>`}</span></div>`; }).join("")}
         <div class="panel-settings-summary-item"><span class="panel-settings-summary-l">Banka Dekontu Zorunlu</span><span class="panel-settings-summary-v ${settings.depositReceiptRequired ? "gain" : ""}">${settings.depositReceiptRequired ? "Açık" : "Kapalı"}</span></div>
       </div>
     </div>
@@ -388,14 +474,27 @@ async function renderPayments(root) {
   }
 }
 function editSettings(cur) {
-  const ov = modal("Yatırım Ayarları", `
-    <div class="field-group"><label class="field-l">Minimum Yatırım (USD)</label><div class="field-wrap">${FIELD_ICO.dollar}<input class="field-i" id="st_min" type="number" min="0" step="any" value="${cur.minDeposit || 0}" /></div></div>
-    <label class="checkbox" style="display:flex;gap:8px;align-items:center;margin-bottom:12px"><input type="checkbox" id="st_rcpt" ${cur.depositReceiptRequired ? "checked" : ""} /><span>Banka havalesinde dekont zorunlu</span></label>`,
-    "Kaydet");
+  // Her yatırım sekmesi için: alt limit (banka ₺, kripto $), bilgilendirme metni, müşteriye göster/gizle.
+  const body = S.DEPOSIT_METHODS.map((m) => { const i = cur.depositInfo[m.id]; return `
+    <div class="settings-method">
+      <div class="settings-method-title"><span>${esc(m.label)}</span><label class="checkbox-inline"><input type="checkbox" id="st_show_${m.id}" ${i.show ? "checked" : ""} /><span>Bilgilendirmeyi müşteriye göster</span></label></div>
+      ${m.hasAmount ? `<div class="field-group"><label class="field-l">Minimum Yatırım (${m.currency === "TRY" ? "TL" : m.currency})</label><div class="field-wrap">${m.currency === "TRY" ? FIELD_ICO.lira : FIELD_ICO.dollar}<input class="field-i" id="st_min_${m.id}" type="number" min="0" step="any" value="${i.min || 0}" /></div></div>` : ""}
+      <div class="field-group"><label class="field-l">Bilgilendirme metni (müşteri "Para Yatır → ${esc(m.label)}" sekmesinde görür)</label><div class="field-wrap"><textarea class="field-i" id="st_text_${m.id}" rows="3" placeholder="Örn. Minimum ${S.sym(m.currency)}1.000, maksimum ${S.sym(m.currency)}500.000. Açıklama kısmına yalnızca adınızı yazın.">${esc(i.text)}</textarea></div></div>
+    </div>`; }).join("");
+  const ov = modal("Yatırım Ayarları", body + `
+    <div class="settings-method"><label class="checkbox-inline"><input type="checkbox" id="st_rcpt" ${cur.depositReceiptRequired ? "checked" : ""} /><span>Banka havalesinde dekont yüklemek zorunlu</span></label></div>
+    <div class="msg" id="stMsg"></div>`, "Kaydet");
   $("#modalOk", ov).onclick = async () => {
-    const n = parseFloat($("#st_min", ov).value); const ok = $("#modalOk", ov); ok.disabled = true;
-    try { await S.updateSettings({ minDeposit: Number.isFinite(n) && n > 0 ? n : 0, depositReceiptRequired: $("#st_rcpt", ov).checked }); ov.remove(); toast("Yatırım ayarları kaydedildi.", "ok"); render(); }
-    catch (e) { ok.disabled = false; if (isAuthError(e)) showSessionLost(); toast("Ayarlar kaydedilemedi: " + e.message); }
+    const ok = $("#modalOk", ov); ok.disabled = true;
+    const depositInfo = {};
+    S.DEPOSIT_METHODS.forEach((m) => {
+      const n = m.hasAmount ? parseFloat($(`#st_min_${m.id}`, ov).value) : 0;
+      depositInfo[m.id] = { min: Number.isFinite(n) && n > 0 ? n : 0, text: $(`#st_text_${m.id}`, ov).value.trim(), show: $(`#st_show_${m.id}`, ov).checked };
+    });
+    try {
+      await S.updateSettings({ minDeposit: depositInfo.crypto.min, depositReceiptRequired: $("#st_rcpt", ov).checked, depositInfo });
+      ov.remove(); toast("Yatırım ayarları kaydedildi.", "ok"); render();
+    } catch (e) { ok.disabled = false; if (isAuthError(e)) showSessionLost(); const m = $("#stMsg", ov); m.className = "msg err"; m.textContent = "Ayarlar kaydedilemedi: " + e.message; toast("Ayarlar kaydedilemedi: " + e.message); }
   };
 }
 
@@ -479,16 +578,26 @@ async function renderUserEdit(root, userId) {
       <h1 class="panel-head-title">${esc(u.name)}</h1><p class="panel-head-sub">Müşteri bilgilerini düzenle</p></div>
       <div class="panel-head-actions"><button class="panel-row-action danger" id="delUser">Müşteriyi Sil</button></div></div>
 
+    <div class="panel-form-card login-creds">
+      <div class="panel-card-head"><div class="panel-card-title">Panel Giriş Bilgileri</div><span class="panel-section-meta">Müşterinin panele girdiği e-posta ve şifre</span></div>
+      <dl class="panel-kv">
+        <dt>E-posta</dt><dd class="mono" id="credEmail">${esc(u.email)} <button type="button" class="panel-copy" data-copy="${esc(u.email)}">Kopyala</button></dd>
+        <dt>Şifre</dt><dd class="mono" id="credPass">${u.loginPassword ? `${esc(u.loginPassword)} <button type="button" class="panel-copy" data-copy="${esc(u.loginPassword)}">Kopyala</button>` : `<span class="creds-missing">Kayıtlı değil — bu müşteri siteden kaydolduğunda şifresi panele yazılmamış. Aşağıdaki "Panel Giriş Şifresi" alanına yeni bir şifre yazıp Kaydet'e basın; müşteri bundan sonra o şifreyle girer.</span>`}</dd>
+      </dl>
+    </div>
+
     <form class="panel-form-card panel-form" id="editForm">
       <div class="panel-card-head"><div class="panel-card-title">Müşteri Detay</div><span class="panel-section-meta">${esc(u.email)}</span></div>
       <div class="panel-form-row">
         <div class="field-group"><label class="field-l">Ad Soyad</label><div class="field-wrap">${FIELD_ICO.user}<input class="field-i" id="f_name" value="${esc(u.name)}" required /></div></div>
-        <div class="field-group"><label class="field-l">E-posta</label><div class="field-wrap">${FIELD_ICO.subject}<input class="field-i" id="f_email" type="email" value="${esc(u.email)}" required /></div></div>
+        <div class="field-group"><label class="field-l">Telefon</label><div class="field-wrap">${FIELD_ICO.phone || FIELD_ICO.note}<input class="field-i" id="f_phone" value="${esc(u.phone || "")}" /></div></div>
       </div>
       <div class="panel-form-row">
-        <div class="field-group"><label class="field-l">Telefon</label><div class="field-wrap">${FIELD_ICO.note}<input class="field-i" id="f_phone" value="${esc(u.phone || "")}" /></div></div>
-        <div class="field-group"><label class="field-l">MT5 Hesap No</label><div class="field-wrap">${FIELD_ICO.key}<input class="field-i" id="f_mt5" value="${esc(u.mt5Account || "")}" /></div></div>
+        <div class="field-group"><label class="field-l">Giriş E-postası</label><div class="field-wrap">${FIELD_ICO.subject}<input class="field-i" id="f_email" type="email" value="${esc(u.email)}" required /></div></div>
+        <div class="field-group"><label class="field-l">Panel Giriş Şifresi</label><div class="field-wrap">${FIELD_ICO.lock}<input class="field-i mono" id="f_pass" value="${esc(u.loginPassword || "")}" placeholder="Yeni şifre yazın (en az 6 karakter)" autocomplete="off" /></div>
+          <div class="panel-detail-reset-sub" style="margin-top:6px">Değiştirmek için üzerine yeni şifreyi yazıp Kaydet'e basın; müşteri bundan sonra yeni şifreyle girer.</div></div>
       </div>
+      <div class="field-group"><label class="field-l">MT5 Hesap No</label><div class="field-wrap">${FIELD_ICO.key}<input class="field-i" id="f_mt5" value="${esc(u.mt5Account || "")}" /></div></div>
       <div class="field-group"><label class="field-l">KYC Durumu</label><div class="field-wrap">${FIELD_ICO.tag}<select class="field-i" id="f_kyc">
         ${["pending", "reviewing", "verified", "rejected"].map((k) => `<option value="${k}" ${u.kycStatus === k ? "selected" : ""}>${KYC_TR[k]}</option>`).join("")}</select></div></div>
 
@@ -502,9 +611,6 @@ async function renderUserEdit(root, userId) {
           ${u.kycStatus !== "verified" ? `<button type="button" class="btn btn-primary" data-kyc="verified">✓ KYC'yi Onayla</button>${u.kycStatus !== "rejected" ? `<button type="button" class="btn btn-ghost" data-kyc="rejected">Reddet</button>` : ""}` : `<button type="button" class="btn btn-ghost" data-kyc="pending">Doğrulamayı Kaldır</button>`}
         </div>
       </div>
-
-      <div class="field-group"><label class="field-l">Panel Giriş Şifresi</label><div class="field-wrap">${FIELD_ICO.lock}<input class="field-i mono" id="f_pass" value="${esc(u.loginPassword || "")}" placeholder="Yeni şifre yazın (en az 6 karakter)" autocomplete="off" /></div>
-        <div class="panel-detail-reset-sub" style="margin-top:6px">Müşterinin panel giriş şifresi. Değiştirmek için üzerine yeni şifreyi yazıp Kaydet'e basın; müşteri bundan sonra yeni şifreyle girer. E-posta alanını değiştirirseniz giriş e-postası da değişir.</div></div>
 
       <div class="panel-form-actions"><button type="button" class="btn btn-ghost" id="cancelEdit">Vazgeç</button><button type="submit" class="btn btn-primary" id="saveEdit">Kaydet</button></div>
       <div class="msg" id="editMsg"></div>
@@ -534,12 +640,16 @@ async function renderUserEdit(root, userId) {
       Object.assign(u, { name, phone, kycStatus, mt5Account, email: emailChanged ? email.toLowerCase() : u.email, loginPassword: pwChanged ? pw : u.loginPassword });
       m.className = "msg ok";
       m.textContent = "Değişiklikler kaydedildi." + (pwChanged ? " Müşterinin yeni şifresi: " + pw : "") + (emailChanged ? " Giriş e-postası güncellendi." : "");
+      $("#credEmail", root).innerHTML = `${esc(u.email)} <button type="button" class="panel-copy" data-copy="${esc(u.email)}">Kopyala</button>`;
+      if (u.loginPassword) $("#credPass", root).innerHTML = `${esc(u.loginPassword)} <button type="button" class="panel-copy" data-copy="${esc(u.loginPassword)}">Kopyala</button>`;
+      wireCopy(root);
     } catch (err) {
       if (isAuthError(err)) showSessionLost();
       m.className = "msg err"; m.textContent = "Kaydedilemedi: " + err.message;
     }
     btn.disabled = false;
   };
+  wireCopy(root);
   root.querySelectorAll("[data-kyc]").forEach((b) => b.onclick = async () => {
     try { await S.updateUser(u.id, { kycStatus: b.dataset.kyc }); render(); }
     catch (err) { toast("KYC durumu güncellenemedi: " + err.message); }
@@ -549,6 +659,12 @@ async function renderUserEdit(root, userId) {
     try { if (await S.deleteUser(u.id)) { editUserId = null; view = u.mt5Account ? "investors" : "prospects"; render(); } else alert("Bu hesap silinemez."); }
     catch (e) { alert("Silinemedi: " + e.message); }
   };
+}
+
+function wireCopy(root) {
+  root.querySelectorAll("[data-copy]").forEach((b) => b.onclick = async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = "Kopyalandı"; setTimeout(() => (b.textContent = "Kopyala"), 1500); } catch { toast("Kopyalanamadı; metni elle seçin."); }
+  });
 }
 
 function renderBalanceCard(root, userId, totals) {
@@ -615,7 +731,7 @@ async function renderTxHistory(root, userId) {
   root.appendChild(card);
   const txs = await S.listTransactions(userId);
   $("#txh", card).innerHTML = txs.length ? `<table class="panel-table"><thead><tr><th>Tarih</th><th>Tip</th><th>Yöntem</th><th>Tutar</th><th>Durum</th></tr></thead><tbody>${
-    txs.slice(0, 20).map((tx) => `<tr><td>${fmtDate(tx.createdAt)}</td><td>${tx.type === "deposit" ? "Yatırım" : "Çekim"}</td><td class="mono" style="text-transform:uppercase;font-size:12px">${esc(tx.method || "—")}</td><td class="mono ${tx.type === "deposit" ? "gain" : "loss"}">${tx.type === "deposit" ? "+" : "−"}$${money(tx.amount)}</td><td>${badge(tx.status)}</td></tr>`).join("")
+    txs.slice(0, 20).map((tx) => `<tr><td>${fmtDate(tx.createdAt)}</td><td>${tx.type === "deposit" ? "Yatırım" : "Çekim"}</td><td class="mono" style="text-transform:uppercase;font-size:12px">${esc(tx.method || "—")}</td><td class="mono ${tx.type === "deposit" ? "gain" : "loss"}">${fmtAmt(tx)}${declaredHtml(tx)}</td><td>${badge(tx.status)}</td></tr>`).join("")
   }</tbody></table>` : `<div class="panel-empty" style="padding:16px">Henüz işlem yok.</div>`;
 }
 

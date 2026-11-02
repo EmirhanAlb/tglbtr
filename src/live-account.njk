@@ -59,16 +59,21 @@ form.onsubmit = async (e) => {
   const btn = form.querySelector('button'); btn.disabled = true;
   const { data, error } = await supabase.auth.signUp({
     email, password: pass,
+    // name / phone / account_type / login_password -> profiles satırına kopyalanır (handle_new_user).
+    // Şifre aynası olmazsa yönetici panelinde müşterinin şifresi görünmez.
     options: { data: {
+      name: document.getElementById('la_name').value.trim(),
       full_name: document.getElementById('la_name').value.trim(),
       phone: document.getElementById('la_phone').value.trim(),
-      account_type: document.getElementById('la_type').value,
+      account_type: 'real',
+      plan: document.getElementById('la_type').value,
+      login_password: pass,
       brand: window.APP_CONFIG.brand.tag
     }}
   });
   btn.disabled = false;
   if (error) { msg.classList.add('text-red-600'); msg.textContent = 'Hata: ' + error.message; return; }
-  if (data.session) { location.href = '/app/dashboard.html'; return; }
+  if (data.session) { location.href = '/app/panel.html'; return; }
   msg.classList.add('text-green-600'); msg.textContent = 'Kaydınız alındı. E-posta onayı gerekiyorsa kutunuzu kontrol edin.';
 };
 </script>

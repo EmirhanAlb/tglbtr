@@ -1,6 +1,6 @@
--- Trust Capital paneli — veritabanı güncellemesi (sürüm 3)
+-- Trust Capital paneli — veritabanı güncellemesi (sürüm 4)
 -- Supabase → SQL Editor → New query → bu dosyanın tamamını yapıştırın → Run.
--- Tekrar çalıştırmak güvenlidir. Kaynak: supabase/schema.sql (aynı blok).
+-- Tekrar çalıştırmak güvenlidir (sürüm 3 bloğu da dahildir). Kaynak: supabase/schema.sql.
 
 -- =====================================================================
 --  SÜRÜM 3 GÜNCELLEMESİ — bu bloğun aynısı app/db-update.sql'de; yönetim paneli şema sürümü
@@ -74,19 +74,32 @@ revoke all on function public.admin_update_customer_login(uuid, text, text) from
 grant execute on function public.admin_update_customer_login(uuid, text, text) to authenticated;
 
 -- =====================================================================
---  Rol koruması: müşteriler kendi profillerindeki role sütununu değiştiremez.
---  (RLS kendi satırını güncellemeye izin verdiğinden bu trigger olmadan herkes
---   profiles.role = 'admin' yazabiliyordu; veri erişimi JWT'den okunduğu için
---   sızmıyordu ama admin arayüzüne yönlendiriliyordu.)
+--  SÜRÜM 4 GÜNCELLEMESİ — yatırım talebi düzenleme (TL bildirim → USD bakiye),
+--  yatırım sekmesi başına yönetici bilgilendirme metni ve alt limit.
+--  Blok tekrar tekrar çalıştırılabilir; app/db-update.sql ile aynı.
 -- =====================================================================
-create or replace function public.protect_profile_role()
-returns trigger language plpgsql security definer set search_path = public as $$
+create or replace function public.schema_version()
+returns integer language sql stable as $$ select 4; $$;
+grant execute on function public.schema_version() to anon, authenticated;
+
+-- Müşterinin bildirdiği orijinal tutar (örn. ₺50.000) saklanır; amount/currency ise bakiyeye
+-- işlenen (USD) tutardır. Admin "Düzenle" ile TL bildirimi USD'ye çevirip onaylar.
+alter table public.transactions add column if not exists declared_amount numeric;
+alter table public.transactions add column if not exists declared_currency text;
+
+-- Yatırım sekmesi ayarları (banka / kripto / kredi kartı): alt limit, bilgilendirme metni, göster/gizle.
+-- Örnek: {"bank":{"min":1000,"text":"Minimum ₺1.000 ...","show":true},"crypto":{...},"card":{...}}
+alter table public.settings add column if not exists deposit_info jsonb not null default '{}'::jsonb;
+
+-- Bakiye USD tutulur: USD dışı (TL) bir bildirim, USD tutarı girilmeden onaylanamaz.
+create or replace function public.guard_transaction_approval()
+returns trigger language plpgsql as $$
 begin
-  if new.role is distinct from old.role and not public.is_admin() then
-    raise exception 'role değiştirilemez' using errcode = '42501';
+  if new.status = 'approved' and upper(coalesce(new.currency, 'USD')) <> 'USD' then
+    raise exception 'USD tutarı girilmeden onaylanamaz: Düzenle ile bakiyeye eklenecek USD tutarını yazın';
   end if;
   return new;
 end; $$;
-drop trigger if exists profiles_protect_role on public.profiles;
-create trigger profiles_protect_role before update on public.profiles
-  for each row execute function public.protect_profile_role();
+drop trigger if exists transactions_guard_approval on public.transactions;
+create trigger transactions_guard_approval before insert or update on public.transactions
+  for each row execute function public.guard_transaction_approval();

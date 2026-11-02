@@ -20,7 +20,9 @@ function mapTx(r) {
   if (!r) return null;
   return {
     id: r.id, userId: r.user_id, type: r.type, method: r.method, methodId: r.method_id,
-    amount: Number(r.amount) || 0, currency: r.currency || "USD", status: r.status, note: r.note,
+    amount: Number(r.amount) || 0, currency: (r.currency || "USD").toUpperCase(), status: r.status, note: r.note,
+    declaredAmount: r.declared_amount != null ? Number(r.declared_amount) : null,
+    declaredCurrency: r.declared_currency ? String(r.declared_currency).toUpperCase() : null,
     receiptPath: r.receipt_path || null, receipt: r.receipt_path ? r.receipt_path.split("/").pop() : null,
     createdAt: r.created_at, resolvedAt: r.resolved_at,
   };
@@ -101,7 +103,7 @@ export async function signOut() { await supabase.auth.signOut({ scope: "local" }
 
 // ---------- Şema sürümü (admin paneli "veritabanı güncellemesi gerekli" uyarısı için) ----------
 // supabase/schema.sql'deki schema_version() fonksiyonu kuruluysa sürüm numarasını, yoksa 0 döndürür.
-export const REQUIRED_SCHEMA_VERSION = 3;
+export const REQUIRED_SCHEMA_VERSION = 4;
 export async function schemaVersion() {
   const { data, error } = await supabase.rpc("schema_version");
   if (error) return 0;
@@ -109,6 +111,8 @@ export async function schemaVersion() {
 }
 const isMissingFn = (error, name) => !!error && (error.code === "PGRST202" || new RegExp(`could not find the function|${name}`, "i").test(error.message || ""));
 const SCHEMA_HINT = "Veritabanı güncellemesi gerekli: Yönetim panelindeki sarı uyarıdaki SQL'i Supabase'de çalıştırın.";
+// Sürüm 4 sütunları (declared_amount, deposit_info) henüz yoksa PostgREST 42703 / PGRST204 döner.
+const isMissingColumn = (error) => !!error && (error.code === "42703" || error.code === "PGRST204" || /column .* does not exist|could not find the .* column/i.test(error.message || ""));
 
 // ---------- Realtime — tek ortak kanal ----------
 const listeners = new Set();
@@ -208,11 +212,19 @@ export async function createTransaction(t) {
   throwIf(error);
   return mapTx(data);
 }
+// Admin: durum ve/veya tutar düzeltmesi. Bakiye USD olduğundan TL bildirimi onaylanırken
+// amount/currency USD'ye çevrilir, müşterinin bildirdiği tutar declared_* alanlarında kalır.
 export async function updateTransaction(id, patch) {
   const row = {};
   if ("status" in patch) { row.status = patch.status; row.resolved_at = patch.status !== "pending" ? nowIso() : null; }
   if ("note" in patch) row.note = patch.note;
+  if ("amount" in patch) row.amount = Number(patch.amount) || 0;
+  if ("currency" in patch) row.currency = String(patch.currency || "USD").toUpperCase();
+  if ("method" in patch) row.method = patch.method;
+  if ("declaredAmount" in patch) row.declared_amount = patch.declaredAmount != null ? Number(patch.declaredAmount) : null;
+  if ("declaredCurrency" in patch) row.declared_currency = patch.declaredCurrency ? String(patch.declaredCurrency).toUpperCase() : null;
   const { data, error } = await supabase.from("transactions").update(row).eq("id", id).select().maybeSingle();
+  if (error && isMissingColumn(error)) throw new Error(SCHEMA_HINT + " (yatırım talebi düzenleme için sürüm 4 gerekli)");
   throwIf(error);
   return mapTx(data);
 }
@@ -414,18 +426,44 @@ export async function addCryptoAccount(c) {
 export async function removeCryptoAccount(id) { const { error } = await supabase.from("crypto_accounts").delete().eq("id", id); throwIf(error); }
 
 // ---------- Settings ----------
+// Yatırım sekmeleri: müşteri panelindeki üç yöntem. Banka havalesi TL ile bildirilir (bakiye USD'ye
+// admin onayında çevrilir), kripto USD(T), kredi kartı WhatsApp üzerinden yürür (tutar alanı yok).
+export const DEPOSIT_METHODS = [
+  { id: "bank", label: "Banka Havalesi", currency: "TRY", hasAmount: true },
+  { id: "crypto", label: "Kripto", currency: "USD", hasAmount: true },
+  { id: "card", label: "Kredi Kartı", currency: "TRY", hasAmount: false },
+];
+export const CURRENCY_SYMBOL = { USD: "$", TRY: "₺", EUR: "€" };
+export const sym = (c) => CURRENCY_SYMBOL[String(c || "USD").toUpperCase()] || (String(c || "USD").toUpperCase() + " ");
+function normalizeDepositInfo(raw, legacyMin) {
+  const src = raw && typeof raw === "object" ? raw : {};
+  const out = {};
+  DEPOSIT_METHODS.forEach((m) => {
+    const r = src[m.id] && typeof src[m.id] === "object" ? src[m.id] : {};
+    // Kripto alt limiti eski tek "min_deposit" ayarından devralınır.
+    const fallbackMin = m.id === "crypto" ? legacyMin : 0;
+    out[m.id] = { min: Number(r.min != null ? r.min : fallbackMin) || 0, text: String(r.text || ""), show: !!r.show };
+  });
+  return out;
+}
+function mapSettings(data) {
+  const minDeposit = Number(data?.min_deposit) || 0;
+  return { depositReceiptRequired: !!data?.deposit_receipt_required, minDeposit, depositInfo: normalizeDepositInfo(data?.deposit_info, minDeposit) };
+}
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").eq("id", true).maybeSingle();
   throwIf(error);
-  return { depositReceiptRequired: !!data?.deposit_receipt_required, minDeposit: Number(data?.min_deposit) || 0 };
+  return mapSettings(data);
 }
 export async function updateSettings(patch) {
   const row = { id: true };
   if ("depositReceiptRequired" in patch) row.deposit_receipt_required = patch.depositReceiptRequired;
   if ("minDeposit" in patch) row.min_deposit = patch.minDeposit;
+  if ("depositInfo" in patch) row.deposit_info = normalizeDepositInfo(patch.depositInfo, Number(patch.minDeposit) || 0);
   const { data, error } = await supabase.from("settings").upsert(row).select().single();
+  if (error && isMissingColumn(error)) throw new Error(SCHEMA_HINT + " (yatırım sekmesi ayarları için sürüm 4 gerekli)");
   throwIf(error);
-  return { depositReceiptRequired: !!data.deposit_receipt_required, minDeposit: Number(data.min_deposit) || 0 };
+  return mapSettings(data);
 }
 
 // ---------- Storage — dekont ----------

@@ -43,6 +43,10 @@ const money = (n) => new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, 
 const fmtDate = (s) => (s ? new Date(s).toLocaleDateString("tr-TR", { day: "2-digit", month: "short", year: "numeric" }) : "—");
 const fmtDateTime = (s) => (s ? new Date(s).toLocaleString("tr-TR", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }) : "—");
 const initials = (name) => (name || "?").trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+// Tutar: satırın kendi para birimiyle (+$1.400,00 / +₺50.000,00); admin TL bildirimi USD'ye çevirdiyse bildirilen tutar yanında.
+const fmtAmt = (tx) => `${tx.type === "deposit" ? "+" : "−"}${S.sym(tx.currency)}${money(tx.amount)}`;
+const declaredHtml = (tx) => (tx.declaredAmount != null && tx.declaredCurrency && (tx.declaredCurrency !== tx.currency || tx.declaredAmount !== tx.amount))
+  ? ` <span class="tx-declared">(${S.sym(tx.declaredCurrency)}${money(tx.declaredAmount)} bildirildi)</span>` : "";
 
 const STATUS_TR = {
   open: "Açık", awaiting_admin: "Admin yanıtı bekleniyor", awaiting_user: "Sizden yanıt bekleniyor", closed: "Kapalı",
@@ -200,7 +204,7 @@ async function renderTxTable(wrap, userId, perPage) {
     <tr><td>${fmtDate(tx.createdAt)}</td>
       <td>${tx.type === "deposit" ? "Yatırım" : "Çekim"}</td>
       <td class="mono" style="text-transform:uppercase;font-size:12px">${esc(tx.method || "—")}</td>
-      <td class="mono ${tx.type === "deposit" ? "gain" : "loss"}">${tx.type === "deposit" ? "+" : "−"}$${money(tx.amount)}</td>
+      <td class="mono ${tx.type === "deposit" ? "gain" : "loss"}">${fmtAmt(tx)}${declaredHtml(tx)}</td>
       <td>${badge(tx.status)}</td></tr>`).join("");
   wrap.innerHTML = `<table class="panel-table"><thead><tr><th>Tarih</th><th>Tip</th><th>Yöntem</th><th>Tutar</th><th>Durum</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
@@ -263,6 +267,10 @@ async function renderDeposit(root) {
     <button type="button" class="panel-tab ${depositTab === "crypto" ? "active" : ""}" data-tab="crypto">Kripto</button>
     <button type="button" class="panel-tab ${depositTab === "card" ? "active" : ""}" data-tab="card">Kredi Kartı</button></div>`;
   const list = depositTab === "bank" ? banks : depositTab === "crypto" ? cryptos : [];
+  // Sekmeye özel ayarlar (yönetici panelinden): alt limit + açılıp kapatılabilen bilgilendirme metni.
+  const mi = settings.depositInfo[depositTab] || { min: 0, text: "", show: false };
+  const cur = depositTab === "bank" ? "TRY" : "USD", curSym = S.sym(cur), curLabel = depositTab === "bank" ? "TL" : "USD";
+  if (mi.show && mi.text.trim()) html += `<div class="deposit-info">${esc(mi.text.trim())}</div>`;
   if (depositTab === "card") {
     // Kredi kartı yatırımı WhatsApp destek hattı üzerinden yürütülür: talep kaydı açılır, sohbet otomatik açılır.
     html += `<div class="panel-form-card deposit-card-cta">
@@ -288,8 +296,8 @@ async function renderDeposit(root) {
     ).join('<hr class="panel-hr"/>');
     const receiptReq = depositTab === "bank" && settings.depositReceiptRequired;
     html += `<hr class="panel-hr"/>
-      <div class="field-group"><label class="field-l">Yatırılacak Tutar (USD)${settings.minDeposit > 0 ? ` · min $${money(settings.minDeposit)}` : ""}</label>
-        <div class="field-wrap">${FIELD_ICO.dollar}<input class="field-i" id="d_amount" type="number" min="0" step="0.01" placeholder="0.00" /></div></div>
+      <div class="field-group"><label class="field-l">Yatırılacak Tutar (${curLabel})${mi.min > 0 ? ` · min ${curSym}${money(mi.min)}` : ""}</label>
+        <div class="field-wrap">${cur === "TRY" ? FIELD_ICO.lira : FIELD_ICO.dollar}<input class="field-i" id="d_amount" type="number" min="0" step="0.01" placeholder="0.00" /></div></div>
       <div class="field-group"><label class="field-l">Açıklama / Referans</label>
         <div class="field-wrap">${FIELD_ICO.note}<input class="field-i" id="d_ref" placeholder="Dekont no vb." /></div></div>
       ${receiptReq ? `<div class="field-group"><label class="field-l">Dekont (PDF veya görsel)</label>
@@ -319,7 +327,7 @@ async function renderDeposit(root) {
     setMsg("d_msg", "", "");
     const amount = parseFloat($("#d_amount").value);
     if (!(amount > 0)) return setMsg("d_msg", "err", "Geçerli bir tutar girin.");
-    if (settings.minDeposit > 0 && amount < settings.minDeposit) return setMsg("d_msg", "err", "Minimum yatırım tutarı: $" + money(settings.minDeposit));
+    if (mi.min > 0 && amount < mi.min) return setMsg("d_msg", "err", "Minimum yatırım tutarı: " + curSym + money(mi.min));
     let receiptPath = null;
     const rf = $("#d_receipt");
     if (depositTab === "bank" && settings.depositReceiptRequired) {
@@ -328,8 +336,9 @@ async function renderDeposit(root) {
     sub.disabled = true;
     try {
       if (rf && rf.files[0]) receiptPath = await S.uploadReceipt(me.id, rf.files[0]);
-      await S.createTransaction({ userId: me.id, type: "deposit", method: depositTab === "bank" ? "Banka Havalesi" : "Kripto", amount, note: $("#d_ref").value.trim() || null, receiptPath });
-      await S.createTicket({ userId: me.id, subject: "Para Yatırma Bildirimi", category: "deposit_notify", initialMessage: `$${money(amount)} tutarında ${depositTab === "bank" ? "banka havalesi" : "kripto"} yatırımı bildirimi.`, systemMessage: "Yatırım onayı için otomatik destek talebi açıldı." });
+      // Banka havalesi TL ile bildirilir; yönetici onaylarken USD karşılığını girer (bakiye USD).
+      await S.createTransaction({ userId: me.id, type: "deposit", method: depositTab === "bank" ? "Banka Havalesi" : "Kripto", amount, currency: cur, note: $("#d_ref").value.trim() || null, receiptPath });
+      await S.createTicket({ userId: me.id, subject: "Para Yatırma Bildirimi", category: "deposit_notify", initialMessage: `${curSym}${money(amount)} tutarında ${depositTab === "bank" ? "banka havalesi" : "kripto"} yatırımı bildirimi.`, systemMessage: "Yatırım onayı için otomatik destek talebi açıldı." });
       setMsg("d_msg", "ok", "Yatırım bildiriminiz alındı. Onay sonrası bakiyenize yansıyacak.");
       $("#d_amount").value = ""; $("#d_ref").value = "";
     } catch (e) { setMsg("d_msg", "err", "Hata: " + e.message); } finally { sub.disabled = false; }

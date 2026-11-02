@@ -147,6 +147,27 @@ ikonsuz görünür, o yüzden bilerek eklenmedi.
   gerektiğinde: schema.sql'deki bloğu güncelle, `schema_version()` değerini ve
   `REQUIRED_SCHEMA_VERSION`'ı artır, `app/db-update.sql`'i yeniden üret.
 
+## Panel: yatırım talebi düzenleme, TL bildirim, sekme bilgilendirme metinleri (şema sürüm 4)
+
+- **Banka havalesi TL ile bildirilir**: müşteri Para Yatır → Banka Havalesi'nde tutarı TL yazar;
+  işlem `currency='TRY'` ile kaydedilir ve listelerde `+₺50.000,00` görünür. Kripto USD kalır.
+  Bakiye USD tutulur; `transactions_guard_approval` trigger'ı USD dışı bir satırın `approved`
+  olmasını engeller.
+- **Finans → Düzenle**: bekleyen her talep onaydan önce düzenlenebilir (tutar, not; dekont bağlantısı).
+  TL bildirimde "Bakiyeye eklenecek tutar (USD)" girilir (isteğe bağlı kur alanı otomatik hesaplar);
+  kaydedilince `amount/currency` USD olur, müşterinin bildirdiği tutar `declared_amount/declared_currency`
+  alanlarında kalır ve tabloda "(₺50.000,00 bildirildi)" olarak gösterilir. "Onayla" TL satırda
+  doğrudan onaylamaz, bu modalı açar. "Kaydet ve Onayla" tek adımda onaylar.
+- **Yatırım sekmesi ayarları** (Banka & Kripto → Yatırım Ayarları): her sekme (banka / kripto / kredi
+  kartı) için alt limit (banka ₺, kripto $), bilgilendirme metni ve "müşteriye göster" anahtarı.
+  `settings.deposit_info` (jsonb) içinde `{bank:{min,text,show},crypto:{…},card:{…}}`; müşteri
+  panelinde sekmenin üstünde sarı kutu olarak çıkar. Eski `min_deposit` kripto alt limiti olarak devralınır.
+- **Şifre görünürlüğü**: Potansiyel ve Yatırımcılar listelerinde "Şifre" sütunu; müşteri sayfasının
+  üstünde "Panel Giriş Bilgileri" kartı (e-posta + şifre, Kopyala). Şifre boşsa nedeni ve çözümü yazılır.
+  Boş şifrelerin kaynağı: sitedeki `src/live-account.njk` kayıt formu `login_password`/`name` göndermiyordu
+  (düzeltildi); daha önce siteden kaydolanlar için yönetici yeni şifre belirler.
+- Sürüm 4 SQL bloğu: `supabase/schema.sql` sonunda ve `app/db-update.sql` içinde (sürüm 3 bloğuyla birlikte).
+
 ## Oturumlar: yönetici ve müşteri ayrı
 
 `app/app.js` iki Supabase istemcisi kurar: müşteri paneli `sb-<ref>-auth-token`, yönetim paneli

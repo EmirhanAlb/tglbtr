@@ -4010,3 +4010,21 @@ body.panel-body img { max-width: 100%; }
   .panel-toast-host { right: 12px; left: 12px; bottom: calc(env(safe-area-inset-bottom, 0px) + 86px); max-width: none; }
   .dbn { display: block; padding: 14px; }
 }
+
+/* ===== Yatırım sekmesi bilgilendirme kutusu, giriş bilgileri, bildirilen tutar, talep düzenleme ===== */
+.deposit-info { white-space: pre-line; margin: 0 0 16px; padding: 14px 16px; border-radius: 12px; border: 1px solid oklch(0.82 0.13 78 / .5); background: oklch(0.82 0.13 78 / .10); color: var(--text-primary); font-size: 13.5px; line-height: 1.55; }
+.tx-declared { font-size: 11.5px; color: var(--text-muted); font-family: var(--font-mono); white-space: nowrap; }
+.login-creds { margin: 0 0 18px; }
+.login-creds .panel-kv dd { font-size: 14px; }
+.login-creds .creds-missing { color: var(--warn); font-size: 12.5px; font-family: inherit; }
+.tx-edit-sum { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 13px; color: var(--text-secondary); margin: 0 0 14px; }
+.tx-edit-sum b { color: var(--text-primary); font-weight: 500; }
+.tx-edit-hint { margin: 0 0 14px; padding: 10px 12px; border-radius: 10px; border: 1px solid oklch(0.82 0.13 78 / .5); background: oklch(0.82 0.13 78 / .10); color: var(--text-primary); font-size: 13px; line-height: 1.5; }
+.settings-method { padding: 14px 0; border-top: 1px solid var(--border-subtle); }
+.settings-method:first-of-type { border-top: none; padding-top: 0; }
+.settings-method-title { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; color: var(--text-primary); margin-bottom: 10px; }
+.settings-method textarea.field-i { min-height: 76px; resize: vertical; line-height: 1.45; }
+.checkbox-inline { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; color: var(--text-secondary); cursor: pointer; white-space: nowrap; }
+.checkbox-inline input { width: 16px; height: 16px; accent-color: var(--brand-silver); }
+@media (max-width: 760px) { .tx-edit-sum { grid-template-columns: 1fr; gap: 2px; } .tx-edit-sum b { display: block; } }
+.field-wrap .field-ico-text { display: grid; place-items: center; font-size: 16px; font-weight: 600; line-height: 1; font-family: var(--font-mono); }
