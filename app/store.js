@@ -442,7 +442,7 @@ function normalizeDepositInfo(raw, legacyMin) {
     const r = src[m.id] && typeof src[m.id] === "object" ? src[m.id] : {};
     // Kripto alt limiti eski tek "min_deposit" ayarından devralınır.
     const fallbackMin = m.id === "crypto" ? legacyMin : 0;
-    out[m.id] = { min: Number(r.min != null ? r.min : fallbackMin) || 0, text: String(r.text || ""), show: !!r.show };
+    out[m.id] = { min: Number(r.min != null ? r.min : fallbackMin) || 0, max: Number(r.max) || 0, text: String(r.text || ""), show: !!r.show };
   });
   return out;
 }

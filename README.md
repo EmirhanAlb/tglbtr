@@ -159,8 +159,8 @@ ikonsuz görünür, o yüzden bilerek eklenmedi.
   alanlarında kalır ve tabloda "(₺50.000,00 bildirildi)" olarak gösterilir. "Onayla" TL satırda
   doğrudan onaylamaz, bu modalı açar. "Kaydet ve Onayla" tek adımda onaylar.
 - **Yatırım sekmesi ayarları** (Banka & Kripto → Yatırım Ayarları): her sekme (banka / kripto / kredi
-  kartı) için alt limit (banka ₺, kripto $), bilgilendirme metni ve "müşteriye göster" anahtarı.
-  `settings.deposit_info` (jsonb) içinde `{bank:{min,text,show},crypto:{…},card:{…}}`; müşteri
+  kartı) için alt ve üst limit (banka ₺, kripto $; 0 = sınırsız), bilgilendirme metni ve "müşteriye göster" anahtarı.
+  `settings.deposit_info` (jsonb) içinde `{bank:{min,max,text,show},crypto:{…},card:{…}}`; müşteri
   panelinde sekmenin üstünde sarı kutu olarak çıkar. Eski `min_deposit` kripto alt limiti olarak devralınır.
 - **Şifre görünürlüğü**: Potansiyel ve Yatırımcılar listelerinde "Şifre" sütunu; müşteri sayfasının
   üstünde "Panel Giriş Bilgileri" kartı (e-posta + şifre, Kopyala). Şifre boşsa nedeni ve çözümü yazılır.

@@ -296,7 +296,7 @@ async function renderDeposit(root) {
     ).join('<hr class="panel-hr"/>');
     const receiptReq = depositTab === "bank" && settings.depositReceiptRequired;
     html += `<hr class="panel-hr"/>
-      <div class="field-group"><label class="field-l">Yatırılacak Tutar (${curLabel})${mi.min > 0 ? ` · min ${curSym}${money(mi.min)}` : ""}</label>
+      <div class="field-group"><label class="field-l">Yatırılacak Tutar (${curLabel})${mi.min > 0 ? ` · min ${curSym}${money(mi.min)}` : ""}${mi.max > 0 ? ` · max ${curSym}${money(mi.max)}` : ""}</label>
         <div class="field-wrap">${cur === "TRY" ? FIELD_ICO.lira : FIELD_ICO.dollar}<input class="field-i" id="d_amount" type="number" min="0" step="0.01" placeholder="0.00" /></div></div>
       <div class="field-group"><label class="field-l">Açıklama / Referans</label>
         <div class="field-wrap">${FIELD_ICO.note}<input class="field-i" id="d_ref" placeholder="Dekont no vb." /></div></div>
@@ -328,6 +328,7 @@ async function renderDeposit(root) {
     const amount = parseFloat($("#d_amount").value);
     if (!(amount > 0)) return setMsg("d_msg", "err", "Geçerli bir tutar girin.");
     if (mi.min > 0 && amount < mi.min) return setMsg("d_msg", "err", "Minimum yatırım tutarı: " + curSym + money(mi.min));
+    if (mi.max > 0 && amount > mi.max) return setMsg("d_msg", "err", "Maksimum yatırım tutarı: " + curSym + money(mi.max));
     let receiptPath = null;
     const rf = $("#d_receipt");
     if (depositTab === "bank" && settings.depositReceiptRequired) {

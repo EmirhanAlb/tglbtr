@@ -436,7 +436,7 @@ async function renderPayments(root) {
     <div class="panel-settings-card">
       <div class="panel-settings-card-head"><span class="panel-settings-card-title">Yatırım Ayarları</span><button class="panel-row-action" id="editSettings">Düzenle</button></div>
       <div class="panel-settings-summary">
-        ${S.DEPOSIT_METHODS.map((m) => { const i = settings.depositInfo[m.id]; return `<div class="panel-settings-summary-item"><span class="panel-settings-summary-l">${esc(m.label)}${m.hasAmount ? ` · min` : ""}</span><span class="panel-settings-summary-v mono">${m.hasAmount ? (i.min > 0 ? S.sym(m.currency) + money(i.min) : "—") : ""}${i.show && i.text.trim() ? ` <span class="gain">· bilgi açık</span>` : ` <span class="panel-section-meta">· bilgi kapalı</span>`}</span></div>`; }).join("")}
+        ${S.DEPOSIT_METHODS.map((m) => { const i = settings.depositInfo[m.id]; return `<div class="panel-settings-summary-item"><span class="panel-settings-summary-l">${esc(m.label)}${m.hasAmount ? ` · min / max` : ""}</span><span class="panel-settings-summary-v mono">${m.hasAmount ? `${i.min > 0 ? S.sym(m.currency) + money(i.min) : "—"} / ${i.max > 0 ? S.sym(m.currency) + money(i.max) : "—"}` : ""}${i.show && i.text.trim() ? ` <span class="gain">· bilgi açık</span>` : ` <span class="panel-section-meta">· bilgi kapalı</span>`}</span></div>`; }).join("")}
         <div class="panel-settings-summary-item"><span class="panel-settings-summary-l">Banka Dekontu Zorunlu</span><span class="panel-settings-summary-v ${settings.depositReceiptRequired ? "gain" : ""}">${settings.depositReceiptRequired ? "Açık" : "Kapalı"}</span></div>
       </div>
     </div>
@@ -478,7 +478,10 @@ function editSettings(cur) {
   const body = S.DEPOSIT_METHODS.map((m) => { const i = cur.depositInfo[m.id]; return `
     <div class="settings-method">
       <div class="settings-method-title"><span>${esc(m.label)}</span><label class="checkbox-inline"><input type="checkbox" id="st_show_${m.id}" ${i.show ? "checked" : ""} /><span>Bilgilendirmeyi müşteriye göster</span></label></div>
-      ${m.hasAmount ? `<div class="field-group"><label class="field-l">Minimum Yatırım (${m.currency === "TRY" ? "TL" : m.currency})</label><div class="field-wrap">${m.currency === "TRY" ? FIELD_ICO.lira : FIELD_ICO.dollar}<input class="field-i" id="st_min_${m.id}" type="number" min="0" step="any" value="${i.min || 0}" /></div></div>` : ""}
+      ${m.hasAmount ? `<div class="panel-form-row">
+        <div class="field-group"><label class="field-l">Minimum Yatırım (${m.currency === "TRY" ? "TL" : m.currency})</label><div class="field-wrap">${m.currency === "TRY" ? FIELD_ICO.lira : FIELD_ICO.dollar}<input class="field-i" id="st_min_${m.id}" type="number" min="0" step="any" value="${i.min || 0}" /></div></div>
+        <div class="field-group"><label class="field-l">Maksimum Yatırım (${m.currency === "TRY" ? "TL" : m.currency}) · 0 = sınırsız</label><div class="field-wrap">${m.currency === "TRY" ? FIELD_ICO.lira : FIELD_ICO.dollar}<input class="field-i" id="st_max_${m.id}" type="number" min="0" step="any" value="${i.max || 0}" /></div></div>
+      </div>` : ""}
       <div class="field-group"><label class="field-l">Bilgilendirme metni (müşteri "Para Yatır → ${esc(m.label)}" sekmesinde görür)</label><div class="field-wrap"><textarea class="field-i" id="st_text_${m.id}" rows="3" placeholder="Örn. Minimum ${S.sym(m.currency)}1.000, maksimum ${S.sym(m.currency)}500.000. Açıklama kısmına yalnızca adınızı yazın.">${esc(i.text)}</textarea></div></div>
     </div>`; }).join("");
   const ov = modal("Yatırım Ayarları", body + `
@@ -489,8 +492,11 @@ function editSettings(cur) {
     const depositInfo = {};
     S.DEPOSIT_METHODS.forEach((m) => {
       const n = m.hasAmount ? parseFloat($(`#st_min_${m.id}`, ov).value) : 0;
-      depositInfo[m.id] = { min: Number.isFinite(n) && n > 0 ? n : 0, text: $(`#st_text_${m.id}`, ov).value.trim(), show: $(`#st_show_${m.id}`, ov).checked };
+      const x = m.hasAmount ? parseFloat($(`#st_max_${m.id}`, ov).value) : 0;
+      depositInfo[m.id] = { min: Number.isFinite(n) && n > 0 ? n : 0, max: Number.isFinite(x) && x > 0 ? x : 0, text: $(`#st_text_${m.id}`, ov).value.trim(), show: $(`#st_show_${m.id}`, ov).checked };
     });
+    const bad = S.DEPOSIT_METHODS.find((m) => depositInfo[m.id].max > 0 && depositInfo[m.id].min > depositInfo[m.id].max);
+    if (bad) { ok.disabled = false; const m = $("#stMsg", ov); m.className = "msg err"; m.textContent = `${bad.label}: maksimum tutar minimumdan küçük olamaz.`; return; }
     try {
       await S.updateSettings({ minDeposit: depositInfo.crypto.min, depositReceiptRequired: $("#st_rcpt", ov).checked, depositInfo });
       ov.remove(); toast("Yatırım ayarları kaydedildi.", "ok"); render();
