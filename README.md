@@ -166,7 +166,11 @@ ikonsuz görünür, o yüzden bilerek eklenmedi.
   üstünde "Panel Giriş Bilgileri" kartı (e-posta + şifre, Kopyala). Şifre boşsa nedeni ve çözümü yazılır.
   Boş şifrelerin kaynağı: sitedeki `src/live-account.njk` kayıt formu `login_password`/`name` göndermiyordu
   (düzeltildi); daha önce siteden kaydolanlar için yönetici yeni şifre belirler.
-- Sürüm 4 SQL bloğu: `supabase/schema.sql` sonunda ve `app/db-update.sql` içinde (sürüm 3 bloğuyla birlikte).
+- **MT5 talebini reddetme (sürüm 5)**: MT5 Hesapları ve Potansiyel listelerinde bekleyen talep için "Reddet";
+  not zorunludur, `provisioning.status='rejected'` + `admin_note` yazılır ve müşteriye `mt5_rejected`
+  bildirimi düşer. Müşteri notu MT5 Hesabım sayfasında görür, yeniden talep oluşturabilir. Reddedilen
+  satır "Kaldır" ile silinebilir (admin delete policy).
+- Sürüm 3–5 SQL blokları: `supabase/schema.sql` sonunda ve `app/db-update.sql` içinde (hepsi birlikte).
 
 ## Oturumlar: yönetici ve müşteri ayrı
 

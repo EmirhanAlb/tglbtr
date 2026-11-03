@@ -1,6 +1,6 @@
--- Trust Capital paneli — veritabanı güncellemesi (sürüm 4)
+-- Trust Capital paneli — veritabanı güncellemesi (sürüm 5)
 -- Supabase → SQL Editor → New query → bu dosyanın tamamını yapıştırın → Run.
--- Tekrar çalıştırmak güvenlidir (sürüm 3 bloğu da dahildir). Kaynak: supabase/schema.sql.
+-- Tekrar çalıştırmak güvenlidir (sürüm 3 ve 4 blokları da dahildir). Kaynak: supabase/schema.sql.
 
 -- =====================================================================
 --  SÜRÜM 3 GÜNCELLEMESİ — bu bloğun aynısı app/db-update.sql'de; yönetim paneli şema sürümü
@@ -103,3 +103,23 @@ end; $$;
 drop trigger if exists transactions_guard_approval on public.transactions;
 create trigger transactions_guard_approval before insert or update on public.transactions
   for each row execute function public.guard_transaction_approval();
+
+-- =====================================================================
+--  SÜRÜM 5 GÜNCELLEMESİ — MT5 hesap talebini not yazarak reddetme.
+--  Blok tekrar tekrar çalıştırılabilir; app/db-update.sql ile aynı.
+-- =====================================================================
+create or replace function public.schema_version()
+returns integer language sql stable as $$ select 5; $$;
+grant execute on function public.schema_version() to anon, authenticated;
+
+-- provisioning.status'a 'rejected' eklenir; yöneticinin notu müşteriye gösterilir.
+alter table public.provisioning drop constraint if exists provisioning_status_check;
+alter table public.provisioning add constraint provisioning_status_check
+  check (status in ('pending','assigned','active','rejected'));
+alter table public.provisioning add column if not exists admin_note text;
+alter table public.provisioning add column if not exists rejected_at timestamptz;
+
+-- Admin reddedilmiş/bekleyen talep satırını listeden kaldırabilsin.
+drop policy if exists provisioning_delete on public.provisioning;
+create policy provisioning_delete on public.provisioning for delete to authenticated
+  using (public.is_admin());

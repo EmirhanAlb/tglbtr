@@ -44,6 +44,7 @@ function mapProv(r) {
   return {
     id: r.id, userId: r.user_id, status: r.status, login: r.login || "", server: r.server || "",
     password: r.password || "", investor: r.investor || "",
+    adminNote: r.admin_note || "", rejectedAt: r.rejected_at || null,
     createdAt: r.created_at, assignedAt: r.assigned_at, activatedAt: r.activated_at,
   };
 }
@@ -103,7 +104,7 @@ export async function signOut() { await supabase.auth.signOut({ scope: "local" }
 
 // ---------- Şema sürümü (admin paneli "veritabanı güncellemesi gerekli" uyarısı için) ----------
 // supabase/schema.sql'deki schema_version() fonksiyonu kuruluysa sürüm numarasını, yoksa 0 döndürür.
-export const REQUIRED_SCHEMA_VERSION = 4;
+export const REQUIRED_SCHEMA_VERSION = 5;
 export async function schemaVersion() {
   const { data, error } = await supabase.rpc("schema_version");
   if (error) return 0;
@@ -400,6 +401,24 @@ export async function updateProvisioning(id, patch) {
   const prov = mapProv(data);
   if (prov.status === "active" && patch.login) await setPrimaryMt5IfEmpty(prov.userId, patch.login);
   return prov;
+}
+// Admin: bekleyen MT5 talebini not yazarak reddeder; müşteriye bildirim düşer, not MT5 sayfasında görünür.
+export async function rejectProvisioning(id, note) {
+  const text = String(note || "").trim();
+  const { data, error } = await supabase.from("provisioning")
+    .update({ status: "rejected", admin_note: text || null, rejected_at: nowIso() }).eq("id", id).select().single();
+  if (error && (isMissingColumn(error) || error.code === "23514" || /check constraint/i.test(error.message || ""))) throw new Error(SCHEMA_HINT + " (MT5 talebi reddetme için sürüm 5 gerekli)");
+  throwIf(error);
+  const prov = mapProv(data);
+  const { error: nErr } = await supabase.from("notifications").insert({ user_id: prov.userId, kind: "info", category: "mt5_rejected", body: text || null });
+  if (nErr) console.warn("bildirim eklenemedi:", nErr.message);
+  return prov;
+}
+// Admin: reddedilmiş (ya da bekleyen) talep satırını listeden kaldırır.
+export async function removeProvisioning(id) {
+  const { error } = await supabase.from("provisioning").delete().eq("id", id);
+  if (error && /policy|permission|42501/i.test(error.message || error.code || "")) throw new Error(SCHEMA_HINT + " (talep kaldırma için sürüm 5 gerekli)");
+  throwIf(error);
 }
 export async function activateProvisioning(id) {
   const { data, error } = await supabase.from("provisioning").update({ status: "active", activated_at: nowIso() }).eq("id", id).select().single();

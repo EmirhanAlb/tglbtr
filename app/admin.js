@@ -92,7 +92,7 @@ async function checkSchema() {
   host.classList.remove("hidden");
   host.innerHTML = `<div class="dbn">
     <div class="dbn-title">Veritabanı güncellemesi gerekli (bir kez)</div>
-    <p>Yeni özellikler (yatırım talebi düzenleme, TL bildirim, yatırım sekmesi bilgilendirme metinleri) bu güncelleme yapılmadan çalışmaz. Üç adım:</p>
+    <p>Yeni özellikler (MT5 talebini not yazarak reddetme, yatırım talebi düzenleme, TL bildirim, yatırım sekmesi bilgilendirme metinleri) bu güncelleme yapılmadan çalışmaz. Üç adım:</p>
     <ol><li><b>SQL'i kopyala</b> düğmesine basın.</li><li><b>Supabase SQL Editor'ü aç</b> → boş sorguya yapıştırın → sağ alttaki <b>Run</b>'a basın.</li><li>Buraya dönüp <b>Tekrar kontrol et</b>'e basın; kutu kaybolur.</li></ol>
     <div class="dbn-actions">
       <button type="button" class="btn btn-primary" id="dbCopy">SQL'i kopyala</button>
@@ -216,6 +216,7 @@ async function renderProspects(root) {
           <td>${fmtDate(u.createdAt)}</td>
           <td style="text-align:right"><div class="panel-row-actions">
             <button class="panel-row-action success" data-prov="${u.id}">${st === "pending" ? "MT5 Bilgisi Gönder" : "Düzenle"}</button>
+            ${u._prov && st === "pending" ? `<button class="panel-row-action danger" data-rej="${u._prov.id}" title="MT5 talebini not yazarak reddet">Reddet</button>` : ""}
             <button class="panel-row-action" data-edit="${u.id}">Aç</button>
             <button class="panel-row-action danger" data-del="${u.id}" title="Müşteriyi sil">Sil</button></div></td></tr>`;
       }).join("")
@@ -224,6 +225,7 @@ async function renderProspects(root) {
   wirePager(root, crmState, renderProspects);
   root.querySelectorAll("[data-edit]").forEach((b) => b.onclick = () => { editUserId = b.dataset.edit; render(); });
   root.querySelectorAll("[data-prov]").forEach((b) => b.onclick = () => openProvisionModal(b.dataset.prov));
+  root.querySelectorAll("[data-rej]").forEach((b) => b.onclick = () => { const u = users.find((x) => x._prov?.id === b.dataset.rej); rejectProvisionModal(u?._prov, u); });
   wireDelete(root, users);
 }
 
@@ -422,10 +424,36 @@ async function renderMt5(root) {
     <div class="panel-table-wrap">${provs.length ? `<table class="panel-table"><thead><tr><th>Tarih</th><th>Müşteri</th><th>Login</th><th>Sunucu</th><th>Durum</th><th></th></tr></thead><tbody>${
       provs.map((p) => `<tr><td>${fmtDate(p.createdAt)}</td><td>${esc(um[p.userId]?.name || "—")}</td>
         <td class="mono">${p.login ? esc(p.login) : '<span class="warn">—</span>'}</td><td class="mono">${esc(p.server || "—")}</td>
-        <td>${badge(p.status)}</td>
-        <td style="text-align:right"><button class="panel-row-action ${p.status === "pending" ? "success" : ""}" data-assign="${p.userId}">${p.status === "pending" ? "Bilgileri Ata" : "Düzenle"}</button></td></tr>`).join("")
+        <td>${badge(p.status)}${p.status === "rejected" && p.adminNote ? `<div class="panel-cell-note" style="margin-top:4px">${esc(p.adminNote)}</div>` : ""}</td>
+        <td style="text-align:right"><div class="panel-row-actions" style="justify-content:flex-end">${
+          p.status === "pending" ? `<button class="panel-row-action success" data-assign-id="${p.id}" data-assign="${p.userId}">Bilgileri Ata</button><button class="panel-row-action danger" data-rej="${p.id}">Reddet</button>`
+          : p.status === "rejected" ? `<button class="panel-row-action" data-rm="${p.id}" title="Satırı listeden kaldır">Kaldır</button>`
+          : `<button class="panel-row-action" data-assign="${p.userId}">Düzenle</button>`}</div></td></tr>`).join("")
     }</tbody></table>` : emptyBox("MT5 hesabı yok.")}</div>`;
-  root.querySelectorAll("[data-assign]").forEach((b) => b.onclick = () => openProvisionModal(b.dataset.assign));
+  const byId = {}; provs.forEach((p) => (byId[p.id] = p));
+  root.querySelectorAll("[data-assign]").forEach((b) => b.onclick = () => openProvisionModal(b.dataset.assign, b.dataset.assignId || null));
+  root.querySelectorAll("[data-rej]").forEach((b) => b.onclick = () => rejectProvisionModal(byId[b.dataset.rej], um[byId[b.dataset.rej]?.userId]));
+  root.querySelectorAll("[data-rm]").forEach((b) => b.onclick = async () => {
+    if (!confirm("Bu reddedilmiş talep satırı listeden kaldırılsın mı?")) return;
+    try { await S.removeProvisioning(b.dataset.rm); toast("Satır kaldırıldı.", "ok"); render(); } catch (e) { toast("Kaldırılamadı: " + e.message); }
+  });
+}
+
+// Bekleyen MT5 talebini not yazarak reddet: müşteri notu MT5 sayfasında ve bildirimlerde görür.
+function rejectProvisionModal(prov, u) {
+  if (!prov) return;
+  const ov = modal("MT5 Talebini Reddet", `
+    <div class="panel-side-user-email" style="margin-bottom:12px">${esc(u?.name || "—")} · ${esc(u?.email || "")} · talep ${fmtDate(prov.createdAt)}</div>
+    <div class="field-group"><label class="field-l">Müşteriye gösterilecek not</label><div class="field-wrap"><textarea class="field-i" id="rj_note" rows="4" maxlength="400">Hesabınızda bakiye bulunmadığından MT5 hesabı açılamıyor. Lütfen önce para yatırın; ardından yeniden talep oluşturabilirsiniz.</textarea></div></div>
+    <div class="msg" id="rjMsg"></div>`, "Reddet");
+  $("#modalOk", ov).className = "btn btn-danger";
+  $("#modalOk", ov).onclick = async () => {
+    const note = $("#rj_note", ov).value.trim();
+    if (!note) { const m = $("#rjMsg", ov); m.className = "msg err"; m.textContent = "Lütfen bir not yazın; müşteri bu notu görecek."; return; }
+    const ok = $("#modalOk", ov); ok.disabled = true;
+    try { await S.rejectProvisioning(prov.id, note); ov.remove(); toast("Talep reddedildi; not müşteriye iletildi.", "ok"); render(); }
+    catch (e) { ok.disabled = false; if (isAuthError(e)) showSessionLost(); const m = $("#rjMsg", ov); m.className = "msg err"; m.textContent = "Reddedilemedi: " + e.message; }
+  };
 }
 
 // ====================== BANKA & KRİPTO ======================
@@ -742,10 +770,10 @@ async function renderTxHistory(root, userId) {
 }
 
 // ---------- MT5 atama / düzenleme modalı ----------
-async function openProvisionModal(userId) {
-  const [u, prov0] = await Promise.all([S.getUser(userId), S.getProvisioningByUser(userId)]);
-  // bekleyen satır yoksa oluştur (admin ataması)
-  let prov = prov0;
+async function openProvisionModal(userId, provId = null) {
+  const [u, prov0, rows] = await Promise.all([S.getUser(userId), S.getProvisioningByUser(userId), provId ? S.listProvisioning({ userId }) : []]);
+  // bekleyen satır yoksa oluştur (admin ataması); listeden gelen belirli bir talep satırı varsa onu kullan
+  let prov = (provId && rows.find((r) => r.id === provId)) || prov0;
   if (!prov) { await S.requestAdditionalMt5(userId); prov = await S.getProvisioningByUser(userId); }
   const isEdit = prov && prov.status !== "pending";
   const ov = modal(isEdit ? "MT5 Bilgilerini Güncelle" : "MT5 Bilgilerini Ata", `

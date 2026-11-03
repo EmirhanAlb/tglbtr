@@ -238,6 +238,10 @@ async function renderMt5(root) {
     if (p.status === "pending") {
       html += `<div class="panel-form-card"><div class="panel-card-head"><div class="panel-card-title">Hesap #${i + 1}</div><span class="panel-badge pending">Hazırlanıyor</span></div>
         <p class="panel-side-user-email">Operasyon ekibimiz MT5 hesabınızı hazırlıyor. Bilgileriniz kısa süre içinde burada görünecek.</p></div>`;
+    } else if (p.status === "rejected") {
+      html += `<div class="panel-form-card"><div class="panel-card-head"><div class="panel-card-title">Hesap #${i + 1}</div><span class="panel-badge rejected">Reddedildi</span></div>
+        <div class="deposit-info">${esc(p.adminNote || "Talebiniz onaylanmadı. Ayrıntı için Destek bölümünden bize ulaşabilirsiniz.")}</div>
+        <p class="panel-side-user-email">${fmtDateTime(p.rejectedAt || p.createdAt)} · Koşullar sağlandığında aşağıdan yeniden talep oluşturabilirsiniz.</p></div>`;
     } else {
       const active = p.status === "active";
       html += `<div class="panel-form-card"><div class="panel-card-head"><div class="panel-card-title">Hesap #${i + 1}</div>
@@ -622,7 +626,7 @@ function notifHtml(n) {
   const title = {
     credit: "Hesabınıza bakiye eklendi", debit: "Bakiyenizden düşüldü",
     transfer_request: "Transfer talebiniz alındı", transfer_completed: "Transfer tamamlandı", transfer_rejected: "Transfer reddedildi",
-    kyc_submitted: "Kimlik doğrulama alındı", kyc_verified: "Kimliğiniz doğrulandı",
+    kyc_submitted: "Kimlik doğrulama alındı", kyc_verified: "Kimliğiniz doğrulandı", mt5_rejected: "MT5 hesap talebiniz onaylanmadı",
   }[n.category] || (n.kind === "credit" ? "Hesabınıza bakiye eklendi" : n.kind === "debit" ? "Bakiyenizden düşüldü" : "Bilgilendirme");
   const body = n.body || {
     transfer_request: `${amt} tutarındaki MT5 transfer talebiniz alındı. İşleniyor.`,
@@ -631,6 +635,7 @@ function notifHtml(n) {
     credit: `Hesabınıza ${amt} eklendi.`, debit: `Hesabınızdan ${amt} düşüldü.`,
     kyc_submitted: "Kimlik belgeleriniz alındı. Onayınız kısa süre içinde tamamlanacak.",
     kyc_verified: "Hesabınız doğrulandı. Tüm işlemleri kullanabilirsiniz.",
+    mt5_rejected: "MT5 hesap talebiniz onaylanmadı. Ayrıntı için MT5 Hesabım sayfasına bakın.",
   }[n.category] || "";
   return `<div class="panel-notif-item ${n.read ? "" : "unread"}"><div class="panel-notif-item-title">${esc(title)}</div>
     ${body ? `<div class="panel-notif-item-body">${esc(body)}</div>` : ""}<div class="panel-notif-item-time">${fmtDateTime(n.createdAt)}</div></div>`;
