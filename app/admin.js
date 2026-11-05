@@ -92,7 +92,7 @@ async function checkSchema() {
   host.classList.remove("hidden");
   host.innerHTML = `<div class="dbn">
     <div class="dbn-title">Veritabanı güncellemesi gerekli (bir kez)</div>
-    <p>Yeni özellikler (MT5 talebini not yazarak reddetme, yatırım talebi düzenleme, TL bildirim, yatırım sekmesi bilgilendirme metinleri) bu güncelleme yapılmadan çalışmaz. Üç adım:</p>
+    <p>Yeni özellikler (IBAN'ın yalnızca KYC onaylılara açılması, MT5 talebini reddetme, yatırım talebi düzenleme, TL bildirim, sekme bilgilendirme metinleri) bu güncelleme yapılmadan tam çalışmaz. Üç adım:</p>
     <ol><li><b>SQL'i kopyala</b> düğmesine basın.</li><li><b>Supabase SQL Editor'ü aç</b> → boş sorguya yapıştırın → sağ alttaki <b>Run</b>'a basın.</li><li>Buraya dönüp <b>Tekrar kontrol et</b>'e basın; kutu kaybolur.</li></ol>
     <div class="dbn-actions">
       <button type="button" class="btn btn-primary" id="dbCopy">SQL'i kopyala</button>

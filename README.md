@@ -170,7 +170,13 @@ ikonsuz görünür, o yüzden bilerek eklenmedi.
   not zorunludur, `provisioning.status='rejected'` + `admin_note` yazılır ve müşteriye `mt5_rejected`
   bildirimi düşer. Müşteri notu MT5 Hesabım sayfasında görür, yeniden talep oluşturabilir. Reddedilen
   satır "Kaldır" ile silinebilir (admin delete policy).
-- Sürüm 3–5 SQL blokları: `supabase/schema.sql` sonunda ve `app/db-update.sql` içinde (hepsi birlikte).
+- **IBAN/cüzdan yalnızca KYC onaylılara (sürüm 6)**: müşteri panelinde Banka Havalesi ve Kripto sekmeleri
+  KYC doğrulanmadan "Önce kimlik doğrulaması gerekli" kapısı gösterir; sunucu tarafında `bank_select` /
+  `crypto_select` politikaları `is_admin() or is_kyc_verified()` ile sınırlıdır. Kredi Kartı sekmesi açık kalır.
+- Site: ana sayfa kahraman düğmesi "KAYIT OL" (`/live-account`), masaüstü başlıkta Giriş'in solunda "Kayıt Ol"
+  (`.registerButton`, stil `public/build/assets/utilities-missing.css`); mobil alt barda zaten "Hesap Aç" var.
+  Canlı hesap formunda hesap türü seçenekleri: ECN / Standard / Professional.
+- Sürüm 3–6 SQL blokları: `supabase/schema.sql` sonunda ve `app/db-update.sql` içinde (hepsi birlikte).
 
 ## Oturumlar: yönetici ve müşteri ayrı
 

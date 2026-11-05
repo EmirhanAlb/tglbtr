@@ -275,7 +275,12 @@ async function renderDeposit(root) {
   const mi = settings.depositInfo[depositTab] || { min: 0, text: "", show: false };
   const cur = depositTab === "bank" ? "TRY" : "USD", curSym = S.sym(cur), curLabel = depositTab === "bank" ? "TL" : "USD";
   if (mi.show && mi.text.trim()) html += `<div class="deposit-info">${esc(mi.text.trim())}</div>`;
-  if (depositTab === "card") {
+  if (depositTab !== "card" && me.kycStatus !== "verified") {
+    // KYC onayı olmayan müşteri banka/kripto hesap bilgilerini (IBAN, cüzdan) göremez; sunucu tarafında RLS de engeller.
+    html += `<div class="panel-card kyc-gate"><div class="kyc-gate-title">Önce kimlik doğrulaması gerekli</div>
+      <div class="kyc-gate-sub">${depositTab === "bank" ? "Banka hesap bilgilerimizi (IBAN) görmek" : "Kripto cüzdan adresimizi görmek"} ve yatırım bildirimi yapmak için KYC doğrulamanızı tamamlamanız gerekir.${me.kycStatus === "reviewing" ? " Belgeleriniz inceleniyor; onaylanınca bu bölüm açılır." : ""}</div>
+      <button type="button" class="btn btn-primary" id="goKyc">KYC Doğrulamasına Git</button></div>`;
+  } else if (depositTab === "card") {
     // Kredi kartı yatırımı WhatsApp destek hattı üzerinden yürütülür: talep kaydı açılır, sohbet otomatik açılır.
     html += `<div class="panel-form-card deposit-card-cta">
       <div class="deposit-card-row"><div class="deposit-card-ico">${FIELD_ICO.coin || ""}</div>
@@ -311,6 +316,7 @@ async function renderDeposit(root) {
   }
   root.innerHTML = html;
   root.querySelectorAll("[data-tab]").forEach((b) => b.onclick = () => { depositTab = b.dataset.tab; render(); });
+  const gk = $("#goKyc"); if (gk) gk.onclick = () => { view = "kyc"; render(); };
   const wa = $("#d_card_wa");
   if (wa) wa.onclick = async () => {
     const text = `Merhaba, kredi kartından para yatırmak istiyorum. Ad: ${me.name || "-"} · E-posta: ${me.email || "-"}`;

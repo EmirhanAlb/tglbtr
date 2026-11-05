@@ -639,6 +639,27 @@ create policy provisioning_delete on public.provisioning for delete to authentic
   using (public.is_admin());
 
 -- =====================================================================
+--  SÜRÜM 6 GÜNCELLEMESİ — banka/kripto hesap bilgileri (IBAN, cüzdan) yalnızca KYC onaylı
+--  müşterilere ve yöneticilere görünür. Blok tekrar tekrar çalıştırılabilir; app/db-update.sql ile aynı.
+-- =====================================================================
+create or replace function public.schema_version()
+returns integer language sql stable as $$ select 6; $$;
+grant execute on function public.schema_version() to anon, authenticated;
+
+create or replace function public.is_kyc_verified()
+returns boolean language sql stable security definer set search_path = public as $$
+  select exists (select 1 from public.profiles where id = auth.uid() and kyc_status = 'verified');
+$$;
+grant execute on function public.is_kyc_verified() to authenticated;
+
+drop policy if exists bank_select on public.bank_accounts;
+create policy bank_select on public.bank_accounts for select to authenticated
+  using (public.is_admin() or public.is_kyc_verified());
+drop policy if exists crypto_select on public.crypto_accounts;
+create policy crypto_select on public.crypto_accounts for select to authenticated
+  using (public.is_admin() or public.is_kyc_verified());
+
+-- =====================================================================
 --  Rol koruması: müşteriler kendi profillerindeki role sütununu değiştiremez.
 --  (RLS kendi satırını güncellemeye izin verdiğinden bu trigger olmadan herkes
 --   profiles.role = 'admin' yazabiliyordu; veri erişimi JWT'den okunduğu için

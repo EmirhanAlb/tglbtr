@@ -104,7 +104,7 @@ export async function signOut() { await supabase.auth.signOut({ scope: "local" }
 
 // ---------- Şema sürümü (admin paneli "veritabanı güncellemesi gerekli" uyarısı için) ----------
 // supabase/schema.sql'deki schema_version() fonksiyonu kuruluysa sürüm numarasını, yoksa 0 döndürür.
-export const REQUIRED_SCHEMA_VERSION = 5;
+export const REQUIRED_SCHEMA_VERSION = 6;
 export async function schemaVersion() {
   const { data, error } = await supabase.rpc("schema_version");
   if (error) return 0;

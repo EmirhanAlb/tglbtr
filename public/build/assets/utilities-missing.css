@@ -59,3 +59,8 @@
 @media (max-width: 767px){
   :root{--app-promo-offset:0px;--app-promo-offset-hbanner:0px}
 }
+
+/* Üst başlık: "Giriş"in solundaki "Kayıt Ol" bağlantısı (koyu yeşil çerçeveli kapsül) */
+.registerButton { border: 1.5px solid #003E3C; color: #003E3C; border-radius: 33px; font-weight: 500; font-size: 16px; line-height: 1; height: 40px; white-space: nowrap; text-decoration: none; transition: background-color .2s, color .2s; }
+.registerButton:hover { background-color: #003E3C; color: #fff; }
+@media (max-width: 1100px) { .registerButton { font-size: 14px; padding-left: 14px; padding-right: 14px; } }
