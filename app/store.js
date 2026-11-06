@@ -24,6 +24,7 @@ function mapTx(r) {
     declaredAmount: r.declared_amount != null ? Number(r.declared_amount) : null,
     declaredCurrency: r.declared_currency ? String(r.declared_currency).toUpperCase() : null,
     receiptPath: r.receipt_path || null, receipt: r.receipt_path ? r.receipt_path.split("/").pop() : null,
+    accountId: r.account_id || null, accountLabel: r.account_label || null, // hangi IBAN / cüzdana yatırıldı
     createdAt: r.created_at, resolvedAt: r.resolved_at,
   };
 }
@@ -48,8 +49,14 @@ function mapProv(r) {
     createdAt: r.created_at, assignedAt: r.assigned_at, activatedAt: r.activated_at,
   };
 }
-function mapBank(r) { return { id: r.id, bankName: r.bank_name, holder: r.holder, iban: r.iban, note: r.note, createdAt: r.created_at }; }
-function mapCrypto(r) { return { id: r.id, network: r.network, token: r.token, address: r.address, note: r.note, createdAt: r.created_at }; }
+// Hesap başına para birimi ve alt/üst limit (0 = sınırsız). Banka hesabı TRY veya USD; kripto her zaman USD.
+const lim = (v) => (v != null && Number(v) > 0 ? Number(v) : 0);
+function mapBank(r) { return { id: r.id, kind: "bank", bankName: r.bank_name, holder: r.holder, iban: r.iban, note: r.note, currency: String(r.currency || "TRY").toUpperCase(), minAmount: lim(r.min_amount), maxAmount: lim(r.max_amount), createdAt: r.created_at }; }
+function mapCrypto(r) { return { id: r.id, kind: "crypto", network: r.network, token: r.token, address: r.address, note: r.note, currency: "USD", minAmount: lim(r.min_amount), maxAmount: lim(r.max_amount), createdAt: r.created_at }; }
+// İşlem kaydına yazılan hesap etiketi ("HALKBANK TL IBAN · TR40 …", "TRC20 USDT · TX…").
+export const accountLabel = (a) => !a ? "" : a.kind === "bank"
+  ? [a.bankName, a.iban].filter(Boolean).join(" · ")
+  : [[a.network, a.token].filter(Boolean).join(" "), a.address].filter(Boolean).join(" · ");
 function mapNotification(r) {
   if (!r) return null;
   return {
@@ -104,7 +111,7 @@ export async function signOut() { await supabase.auth.signOut({ scope: "local" }
 
 // ---------- Şema sürümü (admin paneli "veritabanı güncellemesi gerekli" uyarısı için) ----------
 // supabase/schema.sql'deki schema_version() fonksiyonu kuruluysa sürüm numarasını, yoksa 0 döndürür.
-export const REQUIRED_SCHEMA_VERSION = 6;
+export const REQUIRED_SCHEMA_VERSION = 7;
 export async function schemaVersion() {
   const { data, error } = await supabase.rpc("schema_version");
   if (error) return 0;
@@ -209,7 +216,15 @@ export async function createTransaction(t) {
     amount: Number(t.amount) || 0, currency: t.currency || "USD", status: "pending",
     note, receipt_path: t.receiptPath || null,
   };
-  const { data, error } = await supabase.from("transactions").insert(row).select().single();
+  if (t.accountId) row.account_id = t.accountId;
+  if (t.accountLabel) row.account_label = t.accountLabel;
+  let { data, error } = await supabase.from("transactions").insert(row).select().single();
+  if (error && isMissingColumn(error) && (row.account_id || row.account_label)) {
+    // Şema 7 henüz kurulmadıysa müşteri bildirimi yine düşmesin: hesap bilgisi nota yazılır.
+    delete row.account_id; delete row.account_label;
+    row.note = [t.accountLabel, note].filter(Boolean).join(" · ") || null;
+    ({ data, error } = await supabase.from("transactions").insert(row).select().single());
+  }
   throwIf(error);
   return mapTx(data);
 }
@@ -430,23 +445,64 @@ export async function activateProvisioning(id) {
 
 // ---------- Bank / Crypto ----------
 export async function listBankAccounts() { const { data, error } = await supabase.from("bank_accounts").select("*").order("created_at", { ascending: true }); throwIf(error); return data.map(mapBank); }
+const ACCT_HINT = SCHEMA_HINT + " (hesap başına limit ve para birimi için sürüm 7 gerekli)";
+// Limit alanları: 0/boş → null (sınırsız). currency yalnızca banka hesabında (TRY/USD).
+function bankRow(b) {
+  const row = {};
+  if ("bankName" in b) row.bank_name = b.bankName; if ("holder" in b) row.holder = b.holder || "";
+  if ("iban" in b) row.iban = b.iban; if ("note" in b) row.note = b.note || null;
+  if ("currency" in b) row.currency = String(b.currency || "TRY").toUpperCase();
+  if ("minAmount" in b) row.min_amount = lim(b.minAmount) || null;
+  if ("maxAmount" in b) row.max_amount = lim(b.maxAmount) || null;
+  return row;
+}
+function cryptoRow(c) {
+  const row = {};
+  if ("network" in c) row.network = c.network; if ("token" in c) row.token = c.token;
+  if ("address" in c) row.address = c.address; if ("note" in c) row.note = c.note || null;
+  if ("minAmount" in c) row.min_amount = lim(c.minAmount) || null;
+  if ("maxAmount" in c) row.max_amount = lim(c.maxAmount) || null;
+  return row;
+}
 export async function addBankAccount(b) {
-  const { data, error } = await supabase.from("bank_accounts").insert({ bank_name: b.bankName, holder: b.holder, iban: b.iban, note: b.note || null }).select().single();
+  let { data, error } = await supabase.from("bank_accounts").insert(bankRow(b)).select().single();
+  if (error && isMissingColumn(error)) {
+    // Şema 7 kurulmadan: limit/para birimi girilmediyse eski sütunlarla ekle, girildiyse güncelleme iste.
+    if (lim(b.minAmount) || lim(b.maxAmount) || String(b.currency || "TRY").toUpperCase() !== "TRY") throw new Error(ACCT_HINT);
+    ({ data, error } = await supabase.from("bank_accounts").insert(bankRow({ bankName: b.bankName, holder: b.holder, iban: b.iban, note: b.note })).select().single());
+  }
+  throwIf(error);
+  return mapBank(data);
+}
+export async function updateBankAccount(id, b) {
+  const { data, error } = await supabase.from("bank_accounts").update(bankRow(b)).eq("id", id).select().single();
+  if (error && isMissingColumn(error)) throw new Error(ACCT_HINT);
   throwIf(error);
   return mapBank(data);
 }
 export async function removeBankAccount(id) { const { error } = await supabase.from("bank_accounts").delete().eq("id", id); throwIf(error); }
 export async function listCryptoAccounts() { const { data, error } = await supabase.from("crypto_accounts").select("*").order("created_at", { ascending: true }); throwIf(error); return data.map(mapCrypto); }
 export async function addCryptoAccount(c) {
-  const { data, error } = await supabase.from("crypto_accounts").insert({ network: c.network, token: c.token, address: c.address, note: c.note || null }).select().single();
+  let { data, error } = await supabase.from("crypto_accounts").insert(cryptoRow(c)).select().single();
+  if (error && isMissingColumn(error)) {
+    if (lim(c.minAmount) || lim(c.maxAmount)) throw new Error(ACCT_HINT);
+    ({ data, error } = await supabase.from("crypto_accounts").insert(cryptoRow({ network: c.network, token: c.token, address: c.address, note: c.note })).select().single());
+  }
+  throwIf(error);
+  return mapCrypto(data);
+}
+export async function updateCryptoAccount(id, c) {
+  const { data, error } = await supabase.from("crypto_accounts").update(cryptoRow(c)).eq("id", id).select().single();
+  if (error && isMissingColumn(error)) throw new Error(ACCT_HINT);
   throwIf(error);
   return mapCrypto(data);
 }
 export async function removeCryptoAccount(id) { const { error } = await supabase.from("crypto_accounts").delete().eq("id", id); throwIf(error); }
 
 // ---------- Settings ----------
-// Yatırım sekmeleri: müşteri panelindeki üç yöntem. Banka havalesi TL ile bildirilir (bakiye USD'ye
-// admin onayında çevrilir), kripto USD(T), kredi kartı WhatsApp üzerinden yürür (tutar alanı yok).
+// Yatırım sekmeleri: müşteri panelindeki üç yöntem. Banka havalesi hesabın para birimiyle (TL veya USD) bildirilir
+// (TL ise bakiyeye admin onayında USD olarak çevrilir), kripto USD(T), kredi kartı WhatsApp üzerinden yürür (tutar alanı yok).
+// Alt/üst limitler sekme başına değil, hesap (IBAN / cüzdan) başına tutulur (sürüm 7).
 export const DEPOSIT_METHODS = [
   { id: "bank", label: "Banka Havalesi", currency: "TRY", hasAmount: true },
   { id: "crypto", label: "Kripto", currency: "USD", hasAmount: true },
@@ -454,20 +510,18 @@ export const DEPOSIT_METHODS = [
 ];
 export const CURRENCY_SYMBOL = { USD: "$", TRY: "₺", EUR: "€" };
 export const sym = (c) => CURRENCY_SYMBOL[String(c || "USD").toUpperCase()] || (String(c || "USD").toUpperCase() + " ");
-function normalizeDepositInfo(raw, legacyMin) {
+// Sekme başına bilgilendirme metni + göster/gizle. (Eski min/max alanları artık okunmaz; limit hesap başınadır.)
+function normalizeDepositInfo(raw) {
   const src = raw && typeof raw === "object" ? raw : {};
   const out = {};
   DEPOSIT_METHODS.forEach((m) => {
     const r = src[m.id] && typeof src[m.id] === "object" ? src[m.id] : {};
-    // Kripto alt limiti eski tek "min_deposit" ayarından devralınır.
-    const fallbackMin = m.id === "crypto" ? legacyMin : 0;
-    out[m.id] = { min: Number(r.min != null ? r.min : fallbackMin) || 0, max: Number(r.max) || 0, text: String(r.text || ""), show: !!r.show };
+    out[m.id] = { text: String(r.text || ""), show: !!r.show };
   });
   return out;
 }
 function mapSettings(data) {
-  const minDeposit = Number(data?.min_deposit) || 0;
-  return { depositReceiptRequired: !!data?.deposit_receipt_required, minDeposit, depositInfo: normalizeDepositInfo(data?.deposit_info, minDeposit) };
+  return { depositReceiptRequired: !!data?.deposit_receipt_required, depositInfo: normalizeDepositInfo(data?.deposit_info) };
 }
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").eq("id", true).maybeSingle();
@@ -477,8 +531,7 @@ export async function getSettings() {
 export async function updateSettings(patch) {
   const row = { id: true };
   if ("depositReceiptRequired" in patch) row.deposit_receipt_required = patch.depositReceiptRequired;
-  if ("minDeposit" in patch) row.min_deposit = patch.minDeposit;
-  if ("depositInfo" in patch) row.deposit_info = normalizeDepositInfo(patch.depositInfo, Number(patch.minDeposit) || 0);
+  if ("depositInfo" in patch) row.deposit_info = normalizeDepositInfo(patch.depositInfo);
   const { data, error } = await supabase.from("settings").upsert(row).select().single();
   if (error && isMissingColumn(error)) throw new Error(SCHEMA_HINT + " (yatırım sekmesi ayarları için sürüm 4 gerekli)");
   throwIf(error);

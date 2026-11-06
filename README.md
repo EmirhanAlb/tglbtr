@@ -147,7 +147,7 @@ ikonsuz görünür, o yüzden bilerek eklenmedi.
   gerektiğinde: schema.sql'deki bloğu güncelle, `schema_version()` değerini ve
   `REQUIRED_SCHEMA_VERSION`'ı artır, `app/db-update.sql`'i yeniden üret.
 
-## Panel: yatırım talebi düzenleme, TL bildirim, sekme bilgilendirme metinleri (şema sürüm 4)
+## Panel: yatırım talebi düzenleme, TL bildirim, sekme bilgilendirme metinleri, hesap başına limit (şema sürüm 4–7)
 
 - **Banka havalesi TL ile bildirilir**: müşteri Para Yatır → Banka Havalesi'nde tutarı TL yazar;
   işlem `currency='TRY'` ile kaydedilir ve listelerde `+₺50.000,00` görünür. Kripto USD kalır.
@@ -159,9 +159,9 @@ ikonsuz görünür, o yüzden bilerek eklenmedi.
   alanlarında kalır ve tabloda "(₺50.000,00 bildirildi)" olarak gösterilir. "Onayla" TL satırda
   doğrudan onaylamaz, bu modalı açar. "Kaydet ve Onayla" tek adımda onaylar.
 - **Yatırım sekmesi ayarları** (Banka & Kripto → Yatırım Ayarları): her sekme (banka / kripto / kredi
-  kartı) için alt ve üst limit (banka ₺, kripto $; 0 = sınırsız), bilgilendirme metni ve "müşteriye göster" anahtarı.
-  `settings.deposit_info` (jsonb) içinde `{bank:{min,max,text,show},crypto:{…},card:{…}}`; müşteri
-  panelinde sekmenin üstünde sarı kutu olarak çıkar. Eski `min_deposit` kripto alt limiti olarak devralınır.
+  kartı) için bilgilendirme metni ve "müşteriye göster" anahtarı. `settings.deposit_info` (jsonb) içinde
+  `{bank:{text,show},crypto:{…},card:{…}}`; müşteri panelinde sekmenin üstünde sarı kutu olarak çıkar.
+  (Sürüm 4'teki sekme başına min/max alanları sürüm 7 ile hesap başına limite taşındı; aşağıya bakın.)
 - **Şifre görünürlüğü**: Potansiyel ve Yatırımcılar listelerinde "Şifre" sütunu; müşteri sayfasının
   üstünde "Panel Giriş Bilgileri" kartı (e-posta + şifre, Kopyala). Şifre boşsa nedeni ve çözümü yazılır.
   Boş şifrelerin kaynağı: sitedeki `src/live-account.njk` kayıt formu `login_password`/`name` göndermiyordu
@@ -176,7 +176,18 @@ ikonsuz görünür, o yüzden bilerek eklenmedi.
 - Site: ana sayfa kahraman düğmesi "KAYIT OL" (`/live-account`), masaüstü başlıkta Giriş'in solunda "Kayıt Ol"
   (`.registerButton`, stil `public/build/assets/utilities-missing.css`); mobil alt barda zaten "Hesap Aç" var.
   Canlı hesap formunda hesap türü seçenekleri: ECN / Standard / Professional.
-- Sürüm 3–6 SQL blokları: `supabase/schema.sql` sonunda ve `app/db-update.sql` içinde (hepsi birlikte).
+- **IBAN / cüzdan başına limit ve para birimi (sürüm 7)**: Banka & Kripto sayfasında her banka hesabının
+  para birimi (`bank_accounts.currency`: TRY / USD), alt ve üst limiti (`min_amount` / `max_amount`, boş = sınırsız)
+  ve açıklaması vardır; kripto cüzdanlarında aynı limitler USD'dir. Satırdaki "Düzenle" mevcut hesabı günceller.
+  Sekme başına eski min/max ayarı kaldırıldı; "Yatırım Ayarları" yalnızca bilgilendirme metni + göster/gizle ve
+  dekont zorunluluğunu tutar (`settings.min_deposit` artık okunmaz).
+- **Müşteri hesap seçer**: Para Yatır'da IBAN'lar / cüzdanlar seçilebilir kart olarak listelenir (tek hesap varsa
+  otomatik seçili). Tutar alanı seçilen hesabın para birimiyle (TL hesapta ₺, USD hesapta $) ve limitiyle etiketlenir;
+  limit dışı tutar reddedilir. Bildirim `transactions.account_id` + `account_label` ("HALKBANK TL IBAN · TR40 …")
+  ile kaydedilir; Finans listesinde, müşteri sayfasındaki geçmişte, müşterinin kendi listesinde ve düzenleme
+  modalında "Hesap" olarak görünür. USD hesaba yapılan bildirim kur çevrimi gerekmeden onaylanabilir.
+  Şema 7 kurulmadan yapılan bildirimde hesap bilgisi not alanına yazılır (bildirim düşmez).
+- Sürüm 3–7 SQL blokları: `supabase/schema.sql` sonunda ve `app/db-update.sql` içinde (hepsi birlikte).
 
 ## Oturumlar: yönetici ve müşteri ayrı
 

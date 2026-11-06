@@ -41,6 +41,11 @@ const initials = (name) => (name || "?").trim().split(/\s+/).slice(0, 2).map((w)
 const fmtAmt = (tx) => `${tx.type === "deposit" ? "+" : "−"}${S.sym(tx.currency)}${money(tx.amount)}`;
 const declaredHtml = (tx) => (tx.declaredAmount != null && tx.declaredCurrency && (tx.declaredCurrency !== tx.currency || tx.declaredAmount !== tx.amount))
   ? ` <span class="tx-declared">(${S.sym(tx.declaredCurrency)}${money(tx.declaredAmount)} bildirildi)</span>` : "";
+// Hangi IBAN / cüzdana yatırıldı (sürüm 7): yöntem hücresinin altında küçük satır.
+const acctHtml = (tx) => (tx.accountLabel ? `<div class="tx-acct">${esc(tx.accountLabel)}</div>` : "");
+// Hesap başına limit: "₺5.000,00 – ₺50.000,00" / "en az ₺50.000,00" / "en fazla $10.000,00" / "".
+const limitText = (a) => { const s = S.sym(a.currency); if (a.minAmount > 0 && a.maxAmount > 0) return `${s}${money(a.minAmount)} – ${s}${money(a.maxAmount)}`; if (a.minAmount > 0) return `en az ${s}${money(a.minAmount)}`; if (a.maxAmount > 0) return `en fazla ${s}${money(a.maxAmount)}`; return ""; };
+const limitCell = (a) => `<span class="acct-cur">${a.currency === "TRY" ? "TL" : esc(a.currency)}</span>${limitText(a) ? `<span class="acct-lim">${limitText(a)}</span>` : `<span class="panel-section-meta">limit yok</span>`}`;
 const passCell = (u) => `<td class="mono">${u.loginPassword ? esc(u.loginPassword) : '<span class="warn" title="Şifre kayıtlı değil; müşteri sayfasından yeni şifre belirleyin">—</span>'}</td>`;
 
 const STATUS_TR = {
@@ -92,7 +97,7 @@ async function checkSchema() {
   host.classList.remove("hidden");
   host.innerHTML = `<div class="dbn">
     <div class="dbn-title">Veritabanı güncellemesi gerekli (bir kez)</div>
-    <p>Yeni özellikler (IBAN'ın yalnızca KYC onaylılara açılması, MT5 talebini reddetme, yatırım talebi düzenleme, TL bildirim, sekme bilgilendirme metinleri) bu güncelleme yapılmadan tam çalışmaz. Üç adım:</p>
+    <p>Yeni özellikler (IBAN / cüzdan başına alt-üst limit ve para birimi, müşterinin hangi hesaba yatırdığının kaydı, IBAN'ın yalnızca KYC onaylılara açılması, MT5 talebini reddetme, yatırım talebi düzenleme) bu güncelleme yapılmadan tam çalışmaz. Üç adım:</p>
     <ol><li><b>SQL'i kopyala</b> düğmesine basın.</li><li><b>Supabase SQL Editor'ü aç</b> → boş sorguya yapıştırın → sağ alttaki <b>Run</b>'a basın.</li><li>Buraya dönüp <b>Tekrar kontrol et</b>'e basın; kutu kaybolur.</li></ol>
     <div class="dbn-actions">
       <button type="button" class="btn btn-primary" id="dbCopy">SQL'i kopyala</button>
@@ -294,7 +299,7 @@ async function renderTransactions(root) {
   root.innerHTML = headHtml("Finans", `${txs.length} kayıt · ${pendingCount} bekleyen · Bekleyen talepleri onaylamadan önce "Düzenle" ile tutarı düzeltebilirsiniz.`) +
     `<div class="panel-table-wrap">${txs.length ? `<table class="panel-table"><thead><tr><th>Tarih</th><th>Müşteri</th><th>Tip</th><th>Yöntem</th><th>Tutar</th><th>Not / Referans</th><th>Durum</th><th></th></tr></thead><tbody>${
       txs.map((tx) => `<tr><td>${fmtDateTime(tx.createdAt)}</td><td>${esc(um[tx.userId]?.name || "—")}</td>
-        <td>${tx.type === "deposit" ? "Yatırım" : "Çekim"}</td><td>${esc(tx.method || "")}</td>
+        <td>${tx.type === "deposit" ? "Yatırım" : "Çekim"}</td><td>${esc(tx.method || "")}${acctHtml(tx)}</td>
         <td class="mono ${tx.type === "deposit" ? "gain" : "loss"}">${fmtAmt(tx)}${declaredHtml(tx)}</td>
         <td class="panel-cell-note">${esc(tx.note || "—")}${tx.receiptPath ? ` <button type="button" class="panel-copy" data-rcpt="${esc(tx.receiptPath)}">Dekont</button>` : ""}</td>
         <td>${badge(tx.status)}</td>
@@ -336,6 +341,7 @@ function editTransaction(tx, u) {
     <div class="tx-edit-sum">
       <span>Müşteri</span><b>${esc(u?.name || "—")} · ${esc(u?.email || "")}</b>
       <span>Yöntem</span><b>${esc(tx.method || "—")} · ${fmtDateTime(tx.createdAt)}</b>
+      ${tx.accountLabel ? `<span>Hesap</span><b class="mono" style="font-size:12.5px">${esc(tx.accountLabel)}</b>` : ""}
       <span>Bildirilen</span><b>${S.sym(declaredCur || tx.currency)}${money(declared != null ? declared : tx.amount)}</b>
       ${tx.receiptPath ? `<span>Dekont</span><b><button type="button" class="panel-copy" id="txRcpt" style="margin-left:0">Dekontu aç</button></b>` : ""}
     </div>
@@ -460,11 +466,11 @@ function rejectProvisionModal(prov, u) {
 let payTab = "bank";
 async function renderPayments(root) {
   const [banks, cryptos, settings] = await Promise.all([S.listBankAccounts(), S.listCryptoAccounts(), S.getSettings()]);
-  root.innerHTML = headHtml("Yatırım Yöntemleri", "Müşterilerin para yatırırken göreceği banka hesapları ve kripto cüzdanları.") + `
+  root.innerHTML = headHtml("Yatırım Yöntemleri", "Müşterilerin para yatırırken göreceği banka hesapları ve kripto cüzdanları. Alt / üst limit her IBAN ve cüzdan için ayrı belirlenir; müşteri hangi hesaba yatırdığını seçer.") + `
     <div class="panel-settings-card">
       <div class="panel-settings-card-head"><span class="panel-settings-card-title">Yatırım Ayarları</span><button class="panel-row-action" id="editSettings">Düzenle</button></div>
       <div class="panel-settings-summary">
-        ${S.DEPOSIT_METHODS.map((m) => { const i = settings.depositInfo[m.id]; return `<div class="panel-settings-summary-item"><span class="panel-settings-summary-l">${esc(m.label)}${m.hasAmount ? ` · min / max` : ""}</span><span class="panel-settings-summary-v mono">${m.hasAmount ? `${i.min > 0 ? S.sym(m.currency) + money(i.min) : "—"} / ${i.max > 0 ? S.sym(m.currency) + money(i.max) : "—"}` : ""}${i.show && i.text.trim() ? ` <span class="gain">· bilgi açık</span>` : ` <span class="panel-section-meta">· bilgi kapalı</span>`}</span></div>`; }).join("")}
+        ${S.DEPOSIT_METHODS.map((m) => { const i = settings.depositInfo[m.id]; const on = i.show && i.text.trim(); return `<div class="panel-settings-summary-item"><span class="panel-settings-summary-l">${esc(m.label)} · Bilgilendirme</span><span class="panel-settings-summary-v ${on ? "gain" : ""}">${on ? "Açık" : "Kapalı"}</span></div>`; }).join("")}
         <div class="panel-settings-summary-item"><span class="panel-settings-summary-l">Banka Dekontu Zorunlu</span><span class="panel-settings-summary-v ${settings.depositReceiptRequired ? "gain" : ""}">${settings.depositReceiptRequired ? "Açık" : "Kapalı"}</span></div>
       </div>
     </div>
@@ -473,60 +479,116 @@ async function renderPayments(root) {
   root.querySelectorAll("[data-tab]").forEach((b) => b.onclick = () => { payTab = b.dataset.tab; render(); });
   $("#editSettings").onclick = () => editSettings(settings);
   const body = $("#payBody");
+  const saveAcct = async (fn, okMsg) => { try { await fn(); toast(okMsg, "ok"); render(); } catch (e) { if (isAuthError(e)) showSessionLost(); toast("Kaydedilemedi: " + e.message); } };
+  // Alt/üst limit alanları: boş veya 0 = sınırsız; üst limit alt limitten küçük olamaz.
+  const readLimits = (minEl, maxEl) => {
+    const n = parseFloat(minEl.value), x = parseFloat(maxEl.value);
+    const minAmount = Number.isFinite(n) && n > 0 ? n : 0, maxAmount = Number.isFinite(x) && x > 0 ? x : 0;
+    if (maxAmount > 0 && minAmount > maxAmount) { toast("Üst limit alt limitten küçük olamaz."); return null; }
+    return { minAmount, maxAmount };
+  };
+  const rowActions = (id) => `<td style="text-align:right"><div class="panel-row-actions" style="justify-content:flex-end"><button class="panel-row-action" data-edit="${id}">Düzenle</button><button class="panel-row-action danger" data-del="${id}">Sil</button></div></td>`;
   if (payTab === "bank") {
     body.innerHTML = `<form class="panel-minimal-form" id="bankForm"><div class="panel-minimal-form-title">Banka Hesabı Ekle</div>
       <div class="panel-minimal-form-row">
         <div class="field-wrap compact" style="flex:1.2"><input class="field-i" id="b_name" required placeholder="Banka Adı" /></div>
         <div class="field-wrap compact" style="flex:1"><input class="field-i" id="b_holder" placeholder="Hesap Sahibi" /></div>
-        <div class="field-wrap compact" style="flex:1.5"><input class="field-i" id="b_iban" required placeholder="IBAN" /></div>
-        <div class="field-wrap compact" style="flex:1"><input class="field-i" id="b_note" placeholder="Açıklama" /></div>
+        <div class="field-wrap compact" style="flex:1.6"><input class="field-i" id="b_iban" required placeholder="IBAN" /></div></div>
+      <div class="panel-minimal-form-row">
+        <div class="field-wrap compact" style="flex:0 0 130px"><select class="field-i" id="b_cur" title="Hesabın para birimi"><option value="TRY">TL hesabı</option><option value="USD">USD hesabı</option></select></div>
+        <div class="field-wrap compact" style="flex:1"><input class="field-i" id="b_min" type="number" min="0" step="any" placeholder="Alt limit (boş = yok)" /></div>
+        <div class="field-wrap compact" style="flex:1"><input class="field-i" id="b_max" type="number" min="0" step="any" placeholder="Üst limit (boş = yok)" /></div>
+        <div class="field-wrap compact" style="flex:1.2"><input class="field-i" id="b_note" placeholder="Açıklama (müşteri görür)" /></div>
         <button class="btn btn-primary panel-minimal-form-btn">+ Ekle</button></div></form>
-      <div class="panel-table-wrap">${banks.length ? `<table class="panel-table"><thead><tr><th>Banka</th><th>Hesap Sahibi</th><th>IBAN</th><th>Açıklama</th><th></th></tr></thead><tbody>${
-        banks.map((b) => `<tr><td>${esc(b.bankName)}</td><td>${esc(b.holder || "—")}</td><td class="mono">${esc(b.iban)}</td><td>${esc(b.note || "—")}</td><td style="text-align:right"><button class="panel-row-action danger" data-del="${b.id}">Sil</button></td></tr>`).join("")
+      <div class="panel-table-wrap">${banks.length ? `<table class="panel-table"><thead><tr><th>Banka</th><th>Hesap Sahibi</th><th>Alt / Üst Limit</th><th>IBAN</th><th>Açıklama</th><th></th></tr></thead><tbody>${
+        banks.map((b) => `<tr><td>${esc(b.bankName)}</td><td>${esc(b.holder || "—")}</td><td>${limitCell(b)}</td><td class="mono">${esc(b.iban)}</td><td>${esc(b.note || "—")}</td>${rowActions(b.id)}</tr>`).join("")
       }</tbody></table>` : emptyBox("Henüz banka hesabı yok.")}</div>`;
-    $("#bankForm").onsubmit = async (e) => { e.preventDefault(); if (!$("#b_name").value || !$("#b_iban").value) return; await S.addBankAccount({ bankName: $("#b_name").value, holder: $("#b_holder").value, iban: $("#b_iban").value, note: $("#b_note").value }); render(); };
-    body.querySelectorAll("[data-del]").forEach((b) => b.onclick = async () => { await S.removeBankAccount(b.dataset.del); render(); });
+    $("#bankForm").onsubmit = (e) => {
+      e.preventDefault(); if (!$("#b_name").value.trim() || !$("#b_iban").value.trim()) return;
+      const l = readLimits($("#b_min"), $("#b_max")); if (!l) return;
+      saveAcct(() => S.addBankAccount({ bankName: $("#b_name").value.trim(), holder: $("#b_holder").value.trim(), iban: $("#b_iban").value.trim(), currency: $("#b_cur").value, note: $("#b_note").value.trim(), ...l }), "Banka hesabı eklendi.");
+    };
+    body.querySelectorAll("[data-edit]").forEach((b) => b.onclick = () => editAccount(banks.find((x) => x.id === b.dataset.edit)));
+    body.querySelectorAll("[data-del]").forEach((b) => b.onclick = () => { if (!confirm("Bu banka hesabı silinsin mi? Müşteriler artık göremez.")) return; saveAcct(() => S.removeBankAccount(b.dataset.del), "Banka hesabı silindi."); });
   } else {
     body.innerHTML = `<form class="panel-minimal-form" id="cryForm"><div class="panel-minimal-form-title">Kripto Cüzdanı Ekle</div>
       <div class="panel-minimal-form-row">
         <div class="field-wrap compact" style="flex:0 0 110px"><select class="field-i" id="c_net"><option>TRC20</option><option>ERC20</option><option>BEP20</option></select></div>
         <div class="field-wrap compact" style="flex:0 0 110px"><select class="field-i" id="c_tok"><option>USDT</option><option>USDC</option><option>BTC</option><option>ETH</option></select></div>
-        <div class="field-wrap compact" style="flex:2"><input class="field-i" id="c_addr" required placeholder="Cüzdan Adresi" /></div>
-        <div class="field-wrap compact" style="flex:1"><input class="field-i" id="c_note" placeholder="Açıklama" /></div>
+        <div class="field-wrap compact" style="flex:2"><input class="field-i" id="c_addr" required placeholder="Cüzdan Adresi" /></div></div>
+      <div class="panel-minimal-form-row">
+        <div class="field-wrap compact" style="flex:1"><input class="field-i" id="c_min" type="number" min="0" step="any" placeholder="Alt limit $ (boş = yok)" /></div>
+        <div class="field-wrap compact" style="flex:1"><input class="field-i" id="c_max" type="number" min="0" step="any" placeholder="Üst limit $ (boş = yok)" /></div>
+        <div class="field-wrap compact" style="flex:1.2"><input class="field-i" id="c_note" placeholder="Açıklama (müşteri görür)" /></div>
         <button class="btn btn-primary panel-minimal-form-btn">+ Ekle</button></div></form>
-      <div class="panel-table-wrap">${cryptos.length ? `<table class="panel-table"><thead><tr><th>Ağ</th><th>Token</th><th>Adres</th><th>Açıklama</th><th></th></tr></thead><tbody>${
-        cryptos.map((c) => `<tr><td>${esc(c.network)}</td><td>${esc(c.token)}</td><td class="mono">${esc(c.address)}</td><td>${esc(c.note || "—")}</td><td style="text-align:right"><button class="panel-row-action danger" data-del="${c.id}">Sil</button></td></tr>`).join("")
+      <div class="panel-table-wrap">${cryptos.length ? `<table class="panel-table"><thead><tr><th>Ağ</th><th>Token</th><th>Alt / Üst Limit</th><th>Adres</th><th>Açıklama</th><th></th></tr></thead><tbody>${
+        cryptos.map((c) => `<tr><td>${esc(c.network)}</td><td>${esc(c.token)}</td><td>${limitCell(c)}</td><td class="mono">${esc(c.address)}</td><td>${esc(c.note || "—")}</td>${rowActions(c.id)}</tr>`).join("")
       }</tbody></table>` : emptyBox("Henüz kripto cüzdanı yok.")}</div>`;
-    $("#cryForm").onsubmit = async (e) => { e.preventDefault(); if (!$("#c_addr").value) return; await S.addCryptoAccount({ network: $("#c_net").value, token: $("#c_tok").value, address: $("#c_addr").value, note: $("#c_note").value }); render(); };
-    body.querySelectorAll("[data-del]").forEach((b) => b.onclick = async () => { await S.removeCryptoAccount(b.dataset.del); render(); });
+    $("#cryForm").onsubmit = (e) => {
+      e.preventDefault(); if (!$("#c_addr").value.trim()) return;
+      const l = readLimits($("#c_min"), $("#c_max")); if (!l) return;
+      saveAcct(() => S.addCryptoAccount({ network: $("#c_net").value, token: $("#c_tok").value, address: $("#c_addr").value.trim(), note: $("#c_note").value.trim(), ...l }), "Kripto cüzdanı eklendi.");
+    };
+    body.querySelectorAll("[data-edit]").forEach((b) => b.onclick = () => editAccount(cryptos.find((x) => x.id === b.dataset.edit)));
+    body.querySelectorAll("[data-del]").forEach((b) => b.onclick = () => { if (!confirm("Bu cüzdan silinsin mi? Müşteriler artık göremez.")) return; saveAcct(() => S.removeCryptoAccount(b.dataset.del), "Kripto cüzdanı silindi."); });
   }
 }
+// IBAN / cüzdan düzenleme: bilgiler, para birimi (yalnızca banka), alt-üst limit, açıklama.
+function editAccount(acc) {
+  if (!acc) return;
+  const bank = acc.kind === "bank";
+  const ico = (cur) => (cur === "TRY" ? FIELD_ICO.lira : FIELD_ICO.dollar);
+  const ov = modal(bank ? "Banka Hesabını Düzenle" : "Kripto Cüzdanını Düzenle", `
+    ${bank ? `<div class="panel-form-row">
+      <div class="field-group"><label class="field-l">Banka Adı</label><div class="field-wrap">${FIELD_ICO.bank}<input class="field-i" id="ea_a" value="${esc(acc.bankName)}" /></div></div>
+      <div class="field-group"><label class="field-l">Hesap Sahibi</label><div class="field-wrap">${FIELD_ICO.user}<input class="field-i" id="ea_b" value="${esc(acc.holder || "")}" /></div></div></div>
+      <div class="field-group"><label class="field-l">IBAN</label><div class="field-wrap">${FIELD_ICO.hash}<input class="field-i" id="ea_c" value="${esc(acc.iban)}" /></div></div>`
+    : `<div class="panel-form-row">
+      <div class="field-group"><label class="field-l">Ağ</label><div class="field-wrap">${FIELD_ICO.network}<input class="field-i" id="ea_a" value="${esc(acc.network)}" /></div></div>
+      <div class="field-group"><label class="field-l">Token</label><div class="field-wrap">${FIELD_ICO.coin}<input class="field-i" id="ea_b" value="${esc(acc.token)}" /></div></div></div>
+      <div class="field-group"><label class="field-l">Cüzdan Adresi</label><div class="field-wrap">${FIELD_ICO.wallet}<input class="field-i" id="ea_c" value="${esc(acc.address)}" /></div></div>`}
+    <div class="panel-form-row${bank ? " three" : ""}">
+      ${bank ? `<div class="field-group"><label class="field-l">Para Birimi</label><div class="field-wrap">${FIELD_ICO.coin}<select class="field-i" id="ea_cur"><option value="TRY" ${acc.currency === "TRY" ? "selected" : ""}>TL hesabı</option><option value="USD" ${acc.currency === "USD" ? "selected" : ""}>USD hesabı</option></select></div></div>` : ""}
+      <div class="field-group"><label class="field-l">Alt Limit · boş = yok</label><div class="field-wrap" id="ea_minW">${ico(acc.currency)}<input class="field-i" id="ea_min" type="number" min="0" step="any" value="${acc.minAmount || ""}" placeholder="örn. 5000" /></div></div>
+      <div class="field-group"><label class="field-l">Üst Limit · boş = yok</label><div class="field-wrap" id="ea_maxW">${ico(acc.currency)}<input class="field-i" id="ea_max" type="number" min="0" step="any" value="${acc.maxAmount || ""}" placeholder="örn. 50000" /></div></div>
+    </div>
+    <div class="field-group"><label class="field-l">Açıklama (müşteri görür)</label><div class="field-wrap">${FIELD_ICO.note}<input class="field-i" id="ea_note" maxlength="200" value="${esc(acc.note || "")}" /></div></div>
+    <div class="msg" id="eaMsg"></div>`, "Kaydet");
+  const curSel = $("#ea_cur", ov);
+  if (curSel) curSel.onchange = () => ["#ea_minW", "#ea_maxW"].forEach((id) => { const w = $(id, ov); const old = w.querySelector(".field-ico"); if (old) old.remove(); w.insertAdjacentHTML("afterbegin", ico(curSel.value)); });
+  $("#modalOk", ov).onclick = async () => {
+    const setM = (kind, text) => { const m = $("#eaMsg", ov); m.className = "msg " + kind; m.textContent = text; };
+    const a = $("#ea_a", ov).value.trim(), b = $("#ea_b", ov).value.trim(), c = $("#ea_c", ov).value.trim();
+    if (!a || !c) return setM("err", bank ? "Banka adı ve IBAN boş olamaz." : "Ağ ve cüzdan adresi boş olamaz.");
+    const n = parseFloat($("#ea_min", ov).value), x = parseFloat($("#ea_max", ov).value);
+    const minAmount = Number.isFinite(n) && n > 0 ? n : 0, maxAmount = Number.isFinite(x) && x > 0 ? x : 0;
+    if (maxAmount > 0 && minAmount > maxAmount) return setM("err", "Üst limit alt limitten küçük olamaz.");
+    const note = $("#ea_note", ov).value.trim();
+    const btns = ov.querySelectorAll("button"); btns.forEach((q) => (q.disabled = true)); setM("", "Kaydediliyor…");
+    try {
+      if (bank) await S.updateBankAccount(acc.id, { bankName: a, holder: b, iban: c, currency: curSel.value, minAmount, maxAmount, note });
+      else await S.updateCryptoAccount(acc.id, { network: a, token: b, address: c, minAmount, maxAmount, note });
+      ov.remove(); toast(bank ? "Banka hesabı güncellendi." : "Kripto cüzdanı güncellendi.", "ok"); render();
+    } catch (e) { btns.forEach((q) => (q.disabled = false)); if (isAuthError(e)) showSessionLost(); setM("err", "Kaydedilemedi: " + e.message); }
+  };
+}
 function editSettings(cur) {
-  // Her yatırım sekmesi için: alt limit (banka ₺, kripto $), bilgilendirme metni, müşteriye göster/gizle.
+  // Her yatırım sekmesi için bilgilendirme metni + müşteriye göster/gizle. Alt/üst limitler hesap başınadır
+  // (IBAN / cüzdan satırındaki "Düzenle"), bu yüzden burada tutar alanı yoktur.
   const body = S.DEPOSIT_METHODS.map((m) => { const i = cur.depositInfo[m.id]; return `
     <div class="settings-method">
       <div class="settings-method-title"><span>${esc(m.label)}</span><label class="checkbox-inline"><input type="checkbox" id="st_show_${m.id}" ${i.show ? "checked" : ""} /><span>Bilgilendirmeyi müşteriye göster</span></label></div>
-      ${m.hasAmount ? `<div class="panel-form-row">
-        <div class="field-group"><label class="field-l">Minimum Yatırım (${m.currency === "TRY" ? "TL" : m.currency})</label><div class="field-wrap">${m.currency === "TRY" ? FIELD_ICO.lira : FIELD_ICO.dollar}<input class="field-i" id="st_min_${m.id}" type="number" min="0" step="any" value="${i.min || 0}" /></div></div>
-        <div class="field-group"><label class="field-l">Maksimum Yatırım (${m.currency === "TRY" ? "TL" : m.currency}) · 0 = sınırsız</label><div class="field-wrap">${m.currency === "TRY" ? FIELD_ICO.lira : FIELD_ICO.dollar}<input class="field-i" id="st_max_${m.id}" type="number" min="0" step="any" value="${i.max || 0}" /></div></div>
-      </div>` : ""}
-      <div class="field-group"><label class="field-l">Bilgilendirme metni (müşteri "Para Yatır → ${esc(m.label)}" sekmesinde görür)</label><div class="field-wrap"><textarea class="field-i" id="st_text_${m.id}" rows="3" placeholder="Örn. Minimum ${S.sym(m.currency)}1.000, maksimum ${S.sym(m.currency)}500.000. Açıklama kısmına yalnızca adınızı yazın.">${esc(i.text)}</textarea></div></div>
+      <div class="field-group"><label class="field-l">Bilgilendirme metni (müşteri "Para Yatır → ${esc(m.label)}" sekmesinde görür)</label><div class="field-wrap"><textarea class="field-i" id="st_text_${m.id}" rows="3" placeholder="Örn. Açıklama kısmına yalnızca adınızı soyadınızı yazın. 16:00'dan sonraki havaleler ertesi iş günü işlenir.">${esc(i.text)}</textarea></div></div>
     </div>`; }).join("");
-  const ov = modal("Yatırım Ayarları", body + `
+  const ov = modal("Yatırım Ayarları", `<div class="tx-edit-hint">Alt ve üst yatırım limitleri burada değil, her IBAN / cüzdanın kendi satırındaki <b>Düzenle</b> ile belirlenir. Müşteri seçtiği hesabın limitini görür.</div>` + body + `
     <div class="settings-method"><label class="checkbox-inline"><input type="checkbox" id="st_rcpt" ${cur.depositReceiptRequired ? "checked" : ""} /><span>Banka havalesinde dekont yüklemek zorunlu</span></label></div>
     <div class="msg" id="stMsg"></div>`, "Kaydet");
   $("#modalOk", ov).onclick = async () => {
     const ok = $("#modalOk", ov); ok.disabled = true;
     const depositInfo = {};
-    S.DEPOSIT_METHODS.forEach((m) => {
-      const n = m.hasAmount ? parseFloat($(`#st_min_${m.id}`, ov).value) : 0;
-      const x = m.hasAmount ? parseFloat($(`#st_max_${m.id}`, ov).value) : 0;
-      depositInfo[m.id] = { min: Number.isFinite(n) && n > 0 ? n : 0, max: Number.isFinite(x) && x > 0 ? x : 0, text: $(`#st_text_${m.id}`, ov).value.trim(), show: $(`#st_show_${m.id}`, ov).checked };
-    });
-    const bad = S.DEPOSIT_METHODS.find((m) => depositInfo[m.id].max > 0 && depositInfo[m.id].min > depositInfo[m.id].max);
-    if (bad) { ok.disabled = false; const m = $("#stMsg", ov); m.className = "msg err"; m.textContent = `${bad.label}: maksimum tutar minimumdan küçük olamaz.`; return; }
+    S.DEPOSIT_METHODS.forEach((m) => { depositInfo[m.id] = { text: $(`#st_text_${m.id}`, ov).value.trim(), show: $(`#st_show_${m.id}`, ov).checked }; });
     try {
-      await S.updateSettings({ minDeposit: depositInfo.crypto.min, depositReceiptRequired: $("#st_rcpt", ov).checked, depositInfo });
+      await S.updateSettings({ depositReceiptRequired: $("#st_rcpt", ov).checked, depositInfo });
       ov.remove(); toast("Yatırım ayarları kaydedildi.", "ok"); render();
     } catch (e) { ok.disabled = false; if (isAuthError(e)) showSessionLost(); const m = $("#stMsg", ov); m.className = "msg err"; m.textContent = "Ayarlar kaydedilemedi: " + e.message; toast("Ayarlar kaydedilemedi: " + e.message); }
   };
@@ -765,7 +827,7 @@ async function renderTxHistory(root, userId) {
   root.appendChild(card);
   const txs = await S.listTransactions(userId);
   $("#txh", card).innerHTML = txs.length ? `<table class="panel-table"><thead><tr><th>Tarih</th><th>Tip</th><th>Yöntem</th><th>Tutar</th><th>Durum</th></tr></thead><tbody>${
-    txs.slice(0, 20).map((tx) => `<tr><td>${fmtDate(tx.createdAt)}</td><td>${tx.type === "deposit" ? "Yatırım" : "Çekim"}</td><td class="mono" style="text-transform:uppercase;font-size:12px">${esc(tx.method || "—")}</td><td class="mono ${tx.type === "deposit" ? "gain" : "loss"}">${fmtAmt(tx)}${declaredHtml(tx)}</td><td>${badge(tx.status)}</td></tr>`).join("")
+    txs.slice(0, 20).map((tx) => `<tr><td>${fmtDate(tx.createdAt)}</td><td>${tx.type === "deposit" ? "Yatırım" : "Çekim"}</td><td class="mono" style="text-transform:uppercase;font-size:12px">${esc(tx.method || "—")}${acctHtml(tx)}</td><td class="mono ${tx.type === "deposit" ? "gain" : "loss"}">${fmtAmt(tx)}${declaredHtml(tx)}</td><td>${badge(tx.status)}</td></tr>`).join("")
   }</tbody></table>` : `<div class="panel-empty" style="padding:16px">Henüz işlem yok.</div>`;
 }
 

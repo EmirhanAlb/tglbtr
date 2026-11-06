@@ -47,6 +47,10 @@ const initials = (name) => (name || "?").trim().split(/\s+/).slice(0, 2).map((w)
 const fmtAmt = (tx) => `${tx.type === "deposit" ? "+" : "−"}${S.sym(tx.currency)}${money(tx.amount)}`;
 const declaredHtml = (tx) => (tx.declaredAmount != null && tx.declaredCurrency && (tx.declaredCurrency !== tx.currency || tx.declaredAmount !== tx.amount))
   ? ` <span class="tx-declared">(${S.sym(tx.declaredCurrency)}${money(tx.declaredAmount)} bildirildi)</span>` : "";
+// Hangi IBAN / cüzdana yatırıldı: yöntem hücresinin altında küçük satır.
+const acctHtml = (tx) => (tx.accountLabel ? `<div class="tx-acct">${esc(tx.accountLabel)}</div>` : "");
+// Hesap başına limit metni: "₺5.000,00 – ₺50.000,00" / "en az ₺50.000,00" / "en fazla $10.000,00" / "".
+const limitText = (a) => { const s = S.sym(a.currency); if (a.minAmount > 0 && a.maxAmount > 0) return `${s}${money(a.minAmount)} – ${s}${money(a.maxAmount)}`; if (a.minAmount > 0) return `en az ${s}${money(a.minAmount)}`; if (a.maxAmount > 0) return `en fazla ${s}${money(a.maxAmount)}`; return ""; };
 
 const STATUS_TR = {
   open: "Açık", awaiting_admin: "Admin yanıtı bekleniyor", awaiting_user: "Sizden yanıt bekleniyor", closed: "Kapalı",
@@ -203,7 +207,7 @@ async function renderTxTable(wrap, userId, perPage) {
   const rows = txs.slice(0, perPage).map((tx) => `
     <tr><td>${fmtDate(tx.createdAt)}</td>
       <td>${tx.type === "deposit" ? "Yatırım" : "Çekim"}</td>
-      <td class="mono" style="text-transform:uppercase;font-size:12px">${esc(tx.method || "—")}</td>
+      <td class="mono" style="text-transform:uppercase;font-size:12px">${esc(tx.method || "—")}${acctHtml(tx)}</td>
       <td class="mono ${tx.type === "deposit" ? "gain" : "loss"}">${fmtAmt(tx)}${declaredHtml(tx)}</td>
       <td>${badge(tx.status)}</td></tr>`).join("");
   wrap.innerHTML = `<table class="panel-table"><thead><tr><th>Tarih</th><th>Tip</th><th>Yöntem</th><th>Tutar</th><th>Durum</th></tr></thead><tbody>${rows}</tbody></table>`;
@@ -263,6 +267,7 @@ async function renderMt5(root) {
 
 // ====================== PARA YATIR ======================
 let depositTab = "bank";
+let depositAccountId = null; // seçilen IBAN / cüzdan: birden fazla hesap varsa müşteri hangisine yatırdığını seçer
 async function renderDeposit(root) {
   const [banks, cryptos, settings] = await Promise.all([S.listBankAccounts(), S.listCryptoAccounts(), S.getSettings()]);
   let html = headHtml("Para Yatırma", "Aşağıdaki yöntemlerle hesabınıza yatırım yapın.");
@@ -270,15 +275,15 @@ async function renderDeposit(root) {
     <button type="button" class="panel-tab ${depositTab === "bank" ? "active" : ""}" data-tab="bank">Banka Havalesi</button>
     <button type="button" class="panel-tab ${depositTab === "crypto" ? "active" : ""}" data-tab="crypto">Kripto</button>
     <button type="button" class="panel-tab ${depositTab === "card" ? "active" : ""}" data-tab="card">Kredi Kartı</button></div>`;
-  const list = depositTab === "bank" ? banks : depositTab === "crypto" ? cryptos : [];
-  // Sekmeye özel ayarlar (yönetici panelinden): alt limit + açılıp kapatılabilen bilgilendirme metni.
-  const mi = settings.depositInfo[depositTab] || { min: 0, text: "", show: false };
-  const cur = depositTab === "bank" ? "TRY" : "USD", curSym = S.sym(cur), curLabel = depositTab === "bank" ? "TL" : "USD";
+  const bank = depositTab === "bank";
+  const list = bank ? banks : depositTab === "crypto" ? cryptos : [];
+  // Sekmeye özel bilgilendirme metni (yönetici panelinden, açılıp kapatılabilir). Limitler hesap başınadır.
+  const mi = settings.depositInfo[depositTab] || { text: "", show: false };
   if (mi.show && mi.text.trim()) html += `<div class="deposit-info">${esc(mi.text.trim())}</div>`;
   if (depositTab !== "card" && me.kycStatus !== "verified") {
     // KYC onayı olmayan müşteri banka/kripto hesap bilgilerini (IBAN, cüzdan) göremez; sunucu tarafında RLS de engeller.
     html += `<div class="panel-card kyc-gate"><div class="kyc-gate-title">Önce kimlik doğrulaması gerekli</div>
-      <div class="kyc-gate-sub">${depositTab === "bank" ? "Banka hesap bilgilerimizi (IBAN) görmek" : "Kripto cüzdan adresimizi görmek"} ve yatırım bildirimi yapmak için KYC doğrulamanızı tamamlamanız gerekir.${me.kycStatus === "reviewing" ? " Belgeleriniz inceleniyor; onaylanınca bu bölüm açılır." : ""}</div>
+      <div class="kyc-gate-sub">${bank ? "Banka hesap bilgilerimizi (IBAN) görmek" : "Kripto cüzdan adresimizi görmek"} ve yatırım bildirimi yapmak için KYC doğrulamanızı tamamlamanız gerekir.${me.kycStatus === "reviewing" ? " Belgeleriniz inceleniyor; onaylanınca bu bölüm açılır." : ""}</div>
       <button type="button" class="btn btn-primary" id="goKyc">KYC Doğrulamasına Git</button></div>`;
   } else if (depositTab === "card") {
     // Kredi kartı yatırımı WhatsApp destek hattı üzerinden yürütülür: talep kaydı açılır, sohbet otomatik açılır.
@@ -296,17 +301,25 @@ async function renderDeposit(root) {
   } else if (!list.length) {
     html += `<div class="panel-card"><div class="panel-empty" style="padding:24px">Şu anda aktif yatırım yöntemi yok. Lütfen destek ile iletişime geçin.</div></div>`;
   } else {
-    html += `<div class="panel-form-card">`;
-    html += list.map((m) => depositTab === "bank"
-      ? `<dl class="panel-kv"><dt>Banka</dt><dd>${esc(m.bankName)}</dd><dt>Hesap Sahibi</dt><dd>${esc(m.holder || "—")}</dd>
-         <dt>IBAN</dt><dd class="mono">${esc(m.iban)} <button class="panel-copy" data-copy="${esc(m.iban)}">Kopyala</button></dd>${m.note ? `<dt>Açıklama</dt><dd>${esc(m.note)}</dd>` : ""}</dl>`
-      : `<dl class="panel-kv"><dt>Ağ</dt><dd>${esc(m.network)}</dd><dt>Token</dt><dd>${esc(m.token)}</dd>
-         <dt>Cüzdan Adresi</dt><dd class="mono">${esc(m.address)} <button class="panel-copy" data-copy="${esc(m.address)}">Kopyala</button></dd>${m.note ? `<dt>Açıklama</dt><dd>${esc(m.note)}</dd>` : ""}</dl>`
-    ).join('<hr class="panel-hr"/>');
-    const receiptReq = depositTab === "bank" && settings.depositReceiptRequired;
-    html += `<hr class="panel-hr"/>
-      <div class="field-group"><label class="field-l">Yatırılacak Tutar (${curLabel})${mi.min > 0 ? ` · min ${curSym}${money(mi.min)}` : ""}${mi.max > 0 ? ` · max ${curSym}${money(mi.max)}` : ""}</label>
-        <div class="field-wrap">${cur === "TRY" ? FIELD_ICO.lira : FIELD_ICO.dollar}<input class="field-i" id="d_amount" type="number" min="0" step="0.01" placeholder="0.00" /></div></div>
+    // Birden fazla IBAN / cüzdan varsa müşteri hangisine yatırdığını seçer; tek hesap varsa otomatik seçilidir.
+    if (!list.some((a) => a.id === depositAccountId)) depositAccountId = list.length === 1 ? list[0].id : null;
+    const acctCard = (m) => { const on = m.id === depositAccountId; const lt = limitText(m); return `
+      <div class="acct-opt ${on ? "active" : ""}" data-acct="${m.id}" role="radio" aria-checked="${on}" tabindex="0">
+        <span class="acct-opt-radio" aria-hidden="true"></span>
+        <div class="acct-opt-body">
+          <div class="acct-opt-head"><span class="acct-opt-name">${esc(bank ? m.bankName : `${m.network} · ${m.token}`)}</span>
+            <span class="acct-lim"><span class="acct-cur">${m.currency === "TRY" ? "TL" : esc(m.currency)}</span>${lt ? `Limit: <b>${lt}</b>` : "Limit yok"}</span></div>
+          ${bank
+            ? `<dl class="panel-kv"><dt>Hesap Sahibi</dt><dd>${esc(m.holder || "—")}</dd><dt>IBAN</dt><dd class="mono">${esc(m.iban)} <button type="button" class="panel-copy" data-copy="${esc(m.iban)}">Kopyala</button></dd>${m.note ? `<dt>Açıklama</dt><dd>${esc(m.note)}</dd>` : ""}</dl>`
+            : `<dl class="panel-kv"><dt>Cüzdan Adresi</dt><dd class="mono">${esc(m.address)} <button type="button" class="panel-copy" data-copy="${esc(m.address)}">Kopyala</button></dd>${m.note ? `<dt>Açıklama</dt><dd>${esc(m.note)}</dd>` : ""}</dl>`}
+        </div></div>`; };
+    const receiptReq = bank && settings.depositReceiptRequired;
+    html += `<div class="panel-form-card">
+      <div class="acct-pick-title">${list.length > 1 ? (bank ? "Hangi hesabımıza yatırdınız? Birini seçin:" : "Hangi cüzdanımıza gönderdiniz? Birini seçin:") : (bank ? "Yatırım yapılacak banka hesabımız:" : "Gönderim yapılacak cüzdanımız:")}</div>
+      <div class="acct-pick" role="radiogroup">${list.map(acctCard).join("")}</div>
+      <hr class="panel-hr"/>
+      <div class="field-group"><label class="field-l" id="d_amountL" for="d_amount">Yatırılacak Tutar</label>
+        <div class="field-wrap" id="d_amountW"><input class="field-i" id="d_amount" type="number" min="0" step="0.01" placeholder="0.00" /></div></div>
       <div class="field-group"><label class="field-l">Açıklama / Referans</label>
         <div class="field-wrap">${FIELD_ICO.note}<input class="field-i" id="d_ref" placeholder="Dekont no vb." /></div></div>
       ${receiptReq ? `<div class="field-group"><label class="field-l">Dekont (PDF veya görsel)</label>
@@ -332,24 +345,44 @@ async function renderDeposit(root) {
     finally { wa.disabled = false; if (!win) location.href = url; }
   };
   root.querySelectorAll("[data-copy]").forEach((b) => b.onclick = async () => { try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = "Kopyalandı"; setTimeout(() => (b.textContent = "Kopyala"), 1500); } catch {} });
+  // Tutar alanı seçilen hesabın para birimi (TL / USD) ve limitine göre etiketlenir.
+  const selected = () => list.find((a) => a.id === depositAccountId) || null;
+  const syncAmount = () => {
+    const a = selected(), L = $("#d_amountL"), W = $("#d_amountW"); if (!L || !W) return;
+    const cur = a ? a.currency : (bank ? "TRY" : "USD"), lt = a ? limitText(a) : "";
+    L.textContent = `Yatırılacak Tutar (${cur === "TRY" ? "TL" : cur})${lt ? ` · ${lt}` : ""}`;
+    const old = W.querySelector(".field-ico"); if (old) old.remove();
+    W.insertAdjacentHTML("afterbegin", cur === "TRY" ? FIELD_ICO.lira : FIELD_ICO.dollar);
+  };
+  const cards = root.querySelectorAll("[data-acct]");
+  cards.forEach((c) => {
+    const pick = () => { depositAccountId = c.dataset.acct; cards.forEach((x) => { const on = x === c; x.classList.toggle("active", on); x.setAttribute("aria-checked", String(on)); }); syncAmount(); setMsg("d_msg", "", ""); };
+    c.onclick = pick;
+    c.onkeydown = (e) => { if (e.target === c && (e.key === " " || e.key === "Enter")) { e.preventDefault(); pick(); } };
+  });
+  syncAmount();
   const sub = $("#d_submit");
   if (sub) sub.onclick = async () => {
     setMsg("d_msg", "", "");
+    const a = selected();
+    if (!a) return setMsg("d_msg", "err", bank ? "Lütfen hangi hesabımıza yatırdığınızı seçin." : "Lütfen hangi cüzdanımıza gönderdiğinizi seçin.");
+    const cur = a.currency, curSym = S.sym(cur);
     const amount = parseFloat($("#d_amount").value);
     if (!(amount > 0)) return setMsg("d_msg", "err", "Geçerli bir tutar girin.");
-    if (mi.min > 0 && amount < mi.min) return setMsg("d_msg", "err", "Minimum yatırım tutarı: " + curSym + money(mi.min));
-    if (mi.max > 0 && amount > mi.max) return setMsg("d_msg", "err", "Maksimum yatırım tutarı: " + curSym + money(mi.max));
+    if (a.minAmount > 0 && amount < a.minAmount) return setMsg("d_msg", "err", `Bu hesap için en az ${curSym}${money(a.minAmount)} yatırılabilir.`);
+    if (a.maxAmount > 0 && amount > a.maxAmount) return setMsg("d_msg", "err", `Bu hesap için en fazla ${curSym}${money(a.maxAmount)} yatırılabilir.`);
     let receiptPath = null;
     const rf = $("#d_receipt");
-    if (depositTab === "bank" && settings.depositReceiptRequired) {
+    if (bank && settings.depositReceiptRequired) {
       if (!rf || !rf.files[0]) return setMsg("d_msg", "err", "Bu yöntem için dekont yüklemek zorunludur.");
     }
     sub.disabled = true;
     try {
       if (rf && rf.files[0]) receiptPath = await S.uploadReceipt(me.id, rf.files[0]);
-      // Banka havalesi TL ile bildirilir; yönetici onaylarken USD karşılığını girer (bakiye USD).
-      await S.createTransaction({ userId: me.id, type: "deposit", method: depositTab === "bank" ? "Banka Havalesi" : "Kripto", amount, currency: cur, note: $("#d_ref").value.trim() || null, receiptPath });
-      await S.createTicket({ userId: me.id, subject: "Para Yatırma Bildirimi", category: "deposit_notify", initialMessage: `${curSym}${money(amount)} tutarında ${depositTab === "bank" ? "banka havalesi" : "kripto"} yatırımı bildirimi.`, systemMessage: "Yatırım onayı için otomatik destek talebi açıldı." });
+      // Tutar hesabın para birimiyle bildirilir (TL hesapta TL, USD hesapta USD); TL ise yönetici onaylarken USD karşılığını girer (bakiye USD).
+      const label = S.accountLabel(a);
+      await S.createTransaction({ userId: me.id, type: "deposit", method: bank ? "Banka Havalesi" : "Kripto", amount, currency: cur, note: $("#d_ref").value.trim() || null, receiptPath, accountId: a.id, accountLabel: label });
+      await S.createTicket({ userId: me.id, subject: "Para Yatırma Bildirimi", category: "deposit_notify", initialMessage: `${curSym}${money(amount)} tutarında ${bank ? "banka havalesi" : "kripto"} yatırımı bildirimi. Hesap: ${label}`, systemMessage: "Yatırım onayı için otomatik destek talebi açıldı." });
       setMsg("d_msg", "ok", "Yatırım bildiriminiz alındı. Onay sonrası bakiyenize yansıyacak.");
       $("#d_amount").value = ""; $("#d_ref").value = "";
     } catch (e) { setMsg("d_msg", "err", "Hata: " + e.message); } finally { sub.disabled = false; }

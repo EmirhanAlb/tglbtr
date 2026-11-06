@@ -660,6 +660,30 @@ create policy crypto_select on public.crypto_accounts for select to authenticate
   using (public.is_admin() or public.is_kyc_verified());
 
 -- =====================================================================
+--  SÜRÜM 7 GÜNCELLEMESİ — IBAN / cüzdan başına para birimi ve alt-üst limit; yatırım bildiriminde
+--  müşterinin hangi hesaba yatırdığı kaydedilir. Blok tekrar tekrar çalıştırılabilir; app/db-update.sql ile aynı.
+-- =====================================================================
+create or replace function public.schema_version()
+returns integer language sql stable as $$ select 7; $$;
+grant execute on function public.schema_version() to anon, authenticated;
+
+-- Banka hesabı: para birimi (TRY / USD), alt ve üst limit (boş = sınırsız). Müşteri tutarı bu para birimiyle bildirir;
+-- USD hesaba yapılan bildirim kur çevrimi gerekmeden onaylanabilir.
+alter table public.bank_accounts add column if not exists currency text not null default 'TRY';
+alter table public.bank_accounts add column if not exists min_amount numeric;
+alter table public.bank_accounts add column if not exists max_amount numeric;
+alter table public.bank_accounts drop constraint if exists bank_accounts_currency_check;
+alter table public.bank_accounts add constraint bank_accounts_currency_check check (currency in ('TRY','USD'));
+
+-- Kripto cüzdanı: alt ve üst limit (USD).
+alter table public.crypto_accounts add column if not exists min_amount numeric;
+alter table public.crypto_accounts add column if not exists max_amount numeric;
+
+-- Yatırım bildirimi: hangi IBAN / cüzdana yatırıldığı. account_label hesap sonradan silinse de okunabilsin diye metin kopyasıdır.
+alter table public.transactions add column if not exists account_id uuid;
+alter table public.transactions add column if not exists account_label text;
+
+-- =====================================================================
 --  Rol koruması: müşteriler kendi profillerindeki role sütununu değiştiremez.
 --  (RLS kendi satırını güncellemeye izin verdiğinden bu trigger olmadan herkes
 --   profiles.role = 'admin' yazabiliyordu; veri erişimi JWT'den okunduğu için

@@ -4028,3 +4028,30 @@ body.panel-body img { max-width: 100%; }
 .checkbox-inline input { width: 16px; height: 16px; accent-color: var(--brand-silver); }
 @media (max-width: 760px) { .tx-edit-sum { grid-template-columns: 1fr; gap: 2px; } .tx-edit-sum b { display: block; } }
 .field-wrap .field-ico-text { display: grid; place-items: center; font-size: 16px; font-weight: 600; line-height: 1; font-family: var(--font-mono); }
+
+/* ===== IBAN / cüzdan seçimi (müşteri) ve hesap başına limit (sürüm 7) ===== */
+.acct-pick-title { font-size: 13.5px; color: var(--text-secondary); margin: 0 0 12px; }
+.acct-pick { display: grid; gap: 10px; }
+.acct-opt { display: grid; grid-template-columns: 20px 1fr; gap: 12px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,.02); cursor: pointer; transition: border-color .15s, background .15s; outline: none; }
+.acct-opt:hover, .acct-opt:focus-visible { border-color: var(--border-strong); }
+.acct-opt.active { border-color: var(--brand-silver-bright); background: rgba(187,198,204,.06); }
+.acct-opt-radio { width: 18px; height: 18px; margin-top: 1px; border-radius: 50%; border: 2px solid var(--border-strong); display: grid; place-items: center; }
+.acct-opt.active .acct-opt-radio { border-color: var(--brand-silver-bright); }
+.acct-opt.active .acct-opt-radio::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--brand-silver-bright); }
+.acct-opt-body { min-width: 0; }
+.acct-opt-head { display: flex; justify-content: space-between; gap: 8px 14px; align-items: baseline; flex-wrap: wrap; margin-bottom: 10px; }
+.acct-opt-name { font-weight: 600; font-size: 14.5px; color: var(--text-primary); }
+.acct-lim { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); white-space: nowrap; }
+.acct-lim b { color: var(--text-primary); font-weight: 600; }
+.acct-cur { display: inline-block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; padding: 2px 6px; border-radius: 6px; border: 1px solid var(--border-strong); color: var(--text-secondary); margin-right: 8px; vertical-align: middle; line-height: 1.2; }
+.acct-opt .panel-kv { grid-template-columns: 120px 1fr; gap: 8px 14px; font-size: 13px; }
+.tx-acct { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-transform: none; margin-top: 2px; word-break: break-all; max-width: 320px; }
+.panel-minimal-form-row + .panel-minimal-form-row { margin-top: 8px; }
+@media (max-width: 760px) {
+  .acct-opt { padding: 12px; gap: 10px; }
+  .acct-opt .panel-kv { grid-template-columns: 1fr; gap: 4px 0; }
+  .acct-opt .panel-kv dt { margin-top: 6px; }
+  .acct-opt-head { margin-bottom: 6px; }
+  .acct-lim { white-space: normal; }
+  .tx-acct { max-width: 180px; }
+}
